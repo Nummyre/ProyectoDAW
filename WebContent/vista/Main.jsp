@@ -85,6 +85,9 @@
 			out.print("<li class=\"nav-item mr-5\">");
 			out.print("<a class=\"nav-link\" href=\"Login\">Cerrar Sesión</a>");
 			out.print("</li>");
+			out.print("<li class=\"nav-item\">");
+			out.print("<a class=\"nav-link\" href=\"Perfil\">Perfil</a>");
+			out.print("</li>");
 			out.print("<li class=\"nav-item dropdown\">");
 			out.print(
 					"<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Categorías</a>");
