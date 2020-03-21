@@ -18,7 +18,7 @@ import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
 
 @WebServlet("/Registro")
-@MultipartConfig(maxFileSize = 1024 * 1024 * 5)
+@MultipartConfig
 public class Registro extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
