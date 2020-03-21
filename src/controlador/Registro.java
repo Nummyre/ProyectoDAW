@@ -24,7 +24,7 @@ public class Registro extends HttpServlet {
 
 	
 	//Variable para guardar la imagen
-	private static final String UPLOAD_DIRECTORY = "Imagenes";
+	private static final String UPLOAD_DIRECTORY = "img/";
 	@EJB
 	UsuariosEJB usuariosEJB;
 
@@ -75,7 +75,7 @@ public class Registro extends HttpServlet {
 		
 		
 		// Metodo para registrar al usuario
-		usuariosEJB.insertUsuario(nombre, user, pass, foto, email, fechaAlta);
+		usuariosEJB.insertUsuario(nombre, user, pass, fileName, email, fechaAlta);
 
 		response.sendRedirect("Login");
 		}catch (Exception e) {
