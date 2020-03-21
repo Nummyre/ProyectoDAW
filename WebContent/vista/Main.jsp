@@ -104,7 +104,7 @@
 			out.print("</div>");
 			System.out.print(user);
 			out.print(
-					"<input type=\"text\" readonly=\"readonly\"  disabled=\"disabled\" class=\"form-control\" placeholder=\""+user+"\" aria-label=\"Username\" aria-describedby=\"basic-addon1\">");
+					"<input type=\"text\" readonly=\"readonly\"  disabled=\"disabled\" class=\"form-control\" placeholder=\""+user.getUser()+"\" aria-label=\"Username\" aria-describedby=\"basic-addon1\">");
 			out.print("</div>");
 			out.print("</form>");
 			out.print("<form class=\"form-inline my-2 my-lg-0\">");
