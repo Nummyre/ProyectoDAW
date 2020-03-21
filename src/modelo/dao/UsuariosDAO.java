@@ -21,7 +21,7 @@ public class UsuariosDAO {
 
 			connection = DriverManager.getConnection(url, "usuario", "java");
 
-			String query = "INSERT INTO usuario (nombre, user, password, foto, email) " + "VALUES ('" + nombre + "','"
+			String query = "INSERT INTO usuario (nombre, user, password, foto, email, fechaAlta) " + "VALUES ('" + nombre + "','"
 					+ user + "','" + password + "','" + foto + "','" + email + "','" + fechaAlta + "');";
 			Statement stmt = connection.createStatement();
 
