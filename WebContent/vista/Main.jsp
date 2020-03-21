@@ -100,13 +100,16 @@
 			out.print("<form class=\"form-inline mr-5\">");
 			out.print("<div class=\"input-group\">");
 			out.print("<div class=\"input-group-prepend\">");
-			out.print("<span class=\"input-group-text\" id=\"basic-addon1\">@</span>");
-			out.print("</div>");
-			System.out.print(user);
-			out.print(
-					"<input type=\"text\" readonly=\"readonly\"  disabled=\"disabled\" class=\"form-control\" placeholder=\""+user.getUser()+"\" aria-label=\"Username\" aria-describedby=\"basic-addon1\">");
-			out.print("</div>");
-			out.print("</form>");
+			if(user.getFoto().equals("desconocido.txt")){
+				out.print("<span class=\"input-group-text\" id=\"basic-addon\"><img src=\"img/usuari.jpg\" width=\"65\" height=\"55\"></span>");
+				}else{
+					out.print("<span class=\"input-group-text\" id=\"basic-addon\"><img src=\"user.getFoto()\" width=\"100\" height=\"55\"></span>");
+				}
+				out.print("</div>");
+				out.print(
+						"<input type=\"text\" readonly=\"readonly\"  disabled=\"disabled\" class=\"form-control mt-3 ml-2 text-center\" placeholder=\""+user.getUser()+"\" aria-label=\"Username\" aria-describedby=\"basic-addon1\">");
+				out.print("</div>");
+				out.print("</form>");
 			out.print("<form class=\"form-inline my-2 my-lg-0\">");
 			out.print(
 					"<input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"Búsqueda\" aria-label=\"Search\">");
