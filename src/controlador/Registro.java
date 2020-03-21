@@ -24,7 +24,7 @@ public class Registro extends HttpServlet {
 
 	
 	//Variable para guardar la imagen
-	private static final String UPLOAD_DIRECTORY = "Escritorio";
+	private static final String UPLOAD_DIRECTORY = "Imagenes";
 	@EJB
 	UsuariosEJB usuariosEJB;
 
@@ -43,8 +43,6 @@ public class Registro extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		try {
-		
 
 		String user = request.getParameter("user");
 		String pass = request.getParameter("pass");
@@ -53,6 +51,8 @@ public class Registro extends HttpServlet {
 		String foto = request.getParameter("foto");
 		Date fechaAlta = new Date();
 		System.out.println(fechaAlta);
+
+		// Multipart RFC 7578
 
 		// Obtenemos una ruta en el servidor para guardar el archivo
 		String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY;
@@ -71,26 +71,22 @@ public class Registro extends HttpServlet {
 			fileName = getFileName(part);
 			part.write(uploadPath + File.separator + fileName);
 		}
-		
-		
+
 		
 		// Metodo para registrar al usuario
 		usuariosEJB.insertUsuario(nombre, user, pass, fileName, email, fechaAlta);
 
 		response.sendRedirect("Login");
-		}catch (Exception e) {
-		e.printStackTrace();
-		}
+
 
 	}
 
 	// Obtiene el nombre del archivo, sino lo llamaremos desconocido.txt
 	private String getFileName(Part part) {
 		for (String content : part.getHeader("content-disposition").split(";")) {
-			if (content.trim().startsWith("fileName"))
+			if (content.trim().startsWith("filename"))
 				return content.substring(content.indexOf("=") + 2, content.length() - 1);
 		}
 		return "desconocido.txt";
 	}
-
 }
