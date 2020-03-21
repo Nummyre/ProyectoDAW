@@ -117,8 +117,9 @@
 				out.print(
 						"<img src=\"img/usuari.jpg\" width=\"65\" height=\"55\" class=\"img-circle\">");
 			} else {
-				out.print(
-						"<img src=\"Imagenes/user.getFoto()\" width=\"100\" height=\"55\">");
+				if (user.getFoto().matches(".+\\.(jpg|png)")){
+					out.print("<img src=\"Imagenes/" + user.getFoto() + "\" width=\"200\" height=\"150\"/>");
+				}
 			}
 			out.print("</div>");
 			out.print(
@@ -137,9 +138,11 @@
 				out.print(
 						"<img src=\"img/usuari.jpg\" width=\"200\" height=\"150\" class=\"img-circle\">");
 			} else {
-				out.print(
-						"<img src=\""+user.getFoto()+"\" width=\"200\" height=\"150\" >");
+				if (user.getFoto().matches(".+\\.(jpg|png)")){
+					out.print("<img src=\"Imagenes/" + user.getFoto() + "\" width=\"200\" height=\"150\"/>");
+				}
 			}
+			
 			out.print("</div>");
 			out.print("<div class=\"col-md-4\">");
 			out.print("<h4>Nombre:</h4>");
