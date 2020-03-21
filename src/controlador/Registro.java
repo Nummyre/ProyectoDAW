@@ -33,7 +33,7 @@ public class Registro extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-
+		
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Registro.jsp");
 		rs.forward(request, response);
 
@@ -43,7 +43,7 @@ public class Registro extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-
+		
 
 		String user = request.getParameter("user");
 		String pass = request.getParameter("pass");

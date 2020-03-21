@@ -49,7 +49,7 @@ public class Login extends HttpServlet {
 
 		if (session != null) {
 			Usuario usuarios = (Usuario) session.getAttribute("usuario");
-			System.out.println("dopost 1 if-----"+usuarios);
+	
 
 			if (usuarios != null) {
 				// Enviarlo al Main
@@ -68,7 +68,7 @@ public class Login extends HttpServlet {
 
 			// Si el usuario es nulo
 			if (usuario != null) {
-				System.out.println("login-----"+usuario);
+			
 				// Cierra la session
 				sesionesEJB.loginUsuario(session, usuario);
 			}
@@ -81,5 +81,5 @@ public class Login extends HttpServlet {
 //Falla el login aquí dopost 1 if-----null
 	///login-----modelo.pojo.Usuario@52bb16b5
 	//doget-----modelo.pojo.Usuario@52bb16b5
-	//modelo.pojo.Usuario@52bb16b5
+	//modelo.pojo.Usuario@52bb16b5ew
 }

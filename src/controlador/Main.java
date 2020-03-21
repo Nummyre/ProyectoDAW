@@ -34,7 +34,6 @@ public class Main extends HttpServlet {
 		
 
 		request.setAttribute("usuario", usuario);
-		System.out.println("doget-----"+usuario);
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Main.jsp");
 		rs.forward(request, response);
 	}
