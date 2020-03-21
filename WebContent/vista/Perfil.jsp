@@ -143,17 +143,21 @@
 			out.print("</div>");
 			out.print("<div class=\"col-md-4\">");
 			out.print("<h4>Nombre:</h4>");
+			out.print("<p>"+user.getNombre()+"</p>");
 			out.print("</div>");
 			out.print("<div class=\"col-md-4\">");
 			out.print("<h4>Fecha de creación de la cuenta:</h4>");
+			out.print("<p>"+user.getFechaAlta()+"</p>");
 			out.print("</div>");
-			out.print("</div>"); //Termina el div del 1º row
+			out.print("</div>"); //termina el div del 1º row
 			out.print("<div class=\"row mt-3\">");
 			out.print("<div class=\"col-md-4\">");
 			out.print("<h5>Usuario:</h5>");
+			out.print("<p>"+user.getUser()+"</p>");
 			out.print("</div>");
 			out.print("<div class=\"col-md-4 mb-3\">");
 			out.print("<h5>Email:</h5>");
+			out.print("<p>"+user.getEmail()+"</p>");
 			out.print("</div>");
 			out.print("<div class=\"col-md-4\">");
 			out.print("<h5>Cambiar contraseña:</h5>");
