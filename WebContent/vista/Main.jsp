@@ -83,7 +83,7 @@
 			out.print("<a class=\"nav-link fas fa-home mr-3 text-white\" href=\"Main\"></a>");
 			out.print("</li>");
 			out.print("<li class=\"nav-item mr-5\">");
-			out.print("<a class=\"nav-link\" href=\"Login\">Cerrar Sesión</a>");
+			out.print("<a class=\"nav-link\" href=\"Logout\">Cerrar Sesión</a>");
 			out.print("</li>");
 			out.print("<li class=\"nav-item\">");
 			out.print("<a class=\"nav-link\" href=\"Perfil\">Perfil</a>");
