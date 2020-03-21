@@ -118,7 +118,7 @@
 						"<img src=\"img/usuari.jpg\" width=\"65\" height=\"55\" class=\"img-circle\">");
 			} else {
 				out.print(
-						"<img src=\"user.getFoto()\" width=\"100\" height=\"55\">");
+						"<img src=\"Imagenes/user.getFoto()\" width=\"100\" height=\"55\">");
 			}
 			out.print("</div>");
 			out.print(
@@ -138,7 +138,7 @@
 						"<img src=\"img/usuari.jpg\" width=\"200\" height=\"150\" class=\"img-circle\">");
 			} else {
 				out.print(
-						"<img src=\"user.getFoto()\" width=\"200\" height=\"150\" >");
+						"<img src=\"Imagenes/user.getFoto()\" width=\"200\" height=\"150\" >");
 			}
 			out.print("</div>");
 			out.print("<div class=\"col-md-4\">");
