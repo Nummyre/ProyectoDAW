@@ -107,7 +107,7 @@
 			<div class="form-group col-md-4 mb-3">
 				<label for="exampleFormControlFile1">Escoge la foto de
 					perfil</label> <input type="file" class="form-control-file"
-					id="exampleFormControlFile1" name="foto" accept="image/*">
+					id="exampleFormControlFile1" name="foto">
 			</div>
 			<div class="row mt-5">
 				<div class="col-4">
