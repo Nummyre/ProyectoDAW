@@ -1,5 +1,7 @@
 package modelo.ejb;
 
+import java.util.Date;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
@@ -19,10 +21,10 @@ public class UsuariosEJB {
 	
 
 
-    public void insertUsuario(String nombre, String user, String password, String foto, String email)  {
+    public void insertUsuario(String nombre, String user, String password, String foto, String email, Date fechaAlta)  {
     	UsuariosDAO usuariosDAO = new UsuariosDAO();
 
-		usuariosDAO.insertUsuario(nombre, user, password, foto, email);
+		usuariosDAO.insertUsuario(nombre, user, password, foto, email, fechaAlta);
 	}
 
 }

@@ -2,6 +2,7 @@ package controlador;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -50,6 +51,7 @@ public class Registro extends HttpServlet {
 		String nombre = request.getParameter("nom");
 		String email = request.getParameter("email");
 		String foto = request.getParameter("foto");
+		Date fechaAlta = new Date();
 
 		// Obtenemos una ruta en el servidor para guardar el archivo
 		String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY;
@@ -72,7 +74,7 @@ public class Registro extends HttpServlet {
 		
 		
 		// Metodo para registrar al usuario
-		usuariosEJB.insertUsuario(nombre, user, pass, fileName, email);
+		usuariosEJB.insertUsuario(nombre, user, pass, fileName, email, fechaAlta);
 
 		response.sendRedirect("Login");
 		}catch (Exception e) {

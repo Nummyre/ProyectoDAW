@@ -1,6 +1,7 @@
 package modelo.dao;
 
 import java.sql.Statement;
+import java.util.Date;
 
 import modelo.pojo.Usuario;
 
@@ -10,7 +11,7 @@ import java.sql.ResultSet;
 
 public class UsuariosDAO {
 
-	public void insertUsuario(String nombre, String user, String password, String foto, String email) {
+	public void insertUsuario(String nombre, String user, String password, String foto, String email, Date fechaAlta) {
 
 		try {
 			Connection connection;
@@ -21,7 +22,7 @@ public class UsuariosDAO {
 			connection = DriverManager.getConnection(url, "usuario", "java");
 
 			String query = "INSERT INTO usuario (nombre, user, password, foto, email) " + "VALUES ('" + nombre + "','"
-					+ user + "','" + password + "','" + foto + "','" + email + "');";
+					+ user + "','" + password + "','" + foto + "','" + email + "','" + fechaAlta + "');";
 			Statement stmt = connection.createStatement();
 
 			stmt.executeUpdate(query);
