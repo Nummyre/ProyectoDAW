@@ -120,7 +120,7 @@
 			out.print("</header>");
 		}
 	%>
-	<div class="container">
+	<div class="container mt-5 p-5">
 	 <div class="row">
 	 	<div class="col-md-4">
 	 	<h4>Nombre:</h4>
@@ -129,17 +129,15 @@
 	 	<h4>Fecha de creación de la cuenta:</h4>
 	 	</div>
 	 </div>	
-	 <div class="row">
+	 <div class="row mt-3">
 	 	<div class="col-md-4">
 	 	<h5>Usuario:</h5>
 	 	</div>
 	 	<div class="col-md-4">
 	 		<h5>Cambiar contraseña:</h5>
 	 		<input type="password" class="form-control" placeholder="Cambiar Contraseña" value="Otto" name="password">
+	 		<button type="submit" class="btn btn-success mt-2">Cambiar contraseña</button>
 	 	</div>
-	 	<div class="col-4">
-			<button type="submit" class="btn btn-success">Cambiar contraseña</button>
-		</div>
 	  </div>
 	</div>
 </body>
