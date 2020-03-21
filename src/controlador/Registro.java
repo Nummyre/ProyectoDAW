@@ -33,7 +33,7 @@ public class Registro extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		System.out.println("hola soy doGet del registro");
+
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Registro.jsp");
 		rs.forward(request, response);
 
@@ -43,7 +43,7 @@ public class Registro extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-		System.out.println("hola soy doPost del registro");
+
 
 		String user = request.getParameter("user");
 		String pass = request.getParameter("pass");
@@ -69,7 +69,7 @@ public class Registro extends HttpServlet {
 			part.write(uploadPath + File.separator + fileName);
 		}
 		
-		System.out.println(user + " ---- " + pass + " ---- " + nombre + " ----- "+fileName+ " ----- "+email);
+		
 		
 		// Metodo para registrar al usuario
 		usuariosEJB.insertUsuario(nombre, user, pass, fileName, email);
