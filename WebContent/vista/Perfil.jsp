@@ -63,7 +63,7 @@
 			out.print("<div class=\"input-group\">");
 			out.print("<div class=\"input-group-prepend\">");
 			out.print(
-					"<span class=\"input-group-text\" id=\"basic-addon\"><img src=\"img/usuari.jpg\" width=\"65\" height=\"55\" class=\"img-circle\"></span>");
+					"<img src=\"img/usuari.jpg\" width=\"65\" height=\"55\" class=\"img-circle\">");
 			out.print("</div>");
 			out.print(
 					"<input type=\"text\" readonly=\"readonly\"  disabled=\"disabled\" class=\"form-control mt-3 ml-2\" placeholder=\"Invitado\" aria-label=\"Username\" aria-describedby=\"basic-addon1\">");
@@ -115,10 +115,10 @@
 			out.print("<div class=\"input-group-prepend\">");
 			if (user.getFoto().equals("desconocido.txt")) {
 				out.print(
-						"<span class=\"input-group-text\" id=\"basic-addon\"><img src=\"img/usuari.jpg\" width=\"65\" height=\"55\" class=\"img-circle\"></span>");
+						"<img src=\"img/usuari.jpg\" width=\"65\" height=\"55\" class=\"img-circle\">");
 			} else {
 				out.print(
-						"<span class=\"input-group-text\" id=\"basic-addon\"><img src=\"user.getFoto()\" width=\"100\" height=\"55\" ></span>");
+						"<img src=\"user.getFoto()\" width=\"100\" height=\"55\">");
 			}
 			out.print("</div>");
 			out.print(
