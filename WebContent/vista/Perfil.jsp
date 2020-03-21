@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@page import="modelo.pojo.Usuario"%>
 <%@page session="false"%>
 <!DOCTYPE html>
@@ -12,12 +12,15 @@
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 </head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<%
+	<%
 		Usuario user = (Usuario) request.getAttribute("usuario");
 		if (user == null) {
 			out.print("<header>");
@@ -59,7 +62,8 @@
 			out.print("<form class=\"form-inline ml-5\">");
 			out.print("<div class=\"input-group\">");
 			out.print("<div class=\"input-group-prepend\">");
-			out.print("<span class=\"input-group-text\" id=\"basic-addon\"><img src=\"img/usuari.jpg\" width=\"65\" height=\"55\" class=\"img-circle\"></span>");
+			out.print(
+					"<span class=\"input-group-text\" id=\"basic-addon\"><img src=\"img/usuari.jpg\" width=\"65\" height=\"55\" class=\"img-circle\"></span>");
 			out.print("</div>");
 			out.print(
 					"<input type=\"text\" readonly=\"readonly\"  disabled=\"disabled\" class=\"form-control mt-3 ml-2\" placeholder=\"Invitado\" aria-label=\"Username\" aria-describedby=\"basic-addon1\">");
@@ -68,6 +72,10 @@
 			out.print("</div>");
 			out.print("</nav>");
 			out.print("</header>");
+			out.print("<div class=\"container mt-5 p-5\">");
+			out.print("<h1>¿Se a perdido la sesión? Vuelve a Iniciar sesión más tarde</h1>");
+			out.print("<button type=\"button\" class=\"btn btn-outline-success\"><a href=\"Login\">Iniciar Sesión</a></button>");
+			out.print("</div>");
 		} else {
 			out.print("<header>");
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark p-5\">");
@@ -105,40 +113,62 @@
 			out.print("<form class=\"form-inline ml-5\">");
 			out.print("<div class=\"input-group\">");
 			out.print("<div class=\"input-group-prepend\">");
-			if(user.getFoto().equals("desconocido.txt")){
-			out.print("<span class=\"input-group-text\" id=\"basic-addon\"><img src=\"img/usuari.jpg\" width=\"65\" height=\"55\" class=\"img-circle\"></span>");
-			}else{
-				out.print("<span class=\"input-group-text\" id=\"basic-addon\"><img src=\"user.getFoto()\" width=\"100\" height=\"55\" ></span>");
+			if (user.getFoto().equals("desconocido.txt")) {
+				out.print(
+						"<span class=\"input-group-text\" id=\"basic-addon\"><img src=\"img/usuari.jpg\" width=\"65\" height=\"55\" class=\"img-circle\"></span>");
+			} else {
+				out.print(
+						"<span class=\"input-group-text\" id=\"basic-addon\"><img src=\"user.getFoto()\" width=\"100\" height=\"55\" ></span>");
 			}
 			out.print("</div>");
 			out.print(
-					"<input type=\"text\" readonly=\"readonly\"  disabled=\"disabled\" class=\"form-control mt-3 ml-2 text-center\" placeholder=\""+user.getUser()+"\" aria-label=\"Username\" aria-describedby=\"basic-addon1\">");
+					"<input type=\"text\" readonly=\"readonly\"  disabled=\"disabled\" class=\"form-control mt-3 ml-2 text-center\" placeholder=\""
+							+ user.getUser() + "\" aria-label=\"Username\" aria-describedby=\"basic-addon1\">");
 			out.print("</div>");
 			out.print("</form>");
 			out.print("</div>");
 			out.print("</nav>");
 			out.print("</header>");
+			out.print("<div class=\"container mt-5 p-5\">");
+			out.print("<form class=\"needs-validation\" method=\"post\" action=\"CambioPerfil\">");
+			out.print("<div class=\"row\">");
+			out.print("<div class=\"col-4\">");
+			if (user.getFoto().equals("desconocido.txt")) {
+				out.print(
+						"<img src=\"img/usuari.jpg\" width=\"200\" height=\"150\" class=\"img-circle\">");
+			} else {
+				out.print(
+						"<img src=\"user.getFoto()\" width=\"200\" height=\"150\" >");
+			}
+			out.print("</div>");
+			out.print("<div class=\"col-md-4\">");
+			out.print("<h4>Nombre:</h4>");
+			out.print("</div>");
+			out.print("<div class=\"col-md-4\">");
+			out.print("<h4>Fecha de creación de la cuenta:</h4>");
+			out.print("</div>");
+			out.print("</div>");
+			out.print("<div class=\"row mt-3\">");
+			out.print("<div class=\"col-md-4\">");
+			out.print("<h5>Usuario:</h5>");
+			out.print("</div>");
+			out.print("<div class=\"col-md-4 mb-3\">");
+			out.print("<h5>Email:</h5>");
+			out.print("</div>");
+			out.print("<div class=\"col-md-4\">");
+			out.print("<h5>Cambiar contraseña:</h5>");
+			out.print("<input type=\"password\" class=\"form-control\" placeholder=\"Cambiar Contraseña\" value=\"Otto\" name=\"password\">");
+			out.print("<button type=\"submit\" class=\"btn btn-success mt-2\">Cambiar contraseña</button>");
+			out.print("</div>");
+			out.print("<div class=\"form-group col-md-4 mb-3\">");
+			out.print("<label for=\"exampleFormControlFile1\">Cambia la foto de perfil</label> <input type=\"file\" class=\"form-control-file\" id=\"exampleFormControlFile1\" name=\"foto\">");
+			out.print("</div>");
+			out.print("</div>");
+			out.print("</form>");
+			out.print("</div>");
+			
 		}
 	%>
-	<div class="container mt-5 p-5">
-	 <div class="row">
-	 	<div class="col-md-4">
-	 	<h4>Nombre:</h4>
-	 	</div>
-	 	<div class="col-md-4">
-	 	<h4>Fecha de creación de la cuenta:</h4>
-	 	</div>
-	 </div>	
-	 <div class="row mt-3">
-	 	<div class="col-md-4">
-	 	<h5>Usuario:</h5>
-	 	</div>
-	 	<div class="col-md-4">
-	 		<h5>Cambiar contraseña:</h5>
-	 		<input type="password" class="form-control" placeholder="Cambiar Contraseña" value="Otto" name="password">
-	 		<button type="submit" class="btn btn-success mt-2">Cambiar contraseña</button>
-	 	</div>
-	  </div>
-	</div>
+
 </body>
 </html>
