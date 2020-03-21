@@ -118,7 +118,7 @@
 						"<img src=\"img/usuari.jpg\" width=\"65\" height=\"55\" class=\"img-circle\">");
 			} else {
 				if (user.getFoto().matches(".+\\.(jpg|png)")){
-					out.print("<img src=\"Imagenes/" + user.getFoto() + "\" width=\"200\" height=\"150\"/>");
+					out.print("<img src=\"Imagenes/" + user.getFoto() + "\" width=\"60\" height=\"55\"/>");
 				}
 			}
 			out.print("</div>");

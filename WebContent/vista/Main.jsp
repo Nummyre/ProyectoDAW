@@ -111,7 +111,9 @@
 			if(user.getFoto().equals("desconocido.txt")){
 			out.print("<img src=\"img/usuari.jpg\" width=\"65\" height=\"55\" class=\"img-circle\">");
 			}else{
-				out.print("<img src=\"user.getFoto()\" width=\"100\" height=\"55\">");
+				if (user.getFoto().matches(".+\\.(jpg|png)")){
+					out.print("<img src=\"Imagenes/" + user.getFoto() + "\" width=\"60\" height=\"55\"/>");
+				}
 			}
 			out.print("</div>");
 			out.print(
