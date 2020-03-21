@@ -75,7 +75,7 @@ public class Registro extends HttpServlet {
 		
 		
 		// Metodo para registrar al usuario
-		usuariosEJB.insertUsuario(nombre, user, pass, fileName, email, fechaAlta);
+		usuariosEJB.insertUsuario(nombre, user, pass, foto, email, fechaAlta);
 
 		response.sendRedirect("Login");
 		}catch (Exception e) {
