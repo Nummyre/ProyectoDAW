@@ -51,6 +51,11 @@
 			out.print("</div>");
 			out.print("</li>");
 			out.print("</ul>");
+			out.print("<form class=\"form-inline my-2 my-lg-0 mr-5\">");
+			out.print(
+					"<input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"Búsqueda\" aria-label=\"Search\">");
+			out.print("<button class=\"btn btn-outline-success my-2 my-sm-0\" type=\"submit\">Búsqueda</button>");
+			out.print("</form>");
 			out.print("<form class=\"form-inline mr-5\">");
 			out.print("<div class=\"input-group\">");
 			out.print("<div class=\"input-group-prepend\">");
@@ -59,11 +64,6 @@
 			out.print(
 					"<input type=\"text\" readonly=\"readonly\"  disabled=\"disabled\" class=\"form-control mt-3 ml-2\" placeholder=\"Invitado\" aria-label=\"Username\" aria-describedby=\"basic-addon1\">");
 			out.print("</div>");
-			out.print("</form>");
-			out.print("<form class=\"form-inline my-2 my-lg-0\">");
-			out.print(
-					"<input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"Búsqueda\" aria-label=\"Search\">");
-			out.print("<button class=\"btn btn-outline-success my-2 my-sm-0\" type=\"submit\">Búsqueda</button>");
 			out.print("</form>");
 			out.print("</div>");
 			out.print("</nav>");
@@ -97,6 +97,11 @@
 			out.print("</div>");
 			out.print("</li>");
 			out.print("</ul>");
+			out.print("<form class=\"form-inline my-2 my-lg-0 mr-5\">");
+			out.print(
+					"<input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"Búsqueda\" aria-label=\"Search\">");
+			out.print("<button class=\"btn btn-outline-success my-2 my-sm-0\" type=\"submit\">Búsqueda</button>");
+			out.print("</form>");
 			out.print("<form class=\"form-inline mr-5\">");
 			out.print("<div class=\"input-group\">");
 			out.print("<div class=\"input-group-prepend\">");
@@ -110,11 +115,6 @@
 						"<input type=\"text\" readonly=\"readonly\"  disabled=\"disabled\" class=\"form-control mt-3 ml-2 text-center\" placeholder=\""+user.getUser()+"\" aria-label=\"Username\" aria-describedby=\"basic-addon1\">");
 				out.print("</div>");
 				out.print("</form>");
-			out.print("<form class=\"form-inline my-2 my-lg-0\">");
-			out.print(
-					"<input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"Búsqueda\" aria-label=\"Search\">");
-			out.print("<button class=\"btn btn-outline-success my-2 my-sm-0\" type=\"submit\">Búsqueda</button>");
-			out.print("</form>");
 			out.print("</div>");
 			out.print("</nav>");
 			out.print("</header>");
