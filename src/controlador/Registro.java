@@ -52,6 +52,7 @@ public class Registro extends HttpServlet {
 		String email = request.getParameter("email");
 		String foto = request.getParameter("foto");
 		Date fechaAlta = new Date();
+		System.out.println(fechaAlta);
 
 		// Obtenemos una ruta en el servidor para guardar el archivo
 		String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY;
