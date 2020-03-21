@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ChorriJuegos</title>
+<title>Freak's Corner</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -19,7 +19,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-5">
-		<a class="navbar-brand" href="#">Chorri Juegos</a>
+		<a class="navbar-brand" href="#">Freak's Corner</a>
 		<!-- 	<img src="img/logo1.png" width="100" height="100"> -->
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"

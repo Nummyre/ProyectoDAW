@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ChorriJuegos</title>
+<title>Freak's Corner</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -25,7 +25,7 @@
 		if (user == null) {
 			out.print("<header>");
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark p-5\">");
-			out.print("<a class=\"navbar-brand\" href=\"#\">Chorri Juegos</a>");
+			out.print("<a class=\"navbar-brand\" href=\"#\">Freak's Corner</a>");
 			//<!-- 	<img src="img/logo1.png" width="300" height="250"> -->
 			out.print(
 					"<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">");
@@ -79,7 +79,7 @@
 		} else {
 			out.print("<header>");
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark p-5\">");
-			out.print("<a class=\"navbar-brand\" href=\"#\">Chorri Juegos</a>");
+			out.print("<a class=\"navbar-brand\" href=\"#\">Freak's Corner</a>");
 			//<!-- 	<img src="img/logo1.png" width="300" height="250"> -->
 			out.print(
 					"<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">");
