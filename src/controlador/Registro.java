@@ -24,7 +24,7 @@ public class Registro extends HttpServlet {
 
 	
 	//Variable para guardar la imagen
-	private static final String UPLOAD_DIRECTORY = "img/";
+	private static final String UPLOAD_DIRECTORY = "Escritorio";
 	@EJB
 	UsuariosEJB usuariosEJB;
 
