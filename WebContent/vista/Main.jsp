@@ -56,10 +56,10 @@
 					"<input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"Búsqueda\" aria-label=\"Search\">");
 			out.print("<button class=\"btn btn-outline-success my-2 my-sm-0\" type=\"submit\">Búsqueda</button>");
 			out.print("</form>");
-			out.print("<form class=\"form-inline mr-5\">");
+			out.print("<form class=\"form-inline ml-5\">");
 			out.print("<div class=\"input-group\">");
 			out.print("<div class=\"input-group-prepend\">");
-			out.print("<span class=\"input-group-text\" id=\"basic-addon\"><img src=\"img/usuari.jpg\" width=\"65\" height=\"55\"></span>");
+			out.print("<span class=\"input-group-text\" id=\"basic-addon\"><img src=\"img/usuari.jpg\" width=\"65\" height=\"55\" class=\"img-circle\"></span>");
 			out.print("</div>");
 			out.print(
 					"<input type=\"text\" readonly=\"readonly\"  disabled=\"disabled\" class=\"form-control mt-3 ml-2\" placeholder=\"Invitado\" aria-label=\"Username\" aria-describedby=\"basic-addon1\">");
@@ -102,19 +102,19 @@
 					"<input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"Búsqueda\" aria-label=\"Search\">");
 			out.print("<button class=\"btn btn-outline-success my-2 my-sm-0\" type=\"submit\">Búsqueda</button>");
 			out.print("</form>");
-			out.print("<form class=\"form-inline mr-5\">");
+			out.print("<form class=\"form-inline ml-5\">");
 			out.print("<div class=\"input-group\">");
 			out.print("<div class=\"input-group-prepend\">");
 			if(user.getFoto().equals("desconocido.txt")){
-				out.print("<span class=\"input-group-text\" id=\"basic-addon\"><img src=\"img/usuari.jpg\" width=\"65\" height=\"55\"></span>");
-				}else{
-					out.print("<span class=\"input-group-text\" id=\"basic-addon\"><img src=\"user.getFoto()\" width=\"100\" height=\"55\"></span>");
-				}
-				out.print("</div>");
-				out.print(
-						"<input type=\"text\" readonly=\"readonly\"  disabled=\"disabled\" class=\"form-control mt-3 ml-2 text-center\" placeholder=\""+user.getUser()+"\" aria-label=\"Username\" aria-describedby=\"basic-addon1\">");
-				out.print("</div>");
-				out.print("</form>");
+			out.print("<span class=\"input-group-text\" id=\"basic-addon\"><img src=\"img/usuari.jpg\" width=\"65\" height=\"55\" class=\"img-circle\"></span>");
+			}else{
+				out.print("<span class=\"input-group-text\" id=\"basic-addon\"><img src=\"user.getFoto()\" width=\"100\" height=\"55\" ></span>");
+			}
+			out.print("</div>");
+			out.print(
+					"<input type=\"text\" readonly=\"readonly\"  disabled=\"disabled\" class=\"form-control mt-3 ml-2 text-center\" placeholder=\""+user.getUser()+"\" aria-label=\"Username\" aria-describedby=\"basic-addon1\">");
+			out.print("</div>");
+			out.print("</form>");
 			out.print("</div>");
 			out.print("</nav>");
 			out.print("</header>");
