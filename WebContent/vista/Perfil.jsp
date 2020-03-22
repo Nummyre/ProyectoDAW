@@ -171,8 +171,11 @@
 			out.print("</div>");
 			out.print("</div>");//termina el 2º row
 			out.print("<div class=\"row mt-3\">");// 3º row
-			out.print("<div class=\"col-12\">");
-			out.print("<div class=\"col-4\"><button type=\"submit\" class=\"btn btn-success\">Guardar cambios</button></div>");
+			out.print("<div class=\"col-4\">");
+			out.print("<button type=\"submit\" class=\"btn btn-success\">Guardar cambios</button>");
+			out.print("</div>");
+			out.print("<div class=\"col-8\">");
+			out.print("<button type=\"button\" class=\"btn btn-danger\">Eliminar cuenta</button>");
 			out.print("</div>");
 			out.print("</div>");//termina 3º row
 			out.print("</form>");//termina el form
