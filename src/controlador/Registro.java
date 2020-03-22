@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Properties;
-import java.util.Random;
+
 
 import javax.ejb.EJB;
 import javax.mail.Message;
