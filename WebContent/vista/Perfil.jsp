@@ -177,8 +177,10 @@
 			out.print("</div>");//termina 3º row
 			out.print("</form>");//termina el form
 			out.print("<form class=\"needs-validation\" method=\"get\" action=\"EliminarCuenta\">");
-			out.print("<div class=\"col-8\">");
-			out.print("<button type=\"button\" class=\"btn btn-danger\">Eliminar cuenta</button>");
+			out.print("<div class=\"row\">");
+			out.print("<div class=\"col-8 mt-5\">");
+			out.print("<button type=\"submit\" class=\"btn btn-danger\">Eliminar cuenta</button>");
+			out.print("</div>");
 			out.print("</div>");
 			out.print("</form>");
 			out.print("</div>");//termina el container
