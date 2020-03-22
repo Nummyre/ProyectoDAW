@@ -26,5 +26,11 @@ public class UsuariosEJB {
 
 		usuariosDAO.insertUsuario(nombre, user, password, foto, email, fechaAlta);
 	}
+    
+    public void darseDeBaja(Integer id) {
+    	UsuariosDAO usuariosDAO = new UsuariosDAO();
+
+		usuariosDAO.darseDeBaja(id);
+	}
 
 }
