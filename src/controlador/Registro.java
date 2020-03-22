@@ -84,7 +84,7 @@ public class Registro extends HttpServlet {
 			props.setProperty("mail.smtp.host", "smtp.gmail.com");
 			props.setProperty("mail.smtp.starttls.enable", "true");
 			props.setProperty("mail.smtp.port", "587");
-			props.setProperty("mail.smtp.user", "cintiia.349@gmail.com");
+			props.setProperty("mail.smtp.user", "email.ejemplo@");
 			props.setProperty("mail.smtp.auth", "true");
 
 			// Preparamos la sesion
@@ -93,9 +93,9 @@ public class Registro extends HttpServlet {
 			// Construimos el mensaje
 			MimeMessage message = new MimeMessage(session);
 			// la persona k tiene k verificar
-			message.setFrom(new InternetAddress("cintiia.349@gmail.com"));
+			message.setFrom(new InternetAddress("email.ejemplo@"));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress( email));
-			message.addHeader("Disposition-Notification-To", "cintiia.349@gmail.com");
+			message.addHeader("Disposition-Notification-To", "email.ejemplo@");
 			message.setSubject("Correo de verificacion, porfavor no responder");
 			message.setText(
 					"<h3>¡Hola "+user+"!</h3>\n"
@@ -113,7 +113,7 @@ public class Registro extends HttpServlet {
 
 			// Lo enviamos.
 			Transport t = session.getTransport("smtp");
-			t.connect("cintiia.349@gmail.com", "28081993cmll");
+			t.connect("email.ejemplo@", "contraseña.ejemplo");
 			t.sendMessage(message, message.getAllRecipients());
 
 			// Cierre.
