@@ -53,10 +53,10 @@
 			<form class="form-inline">
 				<div class="input-group">
 					<div class="input-group-prepend">
-						<span class="input-group-text" id="basic-addon1">@</span>
+						<img src="img/usuari.jpg" width="65" height="55" class="img-circle">
 					</div>
 					<input type="text" readonly="readonly" disabled="disabled"
-						class="form-control" placeholder="Invitado" aria-label="Username"
+						class="form-control mt-3 ml-2" placeholder="Invitado" aria-label="Username"
 						aria-describedby="basic-addon1">
 				</div>
 			</form>
