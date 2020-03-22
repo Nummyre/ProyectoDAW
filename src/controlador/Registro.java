@@ -55,7 +55,6 @@ public class Registro extends HttpServlet {
 		String pass = request.getParameter("pass");
 		String nombre = request.getParameter("nom");
 		String email = request.getParameter("email");
-		String aleatoria = getCadenaAlfanumAleatoria(8);
 		Date fechaAlta = new Date();
 		System.out.println(fechaAlta);
 
@@ -99,18 +98,18 @@ public class Registro extends HttpServlet {
 			message.addHeader("Disposition-Notification-To", "cintiia.349@gmail.com");
 			message.setSubject("Correo de verificacion, porfavor no responder");
 			message.setText(
-					"¡Hola "+user+" \n"
-							+ "Gracias por unirte a Freak's Corner \n"
-							+ "Porfavor haga un buen uso de su cuenta y respete siempre la opinión de los demás.\n"
-							+ "Debe seguir las normas de uso de la cuenta: \n"
-							+ "1.No insultar ni difamar a nadie. \n"
-							+ "2.No crear bulos ni rumores. \n"
-							+ "3.No suplantar la identidad de ningún individuo. \n"
-							+ "4.Respete siempre a otro usuario. \n"
-							+ "Si no se sigue las normas, se baneara la cuenta dependiendo de la gravedad. \n"
-							+ "Bienvenido a Freak's Corner y diviertete en nuestra comunidad. \n"
-							+ "  <a href='http://localhost:8080/MiWeb/Main?usuario=" + user + "&aleatorio=" + aleatoria
-							+ "'>Enlace</a>  ", "UTF-8", "html");
+					"<h3>¡Hola "+user+"!</h3>\n"
+							+ "<p>Gracias por unirte a Freak's Corner<br>"
+							+ "Porfavor haga un buen uso de su cuenta y respete siempre la opinión de los demás.<br>"
+							+ "Debe seguir las normas de uso de la cuenta:<br>"
+							+ "1.No insultar ni difamar a nadie.<br>"
+							+ "2.No crear bulos ni rumores.<br>"
+							+ "3.No suplantar la identidad de ningún individuo.<br>"
+							+ "4.Respete siempre a otro usuario.<br>"
+							+ "Si no se sigue las normas, se baneara la cuenta dependiendo de la gravedad.\n"
+							+ "Bienvenido a Freak's Corner y diviertete en nuestra comunidad.<br>"
+							+ " <a href='http://localhost:8080/MiWeb/Login"
+							+ "'>Inicia Sesión en Freak's Corner</a> </p>", "UTF-8", "html");
 
 			// Lo enviamos.
 			Transport t = session.getTransport("smtp");
@@ -142,19 +141,4 @@ public class Registro extends HttpServlet {
 	}
 	
 	
-	public String getCadenaAlfanumAleatoria(int longitud) {
-		String cadenaAleatoria = "";
-		long milis = new java.util.GregorianCalendar().getTimeInMillis();
-		Random r = new Random(milis);
-		int i = 0;
-		while (i < longitud) {
-			char c = (char) r.nextInt(255);
-			
-			if ((c >= '0' && c <= 9) || (c >= 'A' && c <= 'Z')) {
-				cadenaAleatoria += c;
-				i++;
-			}
-		}
-		return cadenaAleatoria;
-	}
 }
