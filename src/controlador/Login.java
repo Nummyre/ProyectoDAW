@@ -78,8 +78,4 @@ public class Login extends HttpServlet {
 			response.sendRedirect("Login?error=hay");
 		}
 	}
-//Falla el login aquí dopost 1 if-----null
-	///login-----modelo.pojo.Usuario@52bb16b5
-	//doget-----modelo.pojo.Usuario@52bb16b5
-	//modelo.pojo.Usuario@52bb16b5ew
 }
