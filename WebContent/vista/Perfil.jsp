@@ -164,7 +164,7 @@
 			out.print("<p>"+user.getEmail()+"</p>");
 			out.print("</div>");
 			out.print("<div class=\"form-group col-md-4 mb-3\">");
-			out.print("<label for=\"exampleFormControlFile1\">Cambia la foto de perfil</label> <input type=\"file\" class=\"form-control-file\" id=\"exampleFormControlFile1\" name=\"foto\">");
+			out.print("<label for=\"exampleFormControlFile1\">Cambia la foto de perfil</label> <input type=\"file\" class=\"form-control-file\" id=\"exampleFormControlFile1\" name=\"foto\">");//input file
 			out.print("</div>");
 			out.print("</div>");//termina el 2º row
 			out.print("<div class=\"row mt-3\">");// 3º row
