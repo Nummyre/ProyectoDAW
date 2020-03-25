@@ -131,7 +131,7 @@
 			out.print("</nav>");
 			out.print("</header>");
 			out.print("<div class=\"container mt-5 p-5\">"); //Empieza container
-			out.print("<form class=\"needs-validation\" method=\"get\" action=\"UpdatePerfil\">");
+			out.print("<form class=\"needs-validation\" method=\"get\" action=\"UpdatePerfil\" enctype=\"multipart/form-data\">");
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col-4\">");
 			if (user.getFoto().equals("desconocido.txt")) {
@@ -178,7 +178,7 @@
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col-md-4\">");
 			out.print("<h5>Cambiar contraseña:</h5>");
-			out.print("<input type=\"password\" class=\"form-control\" placeholder=\"Cambiar Contraseña\" value=\"Otto\" name=\"password\">");
+			out.print("<input type=\"password\" class=\"form-control\" placeholder=\"Cambiar Contraseña\" name=\"password\">");
 			out.print("</div>");
 			out.print("</div>");
 			out.print("<button type=\"submit\" class=\"btn btn-info\">Cambiar contraseña</button>");
