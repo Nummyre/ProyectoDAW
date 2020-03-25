@@ -56,7 +56,7 @@ public class Registro extends HttpServlet {
 		String nombre = request.getParameter("nom");
 		String email = request.getParameter("email");
 		Date fechaAlta = new Date();
-		System.out.println(fechaAlta);
+		
 
 		// Multipart RFC 7578
 
