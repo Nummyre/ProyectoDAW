@@ -131,7 +131,7 @@
 			out.print("</nav>");
 			out.print("</header>");
 			out.print("<div class=\"container mt-5 p-5\">"); //Empieza container
-			out.print("<form class=\"needs-validation\" method=\"post\" action=\"CambioPerfil\">");
+			out.print("<form class=\"needs-validation\" method=\"get\" action=\"UpdatePerfil\">");
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col-4\">");
 			if (user.getFoto().equals("desconocido.txt")) {
@@ -145,6 +145,7 @@
 			
 			out.print("</div>");
 			out.print("<div class=\"col-md-4\">");
+			out.print("<<input id=\"prodId\" name=\"id\" type=\"hidden\" value=\""+user.getId()+"\">");
 			out.print("<h4>Nombre:</h4>");
 			out.print("<p>"+user.getNombre()+"</p>");
 			out.print("</div>");
@@ -162,10 +163,6 @@
 			out.print("<h5>Email:</h5>");
 			out.print("<p>"+user.getEmail()+"</p>");
 			out.print("</div>");
-			out.print("<div class=\"col-md-4\">");
-			out.print("<h5>Cambiar contraseña:</h5>");
-			out.print("<input type=\"password\" class=\"form-control\" placeholder=\"Cambiar Contraseña\" value=\"Otto\" name=\"password\">");
-			out.print("</div>");
 			out.print("<div class=\"form-group col-md-4 mb-3\">");
 			out.print("<label for=\"exampleFormControlFile1\">Cambia la foto de perfil</label> <input type=\"file\" class=\"form-control-file\" id=\"exampleFormControlFile1\" name=\"foto\">");
 			out.print("</div>");
@@ -176,6 +173,15 @@
 			out.print("</div>");
 			out.print("</div>");//termina 3º row
 			out.print("</form>");//termina el form
+			out.print("<form class=\"needs-validation\" method=\"get\" action=\"UpdatePassPerfil\">");
+			out.print("<div class=\"row\">");
+			out.print("<div class=\"col-md-4\">");
+			out.print("<h5>Cambiar contraseña:</h5>");
+			out.print("<input type=\"password\" class=\"form-control\" placeholder=\"Cambiar Contraseña\" value=\"Otto\" name=\"password\">");
+			out.print("</div>");
+			out.print("</div>");
+			out.print("<button type=\"submit\" class=\"btn btn-info\">Cambiar contraseña</button>");
+			out.print("</form>");
 			out.print("<form class=\"needs-validation\" method=\"get\" action=\"EliminarCuenta\">");
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col-8 mt-5\">");
