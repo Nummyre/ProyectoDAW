@@ -145,7 +145,7 @@
 			
 			out.print("</div>");
 			out.print("<div class=\"col-md-4\">");
-			out.print("<<input id=\"prodId\" name=\"id\" type=\"hidden\" value=\""+user.getId()+"\">");
+			out.print("<input id=\"prodId\" name=\"id\" type=\"hidden\" value=\""+user.getId()+"\">");
 			out.print("<h4>Nombre:</h4>");
 			out.print("<p>"+user.getNombre()+"</p>");
 			out.print("</div>");
@@ -174,6 +174,7 @@
 			out.print("</div>");//termina 3º row
 			out.print("</form>");//termina el form
 			out.print("<form class=\"needs-validation\" method=\"get\" action=\"UpdatePassPerfil\">");
+			out.print("<input id=\"prodId\" name=\"id\" type=\"hidden\" value=\""+user.getId()+"\">");
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col-md-4\">");
 			out.print("<h5>Cambiar contraseña:</h5>");
