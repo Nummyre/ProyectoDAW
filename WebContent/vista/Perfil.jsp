@@ -131,7 +131,7 @@
 			out.print("</nav>");
 			out.print("</header>");
 			out.print("<div class=\"container mt-5 p-5\">"); //Empieza container
-			out.print("<form class=\"needs-validation\" method=\"post\" action=\"UpdatePerfil\" enctype=\"'multipart/form-data'\">");
+			out.print("<form class=\"needs-validation\" method=\"post\" action=\"UpdatePerfil\" enctype=\"multipart/form-data\">");
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col-4\">");
 			if (user.getFoto().equals("desconocido.txt")) {
