@@ -39,7 +39,7 @@ public class EliminarCuenta extends HttpServlet {
 			//Cierra la sesion
 			sesionesEJB.logoutUsuario(session);
 			
-			response.sendRedirect("Main");
+			response.sendRedirect("Main"); // Hacer un jsp que de un mensaje del borrado de cuenta*
 	}
 
 
