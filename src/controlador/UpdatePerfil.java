@@ -44,6 +44,7 @@ public class UpdatePerfil extends HttpServlet {
 		// Comprueba que el usuario esta logeado y tiene la sesion
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
 		System.out.println("2");
+		
 		// Multipart RFC 7578
 
 		// Obtenemos una ruta en el servidor para guardar el archivo
