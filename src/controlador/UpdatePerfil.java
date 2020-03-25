@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -74,7 +75,7 @@ public class UpdatePerfil extends HttpServlet {
 
 		System.out.println("5");
 
-		response.sendRedirect("Perfil"); // Poner en javascript un mensaje
+		response.sendRedirect("Main"); // Poner en javascript un mensaje
 
 	}
 
