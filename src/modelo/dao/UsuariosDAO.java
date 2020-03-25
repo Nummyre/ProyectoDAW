@@ -109,4 +109,59 @@ public class UsuariosDAO {
 		}
 
 	}
+
+	public void updateUsuario(String foto, Integer id) {
+		// Se crea una conexion
+		Connection connection;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			String url = ("jdbc:mysql://localhost:3306/db_myweb?serverTimezone=UTC");
+
+			connection = DriverManager.getConnection(url, "usuario", "java");
+
+			// Se hace el delete sobre el id
+			String query = "update usuario set foto = " + foto + " where id =" + id;
+
+			Statement stmt = connection.createStatement();
+
+			// Ejecuta la query
+			stmt.executeUpdate(query);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+
+		}
+	}
+
+	public void updatePassUsuario(String pass, Integer id) {
+
+		// Se crea una conexion
+				Connection connection;
+				try {
+					Class.forName("com.mysql.cj.jdbc.Driver");
+
+					String url = ("jdbc:mysql://localhost:3306/db_myweb?serverTimezone=UTC");
+
+					connection = DriverManager.getConnection(url, "usuario", "java");
+
+					// Se hace el delete sobre el id
+					String query = "update usuario set password = " + pass + " where id =" + id;
+
+					Statement stmt = connection.createStatement();
+
+					// Ejecuta la query
+					stmt.executeUpdate(query);
+
+				} catch (SQLException e) {
+					e.printStackTrace();
+
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+
+				}
+	}
 }

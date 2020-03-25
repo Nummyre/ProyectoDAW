@@ -12,25 +12,34 @@ import modelo.pojo.Usuario;
 @LocalBean
 public class UsuariosEJB {
 
-
 	public Usuario existeUsuario(String user, String pass) {
-    	UsuariosDAO usuariosDAO = new UsuariosDAO();
+		UsuariosDAO usuariosDAO = new UsuariosDAO();
 
 		return usuariosDAO.existeUsuario(user, pass);
 	}
-	
 
-
-    public void insertUsuario(String nombre, String user, String password, String foto, String email, Date fechaAlta)  {
-    	UsuariosDAO usuariosDAO = new UsuariosDAO();
+	public void insertUsuario(String nombre, String user, String password, String foto, String email, Date fechaAlta) {
+		UsuariosDAO usuariosDAO = new UsuariosDAO();
 
 		usuariosDAO.insertUsuario(nombre, user, password, foto, email, fechaAlta);
 	}
-    
-    public void darseDeBaja(Integer id) {
-    	UsuariosDAO usuariosDAO = new UsuariosDAO();
+
+	public void darseDeBaja(Integer id) {
+		UsuariosDAO usuariosDAO = new UsuariosDAO();
 
 		usuariosDAO.darseDeBaja(id);
+	}
+
+	public void updateUsuario(String foto, Integer id) {
+		UsuariosDAO usuariosDAO = new UsuariosDAO();
+
+		usuariosDAO.updateUsuario(foto, id);
+
+	}
+
+	public void updatePassUsuario(String pass, Integer id) {
+		UsuariosDAO usuariosDAO = new UsuariosDAO();
+		usuariosDAO.updatePassUsuario(pass, id);
 	}
 
 }
