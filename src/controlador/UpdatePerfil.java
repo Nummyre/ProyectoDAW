@@ -30,14 +30,17 @@ public class UpdatePerfil extends HttpServlet {
 
 	// Variable para guardar la imagen
 	private static final String UPLOAD_DIRECTORY = "Imagenes";
+	
+	
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String id = request.getParameter("id");
 
 		Integer idUser = Integer.parseInt(id);
+		
 		System.out.println("1");
+		
 		// Coge la sesion abierta
 		HttpSession session = request.getSession(true);
 
