@@ -17,7 +17,7 @@ import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
 import modelo.pojo.Usuario;
 
-@WebServlet("/CambioPerfil")
+@WebServlet("/UpdatePerfil")
 @MultipartConfig(maxFileSize = 1024 * 1024 * 5)
 public class UpdatePerfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
