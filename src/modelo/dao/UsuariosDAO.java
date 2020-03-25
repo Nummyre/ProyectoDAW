@@ -149,12 +149,13 @@ public class UsuariosDAO {
 					connection = DriverManager.getConnection(url, "usuario", "java");
 
 					// Se hace el delete sobre el id
-					String query = "update usuario set password = " + pass + " where id =" + id;
+					String query = "update usuario set password = '" + pass + "' where id =" + id;
 
 					Statement stmt = connection.createStatement();
 
 					// Ejecuta la query
 					stmt.executeUpdate(query);
+					
 
 				} catch (SQLException e) {
 					e.printStackTrace();
