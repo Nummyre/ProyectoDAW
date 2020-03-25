@@ -37,13 +37,13 @@ public class UpdatePerfil extends HttpServlet {
 		String id = request.getParameter("id");
 
 		Integer idUser = Integer.parseInt(id);
-
+		System.out.println("1");
 		// Coge la sesion abierta
 		HttpSession session = request.getSession(true);
 
 		// Comprueba que el usuario esta logeado y tiene la sesion
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
-
+		System.out.println("2");
 		// Multipart RFC 7578
 
 		// Obtenemos una ruta en el servidor para guardar el archivo
@@ -54,6 +54,7 @@ public class UpdatePerfil extends HttpServlet {
 		if (!uploadDir.exists()) {
 			uploadDir.mkdir();
 		}
+		System.out.println("3");
 
 		// Lo utilizaremos para guardar el nombre del archivo
 		String fileName = null;
@@ -63,10 +64,13 @@ public class UpdatePerfil extends HttpServlet {
 			fileName = getFileName(part);
 			part.write(uploadPath + File.separator + fileName);
 		}
+		System.out.println("4");
 
 		usuariosEJB.updateUsuario(fileName, idUser);
 
-		response.sendRedirect("Perfil"); //Poner en javascript un mensaje
+		System.out.println("5");
+
+		response.sendRedirect("Perfil"); // Poner en javascript un mensaje
 
 	}
 
