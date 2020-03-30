@@ -75,7 +75,10 @@ public class UpdatePerfil extends HttpServlet {
 
 		System.out.println("5");
 
-		response.sendRedirect("Main"); // Poner en javascript un mensaje
+
+		request.setAttribute("usuario", usuario);
+		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Main.jsp");
+		rs.forward(request, response);// Poner en javascript un mensaje
 
 	}
 

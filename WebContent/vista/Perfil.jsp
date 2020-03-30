@@ -105,11 +105,6 @@
 			out.print("</div>");
 			out.print("</li>");
 			out.print("</ul>");
-			out.print("<form class=\"form-inline my-2 my-lg-0 mr-5\">");
-			out.print(
-					"<input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"Búsqueda\" aria-label=\"Search\">");
-			out.print("<button class=\"btn btn-outline-success my-2 my-sm-0\" type=\"submit\">Búsqueda</button>");
-			out.print("</form>");
 			out.print("<form class=\"form-inline ml-5\">");
 			out.print("<div class=\"input-group\">");
 			out.print("<div class=\"input-group-prepend\">");
@@ -156,15 +151,15 @@
 			out.print("</div>"); //termina el div del 1º row
 			out.print("<div class=\"row mt-3\">");
 			out.print("<div class=\"col-md-4\">");
+			out.print("<label for=\"exampleFormControlFile1\">Cambia la foto de perfil</label> <input type=\"file\" class=\"form-control-file\" id=\"exampleFormControlFile1\" name=\"foto\">");
+			out.print("</div>");
+			out.print("<div class=\"col-md-4 mb-3\">");
 			out.print("<h5>Usuario:</h5>");
 			out.print("<p>"+user.getUser()+"</p>");
 			out.print("</div>");
-			out.print("<div class=\"col-md-4 mb-3\">");
+			out.print("<div class=\"form-group col-md-4 mb-3\">");
 			out.print("<h5>Email:</h5>");
 			out.print("<p>"+user.getEmail()+"</p>");
-			out.print("</div>");
-			out.print("<div class=\"form-group col-md-4 mb-3\">");
-			out.print("<label for=\"exampleFormControlFile1\">Cambia la foto de perfil</label> <input type=\"file\" class=\"form-control-file\" id=\"exampleFormControlFile1\" name=\"foto\">");
 			out.print("</div>");
 			out.print("</div>");//termina el 2º row
 			out.print("<div class=\"row mt-3\">");// 3º row
@@ -177,11 +172,23 @@
 			out.print("<input id=\"prodId\" name=\"id\" type=\"hidden\" value=\""+user.getId()+"\">");
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col-md-4\">");
+			out.print("</div>");
+			out.print("<div class=\"col-md-4\">");
+			out.print("</div>");
+			out.print("<div class=\"col-md-4\">");
 			out.print("<h5>Cambiar contraseña:</h5>");
 			out.print("<input type=\"password\" class=\"form-control\" placeholder=\"Cambiar Contraseña\" name=\"password\">");
 			out.print("</div>");
 			out.print("</div>");
+			out.print("<div class=\"row\">");
+			out.print("<div class=\"col-md-4\">");
+			out.print("</div>");
+			out.print("<div class=\"col-md-4\">");
+			out.print("</div>");
+			out.print("<div class=\"col-md-4 mt-2\">");
 			out.print("<button type=\"submit\" class=\"btn btn-info\">Cambiar contraseña</button>");
+			out.print("</div>");
+			out.print("</div>");
 			out.print("</form>");
 			out.print("<form class=\"needs-validation\" method=\"get\" action=\"EliminarCuenta\">");
 			out.print("<div class=\"row\">");

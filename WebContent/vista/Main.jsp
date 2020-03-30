@@ -19,6 +19,7 @@
 <body>
 	<%
 		Usuario user = (Usuario) request.getAttribute("usuario");
+	
 		if (user == null) {
 			out.print("<header>");
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark p-5\">");

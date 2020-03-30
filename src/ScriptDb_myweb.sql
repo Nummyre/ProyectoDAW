@@ -18,6 +18,36 @@ USE `db_myweb`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `analisi`
+--
+
+DROP TABLE IF EXISTS `analisi`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `analisi` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(255) NOT NULL,
+  `analisi` varchar(2050) NOT NULL,
+  `idJuego` int(11) NOT NULL,
+  `idComentario` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idJuego` (`idJuego`),
+  KEY `idComentario` (`idComentario`),
+  CONSTRAINT `analisi_ibfk_1` FOREIGN KEY (`idJuego`) REFERENCES `juego` (`id`),
+  CONSTRAINT `analisi_ibfk_2` FOREIGN KEY (`idComentario`) REFERENCES `comentario` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `analisi`
+--
+
+LOCK TABLES `analisi` WRITE;
+/*!40000 ALTER TABLE `analisi` DISABLE KEYS */;
+/*!40000 ALTER TABLE `analisi` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `comentario`
 --
 
@@ -57,7 +87,7 @@ CREATE TABLE `genero` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(55) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +96,38 @@ CREATE TABLE `genero` (
 
 LOCK TABLES `genero` WRITE;
 /*!40000 ALTER TABLE `genero` DISABLE KEYS */;
+INSERT INTO `genero` VALUES (1,'Acción'),(2,'Fantasía'),(3,'Aventura'),(4,'RPG');
 /*!40000 ALTER TABLE `genero` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `guia`
+--
+
+DROP TABLE IF EXISTS `guia`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `guia` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(255) NOT NULL,
+  `guia` varchar(2050) NOT NULL,
+  `idJuego` int(11) NOT NULL,
+  `idComentario` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idJuego` (`idJuego`),
+  KEY `idComentario` (`idComentario`),
+  CONSTRAINT `guia_ibfk_1` FOREIGN KEY (`idJuego`) REFERENCES `juego` (`id`),
+  CONSTRAINT `guia_ibfk_2` FOREIGN KEY (`idComentario`) REFERENCES `comentario` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `guia`
+--
+
+LOCK TABLES `guia` WRITE;
+/*!40000 ALTER TABLE `guia` DISABLE KEYS */;
+/*!40000 ALTER TABLE `guia` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -114,7 +175,7 @@ CREATE TABLE `plataforma` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(55) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,6 +184,7 @@ CREATE TABLE `plataforma` (
 
 LOCK TABLES `plataforma` WRITE;
 /*!40000 ALTER TABLE `plataforma` DISABLE KEYS */;
+INSERT INTO `plataforma` VALUES (1,'Play Station 4'),(2,'Xbox One'),(3,'Nintendo Switch'),(4,'Pc');
 /*!40000 ALTER TABLE `plataforma` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,8 +203,9 @@ CREATE TABLE `usuario` (
   `foto` varchar(255) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
   `fechaAlta` varchar(255) NOT NULL,
+  `administrador` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,7 +214,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'Cintia','PanconKetchu','123','desconocido.txt','cintiia.349@gmail.com','Sat Mar 21 22:57:52 CET 2020'),(2,'usuarioPrueba','pruebaUser1','123','null','cintiia.349@gmail.com','Sat Mar 21 23:18:32 CET 2020'),(3,'Nombrecinaa','usuarioPrueba2','123','desconocido.txt','cintiia.349@gmail.com','Sat Mar 21 23:25:58 CET 2020'),(4,'sdasd','usuarioPrueba3','123','desconocido.txt','cintiia.349@gmail.com','Sat Mar 21 23:32:39 CET 2020'),(5,'Nombrecinaa','prueba4','123','desconocido.txt','cintiia.349@gmail.com','Sat Mar 21 23:40:09 CET 2020'),(6,'Nombrecinaa','pruebanoseCuantos','123','images.jpg','cintiia.349@gmail.com','Sat Mar 21 23:49:46 CET 2020');
+INSERT INTO `usuario` VALUES (1,'Cintia','PanconKetchu','123','images.jpg','cintiia.349@gmail.com','Mon Mar 30 18:13:54 CEST 2020',NULL);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -164,4 +227,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-22  0:23:15
+-- Dump completed on 2020-03-30 18:52:39

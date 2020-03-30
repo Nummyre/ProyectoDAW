@@ -67,7 +67,7 @@ public class UsuariosDAO {
 						rs.first();
 						usuario = new Usuario(rs.getInt("id"), rs.getString("nombre"), rs.getString("user"),
 								rs.getString("password"), rs.getString("foto"), rs.getString("email"),
-								rs.getString("fechaAlta"));
+								rs.getString("fechaAlta"),rs.getInt("administrador"));
 					}
 
 					rs.close();
