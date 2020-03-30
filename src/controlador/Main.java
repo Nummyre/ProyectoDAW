@@ -25,6 +25,7 @@ public class Main extends HttpServlet {
 
 	@EJB
 	SesionesEJB sesionesEJB;
+	
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
