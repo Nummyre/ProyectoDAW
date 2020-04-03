@@ -27,14 +27,11 @@ DROP TABLE IF EXISTS `analisi`;
 CREATE TABLE `analisi` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `titulo` varchar(255) NOT NULL,
-  `analisi` varchar(2050) NOT NULL,
+  `analisi` varchar(5000) NOT NULL,
   `idJuego` int(11) NOT NULL,
-  `idComentario` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idJuego` (`idJuego`),
-  KEY `idComentario` (`idComentario`),
-  CONSTRAINT `analisi_ibfk_1` FOREIGN KEY (`idJuego`) REFERENCES `juego` (`id`),
-  CONSTRAINT `analisi_ibfk_2` FOREIGN KEY (`idComentario`) REFERENCES `comentario` (`id`)
+  CONSTRAINT `analisi_ibfk_1` FOREIGN KEY (`idJuego`) REFERENCES `juego` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -56,7 +53,6 @@ DROP TABLE IF EXISTS `comentario`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `comentario` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `comentario` varchar(255) DEFAULT NULL,
   `idUsuario` int(11) NOT NULL,
   `idJuego` int(11) NOT NULL,
   PRIMARY KEY (`id`),
@@ -74,6 +70,94 @@ CREATE TABLE `comentario` (
 LOCK TABLES `comentario` WRITE;
 /*!40000 ALTER TABLE `comentario` DISABLE KEYS */;
 /*!40000 ALTER TABLE `comentario` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `comentario_analisis`
+--
+
+DROP TABLE IF EXISTS `comentario_analisis`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `comentario_analisis` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `idUsuario` int(11) NOT NULL,
+  `idAnalisis` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idUsuario` (`idUsuario`),
+  KEY `idAnalisis` (`idAnalisis`),
+  CONSTRAINT `comentario_analisis_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`id`),
+  CONSTRAINT `comentario_analisis_ibfk_2` FOREIGN KEY (`idAnalisis`) REFERENCES `analisi` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `comentario_analisis`
+--
+
+LOCK TABLES `comentario_analisis` WRITE;
+/*!40000 ALTER TABLE `comentario_analisis` DISABLE KEYS */;
+/*!40000 ALTER TABLE `comentario_analisis` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `comentario_guia`
+--
+
+DROP TABLE IF EXISTS `comentario_guia`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `comentario_guia` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `idUsuario` int(11) NOT NULL,
+  `idGuia` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idUsuario` (`idUsuario`),
+  KEY `idGuia` (`idGuia`),
+  CONSTRAINT `comentario_guia_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`id`),
+  CONSTRAINT `comentario_guia_ibfk_2` FOREIGN KEY (`idGuia`) REFERENCES `guia` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `comentario_guia`
+--
+
+LOCK TABLES `comentario_guia` WRITE;
+/*!40000 ALTER TABLE `comentario_guia` DISABLE KEYS */;
+/*!40000 ALTER TABLE `comentario_guia` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `foto`
+--
+
+DROP TABLE IF EXISTS `foto`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `foto` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `foto` varchar(255) DEFAULT NULL,
+  `idJuego` int(11) NOT NULL,
+  `idGuia` int(11) NOT NULL,
+  `idAnalisis` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idJuego` (`idJuego`),
+  KEY `idGuia` (`idGuia`),
+  KEY `idAnalisis` (`idAnalisis`),
+  CONSTRAINT `foto_ibfk_1` FOREIGN KEY (`idJuego`) REFERENCES `juego` (`id`),
+  CONSTRAINT `foto_ibfk_2` FOREIGN KEY (`idGuia`) REFERENCES `guia` (`id`),
+  CONSTRAINT `foto_ibfk_3` FOREIGN KEY (`idAnalisis`) REFERENCES `analisi` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `foto`
+--
+
+LOCK TABLES `foto` WRITE;
+/*!40000 ALTER TABLE `foto` DISABLE KEYS */;
+/*!40000 ALTER TABLE `foto` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -110,14 +194,11 @@ DROP TABLE IF EXISTS `guia`;
 CREATE TABLE `guia` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `titulo` varchar(255) NOT NULL,
-  `guia` varchar(2050) NOT NULL,
+  `guia` varchar(5000) NOT NULL,
   `idJuego` int(11) NOT NULL,
-  `idComentario` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idJuego` (`idJuego`),
-  KEY `idComentario` (`idComentario`),
-  CONSTRAINT `guia_ibfk_1` FOREIGN KEY (`idJuego`) REFERENCES `juego` (`id`),
-  CONSTRAINT `guia_ibfk_2` FOREIGN KEY (`idComentario`) REFERENCES `comentario` (`id`)
+  CONSTRAINT `guia_ibfk_1` FOREIGN KEY (`idJuego`) REFERENCES `juego` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -214,8 +295,40 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'Cintia','PanconKetchu','123','images.jpg','cintiia.349@gmail.com','Mon Mar 30 18:13:54 CEST 2020',NULL);
+INSERT INTO `usuario` VALUES (1,'Cintia','PanconKetchu','123','images.jpg','cintiia.349@gmail.com','Fri Apr 03 17:39:13 CEST 2020',NULL);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `video`
+--
+
+DROP TABLE IF EXISTS `video`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `video` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `video` varchar(255) DEFAULT NULL,
+  `idJuego` int(11) NOT NULL,
+  `idGuia` int(11) NOT NULL,
+  `idAnalisis` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idJuego` (`idJuego`),
+  KEY `idGuia` (`idGuia`),
+  KEY `idAnalisis` (`idAnalisis`),
+  CONSTRAINT `video_ibfk_1` FOREIGN KEY (`idJuego`) REFERENCES `juego` (`id`),
+  CONSTRAINT `video_ibfk_2` FOREIGN KEY (`idGuia`) REFERENCES `guia` (`id`),
+  CONSTRAINT `video_ibfk_3` FOREIGN KEY (`idAnalisis`) REFERENCES `analisi` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `video`
+--
+
+LOCK TABLES `video` WRITE;
+/*!40000 ALTER TABLE `video` DISABLE KEYS */;
+/*!40000 ALTER TABLE `video` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -227,4 +340,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-30 18:52:39
+-- Dump completed on 2020-04-03 17:40:18
