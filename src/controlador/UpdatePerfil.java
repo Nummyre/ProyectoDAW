@@ -72,6 +72,10 @@ public class UpdatePerfil extends HttpServlet {
 		System.out.println("4");
 
 		usuariosEJB.updateUsuario(fileName, idUser);
+		
+		Usuario u = (Usuario) session.getAttribute("usuario");
+		u.setFoto(fileName);
+		session.setAttribute("usuario", u);
 
 		System.out.println("5");
 
