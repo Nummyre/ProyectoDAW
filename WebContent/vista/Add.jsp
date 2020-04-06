@@ -1,6 +1,9 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@page import="modelo.pojo.Usuario"%>
+    <%@page import="modelo.pojo.Genero"%>
+    <%@page import="java.util.ArrayList"%>
 <%@page session="false"%>
 <!DOCTYPE html>
 <html>
@@ -20,7 +23,7 @@
 
 <%
 		Usuario user = (Usuario) request.getAttribute("usuario");
-	
+		ArrayList<Genero> juegoList = (ArrayList<Genero>) request.getAttribute("listaJuego");
 		if (user == null) {
 			out.print("<header>");
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark p-5\">");
@@ -159,11 +162,9 @@
 			out.print("<div class=\"form-group\">");
 			out.print("<label for=\"Select1\">Género</label>");
 			out.print("<select class=\"form-control\" id=\"Select1\" name=\"gen\">");
-			out.print("<option>1</option>");
-			out.print("<option>2</option>");
-			out.print("<option>3</option>");
-			out.print("<option>4</option>");
-			out.print("<option>5</option>");
+					for(Genero j : juegoList){
+			out.print("<option>"+j.getNombre()+"</option>");
+					}
 			out.print("</select>");
 			out.print("</div>");
 			out.print("</div>");
