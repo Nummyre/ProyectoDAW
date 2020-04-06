@@ -41,6 +41,7 @@ public class Add extends HttpServlet {
 
 		request.setAttribute("listaJuego", juego);
 		request.setAttribute("usuario", usuario);
+		System.out.println("--------- " + juego);
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Add.jsp");
 		rs.forward(request, response);
 	}
