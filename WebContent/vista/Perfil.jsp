@@ -54,6 +54,27 @@
 			out.print("</div>");
 			out.print("</li>");
 			out.print("</ul>");
+			// ----------------------------- ADMINISTRADOR
+			out.print("<li class=\"nav-item dropdown\">");
+			out.print(
+					"<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Administrador</a>");
+			out.print("<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">");
+			out.print("<a class=\"dropdown-item\" href=\"Add\">Añadir ficha Juego</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Editar\">Editar ficha Juego</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Borrar\">Borrar ficha Juego</a>");
+			out.print("<div class=\"dropdown-divider\"></div>");
+			out.print("<a class=\"dropdown-item\" href=\"#\">Añadir guía</a>");
+			out.print("<a class=\"dropdown-item\" href=\"#\">Editar guía</a>");
+			out.print("<a class=\"dropdown-item\" href=\"#\">Borrar guía</a>");
+			out.print("</div>");
+			out.print("<div class=\"dropdown-divider\"></div>");
+			out.print("<a class=\"dropdown-item\" href=\"#\">Añadir análisis</a>");
+			out.print("<a class=\"dropdown-item\" href=\"#\">Editar análisis</a>");
+			out.print("<a class=\"dropdown-item\" href=\"#\">Borrar análisis</a>");
+			out.print("</div>");
+			out.print("</li>");
+			out.print("</ul>");
+			// -----------------------------
 			out.print("<form class=\"form-inline my-2 my-lg-0 mr-5\">");
 			out.print(
 					"<input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"Búsqueda\" aria-label=\"Search\">");
