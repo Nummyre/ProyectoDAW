@@ -6,6 +6,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 import modelo.dao.JuegosDAO;
+import modelo.pojo.Genero;
 import modelo.pojo.Juego;
 
 @Stateless
@@ -16,6 +17,12 @@ public class JuegoEJB {
 		JuegosDAO juegoList = new JuegosDAO();
 		
 		return juegoList.listaJuegos();
+	}
+	
+	public ArrayList<Genero> genero() {
+		JuegosDAO juegoList = new JuegosDAO();
+		
+		return juegoList.genero();
 	}
 
 }
