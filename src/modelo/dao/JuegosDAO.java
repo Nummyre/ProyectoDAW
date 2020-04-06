@@ -54,7 +54,7 @@ public class JuegosDAO {
 	
 	
 	public ArrayList<Genero> genero() {
-		Genero juego;
+		ArrayList<Genero> juego = null;
 		try {
 
 			// metodo
@@ -71,14 +71,22 @@ public class JuegosDAO {
 					// Si la conexion no es nula que ejecute la query del select con los datos
 					// obtenidos
 					stmt = connection.createStatement();
-					ResultSet rs = stmt.executeQuery("SELECT * FROM genero");
+					ResultSet rs = stmt.executeQuery("select * from genero");
 
 					rs.last();
 					if (rs.getRow() > 0) {
 
 						// Coge los datos del usuario que a iniciado sesion de la base de datos
+
 						rs.first();
-						juego = new Genero(rs.getInt("id"), rs.getString("nombre"));
+						 juego = new ArrayList<Genero>();
+						 
+						 juego.add(new Genero(rs.getInt("id"), rs.getString("nombre")));
+						 
+						 while (rs.next()) {
+						
+						 juego.add(new Genero(rs.getInt("id"), rs.getString("nombre")));
+						 }
 					}
 
 					rs.close();
@@ -86,7 +94,8 @@ public class JuegosDAO {
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
-		return null;
+		return juego;
+		
 		} 
 		
 	}
