@@ -102,7 +102,7 @@
 			// ----------------------------- ADMINISTRADOR
 			out.print("<li class=\"nav-item dropdown\">");
 			out.print(
-					"<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Administrador</a>");
+					"<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">|| Administrador</a>");
 			out.print("<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">");
 			out.print("<a class=\"dropdown-item\" href=\"Add\">Añadir ficha Juego</a>");
 			out.print("<a class=\"dropdown-item\" href=\"Editar\">Editar ficha Juego</a>");
