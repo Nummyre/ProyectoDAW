@@ -144,12 +144,12 @@
 			//----" 2 row"------
 			out.print("<form method=\"post\" action=\"Add\">");
 			out.print("<div class=\"row\"");
-			out.print("<div class=\"col\">");
+			out.print("<div class=\"col-4\">");
 			out.print("<label>Título</label>");
 			out.print("<input class=\"form-control\" type=\"text\" placeholder=\"Título\" name=\"titulo\">");
 			out.print("</div>");
 			
-			out.print("<div class=\"col\">");
+			out.print("<div class=\"col-4\">");
 			out.print("<label>Año del juego</label>");
 			out.print("<input class=\"form-control\" type=\"number\" placeholder=\"Año\" name=\"anyo\">");
 			out.print("</div>");
@@ -158,18 +158,20 @@
 			
 			//---- 3 row---
 			out.print("<div class=\"row\"");
-			out.print("<div class=\"col\">");
+			out.print("<div class=\"col-4\">");
 			out.print("<div class=\"form-group\">");
 			out.print("<label for=\"Select1\">Género</label>");
+		
 			out.print("<select class=\"form-control\" id=\"Select1\" name=\"gen\">");
-					for(Genero j : juegoList){
+			for(Genero j : juegoList){		
 			out.print("<option>"+j.getNombre()+"</option>");
-					}
+			}
 			out.print("</select>");
+	
 			out.print("</div>");
 			out.print("</div>");
 			
-			out.print("<div class=\"col\">");
+			out.print("<div class=\"col-4\">");
 			out.print("<div class=\"form-group\">");
 			out.print("<label for=\"Select2\">Plataforma</label>");
 			out.print("<select class=\"form-control\" id=\"Select2\" name=\"pla\">");
@@ -187,7 +189,7 @@
 			
 			//-----------4 row---
 			out.print("<div class=\"row\"");
-			out.print("<div class=\"col\">");
+			out.print("<div class=\"col-4\">");
 			out.print("<div class=\"form-group\">");
 			out.print("<label for=\"Textarea1\">Example textarea</label>");
 			out.print("<textarea class=\"form-control\" id=\"Textarea1\" rows=\"3\" name=\"desc\"></textarea>");
@@ -197,12 +199,12 @@
 			
 			//------ 5 row ---- 
 			out.print("<div class=\"row\"");
-			out.print("<div class=\"col\">");
+			out.print("<div class=\"col-4\">");
 			out.print("<label for=\"exampleFormControlFile1\">Cambia la foto de perfil</label>");
 			out.print("<input type=\"file\" class=\"form-control-file\" id=\"exampleFormControlFile1\" name=\"foto\">");
 			out.print("</div>");
 			out.print("<input class=\"form-control\" type=\"hidden\" value=\""+user.getId()+" name=\"id\">");
-			out.print("<div class=\"col\">");
+			out.print("<div class=\"col-4\">");
 			out.print("<button type=\"submit\" class=\"btn btn-success\">Subir ficha a la lista</button>");
 			out.print("</div>");
 			out.print("</div>");
