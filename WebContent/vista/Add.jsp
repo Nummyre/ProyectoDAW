@@ -125,7 +125,96 @@
 			out.print("</div>");
 			out.print("</nav>");
 			out.print("</header>");
+			
+			//container----------------------------------------------
+			
+			out.print("<div class=\"container mt-5 p-5\">");
+			
+			out.print("");
+			out.print("<div class=\"row\"");
+			out.print("<div class=\"col\">");
+			out.print("<h3>Añade un juego a la lista</h3>");
+			out.print("</div>");
+			out.print("</div>");
+			out.print("<hr>");
+			
+			//----" 2 row"------
+			out.print("<form method=\"post\" action=\"Add\">");
+			out.print("<div class=\"row\"");
+			out.print("<div class=\"col\">");
+			out.print("<label>Título</label>");
+			out.print("<input class=\"form-control\" type=\"text\" placeholder=\"Título\" name=\"titulo\">");
+			out.print("</div>");
+			
+			out.print("<div class=\"col\">");
+			out.print("<label>Año del juego</label>");
+			out.print("<input class=\"form-control\" type=\"number\" placeholder=\"Año\" name=\"anyo\">");
+			out.print("</div>");
+			out.print("</div>");
+			
+			
+			//---- 3 row---
+			out.print("<div class=\"row\"");
+			out.print("<div class=\"col\">");
+			out.print("<div class=\"form-group\">");
+			out.print("<label for=\"Select1\">Género</label>");
+			out.print("<select class=\"form-control\" id=\"Select1\" name=\"gen\">");
+			out.print("<option>1</option>");
+			out.print("<option>2</option>");
+			out.print("<option>3</option>");
+			out.print("<option>4</option>");
+			out.print("<option>5</option>");
+			out.print("</select>");
+			out.print("</div>");
+			out.print("</div>");
+			
+			out.print("<div class=\"col\">");
+			out.print("<div class=\"form-group\">");
+			out.print("<label for=\"Select2\">Plataforma</label>");
+			out.print("<select class=\"form-control\" id=\"Select2\" name=\"pla\">");
+			out.print("<option>1</option>");
+			out.print("<option>2</option>");
+			out.print("<option>3</option>");
+			out.print("<option>4</option>");
+			out.print("<option>5</option>");
+			out.print("</select>");
+			out.print("</div>");
+			
+			out.print("</div>");
+			out.print("</div>");
+			
+			
+			//-----------4 row---
+			out.print("<div class=\"row\"");
+			out.print("<div class=\"col\">");
+			out.print("<div class=\"form-group\">");
+			out.print("<label for=\"Textarea1\">Example textarea</label>");
+			out.print("<textarea class=\"form-control\" id=\"Textarea1\" rows=\"3\" name=\"desc\"></textarea>");
+			out.print("</div>");
+			out.print("</div>");
+			out.print("</div>");
+			
+			//------ 5 row ---- 
+			out.print("<div class=\"row\"");
+			out.print("<div class=\"col\">");
+			out.print("<label for=\"exampleFormControlFile1\">Cambia la foto de perfil</label>");
+			out.print("<input type=\"file\" class=\"form-control-file\" id=\"exampleFormControlFile1\" name=\"foto\">");
+			out.print("</div>");
+			out.print("<input class=\"form-control\" type=\"hidden\" value=\""+user.getId()+" name=\"id\">");
+			out.print("<div class=\"col\">");
+			out.print("<button type=\"submit\" class=\"btn btn-success\">Subir ficha a la lista</button>");
+			out.print("</div>");
+			out.print("</div>");
+			
+		
+			out.print("</form>"); //FIN del formulario para añadir juego
+			//---------container FIN
+			out.print("</div>");
+			
+			
+			//----------------------------------------------------------
 		}
 	%>
+	
 </body>
 </html>
