@@ -17,6 +17,7 @@ import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
 import modelo.pojo.Genero;
 import modelo.pojo.Juego;
+import modelo.pojo.Plataforma;
 import modelo.pojo.Usuario;
 
 @WebServlet("/Add")
@@ -38,10 +39,12 @@ public class Add extends HttpServlet {
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
 		ArrayList<Genero> juego = juegoEJB.genero();
+		ArrayList<Plataforma> juegoP = juegoEJB.plataforma();
 
 		request.setAttribute("listaJuego", juego);
 		request.setAttribute("usuario", usuario);
-		System.out.println("--------- " + juego);
+		request.setAttribute("plataforma", juegoP);
+		
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Add.jsp");
 		rs.forward(request, response);
 	}
