@@ -220,7 +220,7 @@
 			out.print(
 					"<input type=\"file\" class=\"form-control-file\" id=\"exampleFormControlFile1\" name=\"foto\">");
 			out.print("</div>");
-			out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + user.getId() + " name=\"id\">");
+			out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + user.getId() + "\" name=\"id\">");
 			out.print("<div class=\"col-4 mt-5\">");
 			out.print("<button type=\"submit\" class=\"btn btn-success\">Subir ficha a la lista</button>");
 			out.print("</div>");
