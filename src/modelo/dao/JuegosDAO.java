@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 
 import modelo.pojo.Genero;
 import modelo.pojo.Juego;
@@ -142,4 +143,55 @@ public class JuegosDAO {
 		
 		return juego;
 	}
+	
+	
+	
+	public void insertJuego(String titulo, String desc, Integer anyo, Integer idGen, Integer idPla, Integer idUser) {
+
+		try {
+			Connection connection;
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			String url = ("jdbc:mysql://localhost:3306/db_myweb?serverTimezone=UTC");
+
+			connection = DriverManager.getConnection(url, "usuario", "java");
+
+			String query = "INSERT INTO juego (titulo, descripcion, anyo, idGenero, idPlataforma, idUsuario) " + "VALUES ('"
+					+ titulo + "','" + desc + "','" + anyo + "','" + idGen + "','" + idPla + "','" + idUser
+					+ "');";
+			Statement stmt = connection.createStatement();
+
+			stmt.executeUpdate(query);
+
+			connection.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void insertJuegoFoto(String foto, Integer idJuego, Integer idGuia, Integer idAnali) {
+
+		try {
+			Connection connection;
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			String url = ("jdbc:mysql://localhost:3306/db_myweb?serverTimezone=UTC");
+
+			connection = DriverManager.getConnection(url, "usuario", "java");
+
+			String query = "INSERT INTO foto (foto, idJuego, idGuia, idAnalisis) " + "VALUES ('"
+					+ foto + "','"+idJuego+"','"+idGuia+"','"+idAnali+"');";
+			Statement stmt = connection.createStatement();
+
+			stmt.executeUpdate(query);
+
+			connection.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }
