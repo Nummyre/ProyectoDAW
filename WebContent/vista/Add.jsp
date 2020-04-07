@@ -3,6 +3,7 @@
     pageEncoding="UTF-8"%>
     <%@page import="modelo.pojo.Usuario"%>
     <%@page import="modelo.pojo.Genero"%>
+    <%@page import="modelo.pojo.Plataforma"%>
     <%@page import="java.util.ArrayList"%>
 <%@page session="false"%>
 <!DOCTYPE html>
@@ -24,6 +25,8 @@
 <%
 		Usuario user = (Usuario) request.getAttribute("usuario");
 		ArrayList<Genero> juegoList = (ArrayList<Genero>) request.getAttribute("listaJuego");
+		ArrayList<Plataforma> juegoListP = (ArrayList<Plataforma>) request.getAttribute("plataforma");
+		
 		if (user == null) {
 			out.print("<header>");
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark p-5\">");
@@ -164,7 +167,7 @@
 		
 			out.print("<select class=\"form-control\" id=\"Select1\" name=\"gen\">");
 			for(Genero j : juegoList){		
-			out.print("<option>"+j.getNombre()+"</option>");
+			out.print("<option value=\""+j.getId()+"\">"+j.getNombre()+"</option>");
 			}
 			out.print("</select>");
 	
@@ -175,11 +178,9 @@
 			out.print("<div class=\"form-group\">");
 			out.print("<label for=\"Select2\">Plataforma</label>");
 			out.print("<select class=\"form-control\" id=\"Select2\" name=\"pla\">");
-			out.print("<option>1</option>");
-			out.print("<option>2</option>");
-			out.print("<option>3</option>");
-			out.print("<option>4</option>");
-			out.print("<option>5</option>");
+					for(Plataforma j2 : juegoListP){
+			out.print("<option value=\""+j2.getId()+"\">"+j2.getNombre()+"</option>");
+					}
 			out.print("</select>");
 			out.print("</div>");
 			
