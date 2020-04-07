@@ -91,6 +91,13 @@ public class Add extends HttpServlet {
 			fileName = getFileName(part);
 			part.write(uploadPath + File.separator + fileName);
 		}
+		
+		System.out.print("-------------"+id);
+		System.out.print("-------------"+anyo);
+		System.out.print("-------------"+desc);
+		System.out.print("-------------"+titulo);
+		System.out.print("-------------"+genero);
+		System.out.print("-------------"+plataforma);
 
 		juegoEJB.insertJuego(titulo, desc, anyo, genero, plataforma, id);
 		juegoEJB.insertJuegoFoto(fileName, id, idGuia, idAnali);
