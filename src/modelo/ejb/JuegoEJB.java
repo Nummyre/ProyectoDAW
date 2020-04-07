@@ -47,5 +47,14 @@ public class JuegoEJB {
 
 		juegoList.insertJuegoFoto(foto, idJuego, idGuia, idAnali);
 	}
+	
+	
+
+	public  ArrayList<Juego> nintendoList() {
+
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.nintendoList();
+	}
 
 }
