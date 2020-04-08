@@ -82,6 +82,7 @@ public class Add extends HttpServlet {
 		if (!uploadDir.exists()) {
 			uploadDir.mkdir();
 		}
+		System.out.println("3");
 
 		// Lo utilizaremos para guardar el nombre del archivo
 		String fileName = null;
@@ -91,16 +92,21 @@ public class Add extends HttpServlet {
 			fileName = getFileName(part);
 			part.write(uploadPath + File.separator + fileName);
 		}
-		
-		System.out.print("-------------"+id);
-		System.out.print("-------------"+anyo);
-		System.out.print("-------------"+desc);
-		System.out.print("-------------"+titulo);
-		System.out.print("-------------"+genero);
-		System.out.print("-------------"+plataforma);
+		System.out.println("4");
 
-		juegoEJB.insertJuego(titulo, desc, anyo, genero, plataforma, id);
+		System.out.print("-------------" + id);
+		System.out.print("-------------" + anyo);
+		System.out.print("-------------" + desc);
+		System.out.print("-------------" + titulo);
+		System.out.print("-------------" + genero);
+		System.out.print("-------------" + plataforma);
+		System.out.println("-------------" + idGuia);
+		System.out.print("-------------" + idAnali);
+		System.out.print("-------------" + fileName);
+
 		juegoEJB.insertJuegoFoto(fileName, id, idGuia, idAnali);
+		juegoEJB.insertJuego(titulo, desc, anyo, genero, plataforma, id);
+		
 
 		response.sendRedirect("Login");
 
