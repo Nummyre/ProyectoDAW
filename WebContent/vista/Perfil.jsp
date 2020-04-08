@@ -127,7 +127,7 @@
 			out.print("<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">");
 			out.print("<a class=\"dropdown-item\" href=\"Add\">Añadir ficha Juego</a>");
 			out.print("<a class=\"dropdown-item\" href=\"Editar\">Editar ficha Juego</a>");
-			out.print("<a class=\"dropdown-item\" href=\"Borrar\">Borrar ficha Juego</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Borrar?id="+user.getId()+"\">Borrar ficha Juego</a>");
 			out.print("<div class=\"dropdown-divider\"></div>");
 			out.print("<a class=\"dropdown-item\" href=\"#\">Añadir guía</a>");
 			out.print("<a class=\"dropdown-item\" href=\"#\">Editar guía</a>");
