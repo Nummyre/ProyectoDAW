@@ -19,6 +19,18 @@ public class JuegoEJB {
 
 		return juegoList.listaJuegos();
 	}
+	
+	public ArrayList<Juego> listaJuegosPorIdUser(Integer id) {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.listaJuegosPorIdUser(id);
+	}
+	
+	public void deleteJuego(Integer id) {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		juegoList.deleteJuego(id);
+	}
 
 	public ArrayList<Genero> genero() {
 		JuegosDAO juegoList = new JuegosDAO();

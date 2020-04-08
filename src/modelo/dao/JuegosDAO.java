@@ -14,7 +14,7 @@ import modelo.pojo.Plataforma;
 public class JuegosDAO {
 
 	public ArrayList<Juego> listaJuegos() {
-		Juego juego = null;
+		ArrayList<Juego> juego = null;
 		try {
 
 			// metodo
@@ -38,9 +38,20 @@ public class JuegosDAO {
 
 					// Coge los datos del usuario que a iniciado sesion de la base de datos
 					rs.first();
-					juego = new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
+					
+					juego = new ArrayList<Juego>();
+					
+					juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
 							rs.getInt("anyo"), rs.getString("idGenero"), rs.getString("idPlataforma"),
-							rs.getInt("idUsuario"));
+							rs.getInt("idUsuario")));
+					
+					
+					while (rs.next()) {
+
+						juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
+								rs.getInt("anyo"), rs.getString("idGenero"), rs.getString("idPlataforma"),
+								rs.getInt("idUsuario")));
+					}
 				}
 
 				rs.close();
@@ -48,8 +59,83 @@ public class JuegosDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return juego;
 	}
+	
+	
+	public void deleteJuego(Integer id) {
+		try {
+
+			// metodo
+			Connection connection = null;
+
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			String url = ("jdbc:mysql://localhost:3306/db_myweb?serverTimezone=UTC");
+			connection = DriverManager.getConnection(url, "usuario", "java");
+
+			if (connection != null) {
+
+				Statement stmt = connection.createStatement();	
+				
+				String queryBorrar ="DELETE FROM juego WHERE id="+id;
+				
+				stmt.executeUpdate(queryBorrar);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public ArrayList<Juego> listaJuegosPorIdUser(Integer id) {
+		ArrayList<Juego> juego = null;
+		try {
+
+			// metodo
+			Connection connection = null;
+			Statement stmt = null;
+
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			String url = ("jdbc:mysql://localhost:3306/db_myweb?serverTimezone=UTC");
+			connection = DriverManager.getConnection(url, "usuario", "java");
+
+			if (connection != null) {
+
+				// Si la conexion no es nula que ejecute la query del select con los datos
+				// obtenidos
+				stmt = connection.createStatement();
+				ResultSet rs = stmt.executeQuery("SELECT * FROM juego where idUsuario = "+ id);
+
+				rs.last();
+				if (rs.getRow() > 0) {
+
+					// Coge los datos del usuario que a iniciado sesion de la base de datos
+					rs.first();
+					
+					juego = new ArrayList<Juego>();
+					
+					juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
+							rs.getInt("anyo"), rs.getString("idGenero"), rs.getString("idPlataforma"),
+							rs.getInt("idUsuario")));
+					
+					
+					while (rs.next()) {
+
+						juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
+								rs.getInt("anyo"), rs.getString("idGenero"), rs.getString("idPlataforma"),
+								rs.getInt("idUsuario")));
+					}
+				}
+
+				rs.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return juego;
+	}
+	
 
 	public ArrayList<Genero> genero() {
 		ArrayList<Genero> juego = null;
