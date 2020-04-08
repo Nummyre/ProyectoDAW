@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
         <%@page import="modelo.pojo.Usuario"%>
+        <%@page import="modelo.pojo.Juego"%>
+        <%@page import="java.util.ArrayList"%>
 <%@page session="false"%>
 <!DOCTYPE html>
 <html>
@@ -20,6 +22,7 @@
 
 <%
 		Usuario user = (Usuario) request.getAttribute("usuario");
+ArrayList<Juego> listaJuego = (ArrayList<Juego>) request.getAttribute("listaJuego");
 	
 		if (user == null) {
 			out.print("<header>");
@@ -125,6 +128,21 @@
 			out.print("</div>");
 			out.print("</nav>");
 			out.print("</header>");
+			
+			out.print("<div class=\"container mt-5 p-5\">"); //Empieza container
+			out.print("<div class=\"row\">");
+			out.print("<div class=\"col\">");
+			out.print("<h3>Tu lista de juegos añadidos</h3>");
+			out.print("</div>");
+			out.print("<div class=\"col\">");
+			out.print("<ul class=\"list-group\">");
+			for(Juego j : listaJuego){
+			out.print("<li class=\"list-group-item\">"+j.getTitulo()+" <a href=\"Borrado?id="+j.getId()+"\"><button type=\"button\" class=\"btn btn-success ml-5\">Borrar ficha Juego</button></a></li>");
+			}
+			out.print("</ul>");
+			out.print("</div>");
+			out.print("</div>");
+			out.print("</div>");
 		}
 	%>
 </body>
