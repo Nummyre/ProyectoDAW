@@ -149,7 +149,7 @@
 			out.print("<hr>");
 
 			//----" 2 row"------
-			out.print("<form method=\"post\" action=\"Add\" enctype=\"multipart/form-data\">");
+			out.print("<form method=\"post\" action=\"Add\">");
 			out.print("<div class=\"form-row mt-4\"");
 			out.print("<div class=\"col-md-4\">");
 			out.print("</div>");
@@ -215,11 +215,6 @@
 			out.print("<div class=\"form-row\"");
 			out.print("<div class=\"col-md-4\">");
 			out.print("</div>");
-			out.print("<div class=\"col-md-4\">");
-			out.print("<label for=\"exampleFormControlFile1\">Cambia la foto de perfil</label>");
-			out.print(
-					"<input type=\"file\" class=\"form-control-file\" id=\"exampleFormControlFile1\" name=\"foto\">");
-			out.print("</div>");
 			out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + user.getId() + "\" name=\"id\">");
 			out.print("<div class=\"col-4 mt-5\">");
 			out.print("<button type=\"submit\" class=\"btn btn-success\">Subir ficha a la lista</button>");
@@ -227,6 +222,14 @@
 			out.print("</div>");
 
 			out.print("</form>"); //FIN del formulario para añadir juego
+			
+			out.print("<form method=\"post\" action=\"AddFotoJuego\" enctype=\"multipart/form-data\">");
+			out.print("<label for=\"exampleFormControlFile1\">Sube una foto para el juego</label>");
+			out.print(
+					"<input type=\"file\" class=\"form-control-file\" id=\"exampleFormControlFile1\" name=\"foto\">");
+			out.print("<button type=\"submit\" class=\"btn btn-success\">Subir foto a la ficha</button>");
+			out.print("</form>");
+			
 			//---------container FIN
 			out.print("</div>");
 
