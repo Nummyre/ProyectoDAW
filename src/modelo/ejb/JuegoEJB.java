@@ -68,5 +68,11 @@ public class JuegoEJB {
 
 		return juegoList.nintendoList();
 	}
+	
+	public Juego juego(Integer id) {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.juego(id);
+	}
 
 }

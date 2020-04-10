@@ -10,6 +10,7 @@ import java.util.Date;
 import modelo.pojo.Genero;
 import modelo.pojo.Juego;
 import modelo.pojo.Plataforma;
+import modelo.pojo.Usuario;
 
 public class JuegosDAO {
 
@@ -320,4 +321,52 @@ public class JuegosDAO {
 		return juego;
 
 	}
+	
+	
+	public Juego juego(Integer id) {
+
+		Juego juego = null;
+		try {
+
+			// Si el usuario y la contraseña no son nulos que abra conexion mediante el
+			// metodo
+			
+				Connection connection = null;
+				Statement stmt = null;
+
+				Class.forName("com.mysql.cj.jdbc.Driver");
+
+				String url = ("jdbc:mysql://localhost:3306/db_myweb?serverTimezone=UTC");
+				connection = DriverManager.getConnection(url, "usuario", "java");
+
+				if (connection != null) {
+
+					// Si la conexion no es nula que ejecute la query del select con los datos
+					// obtenidos
+					stmt = connection.createStatement();
+					ResultSet rs = stmt.executeQuery(
+							"SELECT FROM juego INNER JOIN genero ON juego.idGenero = genero.id AND juego.id = "+id+" INNER JOIN plataforma ON juego.idPlataforma = plataforma.id;");
+
+					rs.last();
+					if (rs.getRow() > 0) {
+
+						// Coge los datos del usuario que a iniciado sesion de la base de datos
+						rs.first();
+						juego = (new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),
+								rs.getInt("anyo"), rs.getString("idGenero"), rs.getString("idPlataforma"),
+								rs.getInt("idUsuario")));
+					}
+
+					rs.close();
+				}
+			
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return juego;
+	}
+
+	
 }
