@@ -2,6 +2,10 @@
     pageEncoding="UTF-8"%>
         <%@page import="modelo.pojo.Usuario"%>
 <%@page session="false"%>
+<%@page import="java.util.ArrayList"%>
+     <%@page import="modelo.pojo.Juego"%>
+        <%@page import="modelo.pojo.Genero"%>
+           <%@page import="modelo.pojo.Plataforma"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +24,9 @@
 
 <%
 		Usuario user = (Usuario) request.getAttribute("usuario");
+		Juego juego = (Juego) request.getAttribute("juego");
+		ArrayList<Genero> juegoList = (ArrayList<Genero>) request.getAttribute("genero");
+		ArrayList<Plataforma> juegoListP = (ArrayList<Plataforma>) request.getAttribute("plataforma");
 	
 		if (user == null) {
 			out.print("<header>");
@@ -125,7 +132,112 @@
 			out.print("</div>");
 			out.print("</nav>");
 			out.print("</header>");
+			
+			
+			//container----------------------------------------------
+
+			out.print("<div class=\"container mt-5 p-4 ml-5\">");
+
+			out.print("");
+			out.print("<div class=\"row\"");
+			out.print("<div class=\"col\">");
+			out.print("<h3>Edita un juego a la lista</h3>");
+			out.print("</div>");
+			out.print("</div>");
+			out.print("<hr>");
+
+			//----" 2 row"------
+			out.print("<form method=\"post\" action=\"Editado\">");
+			out.print("<div class=\"form-row mt-4\"");
+			out.print("<div class=\"col-md-4\">");
+			out.print("</div>");
+
+			out.print("<div class=\"col-md-4\">");
+			out.print("<label>Título</label>");
+			out.print("<input class=\"form-control\" type=\"text\" value=\""+juego.getTitulo()+"\" name=\"titulo\">");
+			out.print("</div>");
+
+			out.print("<div class=\"col-md-4\">");
+			out.print("<label>Año del juego</label>");
+			out.print("<input class=\"form-control\" type=\"number\" value=\""+juego.getAnyo()+"\" name=\"anyo\">");
+			out.print("</div>");
+			out.print("</div>");
+
+			//---- 3 row---
+			out.print("<div class=\"form-row\"");
+			out.print("<div class=\"col-md-4\">");
+			out.print("</div>");
+
+			out.print("<div class=\"col-md-4\">");
+			out.print("<div class=\"form-group\">");
+			out.print("<label for=\"Select1\">Género</label>");
+
+			out.print("<select class=\"form-control\" id=\"Select1\" name=\"gen\">");
+			
+			for (Genero j : juegoList) {
+				out.print("<option value=\"" + juego.getGenero() + "\">" + j.getNombre() + "</option>");
+			}
+			
+			out.print("</select>");
+
+			out.print("</div>");
+			out.print("</div>");
+
+			out.print("<div class=\"col-md-4\">");
+			out.print("</div>");
+
+			out.print("<div class=\"col-md-4\">");
+			out.print("<div class=\"form-group\">");
+			out.print("<label for=\"Select2\">Plataforma</label>");
+			out.print("<select class=\"form-control\" id=\"Select2\" name=\"pla\">");
+			
+			for (Plataforma j2 : juegoListP) {
+				out.print("<option value=\"" + juego.getPlataforma() + "\">" + j2.getNombre() + "</option>");
+			}
+			
+			out.print("</select>");
+			out.print("</div>");
+
+			out.print("</div>");
+			out.print("</div>");
+
+			//-----------4 row---
+			out.print("<div class=\"form-row\"");
+			out.print("<div class=\"col-md-4\">");
+			out.print("</div>");
+			out.print("<div class=\"col-md-4\">");
+			out.print("<div class=\"form-group\">");
+			out.print("<label for=\"Textarea1\">Descripción del juego</label>");
+			out.print("<textarea class=\"form-control\" id=\"Textarea1\" rows=\"3\" name=\"desc\"></textarea>");
+			out.print("</div>");
+			out.print("</div>");
+			out.print("</div>");
+
+			//------ 5 row ---- 
+			out.print("<div class=\"form-row\"");
+			out.print("<div class=\"col-md-4\">");
+			out.print("</div>");
+			out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + user.getId() + "\" name=\"id\">");
+			out.print("<div class=\"col-4 mt-5\">");
+			out.print("<button type=\"submit\" class=\"btn btn-success\">Subir ficha a la lista</button>");
+			out.print("</div>");
+			out.print("</div>");
+
+			out.print("</form>"); //FIN del formulario para añadir juego
+			
+			out.print("<form method=\"post\" action=\"AddFotoJuego\" enctype=\"multipart/form-data\">");
+			out.print("<label for=\"exampleFormControlFile1\">Sube una foto para el juego</label>");
+			out.print(
+					"<input type=\"file\" class=\"form-control-file\" id=\"exampleFormControlFile1\" name=\"foto\">");
+			out.print("<button type=\"submit\" class=\"btn btn-success\">Subir foto a la ficha</button>");
+			out.print("</form>");
+			
+			//---------container FIN
+			out.print("</div>");
+
+			//----------------------------------------------------------
 		}
+		
 	%>
 </body>
 </html>
