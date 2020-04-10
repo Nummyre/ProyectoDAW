@@ -65,6 +65,27 @@
 			out.print("</form>");
 			out.print("</div>");
 			out.print("</nav>");
+			
+			//--------------------------------------------------------
+			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">");
+			out.print("<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">");
+			out.print("<ul class=\"navbar-nav ml-5\">");
+			out.print("<li class=\"nav-item mr-5\">");
+			out.print("<a class=\"nav-link\" href=\"#\">PC</a>");
+			out.print("</li>");
+			out.print("<li class=\"nav-item mr-5\">");
+			out.print("<a class=\"nav-link\" href=\"#\">Xbox One</a>");
+			out.print("</li>");
+			out.print("<li class=\"nav-item mr-5\">");
+			out.print("<a class=\"nav-link\" href=\"#\">Play Station 4</a>");
+			out.print("</li>");
+			out.print("<li class=\"nav-item mr-5\">");
+			out.print("<a class=\"nav-link\" href=\"#\">Nintendo Switch</a>");
+			out.print("</li>");
+			out.print("</ul>");
+			
+			
+			
 			out.print("</header>");
 			out.print("<div class=\"container mt-5 p-5\">");
 			out.print("<h1>¿Se a perdido la sesión? Vuelve a Iniciar sesión más tarde</h1>");
@@ -105,8 +126,8 @@
 					"<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">|| Administrador</a>");
 			out.print("<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">");
 			out.print("<a class=\"dropdown-item\" href=\"Add\">Añadir ficha Juego</a>");
-			out.print("<a class=\"dropdown-item\" href=\"Editar\">Editar ficha Juego</a>");
-			out.print("<a class=\"dropdown-item\" href=\"Borrar\">Borrar ficha Juego</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Editar?id="+user.getId()+"\">Editar ficha Juego</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Borrar?id="+user.getId()+"\">Borrar ficha Juego</a>");
 			out.print("<div class=\"dropdown-divider\"></div>");
 			out.print("<a class=\"dropdown-item\" href=\"#\">Añadir guía</a>");
 			out.print("<a class=\"dropdown-item\" href=\"#\">Editar guía</a>");
@@ -141,6 +162,26 @@
 			out.print("</form>");
 			out.print("</div>");
 			out.print("</nav>");
+			
+			//--------------------------------------------------------
+			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">");
+			out.print("<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">");
+			out.print("<ul class=\"navbar-nav ml-5\">");
+			out.print("<li class=\"nav-item mr-5\">");
+			out.print("<a class=\"nav-link\" href=\"#\">PC</a>");
+			out.print("</li>");
+			out.print("<li class=\"nav-item mr-5\">");
+			out.print("<a class=\"nav-link\" href=\"#\">Xbox One</a>");
+			out.print("</li>");
+			out.print("<li class=\"nav-item mr-5\">");
+			out.print("<a class=\"nav-link\" href=\"#\">Play Station 4</a>");
+			out.print("</li>");
+			out.print("<li class=\"nav-item mr-5\">");
+			out.print("<a class=\"nav-link\" href=\"#\">Nintendo Switch</a>");
+			out.print("</li>");
+			out.print("</ul>");
+			
+			
 			out.print("</header>");
 			out.print("<div class=\"container mt-5 p-5\">"); //Empieza container
 			out.print("<form class=\"needs-validation\" method=\"post\" action=\"UpdatePerfil\" enctype=\"multipart/form-data\">");

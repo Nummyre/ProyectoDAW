@@ -17,41 +17,51 @@ import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
 import modelo.pojo.Genero;
 import modelo.pojo.Juego;
+import modelo.pojo.Plataforma;
 import modelo.pojo.Usuario;
 
-
-@WebServlet("/Borrar")
-public class Borrar extends HttpServlet {
+@WebServlet("/Editar")
+public class Editado extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
  
-    
 	@EJB
 	UsuariosEJB usuariosEJB;
 
 	@EJB
-	SesionesEJB sesionesEJB;
+	JuegoEJB juegoEJB;
 
 	@EJB
-	JuegoEJB juegoEJB;
-	
+	SesionesEJB sesionesEJB;
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		
 
 		HttpSession session = request.getSession(false);
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
-		String iduser = request.getParameter("id");
-		Integer id = Integer.parseInt(iduser);
 		
-		ArrayList<Juego> juego = juegoEJB.listaJuegosPorIdUser(id);
+		String idJ = request.getParameter("id");
+		
+		Integer id = Integer.parseInt(idJ);
+		
+		ArrayList<Genero> juegoG = juegoEJB.genero();
+		ArrayList<Plataforma> juegoP = juegoEJB.plataforma();
+		
+		Juego juego = juegoEJB.juego(id);
+		
+		request.setAttribute("juego", juego);
+		request.setAttribute("plataforma", juegoP);
+		request.setAttribute("genero", juegoG);
 
-		request.setAttribute("usuario", usuario);
-		request.setAttribute("listaJuego", juego);
-		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Borrar.jsp");
+		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Editado.jsp");
 		rs.forward(request, response);
-		
 	}
 
-	
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	}
 
 }

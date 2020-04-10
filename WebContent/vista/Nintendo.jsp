@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-        <%@page import="modelo.pojo.Usuario"%>
-        <%@page import="modelo.pojo.Juego"%>
-        <%@page import="java.util.ArrayList"%>
+	pageEncoding="UTF-8"%>
+<%@page import="modelo.pojo.Usuario"%>
+<%@page import="modelo.pojo.Juego"%>
+<%@page import="java.util.ArrayList"%>
 <%@page session="false"%>
 <!DOCTYPE html>
 <html>
@@ -14,16 +14,18 @@
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 </head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-<%
+	<%
 		Usuario user = (Usuario) request.getAttribute("usuario");
-ArrayList<Juego> listaJuego = (ArrayList<Juego>) request.getAttribute("listaJuego");
-	
+	ArrayList<Juego> nintendoList = (ArrayList<Juego>) request.getAttribute("nintendoList");
+
 		if (user == null) {
 			out.print("<header>");
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark p-5\">");
@@ -72,6 +74,24 @@ ArrayList<Juego> listaJuego = (ArrayList<Juego>) request.getAttribute("listaJueg
 			out.print("</form>");
 			out.print("</div>");
 			out.print("</nav>");
+			//--------------------------------------------------------
+			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">");
+			out.print("<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">");
+			out.print("<ul class=\"navbar-nav ml-5\">");
+			out.print("<li class=\"nav-item mr-5\">");
+			out.print("<a class=\"nav-link\" href=\"#\">PC</a>");
+			out.print("</li>");
+			out.print("<li class=\"nav-item mr-5\">");
+			out.print("<a class=\"nav-link\" href=\"#\">Xbox One</a>");
+			out.print("</li>");
+			out.print("<li class=\"nav-item mr-5\">");
+			out.print("<a class=\"nav-link\" href=\"#\">Play Station 4</a>");
+			out.print("</li>");
+			out.print("<li class=\"nav-item mr-5\">");
+			out.print("<a class=\"nav-link\" href=\"#\">Nintendo Switch</a>");
+			out.print("</li>");
+			out.print("</ul>");
+
 			out.print("</header>");
 		} else {
 			out.print("<header>");
@@ -113,36 +133,80 @@ ArrayList<Juego> listaJuego = (ArrayList<Juego>) request.getAttribute("listaJueg
 			out.print("<form class=\"form-inline ml-5\">");
 			out.print("<div class=\"input-group\">");
 			out.print("<div class=\"input-group-prepend\">");
-			if(user.getFoto().equals("desconocido.txt")){
-			out.print("<img src=\"img/usuari.jpg\" width=\"65\" height=\"55\" class=\"img-circle\">");
-			}else{
-				if (user.getFoto().matches(".+\\.(jpg|png)")){
+			if (user.getFoto().equals("desconocido.txt")) {
+				out.print("<img src=\"img/usuari.jpg\" width=\"65\" height=\"55\" class=\"img-circle\">");
+			} else {
+				if (user.getFoto().matches(".+\\.(jpg|png)")) {
 					out.print("<img src=\"Imagenes/" + user.getFoto() + "\" width=\"60\" height=\"55\"/>");
 				}
 			}
 			out.print("</div>");
 			out.print(
-					"<input type=\"text\" readonly=\"readonly\"  disabled=\"disabled\" class=\"form-control mt-3 ml-2 text-center\" placeholder=\""+user.getUser()+"\" aria-label=\"Username\" aria-describedby=\"basic-addon1\">");
+					"<input type=\"text\" readonly=\"readonly\"  disabled=\"disabled\" class=\"form-control mt-3 ml-2 text-center\" placeholder=\""
+							+ user.getUser() + "\" aria-label=\"Username\" aria-describedby=\"basic-addon1\">");
 			out.print("</div>");
 			out.print("</form>");
 			out.print("</div>");
 			out.print("</nav>");
+
+			//--------------------------------------------------------
+			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">");
+			out.print("<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">");
+			out.print("<ul class=\"navbar-nav ml-5\">");
+			out.print("<li class=\"nav-item mr-5\">");
+			out.print("<a class=\"nav-link\" href=\"#\">PC</a>");
+			out.print("</li>");
+			out.print("<li class=\"nav-item mr-5\">");
+			out.print("<a class=\"nav-link\" href=\"#\">Xbox One</a>");
+			out.print("</li>");
+			out.print("<li class=\"nav-item mr-5\">");
+			out.print("<a class=\"nav-link\" href=\"#\">Play Station 4</a>");
+			out.print("</li>");
+			out.print("<li class=\"nav-item mr-5\">");
+			out.print("<a class=\"nav-link\" href=\"#\">Nintendo Switch</a>");
+			out.print("</li>");
+			out.print("</ul>");
+
 			out.print("</header>");
 			
-			out.print("<div class=\"container mt-5 p-5\">"); //Empieza container
-			out.print("<div class=\"row\">");
+			out.print("<div class=\"container mt-5 p-4 ml-5\">");
+			out.print("<div class=\"row\"");
 			out.print("<div class=\"col\">");
-			out.print("<h3>Tu lista de juegos añadidos</h3>");
+			out.print("<h3>Juegos de Nintendo Switch</h3>");
 			out.print("</div>");
-			out.print("<div class=\"col\">");
-			out.print("<ul class=\"list-group\">");
-			for(Juego j : listaJuego){
-			out.print("<li class=\"list-group-item\">"+j.getTitulo()+" <a href=\"Borrado?id="+j.getId()+"\"><button type=\"button\" class=\"btn btn-success ml-5\">Borrar ficha Juego</button></a></li>");
+			out.print("</div>");
+			out.print("<hr>");
+			out.print("<div class=\"form-row mt-4\"");
+			out.print("<div class=\"col-md-4\">");
+			out.print("</div>");
+			//----TABLA------------------------------
+			out.print("<div class=\"col-md-4\">");
+			out.print("<table class=\"table\">");
+			out.print("<thead class=\"thead-dark\">");
+			out.print("<tr>");
+			out.print("<th scope=\"col\">(foto)</th>");
+			out.print("<th scope=\"col\">Título</th>");
+			out.print("<th scope=\"col\">Descripción</th>");
+			out.print("<th scope=\"col\">Año</th>");
+			out.print("<th scope=\"col\">Género</th>");
+			out.print("<th scope=\"col\">Plataforma</th>");
+			out.print("</tr>");
+			out.print("</thead>");
+			out.print("<tbody>");
+			for(Juego n : nintendoList){
+			out.print("<tr>");
+			out.print("<th scope=\"row\">1</th>");
+			out.print("<td>"+n.getTitulo()+"</td>");
+			out.print("<td>"+n.getDescripcion()+"</td>");
+			out.print("<td>"+n.getAnyo()+"</td>");
+			out.print("</tr>");
 			}
-			out.print("</ul>");
+			out.print("</tbody>");
+			out.print("</table>");
+			//-----------------------
 			out.print("</div>");
 			out.print("</div>");
-			out.print("</div>");
+			
 		}
 	%>
 </body>

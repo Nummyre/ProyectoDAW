@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 import modelo.dao.JuegosDAO;
 import modelo.pojo.Genero;
 import modelo.pojo.Juego;
+import modelo.pojo.Plataforma;
 
 @Stateless
 @LocalBean
@@ -15,14 +16,63 @@ public class JuegoEJB {
 
 	public ArrayList<Juego> listaJuego() {
 		JuegosDAO juegoList = new JuegosDAO();
-		
+
 		return juegoList.listaJuegos();
 	}
 	
+	public ArrayList<Juego> listaJuegosPorIdUser(Integer id) {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.listaJuegosPorIdUser(id);
+	}
+	
+	public void deleteJuego(Integer id) {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		juegoList.deleteJuego(id);
+	}
+
 	public ArrayList<Genero> genero() {
 		JuegosDAO juegoList = new JuegosDAO();
-		
+
 		return juegoList.genero();
+	}
+
+	public ArrayList<Plataforma> plataforma() {
+
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.plataforma();
+	}
+
+	public void insertJuego(String titulo, String desc, Integer anyo, Integer idGen, Integer idPla, Integer idUser) {
+
+		JuegosDAO juegoList = new JuegosDAO();
+
+		juegoList.insertJuego(titulo, desc, anyo, idGen, idPla, idUser);
+		
+	}
+
+	public void insertJuegoFoto(String foto, Integer idJuego, Integer idGuia, Integer idAnali) {
+
+		JuegosDAO juegoList = new JuegosDAO();
+
+		juegoList.insertJuegoFoto(foto, idJuego, idGuia, idAnali);
+	}
+	
+	
+
+	public  ArrayList<Juego> nintendoList() {
+
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.nintendoList();
+	}
+	
+	public Juego juego(Integer id) {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.juego(id);
 	}
 
 }
