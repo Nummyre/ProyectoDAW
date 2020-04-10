@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-            <%@page import="modelo.pojo.Usuario"%>
+        <%@page import="modelo.pojo.Usuario"%>
 <%@page session="false"%>
-<%@page import="java.util.ArrayList"%>
-     <%@page import="modelo.pojo.Juego"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,9 +17,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+
 <%
 		Usuario user = (Usuario) request.getAttribute("usuario");
-ArrayList<Juego> listaJuego = (ArrayList<Juego>) request.getAttribute("listaJuego");
 	
 		if (user == null) {
 			out.print("<header>");
@@ -127,21 +125,6 @@ ArrayList<Juego> listaJuego = (ArrayList<Juego>) request.getAttribute("listaJueg
 			out.print("</div>");
 			out.print("</nav>");
 			out.print("</header>");
-			
-			out.print("<div class=\"container mt-5 p-5\">"); //Empieza container
-			out.print("<div class=\"row\">");
-			out.print("<div class=\"col\">");
-			out.print("<h3>Tu lista de juegos añadidos</h3>");
-			out.print("</div>");
-			out.print("<div class=\"col\">");
-			out.print("<ul class=\"list-group\">");
-			for(Juego j : listaJuego){
-			out.print("<li class=\"list-group-item\">"+j.getTitulo()+" <a href=\"Editado?id="+j.getId()+"\"><button type=\"button\" class=\"btn btn-success ml-5\">Editar ficha Juego</button></a></li>");
-			}
-			out.print("</ul>");
-			out.print("</div>");
-			out.print("</div>");
-			out.print("</div>");
 		}
 	%>
 </body>
