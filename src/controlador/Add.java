@@ -96,10 +96,11 @@ public class Add extends HttpServlet {
 		
 
 	
-		juegoEJB.insertJuego(titulo, desc, anyo, genero, plataforma, id);
+		int juego = juegoEJB.insertJuego(titulo, desc, anyo, genero, plataforma, id);
 
+		System.out.println(juego);
 		
-		juegoEJB.insertJuegoFoto(fileName, id, idGuia, idAnali);
+		juegoEJB.insertJuegoFoto(fileName, juego, idGuia, idAnali);
 
 		response.sendRedirect("Login");
 
