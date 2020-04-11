@@ -24,10 +24,10 @@ import modelo.pojo.Plataforma;
 import modelo.pojo.Usuario;
 
 @WebServlet("/Add")
-
+@MultipartConfig(maxFileSize = 1024 * 1024 * 5)
 public class Add extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private static final String UPLOAD_DIRECTORY = "Imagenes";
 
 	@EJB
 	UsuariosEJB usuariosEJB;
@@ -57,6 +57,8 @@ public class Add extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		Integer idGuia = 0;
+		Integer idAnali = 0;
 
 		String titulo = request.getParameter("titulo");
 		String any = request.getParameter("anyo");
@@ -70,13 +72,48 @@ public class Add extends HttpServlet {
 		Integer genero = Integer.parseInt(gen);
 		Integer plataforma = Integer.parseInt(pla);
 		Integer id = Integer.parseInt(idUser);
+		
+		// Multipart RFC 7578
+
+		// Obtenemos una ruta en el servidor para guardar el archivo
+		String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY;
+
+		// Si la ruta no existe la crearemos
+		File uploadDir = new File(uploadPath);
+		if (!uploadDir.exists()) {
+			uploadDir.mkdir();
+		}
+		System.out.println("3");
+
+		// Lo utilizaremos para guardar el nombre del archivo
+		String fileName = null;
+
+		// Obtenemos el archivo y lo guardamos a disco
+		for (Part part : request.getParts()) {
+			fileName = getFileName(part);
+			part.write(uploadPath + File.separator + fileName);
+		}
+		
+
 	
 		juegoEJB.insertJuego(titulo, desc, anyo, genero, plataforma, id);
+
 		
+		juegoEJB.insertJuegoFoto(fileName, id, idGuia, idAnali);
 
 		response.sendRedirect("Login");
 
 	}
+	
+	// Obtiene el nombre del archivo, sino lo llamaremos desconocido.txt
+			private String getFileName(Part part) {
+				for (String content : part.getHeader("content-disposition").split(";")) {
+					if (content.trim().startsWith("filename"))
+						return content.substring(content.indexOf("=") + 2, content.length() - 1);
+				}
+				return "desconocido.txt";
+			}
+
 
 
 }
