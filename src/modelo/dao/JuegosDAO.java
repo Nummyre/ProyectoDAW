@@ -241,10 +241,21 @@ public class JuegosDAO {
 			String query = "INSERT INTO juego (titulo, descripcion, anyo, idGenero, idPlataforma, idUsuario) "
 					+ "VALUES ('" + titulo + "','" + desc + "','" + anyo + "','" + idGen + "','" + idPla + "','"
 					+ idUser + "');";
-			Statement stmt = connection.createStatement();
-
-			stmt.executeUpdate(query);
-
+			
+			try (Statement stmt = connection.createStatement()){
+				
+				stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+				ResultSet rs = stmt.getGeneratedKeys();
+				int rowID;
+				
+				if(rs.next()) {
+					rowID = rs.getInt(1);
+				
+					
+				}
+			}catch (Exception e) {
+				
+			}
 			connection.close();
 
 		} catch (Exception e) {
