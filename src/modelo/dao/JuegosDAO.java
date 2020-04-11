@@ -228,8 +228,8 @@ public class JuegosDAO {
 		return juego;
 	}
 
-	public void insertJuego(String titulo, String desc, Integer anyo, Integer idGen, Integer idPla, Integer idUser) {
-
+	public int insertJuego(String titulo, String desc, Integer anyo, Integer idGen, Integer idPla, Integer idUser) {
+		int rowID = 0;
 		try {
 			Connection connection;
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -246,7 +246,7 @@ public class JuegosDAO {
 				
 				stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
 				ResultSet rs = stmt.getGeneratedKeys();
-				int rowID;
+			
 				
 				if(rs.next()) {
 					rowID = rs.getInt(1);
@@ -261,6 +261,7 @@ public class JuegosDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return rowID;
 	}
 
 	public void insertJuegoFoto(String foto, Integer idJuego, Integer idGuia, Integer idAnali) {

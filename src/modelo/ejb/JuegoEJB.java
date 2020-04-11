@@ -45,11 +45,11 @@ public class JuegoEJB {
 		return juegoList.plataforma();
 	}
 
-	public void insertJuego(String titulo, String desc, Integer anyo, Integer idGen, Integer idPla, Integer idUser) {
+	public int insertJuego(String titulo, String desc, Integer anyo, Integer idGen, Integer idPla, Integer idUser) {
 
 		JuegosDAO juegoList = new JuegosDAO();
 
-		juegoList.insertJuego(titulo, desc, anyo, idGen, idPla, idUser);
+		return juegoList.insertJuego(titulo, desc, anyo, idGen, idPla, idUser);
 		
 	}
 
