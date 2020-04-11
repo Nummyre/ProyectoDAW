@@ -274,8 +274,8 @@ public class JuegosDAO {
 
 			connection = DriverManager.getConnection(url, "usuario", "java");
 
-			String query = "INSERT INTO foto (foto, idJuego, idGuia, idAnalisis) " + "VALUES ('" + foto + "','"
-					+ idJuego + "','" + idGuia + "','" + idAnali + "');";
+			String query = "INSERT INTO foto (foto, idJuego, idGuia, idAnalisis) " + "VALUES ('" + foto + "',"
+					+ idJuego + "," + idGuia + "," + idAnali + ");";
 			Statement stmt = connection.createStatement();
 
 			stmt.executeUpdate(query);
