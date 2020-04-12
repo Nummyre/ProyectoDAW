@@ -47,8 +47,10 @@ public class Editar extends HttpServlet {
 		ArrayList<Juego> juego = juegoEJB.listaJuegosPorIdUser(id);
 		
 		request.setAttribute("juego", juego);
+		request.setAttribute("usuario",usuario);
+		
 
-		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Editar.jsp");
+		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/admin/Editar.jsp");
 		rs.forward(request, response);
 	}
 

@@ -19,7 +19,6 @@ import modelo.ejb.JuegoEJB;
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
 import modelo.pojo.Genero;
-import modelo.pojo.Juego;
 import modelo.pojo.Plataforma;
 import modelo.pojo.Usuario;
 
@@ -27,7 +26,7 @@ import modelo.pojo.Usuario;
 @MultipartConfig(maxFileSize = 1024 * 1024 * 5)
 public class Add extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String UPLOAD_DIRECTORY = "Imagenes";
+	
 
 	@EJB
 	UsuariosEJB usuariosEJB;
@@ -37,6 +36,8 @@ public class Add extends HttpServlet {
 
 	@EJB
 	SesionesEJB sesionesEJB;
+	
+	private static final String UPLOAD_DIRECTORY = "Imagenes";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -51,14 +52,13 @@ public class Add extends HttpServlet {
 		request.setAttribute("usuario", usuario);
 		request.setAttribute("plataforma", juegoP);
 
-		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Add.jsp");
+		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/admin/Add.jsp");
 		rs.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Integer idGuia = 0;
-		Integer idAnali = 0;
+
 
 		String titulo = request.getParameter("titulo");
 		String any = request.getParameter("anyo");
@@ -72,6 +72,10 @@ public class Add extends HttpServlet {
 		Integer genero = Integer.parseInt(gen);
 		Integer plataforma = Integer.parseInt(pla);
 		Integer id = Integer.parseInt(idUser);
+		
+		System.out.println("1");
+
+		System.out.println("2");
 		
 		// Multipart RFC 7578
 
@@ -93,27 +97,27 @@ public class Add extends HttpServlet {
 			fileName = getFileName(part);
 			part.write(uploadPath + File.separator + fileName);
 		}
+		System.out.println("4");
 		
+		System.out.println(fileName);
 
-	
-		juegoEJB.insertJuego(titulo, desc, anyo, genero, plataforma, id);
+		int juego = juegoEJB.insertJuego(titulo, desc, anyo, genero, plataforma, id);
 
+		System.out.println(juego);
 		
-		juegoEJB.insertJuegoFoto(fileName, id, idGuia, idAnali);
+		juegoEJB.insertJuegoFoto(fileName, juego);
 
 		response.sendRedirect("Login");
 
 	}
-	
+
 	// Obtiene el nombre del archivo, sino lo llamaremos desconocido.txt
-			private String getFileName(Part part) {
-				for (String content : part.getHeader("content-disposition").split(";")) {
-					if (content.trim().startsWith("filename"))
-						return content.substring(content.indexOf("=") + 2, content.length() - 1);
-				}
-				return "desconocido.txt";
-			}
-
-
+	private String getFileName(Part part) {
+		for (String content : part.getHeader("content-disposition").split(";")) {
+			if (content.trim().startsWith("filename"))
+				return content.substring(content.indexOf("=") + 2, content.length() - 1);
+		}
+		return "desconocido.txt";
+	}
 
 }

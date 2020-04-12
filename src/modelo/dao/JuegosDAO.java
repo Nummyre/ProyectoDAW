@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import modelo.pojo.Genero;
+import modelo.pojo.Guia;
 import modelo.pojo.Juego;
 import modelo.pojo.Plataforma;
 import modelo.pojo.Usuario;
@@ -43,14 +44,14 @@ public class JuegosDAO {
 					juego = new ArrayList<Juego>();
 					
 					juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
-							rs.getInt("anyo"), rs.getString("idGenero"), rs.getString("idPlataforma"),
+							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
 							rs.getInt("idUsuario")));
 					
 					
 					while (rs.next()) {
 
 						juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
-								rs.getInt("anyo"), rs.getString("idGenero"), rs.getString("idPlataforma"),
+								rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
 								rs.getInt("idUsuario")));
 					}
 				}
@@ -79,7 +80,32 @@ public class JuegosDAO {
 
 				Statement stmt = connection.createStatement();	
 				
-				String queryBorrar ="DELETE FROM juego WHERE id="+id;
+				String queryBorrar ="DELETE FROM juego WHERE id="+id+";";
+				
+				stmt.executeUpdate(queryBorrar);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void deleteGuia(Integer id) {
+		try {
+
+			// metodo
+			Connection connection = null;
+
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			String url = ("jdbc:mysql://localhost:3306/db_myweb?serverTimezone=UTC");
+			connection = DriverManager.getConnection(url, "usuario", "java");
+
+			if (connection != null) {
+
+				Statement stmt = connection.createStatement();	
+				
+				String queryBorrar =" delete from guia where id = "+id;
 				
 				stmt.executeUpdate(queryBorrar);
 			}
@@ -117,14 +143,14 @@ public class JuegosDAO {
 					juego = new ArrayList<Juego>();
 					
 					juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
-							rs.getInt("anyo"), rs.getString("idGenero"), rs.getString("idPlataforma"),
+							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
 							rs.getInt("idUsuario")));
 					
 					
 					while (rs.next()) {
 
 						juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
-								rs.getInt("anyo"), rs.getString("idGenero"), rs.getString("idPlataforma"),
+								rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
 								rs.getInt("idUsuario")));
 					}
 				}
@@ -135,6 +161,55 @@ public class JuegosDAO {
 			e.printStackTrace();
 		}
 		return juego;
+	}
+	
+	
+	
+	public ArrayList<Guia> listaGuiasPorIdUser(Integer id) {
+		ArrayList<Guia> guia = null;
+		try {
+
+			// metodo
+			Connection connection = null;
+			Statement stmt = null;
+
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			String url = ("jdbc:mysql://localhost:3306/db_myweb?serverTimezone=UTC");
+			connection = DriverManager.getConnection(url, "usuario", "java");
+
+			if (connection != null) {
+
+				// Si la conexion no es nula que ejecute la query del select con los datos
+				// obtenidos
+				stmt = connection.createStatement();
+				ResultSet rs = stmt.executeQuery("SELECT * FROM guia where idUsuario = "+ id);
+
+				rs.last();
+				if (rs.getRow() > 0) {
+
+					// Coge los datos del usuario que a iniciado sesion de la base de datos
+					rs.first();
+					
+					guia = new ArrayList<Guia>();
+					
+					guia.add(new Guia(rs.getInt("id"), rs.getString("titulo"), rs.getString("guia"),
+							rs.getInt("idUsuario")));
+					
+					
+					while (rs.next()) {
+
+						guia.add(new Guia(rs.getInt("id"), rs.getString("titulo"), rs.getString("guia"),
+								rs.getInt("idUsuario")));
+					}
+				}
+
+				rs.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return guia;
 	}
 	
 
@@ -228,8 +303,8 @@ public class JuegosDAO {
 		return juego;
 	}
 
-	public void insertJuego(String titulo, String desc, Integer anyo, Integer idGen, Integer idPla, Integer idUser) {
-
+	public int insertJuego(String titulo, String desc, Integer anyo, Integer idGen, Integer idPla, Integer idUser) {
+		int rowID = 0;
 		try {
 			Connection connection;
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -246,7 +321,7 @@ public class JuegosDAO {
 				
 				stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
 				ResultSet rs = stmt.getGeneratedKeys();
-				int rowID;
+			
 				
 				if(rs.next()) {
 					rowID = rs.getInt(1);
@@ -261,9 +336,93 @@ public class JuegosDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return rowID;
 	}
+	
+	public int insertGuia(String titulo, String texto, Integer idUsuario) {
+		int rowID = 0;
+		try {
+			Connection connection;
+			Class.forName("com.mysql.cj.jdbc.Driver");
 
-	public void insertJuegoFoto(String foto, Integer idJuego, Integer idGuia, Integer idAnali) {
+			String url = ("jdbc:mysql://localhost:3306/db_myweb?serverTimezone=UTC");
+
+			connection = DriverManager.getConnection(url, "usuario", "java");
+
+			String query = "INSERT INTO guia (titulo, guia, idUsuario) "
+					+ "VALUES ('" + titulo + "','" + texto + "', "+idUsuario+");";
+			
+			try (Statement stmt = connection.createStatement()){
+				
+				stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+				ResultSet rs = stmt.getGeneratedKeys();
+			
+				
+				if(rs.next()) {
+					rowID = rs.getInt(1);
+				
+					
+				}
+			}catch (Exception e) {
+				
+			}
+			connection.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rowID;
+	}
+	
+	
+	public void updateJuego(String titulo, String desc, Integer anyo, Integer idGen, Integer idPla, Integer idJuego) {
+	
+		try {
+			Connection connection;
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			String url = ("jdbc:mysql://localhost:3306/db_myweb?serverTimezone=UTC");
+
+			connection = DriverManager.getConnection(url, "usuario", "java");
+
+			String query = "update juego set titulo = '"+titulo+"', Descripcion = '"+desc+"', anyo = "+anyo+", idGenero = "+idGen+", idPlataforma = "+idPla+" where id = "+idJuego;
+			Statement stmt = connection.createStatement();
+			stmt.executeUpdate(query);
+		
+		
+			connection.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	
+	public void insertGuiaFoto(String foto, Integer idGuia) {
+		try {
+			Connection connection;
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			String url = ("jdbc:mysql://localhost:3306/db_myweb?serverTimezone=UTC");
+
+			connection = DriverManager.getConnection(url, "usuario", "java");
+
+			String query = "INSERT INTO fotoGuia (foto, idGuia) " + "VALUES ('" + foto + "',"
+					+ idGuia + ");";
+			Statement stmt = connection.createStatement();
+
+			stmt.executeUpdate(query);
+
+			connection.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void insertJuegoFoto(String foto, Integer idJuego) {
 
 		try {
 			Connection connection;
@@ -273,8 +432,8 @@ public class JuegosDAO {
 
 			connection = DriverManager.getConnection(url, "usuario", "java");
 
-			String query = "INSERT INTO foto (foto, idJuego, idGuia, idAnalisis) " + "VALUES ('" + foto + "','"
-					+ idJuego + "','" + idGuia + "','" + idAnali + "');";
+			String query = "INSERT INTO fotoJuego (foto, idJuego) " + "VALUES ('" + foto + "',"
+					+ idJuego + ");";
 			Statement stmt = connection.createStatement();
 
 			stmt.executeUpdate(query);
@@ -286,6 +445,29 @@ public class JuegosDAO {
 		}
 	}
 
+	
+	public void updateJuegoFoto(String foto, Integer idJuego) {
+
+		try {
+			Connection connection;
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			String url = ("jdbc:mysql://localhost:3306/db_myweb?serverTimezone=UTC");
+
+			connection = DriverManager.getConnection(url, "usuario", "java");
+
+			String query = "update fotoJuego set foto = "+foto+" where idJuego = " +idJuego;
+			Statement stmt = connection.createStatement();
+
+			stmt.executeUpdate(query);
+
+			connection.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public ArrayList<Juego> nintendoList() {
 		ArrayList<Juego> juego = null;
 		try {
@@ -311,13 +493,13 @@ public class JuegosDAO {
 					juego = new ArrayList<Juego>();
 
 					juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),
-							rs.getInt("anyo"), rs.getString("idGenero"), rs.getString("idPlataforma"),
+							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
 							rs.getInt("idUsuario")));
 
 					while (rs.next()) {
 
 						juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),
-								rs.getInt("anyo"), rs.getString("idGenero"), rs.getString("idPlataforma"),
+								rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
 								rs.getInt("idUsuario")));
 					}
 				}
@@ -356,7 +538,7 @@ public class JuegosDAO {
 					// obtenidos
 					stmt = connection.createStatement();
 					ResultSet rs = stmt.executeQuery(
-							"SELECT FROM juego INNER JOIN genero ON juego.idGenero = genero.id AND juego.id = "+id+" INNER JOIN plataforma ON juego.idPlataforma = plataforma.id;");
+							"SELECT * FROM juego INNER JOIN genero ON juego.idGenero = genero.id AND juego.id = "+id+" INNER JOIN plataforma ON juego.idPlataforma = plataforma.id;");
 
 					rs.last();
 					if (rs.getRow() > 0) {
@@ -364,7 +546,7 @@ public class JuegosDAO {
 						// Coge los datos del usuario que a iniciado sesion de la base de datos
 						rs.first();
 						juego = (new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),
-								rs.getInt("anyo"), rs.getString("idGenero"), rs.getString("idPlataforma"),
+								rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
 								rs.getInt("idUsuario")));
 					}
 

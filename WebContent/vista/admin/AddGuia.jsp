@@ -1,9 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-            <%@page import="modelo.pojo.Usuario"%>
-<%@page session="false"%>
 <%@page import="java.util.ArrayList"%>
-     <%@page import="modelo.pojo.Juego"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@page import="modelo.pojo.Usuario"%>
+<%@page import="modelo.pojo.Genero"%>
+<%@page import="modelo.pojo.Plataforma"%>
+<%@page import="java.util.ArrayList"%>
+<%@page session="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,15 +16,20 @@
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 </head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<%
+
+	<%
 		Usuario user = (Usuario) request.getAttribute("usuario");
-ArrayList<Juego> listaJuego = (ArrayList<Juego>) request.getAttribute("listaJuego");
-	
+		ArrayList<Genero> juegoList = (ArrayList<Genero>) request.getAttribute("listaJuego");
+		ArrayList<Plataforma> juegoListP = (ArrayList<Plataforma>) request.getAttribute("plataforma");
+
 		if (user == null) {
 			out.print("<header>");
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark p-5\">");
@@ -112,37 +119,119 @@ ArrayList<Juego> listaJuego = (ArrayList<Juego>) request.getAttribute("listaJueg
 			out.print("<form class=\"form-inline ml-5\">");
 			out.print("<div class=\"input-group\">");
 			out.print("<div class=\"input-group-prepend\">");
-			if(user.getFoto().equals("desconocido.txt")){
-			out.print("<img src=\"img/usuari.jpg\" width=\"65\" height=\"55\" class=\"img-circle\">");
-			}else{
-				if (user.getFoto().matches(".+\\.(jpg|png)")){
+			if (user.getFoto().equals("desconocido.txt")) {
+				out.print("<img src=\"img/usuari.jpg\" width=\"65\" height=\"55\" class=\"img-circle\">");
+			} else {
+				if (user.getFoto().matches(".+\\.(jpg|png)")) {
 					out.print("<img src=\"Imagenes/" + user.getFoto() + "\" width=\"60\" height=\"55\"/>");
 				}
 			}
 			out.print("</div>");
 			out.print(
-					"<input type=\"text\" readonly=\"readonly\"  disabled=\"disabled\" class=\"form-control mt-3 ml-2 text-center\" placeholder=\""+user.getUser()+"\" aria-label=\"Username\" aria-describedby=\"basic-addon1\">");
+					"<input type=\"text\" readonly=\"readonly\"  disabled=\"disabled\" class=\"form-control mt-3 ml-2 text-center\" placeholder=\""
+							+ user.getUser() + "\" aria-label=\"Username\" aria-describedby=\"basic-addon1\">");
 			out.print("</div>");
 			out.print("</form>");
 			out.print("</div>");
 			out.print("</nav>");
 			out.print("</header>");
+
+			//container----------------------------------------------
+
+			out.print("<div class=\"container mt-5 p-4 ml-5\">");
+
+			out.print("");
+			out.print("<div class=\"row\"");
+			out.print("<div class=\"col\">");
+			out.print("<h3>Añade una guia</h3>");
+			out.print("</div>");
+			out.print("</div>");
+			out.print("<hr>");
+
+			//----" 2 row"------
+			out.print("<form method=\"post\" action=\"AddGuia\" enctype=\"multipart/form-data\">");
+			out.print("<div class=\"form-row mt-4\"");
+			out.print("<div class=\"col-md-4\">");
+			out.print("</div>");
+
+			out.print("<div class=\"col-md-4\">");
+			out.print("<label>Título</label>");
+			out.print("<input class=\"form-control\" type=\"text\" placeholder=\"Título\" name=\"titulo\">");
+			out.print("</div>");
+
+// 			out.print("<div class=\"col-md-4\">");
+// 			out.print("<label>Año del juego</label>");
+// 			out.print("<input class=\"form-control\" type=\"number\" placeholder=\"Año\" name=\"anyo\">");
+// 			out.print("</div>");
+// 			out.print("</div>");
+
+			//---- 3 row---
+// 			out.print("<div class=\"form-row\"");
+// 			out.print("<div class=\"col-md-4\">");
+// 			out.print("</div>");
+
+// 			out.print("<div class=\"col-md-4\">");
+// 			out.print("<div class=\"form-group\">");
+// 			out.print("<label for=\"Select1\">Género</label>");
+
+// 			out.print("<select class=\"form-control\" id=\"Select1\" name=\"gen\">");
+// 			for (Genero j : juegoList) {
+// 				out.print("<option value=\"" + j.getId() + "\">" + j.getNombre() + "</option>");
+// 			}
+// 			out.print("</select>");
+
+// 			out.print("</div>");
+// 			out.print("</div>");
+
+// 			out.print("<div class=\"col-md-4\">");
+// 			out.print("</div>");
+
+// 			out.print("<div class=\"col-md-4\">");
+// 			out.print("<div class=\"form-group\">");
+// 			out.print("<label for=\"Select2\">Plataforma</label>");
+// 			out.print("<select class=\"form-control\" id=\"Select2\" name=\"pla\">");
+// 			for (Plataforma j2 : juegoListP) {
+// 				out.print("<option value=\"" + j2.getId() + "\">" + j2.getNombre() + "</option>");
+// 			}
+// 			out.print("</select>");
+// 			out.print("</div>");
+
+// 			out.print("</div>");
+// 			out.print("</div>");
+
+			//-----------4 row---
+			out.print("<div class=\"form-row\"");
+			out.print("<div class=\"col-md-4\">");
+			out.print("</div>");
+			out.print("<div class=\"col-md-4\">");
+			out.print("<div class=\"form-group\">");
+			out.print("<label for=\"Textarea1\">Texto</label>");
+			out.print("<textarea class=\"form-control\" id=\"Textarea1\" rows=\"10\" name=\"desc\"></textarea>");
+			out.print("</div>");
+			out.print("</div>");
+			out.print("</div>");
+
+			//------ 5 row ---- 
+			out.print("<div class=\"form-row\"");
+			out.print("<div class=\"col-md-4\">");
+			out.print("<label for=\"exampleFormControlFile1\">Sube una foto para el juego</label>");
+			out.print(
+					"<input type=\"file\" class=\"form-control-file\" id=\"exampleFormControlFile1\" name=\"foto\">");
+			out.print("</div>");
+			out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + user.getId() + "\" name=\"id\">");
+			out.print("<div class=\"col-4 mt-5\">");
+			out.print("<button type=\"submit\" class=\"btn btn-success\">Subir guia a la lista</button>");
+			out.print("</div>");
+			out.print("</div>");
+
+			out.print("</form>"); //FIN del formulario para añadir juego
 			
-			out.print("<div class=\"container mt-5 p-5\">"); //Empieza container
-			out.print("<div class=\"row\">");
-			out.print("<div class=\"col\">");
-			out.print("<h3>Tu lista de juegos añadidos</h3>");
+			//---------container FIN
 			out.print("</div>");
-			out.print("<div class=\"col\">");
-			out.print("<ul class=\"list-group\">");
-			for(Juego j : listaJuego){
-			out.print("<li class=\"list-group-item\">"+j.getTitulo()+" <a href=\"Editado?id="+j.getId()+"\"><button type=\"button\" class=\"btn btn-success ml-5\">Editar ficha Juego</button></a></li>");
-			}
-			out.print("</ul>");
-			out.print("</div>");
-			out.print("</div>");
-			out.print("</div>");
+
+			//----------------------------------------------------------
 		}
 	%>
+
 </body>
 </html>
