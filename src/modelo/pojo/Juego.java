@@ -6,12 +6,13 @@ public class Juego {
 	private String titulo;
 	private String descripcion;
 	private Integer anyo;
-	private String genero;
-	private String plataforma;
+	private Integer genero;
+	private Integer plataforma;
 	private Integer idUsuario;
-	
-	public Juego(Integer id, String titulo, String descripcion, Integer anyo, String genero, String plataforma,
+
+	public Juego(Integer id, String titulo, String descripcion, Integer anyo, Integer genero, Integer plataforma,
 			Integer idUsuario) {
+
 		this.id = id;
 		this.titulo = titulo;
 		this.descripcion = descripcion;
@@ -20,9 +21,9 @@ public class Juego {
 		this.plataforma = plataforma;
 		this.idUsuario = idUsuario;
 	}
-	
+
 	public Juego() {
-		
+
 	}
 
 	public Integer getId() {
@@ -57,19 +58,19 @@ public class Juego {
 		this.anyo = anyo;
 	}
 
-	public String getGenero() {
+	public Integer getGenero() {
 		return genero;
 	}
 
-	public void setGenero(String genero) {
+	public void setGenero(Integer genero) {
 		this.genero = genero;
 	}
 
-	public String getPlataforma() {
+	public Integer getPlataforma() {
 		return plataforma;
 	}
 
-	public void setPlataforma(String plataforma) {
+	public void setPlataforma(Integer plataforma) {
 		this.plataforma = plataforma;
 	}
 
@@ -80,6 +81,5 @@ public class Juego {
 	public void setIdUsuario(Integer idUsuario) {
 		this.idUsuario = idUsuario;
 	}
-	
-	
+
 }

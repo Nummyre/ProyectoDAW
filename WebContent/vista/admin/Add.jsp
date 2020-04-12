@@ -149,7 +149,7 @@
 			out.print("<hr>");
 
 			//----" 2 row"------
-			out.print("<form method=\"post\" action=\"Add\"  enctype=\"multipart/form-data\">");
+			out.print("<form method=\"post\" action=\"Add\" enctype=\"multipart/form-data\">");
 			out.print("<div class=\"form-row mt-4\"");
 			out.print("<div class=\"col-md-4\">");
 			out.print("</div>");

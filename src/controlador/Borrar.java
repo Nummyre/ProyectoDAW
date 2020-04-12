@@ -47,7 +47,7 @@ public class Borrar extends HttpServlet {
 
 		request.setAttribute("usuario", usuario);
 		request.setAttribute("listaJuego", juego);
-		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Borrar.jsp");
+		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/admin/Borrar.jsp");
 		rs.forward(request, response);
 		
 	}

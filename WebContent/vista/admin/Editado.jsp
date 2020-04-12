@@ -147,7 +147,7 @@
 			out.print("<hr>");
 
 			//----" 2 row"------
-			out.print("<form method=\"post\" action=\"Editado\">");
+			out.print("<form method=\"post\" action=\"Editado\" enctype=\"multipart/form-data\">"); //-----------form----------
 			out.print("<div class=\"form-row mt-4\"");
 			out.print("<div class=\"col-md-4\">");
 			out.print("</div>");
@@ -173,9 +173,13 @@
 			out.print("<label for=\"Select1\">Género</label>");
 
 			out.print("<select class=\"form-control\" id=\"Select1\" name=\"gen\">");
-			
 			for (Genero j : juegoList) {
-				out.print("<option value=\"" + juego.getGenero() + "\">" + j.getNombre() + "</option>");
+				if(juego.getGenero() == j.getId()){
+				
+				out.print("<option value=\"" + j.getId() + "\" selected=\"selected\">" + j.getNombre() + "</option>");
+				}else{
+					out.print("<option value=\"" + j.getId() + "\">" + j.getNombre() + "</option>");
+				}
 			}
 			
 			out.print("</select>");
@@ -190,9 +194,13 @@
 			out.print("<div class=\"form-group\">");
 			out.print("<label for=\"Select2\">Plataforma</label>");
 			out.print("<select class=\"form-control\" id=\"Select2\" name=\"pla\">");
-			
 			for (Plataforma j2 : juegoListP) {
-				out.print("<option value=\"" + juego.getPlataforma() + "\">" + j2.getNombre() + "</option>");
+				if(juego.getPlataforma() == j2.getId()){
+			
+				out.print("<option value=\"" + j2.getId() + "\" selected=\"selected\">" + j2.getNombre() + "</option>");
+				}else{
+					out.print("<option value=\"" + j2.getId() + "\">" + j2.getNombre() + "</option>");
+				}
 			}
 			
 			out.print("</select>");
@@ -216,21 +224,18 @@
 			//------ 5 row ---- 
 			out.print("<div class=\"form-row\"");
 			out.print("<div class=\"col-md-4\">");
+			out.print("<label for=\"exampleFormControlFile1\">Actualiza la foto para el juego</label>");
+			out.print(
+					"<input type=\"file\" class=\"form-control-file\" id=\"exampleFormControlFile1\" name=\"foto\">");
 			out.print("</div>");
+			out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + juego.getId() + "\" name=\"idJuego\">");
 			out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + user.getId() + "\" name=\"id\">");
 			out.print("<div class=\"col-4 mt-5\">");
-			out.print("<button type=\"submit\" class=\"btn btn-success\">Subir ficha a la lista</button>");
+			out.print("<button type=\"submit\" class=\"btn btn-success\">Actualizar ficha</button>");
 			out.print("</div>");
 			out.print("</div>");
 
 			out.print("</form>"); //FIN del formulario para añadir juego
-			
-			out.print("<form method=\"post\" action=\"AddFotoJuego\" enctype=\"multipart/form-data\">");
-			out.print("<label for=\"exampleFormControlFile1\">Sube una foto para el juego</label>");
-			out.print(
-					"<input type=\"file\" class=\"form-control-file\" id=\"exampleFormControlFile1\" name=\"foto\">");
-			out.print("<button type=\"submit\" class=\"btn btn-success\">Subir foto a la ficha</button>");
-			out.print("</form>");
 			
 			//---------container FIN
 			out.print("</div>");

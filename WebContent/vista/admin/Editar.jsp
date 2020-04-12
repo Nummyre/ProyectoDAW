@@ -21,7 +21,7 @@
 <body>
 <%
 		Usuario user = (Usuario) request.getAttribute("usuario");
-ArrayList<Juego> listaJuego = (ArrayList<Juego>) request.getAttribute("listaJuego");
+		ArrayList<Juego> listaJuego = (ArrayList<Juego>) request.getAttribute("juego");
 	
 		if (user == null) {
 			out.print("<header>");
