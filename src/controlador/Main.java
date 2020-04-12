@@ -38,6 +38,7 @@ public class Main extends HttpServlet {
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Main.jsp");
 		rs.forward(request, response);
 	}
+	
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
