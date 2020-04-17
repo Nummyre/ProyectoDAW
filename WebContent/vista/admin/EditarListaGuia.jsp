@@ -131,12 +131,17 @@
 			out.print("<div class=\"container mt-5 p-5\">"); //Empieza container
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col\">");
-			out.print("<h3>Tu lista de juegos añadidos</h3>");
+			out.print("<h3>Tu lista de guías añadidas</h3>");
 			out.print("</div>");
 			out.print("<div class=\"col\">");
 			out.print("<ul class=\"list-group\">");
+			if(listaJuego!=null){
 			for(Guia g : listaJuego){
-			out.print("<li class=\"list-group-item\">"+g.getTitulo()+" <a href=\"EditadoGuia?id="+g.getId()+"\"><button type=\"button\" class=\"btn btn-success ml-5\">Editar ficha Juego</button></a></li>");
+			out.print("<li class=\"list-group-item\">"+g.getTitulo()+" <a href=\"EditadoGuia?id="+g.getId()+"\"><button type=\"button\" class=\"btn btn-success ml-5\">Editar guía</button></a></li>");
+			}
+			}else{
+				out.print("<h5>¿No tienes guías? Añade el primero</h5>");
+				out.print("<a href=\"AddGuia\"><button type=\"button\" class=\"btn btn-success ml-5\">Añadir Guía</button></a>");
 			}
 			out.print("</ul>");
 			out.print("</div>");

@@ -135,8 +135,13 @@
 			out.print("</div>");
 			out.print("<div class=\"col\">");
 			out.print("<ul class=\"list-group\">");
+			if(listaJuego != null){
 			for(Juego j : listaJuego){
 			out.print("<li class=\"list-group-item\">"+j.getTitulo()+" <a href=\"Editado?id="+j.getId()+"\"><button type=\"button\" class=\"btn btn-success ml-5\">Editar ficha Juego</button></a></li>");
+			}
+			}else{
+				out.print("<h5>¿No tienes juegos? Añade el primero</h5>");
+				out.print("<a href=\"Add\"><button type=\"button\" class=\"btn btn-success ml-5\">Añadir juego</button></a>");
 			}
 			out.print("</ul>");
 			out.print("</div>");

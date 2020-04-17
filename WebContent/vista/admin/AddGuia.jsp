@@ -2,8 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="modelo.pojo.Usuario"%>
-<%@page import="modelo.pojo.Genero"%>
-<%@page import="modelo.pojo.Plataforma"%>
 <%@page import="java.util.ArrayList"%>
 <%@page session="false"%>
 <!DOCTYPE html>
@@ -27,8 +25,7 @@
 
 	<%
 		Usuario user = (Usuario) request.getAttribute("usuario");
-		ArrayList<Genero> juegoList = (ArrayList<Genero>) request.getAttribute("listaJuego");
-		ArrayList<Plataforma> juegoListP = (ArrayList<Plataforma>) request.getAttribute("plataforma");
+
 
 		if (user == null) {
 			out.print("<header>");
