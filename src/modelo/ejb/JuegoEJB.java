@@ -6,6 +6,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 import modelo.dao.JuegosDAO;
+import modelo.pojo.Analisis;
 import modelo.pojo.Genero;
 import modelo.pojo.Guia;
 import modelo.pojo.Juego;
@@ -20,6 +21,44 @@ public class JuegoEJB {
 
 		return juegoList.listaJuegos();
 	}
+	
+	public ArrayList<Analisis> listaAnalisisPorIdUser(Integer id) {
+		
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.listaAnalisisPorIdUser(id);
+	}
+	
+	public void deleteAnalisis(Integer id) {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		juegoList.deleteAnalisis(id);
+	}
+	
+	public int insertAnalisi(String titulo, String texto, Integer idUsuario) {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.insertAnalisi(titulo, texto, idUsuario);
+	}
+	
+	public void updateAnalisi(String titulo, String texto, Integer id) {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		 juegoList.updateAnalisi(titulo, texto, id);
+	}
+	
+	public void insertAnalisiFoto(String foto, Integer idAnalisis) {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		juegoList.insertAnalisiFoto(foto, idAnalisis);
+	}
+	public void updateAnalisisFoto(String foto, Integer idAnalisis) {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		 juegoList.updateAnalisisFoto(foto, idAnalisis);
+		
+	}
+		
 
 	public ArrayList<Juego> listaJuegosPorIdUser(Integer id) {
 		JuegosDAO juegoList = new JuegosDAO();
@@ -127,6 +166,12 @@ public class JuegoEJB {
 		JuegosDAO juegoList = new JuegosDAO();
 
 		return juegoList.guia(id);
+	}
+	
+	public Analisis analisis(Integer id) {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.analisis(id);
 	}
 
 }

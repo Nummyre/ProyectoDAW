@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 
+import modelo.pojo.Analisis;
 import modelo.pojo.Genero;
 import modelo.pojo.Guia;
 import modelo.pojo.Juego;
@@ -114,6 +115,31 @@ public class JuegosDAO {
 		}
 	}
 	
+	
+	public void deleteAnalisis(Integer id) {
+		try {
+
+			// metodo
+			Connection connection = null;
+
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			String url = ("jdbc:mysql://localhost:3306/db_myweb?serverTimezone=UTC");
+			connection = DriverManager.getConnection(url, "usuario", "java");
+
+			if (connection != null) {
+
+				Statement stmt = connection.createStatement();	
+				
+				String queryBorrar =" delete from analisi where id = "+id;
+				
+				stmt.executeUpdate(queryBorrar);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public ArrayList<Juego> listaJuegosPorIdUser(Integer id) {
 		ArrayList<Juego> juego = null;
 		try {
@@ -165,6 +191,8 @@ public class JuegosDAO {
 	
 	
 	
+	
+	
 	public ArrayList<Guia> listaGuiasPorIdUser(Integer id) {
 		ArrayList<Guia> guia = null;
 		try {
@@ -200,6 +228,54 @@ public class JuegosDAO {
 					while (rs.next()) {
 
 						guia.add(new Guia(rs.getInt("id"), rs.getString("titulo"), rs.getString("guia"),
+								rs.getInt("idUsuario")));
+					}
+				}
+
+				rs.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return guia;
+	}
+	
+	
+	public ArrayList<Analisis> listaAnalisisPorIdUser(Integer id) {
+		ArrayList<Analisis> guia = null;
+		try {
+
+			// metodo
+			Connection connection = null;
+			Statement stmt = null;
+
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			String url = ("jdbc:mysql://localhost:3306/db_myweb?serverTimezone=UTC");
+			connection = DriverManager.getConnection(url, "usuario", "java");
+
+			if (connection != null) {
+
+				// Si la conexion no es nula que ejecute la query del select con los datos
+				// obtenidos
+				stmt = connection.createStatement();
+				ResultSet rs = stmt.executeQuery("SELECT * FROM Analisi where idUsuario = "+ id);
+
+				rs.last();
+				if (rs.getRow() > 0) {
+
+					// Coge los datos del usuario que a iniciado sesion de la base de datos
+					rs.first();
+					
+					guia = new ArrayList<Analisis>();
+					
+					guia.add(new Analisis(rs.getInt("id"), rs.getString("titulo"), rs.getString("analisi"),
+							rs.getInt("idUsuario")));
+					
+					
+					while (rs.next()) {
+
+						guia.add(new Analisis(rs.getInt("id"), rs.getString("titulo"), rs.getString("analisi"),
 								rs.getInt("idUsuario")));
 					}
 				}
@@ -374,6 +450,41 @@ public class JuegosDAO {
 		return rowID;
 	}
 	
+	public int insertAnalisi(String titulo, String texto, Integer idUsuario) {
+		int rowID = 0;
+		try {
+			Connection connection;
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			String url = ("jdbc:mysql://localhost:3306/db_myweb?serverTimezone=UTC");
+
+			connection = DriverManager.getConnection(url, "usuario", "java");
+
+			String query = "INSERT INTO analisi (titulo, analisi, idUsuario) "
+					+ "VALUES ('" + titulo + "','" + texto + "', "+idUsuario+");";
+			
+			try (Statement stmt = connection.createStatement()){
+				
+				stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+				ResultSet rs = stmt.getGeneratedKeys();
+			
+				
+				if(rs.next()) {
+					rowID = rs.getInt(1);
+				
+					
+				}
+			}catch (Exception e) {
+				
+			}
+			connection.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rowID;
+	}
+	
 	
 	public void updateJuego(String titulo, String desc, Integer anyo, Integer idGen, Integer idPla, Integer idJuego) {
 	
@@ -422,6 +533,29 @@ public class JuegosDAO {
 
 	}
 	
+public void updateAnalisi(String titulo, String texto, Integer id) {
+		
+		try {
+			Connection connection;
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			String url = ("jdbc:mysql://localhost:3306/db_myweb?serverTimezone=UTC");
+
+			connection = DriverManager.getConnection(url, "usuario", "java");
+
+			String query = "update analisi set titulo = '"+titulo+"', guia = '"+texto+"' where id = "+id;
+			Statement stmt = connection.createStatement();
+			stmt.executeUpdate(query);
+		
+		
+			connection.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	
 	public void insertGuiaFoto(String foto, Integer idGuia) {
 		try {
 			Connection connection;
@@ -433,6 +567,28 @@ public class JuegosDAO {
 
 			String query = "INSERT INTO fotoGuia (foto, idGuia) " + "VALUES ('" + foto + "',"
 					+ idGuia + ");";
+			Statement stmt = connection.createStatement();
+
+			stmt.executeUpdate(query);
+
+			connection.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void insertAnalisiFoto(String foto, Integer idAnalisis) {
+		try {
+			Connection connection;
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			String url = ("jdbc:mysql://localhost:3306/db_myweb?serverTimezone=UTC");
+
+			connection = DriverManager.getConnection(url, "usuario", "java");
+
+			String query = "INSERT INTO fotoAnalisi (foto, idAnalisis) " + "VALUES ('" + foto + "',"
+					+ idAnalisis + ");";
 			Statement stmt = connection.createStatement();
 
 			stmt.executeUpdate(query);
@@ -503,6 +659,28 @@ public class JuegosDAO {
 			connection = DriverManager.getConnection(url, "usuario", "java");
 
 			String query = "update fotoGuia set foto = "+foto+" where idJuego = " +idGuia;
+			Statement stmt = connection.createStatement();
+
+			stmt.executeUpdate(query);
+
+			connection.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateAnalisisFoto(String foto, Integer idAnalisis) {
+
+		try {
+			Connection connection;
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			String url = ("jdbc:mysql://localhost:3306/db_myweb?serverTimezone=UTC");
+
+			connection = DriverManager.getConnection(url, "usuario", "java");
+
+			String query = "update fotoAnalisi set foto = "+foto+" where idJuego = " +idAnalisis;
 			Statement stmt = connection.createStatement();
 
 			stmt.executeUpdate(query);
@@ -651,6 +829,49 @@ public class JuegosDAO {
 		return juego;
 	}
 
+	
+	public Analisis analisis(Integer id) {
+
+		Analisis juego = null;
+		try {
+
+			// Si el usuario y la contraseña no son nulos que abra conexion mediante el
+			// metodo
+			
+				Connection connection = null;
+				Statement stmt = null;
+
+				Class.forName("com.mysql.cj.jdbc.Driver");
+
+				String url = ("jdbc:mysql://localhost:3306/db_myweb?serverTimezone=UTC");
+				connection = DriverManager.getConnection(url, "usuario", "java");
+
+				if (connection != null) {
+
+					// Si la conexion no es nula que ejecute la query del select con los datos
+					// obtenidos
+					stmt = connection.createStatement();
+					ResultSet rs = stmt.executeQuery(
+							"select * from analisi where id = "+id+";");
+
+					rs.last();
+					if (rs.getRow() > 0) {
+
+						// Coge los datos del usuario que a iniciado sesion de la base de datos
+						rs.first();
+						juego = (new Analisis(rs.getInt("id"), rs.getString("titulo"), rs.getString("analisi"), rs.getInt("idUsuario")));
+					}
+
+					rs.close();
+				}
+			
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return juego;
+	}
 	
 	
 }
