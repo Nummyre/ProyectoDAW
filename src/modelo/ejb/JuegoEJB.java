@@ -174,4 +174,21 @@ public class JuegoEJB {
 		return juegoList.analisis(id);
 	}
 
+	public ArrayList<Juego> xboxList() {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.xboxList();
+	}
+	
+	public ArrayList<Juego> playSList() {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.playSList();
+	}
+	
+	public ArrayList<Juego> pcList() {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.pcList();
+	}
 }

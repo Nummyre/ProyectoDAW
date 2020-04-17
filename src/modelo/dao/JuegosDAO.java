@@ -739,6 +739,146 @@ public void updateAnalisi(String titulo, String texto, Integer id) {
 
 	}
 	
+	public ArrayList<Juego> xboxList() {
+		ArrayList<Juego> juego = null;
+		try {
+			Connection conn;
+			Statement stmt = null;
+
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			String url = ("jdbc:mysql://localhost:3306/db_myweb?serverTimezone=UTC");
+
+			conn = DriverManager.getConnection(url, "usuario", "java");
+
+			if (conn != null) {
+				stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery("select * from juego where idPlataforma = 2;");
+
+				rs.last();
+				if (rs.getRow() > 0) {
+
+					// Coge los datos del usuario que a iniciado sesion de la base de datos
+
+					rs.first();
+					juego = new ArrayList<Juego>();
+
+					juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),
+							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
+							rs.getInt("idUsuario")));
+
+					while (rs.next()) {
+
+						juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),
+								rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
+								rs.getInt("idUsuario")));
+					}
+				}
+
+				rs.close();
+
+			}
+	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return juego;
+
+	}
+	
+	public ArrayList<Juego> playSList() {
+		ArrayList<Juego> juego = null;
+		try {
+			Connection conn;
+			Statement stmt = null;
+
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			String url = ("jdbc:mysql://localhost:3306/db_myweb?serverTimezone=UTC");
+
+			conn = DriverManager.getConnection(url, "usuario", "java");
+
+			if (conn != null) {
+				stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery("select * from juego where idPlataforma = 1;");
+
+				rs.last();
+				if (rs.getRow() > 0) {
+
+					// Coge los datos del usuario que a iniciado sesion de la base de datos
+
+					rs.first();
+					juego = new ArrayList<Juego>();
+
+					juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),
+							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
+							rs.getInt("idUsuario")));
+
+					while (rs.next()) {
+
+						juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),
+								rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
+								rs.getInt("idUsuario")));
+					}
+				}
+
+				rs.close();
+
+			}
+	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return juego;
+
+	}
+	
+	public ArrayList<Juego> pcList() {
+		ArrayList<Juego> juego = null;
+		try {
+			Connection conn;
+			Statement stmt = null;
+
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			String url = ("jdbc:mysql://localhost:3306/db_myweb?serverTimezone=UTC");
+
+			conn = DriverManager.getConnection(url, "usuario", "java");
+
+			if (conn != null) {
+				stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery("select * from juego where idPlataforma = 4;");
+
+				rs.last();
+				if (rs.getRow() > 0) {
+
+					// Coge los datos del usuario que a iniciado sesion de la base de datos
+
+					rs.first();
+					juego = new ArrayList<Juego>();
+
+					juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),
+							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
+							rs.getInt("idUsuario")));
+
+					while (rs.next()) {
+
+						juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),
+								rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
+								rs.getInt("idUsuario")));
+					}
+				}
+
+				rs.close();
+
+			}
+	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return juego;
+
+	}
 	
 	public Juego juego(Integer id) {
 
