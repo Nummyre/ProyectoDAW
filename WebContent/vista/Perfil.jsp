@@ -133,9 +133,9 @@
 			out.print("<a class=\"dropdown-item\" href=\"EditarListaGuia?id="+user.getId()+"\">Editar guía</a>");
 			out.print("<a class=\"dropdown-item\" href=\"BorrarListaGuia?id="+user.getId()+"\">Borrar guía</a>");
 			out.print("<hr>");
-			out.print("<a class=\"dropdown-item\" href=\"#\">Añadir análisis</a>");
-			out.print("<a class=\"dropdown-item\" href=\"#\">Editar análisis</a>");
-			out.print("<a class=\"dropdown-item\" href=\"#\">Borrar análisis</a>");
+			out.print("<a class=\"dropdown-item\" href=\"AddAnalisis\">Añadir análisis</a>");
+			out.print("<a class=\"dropdown-item\" href=\"EditarListaAnalisis?id="+user.getId()+"\">Editar análisis</a>");
+			out.print("<a class=\"dropdown-item\" href=\"BorrarListaAnalisis?id="+user.getId()+"\">Borrar análisis</a>");
 			out.print("</div>");
 			out.print("</li>");
 			out.print("</ul>");
