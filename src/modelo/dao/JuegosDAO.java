@@ -399,6 +399,29 @@ public class JuegosDAO {
 	}
 	
 	
+	public void updateGuia(String titulo, String texto, Integer id) {
+		
+		try {
+			Connection connection;
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			String url = ("jdbc:mysql://localhost:3306/db_myweb?serverTimezone=UTC");
+
+			connection = DriverManager.getConnection(url, "usuario", "java");
+
+			String query = "update guia set titulo = '"+titulo+"', guia = '"+texto+"' where id = "+id;
+			Statement stmt = connection.createStatement();
+			stmt.executeUpdate(query);
+		
+		
+			connection.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	
 	public void insertGuiaFoto(String foto, Integer idGuia) {
 		try {
 			Connection connection;
@@ -457,6 +480,29 @@ public class JuegosDAO {
 			connection = DriverManager.getConnection(url, "usuario", "java");
 
 			String query = "update fotoJuego set foto = "+foto+" where idJuego = " +idJuego;
+			Statement stmt = connection.createStatement();
+
+			stmt.executeUpdate(query);
+
+			connection.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void updateGuiaFoto(String foto, Integer idGuia) {
+
+		try {
+			Connection connection;
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			String url = ("jdbc:mysql://localhost:3306/db_myweb?serverTimezone=UTC");
+
+			connection = DriverManager.getConnection(url, "usuario", "java");
+
+			String query = "update fotoGuia set foto = "+foto+" where idJuego = " +idGuia;
 			Statement stmt = connection.createStatement();
 
 			stmt.executeUpdate(query);
@@ -561,5 +607,50 @@ public class JuegosDAO {
 		return juego;
 	}
 
+	
+	public Guia guia(Integer id) {
+
+		Guia juego = null;
+		try {
+
+			// Si el usuario y la contraseña no son nulos que abra conexion mediante el
+			// metodo
+			
+				Connection connection = null;
+				Statement stmt = null;
+
+				Class.forName("com.mysql.cj.jdbc.Driver");
+
+				String url = ("jdbc:mysql://localhost:3306/db_myweb?serverTimezone=UTC");
+				connection = DriverManager.getConnection(url, "usuario", "java");
+
+				if (connection != null) {
+
+					// Si la conexion no es nula que ejecute la query del select con los datos
+					// obtenidos
+					stmt = connection.createStatement();
+					ResultSet rs = stmt.executeQuery(
+							"select * from guia where id = "+id+";");
+
+					rs.last();
+					if (rs.getRow() > 0) {
+
+						// Coge los datos del usuario que a iniciado sesion de la base de datos
+						rs.first();
+						juego = (new Guia(rs.getInt("id"), rs.getString("titulo"), rs.getString("guia"), rs.getInt("idUsuario")));
+					}
+
+					rs.close();
+				}
+			
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return juego;
+	}
+
+	
 	
 }

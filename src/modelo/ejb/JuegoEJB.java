@@ -32,6 +32,12 @@ public class JuegoEJB {
 
 		juegoList.updateJuego(titulo, desc, anyo, idGen, idPla, idJuego);
 	}
+	
+	public void updateGuia(String titulo, String texto, Integer id) {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		juegoList.updateGuia(titulo,texto, id);
+	}
 
 	public void deleteJuego(Integer id) {
 		JuegosDAO juegoList = new JuegosDAO();
@@ -49,6 +55,12 @@ public class JuegoEJB {
 		JuegosDAO juegoList = new JuegosDAO();
 
 		juegoList.updateJuegoFoto(foto, idJuego);
+	}
+	
+	public void updateGuiaFoto(String foto, Integer idGuia) {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		juegoList.updateGuiaFoto(foto, idGuia);
 	}
 
 	public ArrayList<Genero> genero() {
@@ -109,6 +121,12 @@ public class JuegoEJB {
 		JuegosDAO juegoList = new JuegosDAO();
 
 		return juegoList.juego(id);
+	}
+	
+	public Guia guia(Integer id) {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.guia(id);
 	}
 
 }
