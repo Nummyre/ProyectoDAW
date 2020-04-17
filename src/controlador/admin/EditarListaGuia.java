@@ -1,4 +1,4 @@
-package controlador;
+package controlador.admin;
 
 import java.io.IOException;
 import java.util.ArrayList;

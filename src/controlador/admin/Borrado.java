@@ -1,8 +1,9 @@
-package controlador;
+package controlador.admin;
 
 import java.io.IOException;
 
 import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,9 +16,8 @@ import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
 import modelo.pojo.Usuario;
 
-
-@WebServlet("/BorradoGuia")
-public class BorradoGuia extends HttpServlet {
+@WebServlet("/Borrado")
+public class Borrado extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
@@ -28,9 +28,10 @@ public class BorradoGuia extends HttpServlet {
 
 	@EJB
 	SesionesEJB sesionesEJB;
- 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		HttpSession session = request.getSession(false);
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
@@ -39,11 +40,10 @@ public class BorradoGuia extends HttpServlet {
 
 		Integer idJ = Integer.parseInt(id);
 
-		juegoEJB.deleteGuia(idJ);
+		juegoEJB.deleteJuego(idJ);
 		
 
-		response.sendRedirect("BorrarListaGuia?id="+usuario.getId());
+		response.sendRedirect("Borrar?id="+usuario.getId());
 	}
-
 
 }
