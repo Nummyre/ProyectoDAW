@@ -73,10 +73,6 @@ public class Add extends HttpServlet {
 		Integer plataforma = Integer.parseInt(pla);
 		Integer id = Integer.parseInt(idUser);
 		
-		System.out.println("1");
-
-		System.out.println("2");
-		
 		// Multipart RFC 7578
 
 		// Obtenemos una ruta en el servidor para guardar el archivo
@@ -87,19 +83,18 @@ public class Add extends HttpServlet {
 		if (!uploadDir.exists()) {
 			uploadDir.mkdir();
 		}
-		System.out.println("3");
-
+		
 		// Lo utilizaremos para guardar el nombre del archivo
-		String fileName = null;
+		String fileName = "desconocido.txt";
 
 		// Obtenemos el archivo y lo guardamos a disco
 		for (Part part : request.getParts()) {
-			fileName = getFileName(part);
-			part.write(uploadPath + File.separator + fileName);
+			String nombre = getFileName(part);
+			if(!nombre.equalsIgnoreCase("desconocido.txt")) {
+				fileName = nombre;
+				part.write(uploadPath + File.separator + fileName);
+			}
 		}
-		System.out.println("4");
-		
-		System.out.println(fileName);
 
 		int juego = juegoEJB.insertJuego(titulo, desc, anyo, genero, plataforma, id);
 
