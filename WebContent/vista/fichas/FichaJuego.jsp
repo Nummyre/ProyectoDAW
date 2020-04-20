@@ -163,6 +163,28 @@
 			
 			
 			out.print("</header>");
+			
+			
+			out.print("");
+			
+			out.print("<div class=\"container\">");//Principio de container
+			out.print("<div class=\"row\">");
+			out.print("<div class=\"col\">");
+			out.print("<h2></h2>"); //getTitulo
+			out.print("</div>");
+			out.print("<hr>");
+			out.print("</div>");//fin 1º row
+			out.print("<div class=\"row\">");
+			out.print("");
+			out.print("");
+			out.print("");
+			out.print("");
+			out.print("");
+			out.print("");
+			out.print("");
+			out.print("");
+			out.print("</div>"); //Fin container
+			
 		}
 	%>
 </body>
