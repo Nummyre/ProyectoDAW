@@ -196,7 +196,7 @@
 			for(Juego n : nintendoList){
 			out.print("<tr>");
 			out.print("<th scope=\"row\">1</th>");
-			out.print("<td>"+n.getTitulo()+"</td>");
+			out.print("<td><a href=\"FichaJuego?id="+n.getId()+"\">"+n.getTitulo()+"</a></td>");
 			out.print("<td>"+n.getDescripcion()+"</td>");
 			out.print("<td>"+n.getAnyo()+"</td>");
 			out.print("</tr>");
