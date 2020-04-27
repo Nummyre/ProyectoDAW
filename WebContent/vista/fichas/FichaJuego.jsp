@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="modelo.pojo.Usuario"%>
+<%@page import="modelo.pojo.Juego"%>
+<%@page import="modelo.pojo.Plataforma"%>
+<%@page import="modelo.pojo.Genero"%>
+<%@page import="modelo.pojo.Foto"%>
+<%@page import="modelo.pojo.Comentario"%>
+<%@page import="java.util.ArrayList"%>
 <%@page session="false"%>
 <!DOCTYPE html>
 <html>
@@ -19,6 +25,11 @@
 <body>
 	<%
 		Usuario user = (Usuario) request.getAttribute("usuario");
+		Juego juego = (Juego) request.getAttribute("juego");
+		ArrayList<Genero> juegoList = (ArrayList<Genero>) request.getAttribute("genero");
+		ArrayList<Plataforma> juegoListP = (ArrayList<Plataforma>) request.getAttribute("plataforma");
+		ArrayList<Foto> foto = (ArrayList<Foto>) request.getAttribute("fotoJuego");
+		ArrayList<Comentario> coment = (ArrayList<Comentario>) request.getAttribute("coment");
 	
 		if (user == null) {
 			out.print("<header>");
@@ -167,22 +178,78 @@
 			
 			out.print("");
 			
-			out.print("<div class=\"container\">");//Principio de container
+			out.print("<div class=\"container mt-5 p-2\">");//Principio de container
+			out.print("<form method=\"post\" action=\"FichaJuego\">");
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col\">");
-			out.print("<h2></h2>"); //getTitulo
+			out.print("<h2>"+juego.getTitulo()+"</h2>"); //getTitulo
 			out.print("</div>");
 			out.print("<hr>");
 			out.print("</div>");//fin 1º row
 			out.print("<div class=\"row\">");
-			out.print("");
-			out.print("");
-			out.print("");
-			out.print("");
-			out.print("");
-			out.print("");
-			out.print("");
-			out.print("");
+			out.print("<div class=\"col\"></div>");
+			out.print("<div class=\"col\"></div>");
+			out.print("<div class=\"col\">");
+			out.print("<div class=\"card text-center bg-info text-white\">");
+			for (Genero g : juegoList) {
+				if(juego.getGenero() == g.getId()){
+			out.print("<div class=\"card-body\">"+g.getNombre()+"</div>");//getGenero
+				}
+			}
+			out.print(" </div>");
+			out.print("</div>");
+			out.print("<div class=\"col\">");
+			out.print("<div class=\"card text-center bg-info text-white\">");
+			for (Plataforma p : juegoListP) {
+				if(juego.getPlataforma() == p.getId()){
+			out.print("<div class=\"card-body\">"+p.getNombre()+"</div>");//getGenero
+				}
+			}
+			out.print(" </div>");
+			out.print("</div>");
+			out.print("</div>");
+			out.print("<div class=\"row\">");
+			out.print("<div class=\"col\">");
+			for (Foto f : foto) {
+				if(juego.getId() == f.getId()){
+			out.print("<img src=\"Imagenes/" +f.getFoto()+ "\" width=\"300\" height=\"200\" class=\"rounded mx-auto d-block\">"); //getFoto
+				}else{
+					out.print("<p>Error</p>"); //getFoto
+				}
+			}
+			out.print("</div>");
+			out.print("<div class=\"col mt-3\">");
+			out.print("<p>"+juego.getDescripcion()+"</p>"); //getTexto
+			out.print("</div>");
+			out.print("</div>");
+			out.print("<div class=\"row mt-5\">");
+			out.print("<div class=\"col\">");
+			out.print("<h4>Comentarios</h4>"); //Comentarios
+			out.print("</div>");
+			out.print("</div>");
+			out.print("<div class=\"row\">");
+			out.print("<div class=\"col\">");
+			out.print("<textarea name=\"com\" rows=\"10\" cols=\"40\"></textarea>"); //input comentario
+			out.print("<button type=\"submit\" class=\"btn btn-success ml-5\">Comentar</button>");
+			out.print("</div>");
+			out.print("</div>");
+			out.print("<div class=\"row\">");
+			out.print("<div class=\"col\">");
+			//for
+			if(coment != null){
+			for(Comentario co : coment){
+				out.print("<div class=\"card text-center bg-info text-white\">");
+				out.print("<div class=\"card-body\">"+co.getComentario()+"</div>");//getGenero
+				out.print("</div>");
+			}
+			}else{
+				out.print("<h4>Se el primero en comentar</h4>");
+			}
+			out.print("</div>");
+			out.print("</div>");
+			out.print("<input id=\"id\" name=\"idJ\" type=\"hidden\" value=\""+juego.getId()+"\">");
+			out.print("<input id=\"idU\" name=\"idU\" type=\"hidden\" value=\""+user.getId()+"\">");
+			out.print("</form>");
 			out.print("</div>"); //Fin container
 			
 		}
