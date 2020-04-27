@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import modelo.pojo.Analisis;
+import modelo.pojo.Comentario;
+import modelo.pojo.Foto;
 import modelo.pojo.Genero;
 import modelo.pojo.Guia;
 import modelo.pojo.Juego;
@@ -902,7 +904,9 @@ public void updateAnalisi(String titulo, String texto, Integer id) {
 					// obtenidos
 					stmt = connection.createStatement();
 					ResultSet rs = stmt.executeQuery(
-							"SELECT * FROM juego INNER JOIN genero ON juego.idGenero = genero.id AND juego.id = "+id+" INNER JOIN plataforma ON juego.idPlataforma = plataforma.id;");
+							" select * from juego inner join plataforma on juego.idPlataforma = plataforma.id and juego.id = "+id + 
+							"        inner join genero on juego.idGenero = genero.id " + 
+							"        inner join fotojuego on juego.id = fotojuego.idJuego;");
 
 					rs.last();
 					if (rs.getRow() > 0) {
@@ -1011,6 +1015,134 @@ public void updateAnalisi(String titulo, String texto, Integer id) {
 		}
 
 		return juego;
+	}
+	
+	
+	public ArrayList<Foto> listaFotosJuegos() {
+		ArrayList<Foto> Fjuego = null;
+		try {
+
+			// metodo
+			Connection connection = null;
+			Statement stmt = null;
+
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			String url = ("jdbc:mysql://localhost:3306/db_myweb?serverTimezone=UTC");
+			connection = DriverManager.getConnection(url, "usuario", "java");
+
+			if (connection != null) {
+
+				// Si la conexion no es nula que ejecute la query del select con los datos
+				// obtenidos
+				stmt = connection.createStatement();
+				ResultSet rs = stmt.executeQuery("SELECT * FROM fotoJuego");
+
+				rs.last();
+				if (rs.getRow() > 0) {
+
+					// Coge los datos del usuario que a iniciado sesion de la base de datos
+					rs.first();
+					
+					Fjuego = new ArrayList<Foto>();
+					
+					Fjuego.add(new Foto(rs.getInt("id"), rs.getString("foto"), rs.getInt("idJuego")));
+					
+					
+					while (rs.next()) {
+
+						Fjuego.add(new Foto(rs.getInt("id"), rs.getString("foto"), rs.getInt("idJuego")));
+					}
+				}
+
+				rs.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return Fjuego;
+	}
+	
+	
+	public int insertComentario(Integer idUsuario, Integer idJuego, String comentario) {
+		int rowID = 0;
+		try {
+			Connection connection;
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			String url = ("jdbc:mysql://localhost:3306/db_myweb?serverTimezone=UTC");
+
+			connection = DriverManager.getConnection(url, "usuario", "java");
+
+			String query = "INSERT INTO comentario (idUsuario, idJuego, comentario) "
+					+ "VALUES ('" + idUsuario + "','" + idJuego + "','" + comentario + "');";
+			
+			try (Statement stmt = connection.createStatement()){
+				
+				stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+				ResultSet rs = stmt.getGeneratedKeys();
+			
+				
+				if(rs.next()) {
+					rowID = rs.getInt(1);
+				
+					
+				}
+			}catch (Exception e) {
+				
+			}
+			connection.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rowID;
+	}
+	
+	
+	public ArrayList<Comentario> listaComentarioJuegos() {
+		ArrayList<Comentario> Cjuego = null;
+		try {
+
+			// metodo
+			Connection connection = null;
+			Statement stmt = null;
+
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			String url = ("jdbc:mysql://localhost:3306/db_myweb?serverTimezone=UTC");
+			connection = DriverManager.getConnection(url, "usuario", "java");
+
+			if (connection != null) {
+
+				// Si la conexion no es nula que ejecute la query del select con los datos
+				// obtenidos
+				stmt = connection.createStatement();
+				ResultSet rs = stmt.executeQuery("SELECT * FROM comentario");
+
+				rs.last();
+				if (rs.getRow() > 0) {
+
+					// Coge los datos del usuario que a iniciado sesion de la base de datos
+					rs.first();
+					
+					Cjuego = new ArrayList<Comentario>();
+					
+					Cjuego.add(new Comentario(rs.getInt("id"), rs.getInt("idUsuario"), rs.getInt("idJuego"), rs.getString("comentario")));
+					
+					
+					while (rs.next()) {
+
+						Cjuego.add(new Comentario(rs.getInt("id"), rs.getInt("idUsuario"), rs.getInt("idJuego"), rs.getString("comentario")));
+					}
+				}
+
+				rs.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return Cjuego;
 	}
 	
 	

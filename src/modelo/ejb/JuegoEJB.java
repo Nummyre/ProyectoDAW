@@ -7,6 +7,8 @@ import javax.ejb.Stateless;
 
 import modelo.dao.JuegosDAO;
 import modelo.pojo.Analisis;
+import modelo.pojo.Comentario;
+import modelo.pojo.Foto;
 import modelo.pojo.Genero;
 import modelo.pojo.Guia;
 import modelo.pojo.Juego;
@@ -173,6 +175,12 @@ public class JuegoEJB {
 
 		return juegoList.analisis(id);
 	}
+	
+	public ArrayList<Comentario> listaComentarioJuegos() {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.listaComentarioJuegos();
+	}
 
 	public ArrayList<Juego> xboxList() {
 		JuegosDAO juegoList = new JuegosDAO();
@@ -186,9 +194,21 @@ public class JuegoEJB {
 		return juegoList.playSList();
 	}
 	
+	public int insertComentario(Integer idUsuario, Integer idJuego, String comentario) {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.insertComentario(idUsuario, idJuego, comentario);
+	}
+	
 	public ArrayList<Juego> pcList() {
 		JuegosDAO juegoList = new JuegosDAO();
 
 		return juegoList.pcList();
+	}
+	
+	public ArrayList<Foto> listaFotosJuegos() {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.listaFotosJuegos();
 	}
 }
