@@ -65,7 +65,7 @@ public class JuegosDAO {
 		return juego;
 	}
 
-	// ------------------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------------
 
 	/**
 	 * Método que elimina un juego
@@ -1110,13 +1110,13 @@ public class JuegosDAO {
 	 * @param comentario = párametro donde se guarda el comentario
 	 * @return devuelve el id generado del comentario
 	 */
-	public int insertComentario(Integer idUsuario, Integer idJuego, String comentario) {
+	public int insertComentario(Integer idUsuario, Integer idJuego, String comentario, String fecha) {
 		int rowID = 0;
 		try {
 			Connection connection = new Conexion().conecta();
 
-			String query = "INSERT INTO comentario (idUsuario, idJuego, comentario) " + "VALUES ('" + idUsuario + "','"
-					+ idJuego + "','" + comentario + "');";
+			String query = "INSERT INTO comentario (idUsuario, idJuego, comentario, fecha) " + "VALUES ('" + idUsuario + "','"
+					+ idJuego + "','" + comentario + "', '"+fecha+"');";
 
 			try (Statement stmt = connection.createStatement()) {
 
@@ -1168,12 +1168,12 @@ public class JuegosDAO {
 					Cjuego = new ArrayList<Comentario>();
 
 					Cjuego.add(new Comentario(rs.getInt("id"), rs.getInt("idUsuario"), rs.getInt("idJuego"),
-							rs.getString("comentario")));
+							rs.getString("comentario"), rs.getString("fecha"), rs.getInt("meGusta"), rs.getInt("noMeGusta")));
 
 					while (rs.next()) {
 
 						Cjuego.add(new Comentario(rs.getInt("id"), rs.getInt("idUsuario"), rs.getInt("idJuego"),
-								rs.getString("comentario")));
+								rs.getString("comentario"), rs.getString("fecha"), rs.getInt("meGusta"), rs.getInt("noMeGusta")));
 					}
 				}
 

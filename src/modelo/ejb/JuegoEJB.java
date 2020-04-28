@@ -60,7 +60,6 @@ public class JuegoEJB {
 		 juegoList.updateAnalisisFoto(foto, idAnalisis);
 		
 	}
-		
 
 	public ArrayList<Juego> listaJuegosPorIdUser(Integer id) {
 		JuegosDAO juegoList = new JuegosDAO();
@@ -194,10 +193,10 @@ public class JuegoEJB {
 		return juegoList.playSList();
 	}
 	
-	public int insertComentario(Integer idUsuario, Integer idJuego, String comentario) {
+	public int insertComentario(Integer idUsuario, Integer idJuego, String comentario, String fecha) {
 		JuegosDAO juegoList = new JuegosDAO();
 
-		return juegoList.insertComentario(idUsuario, idJuego, comentario);
+		return juegoList.insertComentario(idUsuario, idJuego, comentario, fecha);
 	}
 	
 	public ArrayList<Juego> pcList() {
