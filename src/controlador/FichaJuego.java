@@ -52,9 +52,11 @@ public class FichaJuego extends HttpServlet {
 		ArrayList<Foto> fotoJuego = juegoEJB.listaFotosJuegos();
 		ArrayList<Genero> juegoG = juegoEJB.genero();
 		ArrayList<Plataforma> juegoP = juegoEJB.plataforma();
+		ArrayList<Usuario> users = userEJB.listaUsuarios();
 		
 		ArrayList<Comentario> coment = juegoEJB.listaComentarioJuegos();
 		
+		request.setAttribute("users", users);
 		request.setAttribute("plataforma", juegoP);
 		request.setAttribute("genero", juegoG);
 		request.setAttribute("juego", juego);
@@ -79,7 +81,7 @@ public class FichaJuego extends HttpServlet {
 		
 		Date date = new Date();
 		
-		DateFormat hourdateFormat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
+		DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		
 		juegoEJB.insertComentario(idUsuario, idJuego, comentario, hourdateFormat.format(date));
 		

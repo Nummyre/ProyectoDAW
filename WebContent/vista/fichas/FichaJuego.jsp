@@ -18,9 +18,12 @@
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 </head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<%
@@ -30,7 +33,8 @@
 		ArrayList<Plataforma> juegoListP = (ArrayList<Plataforma>) request.getAttribute("plataforma");
 		ArrayList<Foto> foto = (ArrayList<Foto>) request.getAttribute("fotoJuego");
 		ArrayList<Comentario> coment = (ArrayList<Comentario>) request.getAttribute("coment");
-	
+		ArrayList<Usuario> users = (ArrayList<Usuario>) request.getAttribute("users");
+
 		if (user == null) {
 			out.print("<header>");
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark p-5\">");
@@ -96,8 +100,7 @@
 			out.print("<a class=\"nav-link\" href=\"Nintendo\">Nintendo Switch</a>");
 			out.print("</li>");
 			out.print("</ul>");
-			
-			
+
 			out.print("</header>");
 		} else {
 			out.print("<header>");
@@ -139,21 +142,22 @@
 			out.print("<form class=\"form-inline ml-5\">");
 			out.print("<div class=\"input-group\">");
 			out.print("<div class=\"input-group-prepend\">");
-			if(user.getFoto().equals("desconocido.txt")){
-			out.print("<img src=\"img/usuari.jpg\" width=\"65\" height=\"55\" class=\"img-circle\">");
-			}else{
-				if (user.getFoto().matches(".+\\.(jpg|png)")){
+			if (user.getFoto().equals("desconocido.txt")) {
+				out.print("<img src=\"img/usuari.jpg\" width=\"65\" height=\"55\" class=\"img-circle\">");
+			} else {
+				if (user.getFoto().matches(".+\\.(jpg|png)")) {
 					out.print("<img src=\"Imagenes/" + user.getFoto() + "\" width=\"60\" height=\"55\"/>");
 				}
 			}
 			out.print("</div>");
 			out.print(
-					"<input type=\"text\" readonly=\"readonly\"  disabled=\"disabled\" class=\"form-control mt-3 ml-2 text-center\" placeholder=\""+user.getUser()+"\" aria-label=\"Username\" aria-describedby=\"basic-addon1\">");
+					"<input type=\"text\" readonly=\"readonly\"  disabled=\"disabled\" class=\"form-control mt-3 ml-2 text-center\" placeholder=\""
+							+ user.getUser() + "\" aria-label=\"Username\" aria-describedby=\"basic-addon1\">");
 			out.print("</div>");
 			out.print("</form>");
 			out.print("</div>");
 			out.print("</nav>");
-			
+
 			//--------------------------------------------------------
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">");
 			out.print("<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">");
@@ -171,19 +175,23 @@
 			out.print("<a class=\"nav-link\" href=\"Nintendo\">Nintendo Switch</a>");
 			out.print("</li>");
 			out.print("</ul>");
-			
-			
+
 			out.print("</header>");
-			
-			
+
 			out.print("");
-			
+
 			out.print("<div class=\"container mt-5 p-2\">");//Principio de container
 			out.print("<form method=\"post\" action=\"FichaJuego\">");
+			if(coment != null){
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col\">");
-			out.print("<h2>"+juego.getTitulo()+"</h2>"); //getTitulo
+			out.print("<h2>" + juego.getTitulo() + "</h2>"); //getTitulo
 			out.print("</div>");
+			if (juego.getPuntuacion() != null) {
+				out.print("<div class=\"col\"><h3>" + juego.getPuntuacion() + "/10</h3></div>");
+			} else {
+				out.print("<div class=\"col\"><h3>0/10</h3></div>");
+			}
 			out.print("<hr>");
 			out.print("</div>");//fin 1º row
 			out.print("<div class=\"row\">");
@@ -192,8 +200,8 @@
 			out.print("<div class=\"col\">");
 			out.print("<div class=\"card text-center bg-info text-white\">");
 			for (Genero g : juegoList) {
-				if(juego.getGenero() == g.getId()){
-			out.print("<div class=\"card-body\">"+g.getNombre()+"</div>");//getGenero
+				if (juego.getGenero() == g.getId()) {
+					out.print("<div class=\"card-body\">" + g.getNombre() + "</div>");//getGenero
 				}
 			}
 			out.print(" </div>");
@@ -201,8 +209,8 @@
 			out.print("<div class=\"col\">");
 			out.print("<div class=\"card text-center bg-info text-white\">");
 			for (Plataforma p : juegoListP) {
-				if(juego.getPlataforma() == p.getId()){
-			out.print("<div class=\"card-body\">"+p.getNombre()+"</div>");//getGenero
+				if (juego.getPlataforma() == p.getId()) {
+					out.print("<div class=\"card-body\">" + p.getNombre() + "</div>");//getGenero
 				}
 			}
 			out.print(" </div>");
@@ -211,50 +219,163 @@
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col\">");
 			for (Foto f : foto) {
-				if(juego.getId() == f.getId()){
-			out.print("<img src=\"Imagenes/" +f.getFoto()+ "\" width=\"300\" height=\"200\" class=\"rounded mx-auto d-block\">"); //getFoto
-				}else{
+				if (juego.getId() == f.getId()) {
+					out.print("<img src=\"Imagenes/" + f.getFoto()
+							+ "\" width=\"300\" height=\"200\" class=\"rounded mx-auto d-block\">"); //getFoto
+				} else {
 					out.print("<p>Error</p>"); //getFoto
 				}
 			}
 			out.print("</div>");
 			out.print("<div class=\"col mt-3\">");
-			out.print("<p>"+juego.getDescripcion()+"</p>"); //getTexto
+			out.print("<p>" + juego.getDescripcion() + "</p>"); //getTexto
+			out.print("</div>");
+			out.print("</div>");
+
+			out.print("<div class=\"row mt-5\">");
+			out.print("<div class=\"col\">");
+
+			int totalComentarios = coment.size(); //total de comentarios que hay
+
+			out.print("<h4>Comentarios " + totalComentarios + "</h4>"); //Comentarios
 			out.print("</div>");
 			out.print("</div>");
 			out.print("<div class=\"row mt-5\">");
 			out.print("<div class=\"col\">");
-			out.print("<h4>Comentarios</h4>"); //Comentarios
-			out.print("</div>");
-			out.print("</div>");
-			out.print("<div class=\"row\">");
-			out.print("<div class=\"col\">");
 			out.print("<textarea name=\"com\" rows=\"10\" cols=\"40\"></textarea>"); //input comentario
-			out.print("<button type=\"submit\" class=\"btn btn-success ml-5\">Comentar</button>");
 			out.print("</div>");
 			out.print("</div>");
+			out.print("<button type=\"submit\" class=\"btn btn-success ml-5 mt-2 mb-5\">Comentar</button>");
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col\">");
-			//for
-			if(coment != null){
-			for(Comentario co : coment){
-				out.print("<div class=\"card text-center bg-light text-white\">");
-				out.print("<div class=\"card-body\">"+user.getFoto()+"-"+co.getFecha()+"");//comentario
-				out.print("<br>");
-				out.print("<pre>"+co.getComentario()+"</pre>");
-				out.print("</div>");
-				out.print("</div>");
+			
+	
+			if (user.getAdministrador() == 1) {
+				//for
+				int contador = 1;
+					for (Comentario co : coment) {
+						for (Usuario us : users) {
+							if (us.getId() == co.getIdUsuario()) {
+
+								out.print("<div class=\"card mt-3 bg-light text-white w-50\">");
+								out.print("<div class=\"card-body\"><h2 class=\"text-dark\">" + contador
+										+ "</h2><img src=\"Imagenes/" + us.getFoto()
+										+ "\" width=\"150\" height=\"100\" class=\"mr-5\">");//comentario
+								out.print(
+										"<p class=\"text-dark\">" + us.getUser() + " - " + co.getFecha() + "</p>");
+								out.print("<br>");
+								out.print("<pre class=\"mr-5\">" + co.getComentario() + "</pre>");
+								out.print("<a href=\"BorrarComentarioJuego?id=" + co.getId() + "&idJ="
+										+ juego.getId()
+										+ "\" class=\"align-self-end ml-auto\"><button type=\"button\" class=\"btn btn-success mt-2 mb-5\">Borrar</button></a>");
+								out.print("</div>");
+								out.print("</div>");
+								out.print("<input id=\"id\" name=\"idC\" type=\"hidden\" value=\"" + co.getId()
+										+ "\">");
+								contador++;
+							}
+						}
+					}
+				
+			}else {
+				//for
+					out.print("<h3>Se el primero en comentar</h3");
+				int contador = 1;
+			
+					for (Comentario co : coment) {
+						for (Usuario us : users) {
+							if (us.getId() == co.getIdUsuario()) {
+
+								out.print("<div class=\"card mt-3 bg-light text-white w-50\">");
+								out.print("<div class=\"card-body\"><h2 class=\"text-dark\">" + contador
+										+ "</h2><img src=\"Imagenes/" + us.getFoto()
+										+ "\" width=\"150\" height=\"100\" class=\"mr-5\">");//comentario
+								out.print(
+										"<p class=\"text-dark\">" + us.getUser() + " - " + co.getFecha() + "</p>");
+								out.print("<br>");
+								out.print("<pre class=\"mr-5\">" + co.getComentario() + "</pre>");
+								out.print("</div>");
+								out.print("</div>");
+								contador++;
+							}
+						}
+				}
+
 			}
+			
+			
+			
+			
+			out.print("</div>");
+			out.print("</div>");
+			out.print("<input id=\"id\" name=\"idJ\" type=\"hidden\" value=\"" + juego.getId() + "\">");
+			out.print("<input id=\"idU\" name=\"idU\" type=\"hidden\" value=\"" + user.getId() + "\">");
+			
 			}else{
+				
+				out.print("<div class=\"row\">");
+				out.print("<div class=\"col\">");
+				out.print("<h2>" + juego.getTitulo() + "</h2>"); //getTitulo
+				out.print("</div>");
+				if (juego.getPuntuacion() != null) {
+					out.print("<div class=\"col\"><h3>" + juego.getPuntuacion() + "/10</h3></div>");
+				} else {
+					out.print("<div class=\"col\"><h3>0/10</h3></div>");
+				}
+				out.print("<hr>");
+				out.print("</div>");//fin 1º row
+				out.print("<div class=\"row\">");
+				out.print("<div class=\"col\"></div>");
+				out.print("<div class=\"col\"></div>");
+				out.print("<div class=\"col\">");
+				out.print("<div class=\"card text-center bg-info text-white\">");
+				for (Genero g : juegoList) {
+					if (juego.getGenero() == g.getId()) {
+						out.print("<div class=\"card-body\">" + g.getNombre() + "</div>");//getGenero
+					}
+				}
+				out.print(" </div>");
+				out.print("</div>");
+				out.print("<div class=\"col\">");
+				out.print("<div class=\"card text-center bg-info text-white\">");
+				for (Plataforma p : juegoListP) {
+					if (juego.getPlataforma() == p.getId()) {
+						out.print("<div class=\"card-body\">" + p.getNombre() + "</div>");//getGenero
+					}
+				}
+				out.print(" </div>");
+				out.print("</div>");
+				out.print("</div>");
+				out.print("<div class=\"row\">");
+				out.print("<div class=\"col\">");
+				for (Foto f : foto) {
+					if (juego.getId() == f.getId()) {
+						out.print("<img src=\"Imagenes/" + f.getFoto()
+								+ "\" width=\"300\" height=\"200\" class=\"rounded mx-auto d-block\">"); //getFoto
+					} else {
+						out.print("<p>Error</p>"); //getFoto
+					}
+				}
+				out.print("</div>");
+				out.print("<div class=\"col mt-3\">");
+				out.print("<p>" + juego.getDescripcion() + "</p>"); //getTexto
+				out.print("</div>");
+				out.print("</div>");
+				out.print("<div class=\"row mt-5\">");
+				out.print("<div class=\"col\">");
 				out.print("<h4>Se el primero en comentar</h4>");
+				out.print("</div>");
+				out.print("</div>");
+				out.print("<div class=\"row mt-5\">");
+				out.print("<div class=\"col\">");
+				out.print("<textarea name=\"com\" rows=\"10\" cols=\"40\"></textarea>"); //input comentario
+				out.print("</div>");
+				out.print("</div>");
+				out.print("<button type=\"submit\" class=\"btn btn-success ml-5 mt-2 mb-5\">Comentar</button>");
 			}
-			out.print("</div>");
-			out.print("</div>");
-			out.print("<input id=\"id\" name=\"idJ\" type=\"hidden\" value=\""+juego.getId()+"\">");
-			out.print("<input id=\"idU\" name=\"idU\" type=\"hidden\" value=\""+user.getId()+"\">");
 			out.print("</form>");
 			out.print("</div>"); //Fin container
-			
+
 		}
 	%>
 </body>
