@@ -2,9 +2,10 @@ package controlador;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
-
 
 import javax.ejb.EJB;
 import javax.mail.Message;
@@ -29,8 +30,7 @@ import modelo.ejb.UsuariosEJB;
 public class Registro extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	
-	//Variable para guardar la imagen
+	// Variable para guardar la imagen
 	private static final String UPLOAD_DIRECTORY = "Imagenes";
 	@EJB
 	UsuariosEJB usuariosEJB;
@@ -40,12 +40,10 @@ public class Registro extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		
+
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Registro.jsp");
 		rs.forward(request, response);
 
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -55,8 +53,10 @@ public class Registro extends HttpServlet {
 		String pass = request.getParameter("pass");
 		String nombre = request.getParameter("nom");
 		String email = request.getParameter("email");
-		Date fechaAlta = new Date();
-		
+
+		Date date = new Date();
+
+		DateFormat hourdateFormat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
 
 		// Multipart RFC 7578
 
@@ -77,7 +77,7 @@ public class Registro extends HttpServlet {
 			fileName = getFileName(part);
 			part.write(uploadPath + File.separator + fileName);
 		}
-		
+
 		try {
 			// Propiedades de la conexi�n
 			Properties props = new Properties();
@@ -94,22 +94,18 @@ public class Registro extends HttpServlet {
 			MimeMessage message = new MimeMessage(session);
 			// la persona k tiene k verificar
 			message.setFrom(new InternetAddress("email.ejemplo@"));
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress( email));
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
 			message.addHeader("Disposition-Notification-To", "email.ejemplo@");
 			message.setSubject("Correo de verificacion, porfavor no responder");
-			message.setText(
-					"<h3>¡Hola "+user+"!</h3>\n"
-							+ "<p>Gracias por unirte a Freak's Corner<br>"
-							+ "Porfavor haga un buen uso de su cuenta y respete siempre la opinión de los demás.<br>"
-							+ "Debe seguir las normas de uso de la cuenta:<br>"
-							+ "1.No insultar ni difamar a nadie.<br>"
-							+ "2.No crear bulos ni rumores.<br>"
-							+ "3.No suplantar la identidad de ningún individuo.<br>"
-							+ "4.Respete siempre a otro usuario.<br>"
-							+ "Si no se sigue las normas, se baneara la cuenta dependiendo de la gravedad.\n"
-							+ "Bienvenido a Freak's Corner y diviertete en nuestra comunidad.<br>"
-							+ " <a href='http://localhost:8080/MiWeb/Login"
-							+ "'>Inicia Sesión en Freak's Corner</a> </p>", "UTF-8", "html");
+			message.setText("<h3>¡Hola " + user + "!</h3>\n" + "<p>Gracias por unirte a Freak's Corner<br>"
+					+ "Porfavor haga un buen uso de su cuenta y respete siempre la opinión de los demás.<br>"
+					+ "Debe seguir las normas de uso de la cuenta:<br>" + "1.No insultar ni difamar a nadie.<br>"
+					+ "2.No crear bulos ni rumores.<br>" + "3.No suplantar la identidad de ningún individuo.<br>"
+					+ "4.Respete siempre a otro usuario.<br>"
+					+ "Si no se sigue las normas, se baneara la cuenta dependiendo de la gravedad.\n"
+					+ "Bienvenido a Freak's Corner y diviertete en nuestra comunidad.<br>"
+					+ " <a href='http://localhost:8080/MiWeb/Login" + "'>Inicia Sesión en Freak's Corner</a> </p>",
+					"UTF-8", "html");
 
 			// Lo enviamos.
 			Transport t = session.getTransport("smtp");
@@ -122,12 +118,10 @@ public class Registro extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		
 		// Metodo para registrar al usuario
-		usuariosEJB.insertUsuario(nombre, user, pass, fileName, email, fechaAlta);
+		usuariosEJB.insertUsuario(nombre, user, pass, fileName, email, hourdateFormat.format(date));
 
 		response.sendRedirect("Login");
-
 
 	}
 
@@ -139,6 +133,5 @@ public class Registro extends HttpServlet {
 		}
 		return "desconocido.txt";
 	}
-	
-	
+
 }

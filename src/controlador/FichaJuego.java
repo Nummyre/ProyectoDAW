@@ -1,7 +1,10 @@
 package controlador;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -74,7 +77,11 @@ public class FichaJuego extends HttpServlet {
 		Integer idJuego = Integer.parseInt(idJ);
 		Integer idUsuario = Integer.parseInt(idU);
 		
-		juegoEJB.insertComentario(idUsuario, idJuego, comentario);
+		Date date = new Date();
+		
+		DateFormat hourdateFormat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
+		
+		juegoEJB.insertComentario(idUsuario, idJuego, comentario, hourdateFormat.format(date));
 		
 		response.sendRedirect("FichaJuego?id="+idJuego);
 		

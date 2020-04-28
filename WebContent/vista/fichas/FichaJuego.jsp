@@ -238,8 +238,11 @@
 			//for
 			if(coment != null){
 			for(Comentario co : coment){
-				out.print("<div class=\"card text-center bg-info text-white\">");
-				out.print("<div class=\"card-body\">"+co.getComentario()+"</div>");//getGenero
+				out.print("<div class=\"card text-center bg-light text-white\">");
+				out.print("<div class=\"card-body\">"+user.getFoto()+"-"+co.getFecha()+"");//comentario
+				out.print("<br>");
+				out.print("<pre>"+co.getComentario()+"</pre>");
+				out.print("</div>");
 				out.print("</div>");
 			}
 			}else{
