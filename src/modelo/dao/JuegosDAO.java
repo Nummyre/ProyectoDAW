@@ -1,11 +1,11 @@
 package modelo.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
+
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
+
 
 import modelo.pojo.Analisis;
 import modelo.pojo.Comentario;
@@ -14,7 +14,7 @@ import modelo.pojo.Genero;
 import modelo.pojo.Guia;
 import modelo.pojo.Juego;
 import modelo.pojo.Plataforma;
-import modelo.pojo.Usuario;
+
 
 public class JuegosDAO {
 
@@ -44,16 +44,16 @@ public class JuegosDAO {
 					rs.first();
 
 					juego = new ArrayList<Juego>();
-
+					
 					juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
 							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
-							rs.getInt("idUsuario")));
+							rs.getInt("idUsuario"), rs.getInt("puntuacion")));
 
 					while (rs.next()) {
 
 						juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
 								rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
-								rs.getInt("idUsuario")));
+								rs.getInt("idUsuario"), rs.getInt("puntuacion")));
 					}
 				}
 
@@ -177,13 +177,13 @@ public class JuegosDAO {
 
 					juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
 							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
-							rs.getInt("idUsuario")));
+							rs.getInt("idUsuario"), rs.getInt("puntuacion")));
 
 					while (rs.next()) {
 
 						juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
 								rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
-								rs.getInt("idUsuario")));
+								rs.getInt("idUsuario"), rs.getInt("puntuacion")));
 					}
 				}
 
@@ -756,15 +756,15 @@ public class JuegosDAO {
 					rs.first();
 					juego = new ArrayList<Juego>();
 
-					juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),
+					juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
 							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
-							rs.getInt("idUsuario")));
+							rs.getInt("idUsuario"), rs.getInt("puntuacion")));
 
 					while (rs.next()) {
 
-						juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),
+						juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
 								rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
-								rs.getInt("idUsuario")));
+								rs.getInt("idUsuario"), rs.getInt("puntuacion")));
 					}
 				}
 
@@ -803,15 +803,15 @@ public class JuegosDAO {
 					rs.first();
 					juego = new ArrayList<Juego>();
 
-					juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),
+					juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
 							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
-							rs.getInt("idUsuario")));
+							rs.getInt("idUsuario"), rs.getInt("puntuacion")));
 
 					while (rs.next()) {
 
-						juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),
+						juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
 								rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
-								rs.getInt("idUsuario")));
+								rs.getInt("idUsuario"), rs.getInt("puntuacion")));
 					}
 				}
 
@@ -851,15 +851,15 @@ public class JuegosDAO {
 					rs.first();
 					juego = new ArrayList<Juego>();
 
-					juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),
+					juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
 							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
-							rs.getInt("idUsuario")));
+							rs.getInt("idUsuario"), rs.getInt("puntuacion")));
 
 					while (rs.next()) {
 
-						juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),
+						juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
 								rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
-								rs.getInt("idUsuario")));
+								rs.getInt("idUsuario"), rs.getInt("puntuacion")));
 					}
 				}
 
@@ -897,15 +897,15 @@ public class JuegosDAO {
 					rs.first();
 					juego = new ArrayList<Juego>();
 
-					juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),
+					juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
 							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
-							rs.getInt("idUsuario")));
+							rs.getInt("idUsuario"), rs.getInt("puntuacion")));
 
 					while (rs.next()) {
-
-						juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),
+						
+						juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
 								rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
-								rs.getInt("idUsuario")));
+								rs.getInt("idUsuario"), rs.getInt("puntuacion")));
 					}
 				}
 
@@ -955,7 +955,7 @@ public class JuegosDAO {
 					rs.first();
 					juego = (new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),
 							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
-							rs.getInt("idUsuario")));
+							rs.getInt("idUsuario"), rs.getInt("puntuacion")));
 				}
 
 				rs.close();
@@ -1184,5 +1184,24 @@ public class JuegosDAO {
 		}
 		return Cjuego;
 	}
+ //---------------------------------------------------------------------------------------------------
+	
+	public void deleteComentarioJuego(Integer id) {
+		try {
 
+			// metodo
+			Connection connection = new Conexion().conecta();
+
+			if (connection != null) {
+
+				Statement stmt = connection.createStatement();
+
+				String queryBorrar = "DELETE FROM comentario WHERE id=" + id + ";";
+
+				stmt.executeUpdate(queryBorrar);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

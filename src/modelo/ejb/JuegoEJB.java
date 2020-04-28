@@ -31,6 +31,12 @@ public class JuegoEJB {
 		return juegoList.listaAnalisisPorIdUser(id);
 	}
 	
+	public void deleteComentarioJuego(Integer id) {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		juegoList.deleteComentarioJuego(id);
+	}
+	
 	public void deleteAnalisis(Integer id) {
 		JuegosDAO juegoList = new JuegosDAO();
 

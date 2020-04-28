@@ -56,7 +56,7 @@ public class Registro extends HttpServlet {
 
 		Date date = new Date();
 
-		DateFormat hourdateFormat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
+		DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
 		// Multipart RFC 7578
 

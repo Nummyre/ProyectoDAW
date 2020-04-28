@@ -1,5 +1,6 @@
 package modelo.ejb;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.ejb.LocalBean;
@@ -42,4 +43,8 @@ public class UsuariosEJB {
 		usuariosDAO.updatePassUsuario(pass, id);
 	}
 
+	public ArrayList<Usuario> listaUsuarios() {
+		UsuariosDAO usuariosDAO = new UsuariosDAO();
+		return usuariosDAO.listaUsuarios();
+	}
 }
