@@ -12,7 +12,7 @@ import java.sql.SQLException;
 
 public class UsuariosDAO {
 
-	public void insertUsuario(String nombre, String user, String password, String foto, String email, Date fechaAlta) {
+	public void insertUsuario(String nombre, String user, String password, String foto, String email, String fechaAlta) {
 
 		try {
 			Connection connection;

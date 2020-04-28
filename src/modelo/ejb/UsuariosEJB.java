@@ -18,7 +18,7 @@ public class UsuariosEJB {
 		return usuariosDAO.existeUsuario(user, pass);
 	}
 
-	public void insertUsuario(String nombre, String user, String password, String foto, String email, Date fechaAlta) {
+	public void insertUsuario(String nombre, String user, String password, String foto, String email, String fechaAlta) {
 		UsuariosDAO usuariosDAO = new UsuariosDAO();
 
 		usuariosDAO.insertUsuario(nombre, user, password, foto, email, fechaAlta);
