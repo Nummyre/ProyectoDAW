@@ -92,11 +92,6 @@ public class Add extends HttpServlet {
 		// Lo utilizaremos para guardar el nombre del archivo
 		String fileName = null;
 
-//		// Obtenemos el archivo y lo guardamos a disco
-//		for (Part part : request.getParts()) {
-//			fileName = getFileName(part);
-//			part.write(uploadPath + File.separator + fileName);
-//		}
 		
 		for (Part part : request.getParts()) {
 	          String nombre = getFileName(part);
