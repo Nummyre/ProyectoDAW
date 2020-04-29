@@ -56,7 +56,7 @@
 					"<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Categorías</a>");
 			out.print("<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">");
 			out.print("<a class=\"dropdown-item\" href=\"Login\">TOP 10|Juegos</a>");
-			out.print("<a class=\"dropdown-item\" href=\"Login\">Análisis de videojuegos</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Analisis\">Análisis de videojuegos</a>");
 			out.print("<a class=\"dropdown-item\" href=\"Guia\">Guías de videojuegos</a>");
 			out.print("<div class=\"dropdown-divider\"></div>");
 			out.print("<a class=\"dropdown-item\" href=\"#\">Contacto</a>");
@@ -99,6 +99,154 @@
 			
 			
 			out.print("</header>");
+			
+			
+			
+//------------------------------------------------------------------------------------------------
+			
+			out.print("<div class=\"container mt-5 p-5\">");//Principio de container
+			if(coment != null){
+			out.print("<div class=\"row\">");
+			out.print("<div class=\"col\">");
+			out.print("<h2>" + guia.getTitulo() + "</h2>"); //getTitulo
+			out.print("</div>");
+			out.print("<hr>");
+			out.print("</div>");//fin 1º row
+			out.print("<div class=\"row\">");
+			out.print("<div class=\"col\"></div>");
+			out.print("<div class=\"col\"></div>");
+			out.print("</div>");
+			out.print("</div>");
+			out.print("<div class=\"row\">");
+			out.print("<div class=\"col\">");
+			for (Foto f : foto) {
+				if (guia.getId() == f.getId()) {
+					out.print("<img src=\"Imagenes/" + f.getFoto()
+							+ "\" width=\"300\" height=\"200\" class=\"rounded mx-auto d-block\">"); //getFoto
+				} else {
+					out.print("<p>Error</p>"); //getFoto
+				}
+			}
+			out.print("</div>");
+			out.print("<div class=\"col mt-3\">");
+			out.print("<p>" +guia.getTexto()+ "</p>"); //getTexto
+			out.print("</div>");
+			out.print("</div>");
+			out.print("<div class=\"row\">");
+			out.print("<div class=\"col\">");
+		
+			for (Usuario us : users) {
+				if(us.getId()==guia.getIdUsuario()){
+			out.print("<p>Guía redactada por "+us.getUser()+"</p>");
+				}
+			}
+			
+			out.print("</div>");
+			out.print("</div>");
+			out.print("<div class=\"row mt-5\">");
+			out.print("<div class=\"col\">");
+
+			int totalComentarios = coment.size(); //total de comentarios que hay
+
+			out.print("<h4>Comentarios " + totalComentarios + "</h4>"); //Comentarios
+			out.print("</div>");
+			out.print("</div>");
+			int contador = 1;
+			
+			for (Comentario co : coment) {
+				for (Usuario us : users) {
+					if (us.getId() == co.getIdUsuario()) {
+						if (us.getFoto().equals("desconocido.txt")) {
+							out.print("<div class=\"card mt-3 bg-light text-white w-50\">");
+							out.print("<div class=\"card-body\"><h2 class=\"text-dark\">" + contador
+									+ "</h2><img src=\"img/usuari.jpg\" width=\"150\" height=\"100\" class=\"mr-5\">");//comentario
+							}else{
+								out.print("<div class=\"card mt-3 bg-light text-white w-50\">");
+								out.print("<div class=\"card-body\"><h2 class=\"text-dark\">" + contador
+										+ "</h2><img src=\"Imagenes/" + us.getFoto()
+										+ "\" width=\"150\" height=\"100\" class=\"mr-5\">");//comentario
+					
+							}
+						out.print(
+								"<p class=\"text-dark\">" + us.getUser() + " - " + co.getFecha() + "</p>");
+						out.print("<br>");
+						out.print("<pre class=\"mr-5\">" + co.getComentario() + "</pre>");
+						out.print("</div>");
+						out.print("</div>");
+						contador++;
+					}
+				}
+		}
+			
+			out.print("<div class=\"row\">");
+			out.print("<div class=\"col\">");
+	
+				
+			out.print("<h3>Registrate o inicia sesión si quieres comentar</h3");
+			out.print("</div>");
+			out.print("</div>");
+			out.print("<a href=\"Registro\"><button type=\"button\" class=\"btn btn-success ml-5 mt-2 mb-5\">Registrarse</button></a>");
+			out.print("<a href=\"Login\"><button type=\"button\" class=\"btn btn-success ml-5 mt-2 mb-5\">Iniciar Sesión</button></a>");
+			
+			}else{
+				out.print("<div class=\"row\">");
+				out.print("<div class=\"col\">");
+				out.print("<h2>" + guia.getTitulo() + "</h2>"); //getTitulo
+				out.print("</div>");
+				out.print("<hr>");
+				out.print("</div>");//fin 1º row
+				out.print("<div class=\"row\">");
+				out.print("<div class=\"col\"></div>");
+				out.print("<div class=\"col\"></div>");
+				out.print("</div>");
+				out.print("</div>");
+				out.print("<div class=\"row\">");
+				out.print("<div class=\"col\">");
+				for (Foto f : foto) {
+					if (guia.getId() == f.getId()) {
+						out.print("<img src=\"Imagenes/" + f.getFoto()
+								+ "\" width=\"300\" height=\"200\" class=\"rounded mx-auto d-block\">"); //getFoto
+					} else {
+						out.print("<p>Error</p>"); //getFoto
+					}
+				}
+				out.print("</div>");
+				out.print("<div class=\"col mt-3\">");
+				out.print("<p>" +guia.getTexto()+ "</p>"); //getTexto
+				out.print("</div>");
+				out.print("</div>");
+				out.print("<div class=\"row\">");
+				out.print("<div class=\"col\">");
+			
+				for (Usuario us : users) {
+					if(us.getId()==guia.getIdUsuario()){
+				out.print("<p>Guía redactada por "+us.getUser()+"</p>");
+					}
+				}
+				
+				out.print("</div>");
+				out.print("</div>");
+				out.print("<div class=\"row mt-5\">");
+				out.print("<div class=\"col\">");
+				
+				out.print("<h4>Comentarios 0</h4>"); //Comentarios
+				out.print("</div>");
+				out.print("</div>");
+				out.print("<div class=\"row\">");
+				out.print("<div class=\"col\">");
+		
+					
+				out.print("<h3>Registrate o inicia sesión si quieres comentar</h3");
+				out.print("</div>");
+				out.print("</div>");
+				out.print("<a href=\"Registro\"><button type=\"button\" class=\"btn btn-success ml-5 mt-2 mb-5\">Registrarse</button></a>");
+				out.print("<a href=\"Login\"><button type=\"button\" class=\"btn btn-success ml-5 mt-2 mb-5\">Iniciar Sesión</button></a>");
+			}
+			
+		
+			out.print("</div>"); //Fin container
+
+			
 		} else {
 			out.print("<header>");
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark p-5\">");
@@ -124,8 +272,8 @@
 					"<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Categorías</a>");
 			out.print("<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">");
 			out.print("<a class=\"dropdown-item\" href=\"#\">TOP 10|Juegos</a>");
-			out.print("<a class=\"dropdown-item\" href=\"#\">Análisis de videojuegos</a>");
-			out.print("<a class=\"dropdown-item\" href=\"#\">Guías de videojuegos</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Analisis\">Análisis de videojuegos</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Guia\">Guías de videojuegos</a>");
 			out.print("<div class=\"dropdown-divider\"></div>");
 			out.print("<a class=\"dropdown-item\" href=\"#\">Contacto</a>");
 			out.print("</div>");
@@ -216,6 +364,17 @@
 			out.print("</div>");
 			out.print("<div class=\"row mt-5\">");
 			out.print("<div class=\"col\">");
+			out.print("<div class=\"row\">");
+			out.print("<div class=\"col\">");
+		
+			for (Usuario us : users) {
+				if(us.getId()==guia.getIdUsuario()){
+			out.print("<p>Guía redactada por "+us.getUser()+"</p>");
+				}
+			}
+			
+			out.print("</div>");
+			out.print("</div>");
 			out.print("<textarea name=\"com\" rows=\"10\" cols=\"40\"></textarea>"); //input comentario
 			out.print("</div>");
 			out.print("</div>");
@@ -318,6 +477,17 @@
 				out.print("</div>");
 				out.print("<div class=\"col mt-3\">");
 				out.print("<p>" + guia.getTexto() + "</p>"); //getTexto
+				out.print("</div>");
+				out.print("</div>");
+				out.print("<div class=\"row\">");
+				out.print("<div class=\"col\">");
+			
+				for (Usuario us : users) {
+					if(us.getId()==guia.getIdUsuario()){
+				out.print("<p>Guía redactada por "+us.getUser()+"</p>");
+					}
+				}
+				
 				out.print("</div>");
 				out.print("</div>");
 				out.print("<div class=\"row mt-5\">");
