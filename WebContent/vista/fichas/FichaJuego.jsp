@@ -303,9 +303,6 @@
 
 			}
 			
-			
-			
-			
 			out.print("</div>");
 			out.print("</div>");
 			out.print("<input id=\"id\" name=\"idJ\" type=\"hidden\" value=\"" + juego.getId() + "\">");
