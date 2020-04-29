@@ -199,10 +199,10 @@ public class JuegoEJB {
 		return juegoList.playSList();
 	}
 	
-	public int insertComentario(Integer idUsuario, Integer idJuego, String comentario, String fecha) {
+	public int insertComentario(String comentario, String fecha, Integer idUsuario, Integer idJuego) {
 		JuegosDAO juegoList = new JuegosDAO();
 
-		return juegoList.insertComentario(idUsuario, idJuego, comentario, fecha);
+		return juegoList.insertComentario(comentario, fecha, idUsuario, idJuego);
 	}
 	
 	public ArrayList<Juego> pcList() {
@@ -215,5 +215,65 @@ public class JuegoEJB {
 		JuegosDAO juegoList = new JuegosDAO();
 
 		return juegoList.listaFotosJuegos();
+	}
+	
+	public ArrayList<Foto> listaFotosGuia() {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.listaFotosGuia();
+	}
+	
+	public ArrayList<Foto> listaFotosAnalisi() {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.listaFotosAnalisi();
+	}
+	
+	public ArrayList<Comentario> listaComentarioGuia() {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.listaComentarioGuia();
+	}
+	
+	public ArrayList<Comentario> listaComentarioAnalisi() {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.listaComentarioAnalisi();
+	
+	}
+	public void deleteComentarioGuia(Integer id) {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		 juegoList.deleteComentarioGuia(id);
+	}
+	
+	public void deleteComentarioAnalisis(Integer id) {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		 juegoList.deleteComentarioAnalisis(id);
+	}
+	
+	public int insertComentarioGuia(String comentario, String fecha, Integer idUsuario, Integer idGuia) {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.insertComentarioGuia(comentario, fecha, idUsuario, idGuia);
+	}
+	
+	public int insertComentarioAnalisis(String comentario, String fecha, Integer idUsuario, Integer idAnalisis) {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.insertComentarioAnalisis(comentario, fecha, idUsuario, idAnalisis);
+	}
+	
+	public ArrayList<Guia> listaGuias() {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.listaGuias();
+	}
+	
+	public ArrayList<Analisis> listaAnalisis() {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.listaAnalisis();
 	}
 }
