@@ -178,7 +178,7 @@
 
 			out.print("</header>");
 
-			out.print("");
+			//-----------------------------------------------------------------------------
 
 			out.print("<div class=\"container mt-5 p-2\">");//Principio de container
 			out.print("<form method=\"post\" action=\"FichaJuego\">");
@@ -257,10 +257,16 @@
 						for (Usuario us : users) {
 							if (us.getId() == co.getIdUsuario()) {
 
-								out.print("<div class=\"card mt-3 bg-light text-white w-50\">");
-								out.print("<div class=\"card-body\"><h2 class=\"text-dark\">" + contador
-										+ "</h2><img src=\"Imagenes/" + us.getFoto()
-										+ "\" width=\"150\" height=\"100\" class=\"mr-5\">");//comentario
+								if (!user.getFoto().equals("desconocido.txt")) {
+									out.print("<div class=\"card mt-3 bg-light text-white w-50\">");
+									out.print("<div class=\"card-body\"><h2 class=\"text-dark\">" + contador
+											+ "</h2><img src=\"Imagenes/" + us.getFoto()
+											+ "\" width=\"150\" height=\"100\" class=\"mr-5\">");//comentario
+									}else{
+										out.print("<div class=\"card mt-3 bg-light text-white w-50\">");
+										out.print("<div class=\"card-body\"><h2 class=\"text-dark\">" + contador
+												+ "</h2><img src=\"img/usuari.jpg\" width=\"150\" height=\"100\" class=\"mr-5\">");//comentario
+									}
 								out.print(
 										"<p class=\"text-dark\">" + us.getUser() + " - " + co.getFecha() + "</p>");
 								out.print("<br>");
@@ -285,11 +291,16 @@
 					for (Comentario co : coment) {
 						for (Usuario us : users) {
 							if (us.getId() == co.getIdUsuario()) {
-
-								out.print("<div class=\"card mt-3 bg-light text-white w-50\">");
-								out.print("<div class=\"card-body\"><h2 class=\"text-dark\">" + contador
-										+ "</h2><img src=\"Imagenes/" + us.getFoto()
-										+ "\" width=\"150\" height=\"100\" class=\"mr-5\">");//comentario
+								if (!user.getFoto().equals("desconocido.txt")) {
+									out.print("<div class=\"card mt-3 bg-light text-white w-50\">");
+									out.print("<div class=\"card-body\"><h2 class=\"text-dark\">" + contador
+											+ "</h2><img src=\"Imagenes/" + us.getFoto()
+											+ "\" width=\"150\" height=\"100\" class=\"mr-5\">");//comentario
+									}else{
+										out.print("<div class=\"card mt-3 bg-light text-white w-50\">");
+										out.print("<div class=\"card-body\"><h2 class=\"text-dark\">" + contador
+												+ "</h2><img src=\"img/usuari.jpg\" width=\"150\" height=\"100\" class=\"mr-5\">");//comentario
+									}
 								out.print(
 										"<p class=\"text-dark\">" + us.getUser() + " - " + co.getFecha() + "</p>");
 								out.print("<br>");
@@ -369,6 +380,8 @@
 				out.print("</div>");
 				out.print("</div>");
 				out.print("<button type=\"submit\" class=\"btn btn-success ml-5 mt-2 mb-5\">Comentar</button>");
+				out.print("<input id=\"id\" name=\"idJ\" type=\"hidden\" value=\"" + juego.getId() + "\">");
+				out.print("<input id=\"idU\" name=\"idU\" type=\"hidden\" value=\"" + user.getId() + "\">");
 			}
 			out.print("</form>");
 			out.print("</div>"); //Fin container

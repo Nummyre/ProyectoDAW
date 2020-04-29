@@ -45,8 +45,7 @@ public class FichaJuego extends HttpServlet {
 		
 		String idJ = request.getParameter("id");
 		Integer id = Integer.parseInt(idJ);
-		
-		System.out.println(id);
+
 		
 		Juego juego = juegoEJB.juego(id);
 		ArrayList<Foto> fotoJuego = juegoEJB.listaFotosJuegos();
@@ -83,7 +82,7 @@ public class FichaJuego extends HttpServlet {
 		
 		DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		
-		juegoEJB.insertComentario(idUsuario, idJuego, comentario, hourdateFormat.format(date));
+		juegoEJB.insertComentario(comentario, hourdateFormat.format(date), idUsuario, idJuego);
 		
 		response.sendRedirect("FichaJuego?id="+idJuego);
 		
