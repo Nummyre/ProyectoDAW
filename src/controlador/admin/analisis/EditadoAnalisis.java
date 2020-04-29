@@ -1,4 +1,4 @@
-package controlador.admin;
+package controlador.admin.analisis;
 
 import java.io.File;
 import java.io.IOException;

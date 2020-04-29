@@ -1,4 +1,4 @@
-package controlador.admin;
+package controlador.admin.analisis;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,14 +18,16 @@ import javax.servlet.http.Part;
 import modelo.ejb.JuegoEJB;
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
+import modelo.pojo.Genero;
+import modelo.pojo.Plataforma;
 import modelo.pojo.Usuario;
 
-
-@WebServlet("/AddGuia")
+@WebServlet("/AddAnalisis")
 @MultipartConfig(maxFileSize = 1024 * 1024 * 5)
-public class AddGuia extends HttpServlet {
+public class AddAnalisis extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+
 	@EJB
 	UsuariosEJB usuariosEJB;
 
@@ -38,27 +40,27 @@ public class AddGuia extends HttpServlet {
 	private static final String UPLOAD_DIRECTORY = "Imagenes";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		HttpSession session = request.getSession(false);
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
 
-		request.setAttribute("usuario", usuario);
 
-		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/admin/AddGuia.jsp");
+		request.setAttribute("usuario", usuario);
+	
+
+		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/admin/AddAnalisis.jsp");
 		rs.forward(request, response);
-		
 		
 	}
 
-
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String titulo = request.getParameter("titulo");
 		String texto = request.getParameter("desc");
-		String idUser = request.getParameter("id"); 
-		
+		String idUser = request.getParameter("id");
 		Integer id = Integer.parseInt(idUser);
-		
 		
 		
 		// Multipart RFC 7578
@@ -76,22 +78,34 @@ public class AddGuia extends HttpServlet {
 				// Lo utilizaremos para guardar el nombre del archivo
 				String fileName = null;
 
-				// Obtenemos el archivo y lo guardamos a disco
+//				// Obtenemos el archivo y lo guardamos a disco
+//				for (Part part : request.getParts()) {
+//					fileName = getFileName(part);
+//					part.write(uploadPath + File.separator + fileName);
+//				}
+				
 				for (Part part : request.getParts()) {
-					fileName = getFileName(part);
-					part.write(uploadPath + File.separator + fileName);
-				}
+			          String nombre = getFileName(part);
+			           if(!nombre.equals("desconocido.txt")) {
+			                   fileName = nombre;
+			                   part.write(uploadPath + File.separator + fileName);
+			           }
+			}
+				
 				System.out.println("4");
 				
 				System.out.println(fileName);
+
+				int juego = juegoEJB.insertAnalisi(titulo, texto, id);
+
+				System.out.println(juego);
 				
-				int guia = juegoEJB.insertGuia(titulo, texto, id);
-				
-				juegoEJB.insertGuiaFoto(fileName, guia);
-				
+				juegoEJB.insertAnalisiFoto(fileName, juego);
+
 				response.sendRedirect("Perfil");
-				
+		
 	}
+	
 	// Obtiene el nombre del archivo, sino lo llamaremos desconocido.txt
 		private String getFileName(Part part) {
 			for (String content : part.getHeader("content-disposition").split(";")) {
@@ -100,4 +114,5 @@ public class AddGuia extends HttpServlet {
 			}
 			return "desconocido.txt";
 		}
+
 }

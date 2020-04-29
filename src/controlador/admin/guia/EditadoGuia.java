@@ -1,4 +1,4 @@
-package controlador.admin;
+package controlador.admin.guia;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,15 +19,16 @@ import modelo.ejb.JuegoEJB;
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
 import modelo.pojo.Genero;
+import modelo.pojo.Guia;
+import modelo.pojo.Juego;
 import modelo.pojo.Plataforma;
 import modelo.pojo.Usuario;
 
-@WebServlet("/AddAnalisis")
+@WebServlet("/EditadoGuia")
 @MultipartConfig(maxFileSize = 1024 * 1024 * 5)
-public class AddAnalisis extends HttpServlet {
+public class EditadoGuia extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-
+	private static final String UPLOAD_DIRECTORY = "Imagenes";
 	@EJB
 	UsuariosEJB usuariosEJB;
 
@@ -36,73 +37,73 @@ public class AddAnalisis extends HttpServlet {
 
 	@EJB
 	SesionesEJB sesionesEJB;
-	
-	private static final String UPLOAD_DIRECTORY = "Imagenes";
-
+ 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 
 		HttpSession session = request.getSession(false);
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
-
+		
+		String idJ = request.getParameter("id");
+		
+		Integer id = Integer.parseInt(idJ);
+		
+	
+		
+		Guia juego = juegoEJB.guia(id);
+		
+		System.out.println(id);
+		
+		request.setAttribute("juego", juego);
 
 		request.setAttribute("usuario", usuario);
-	
-
-		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/admin/AddAnalisis.jsp");
-		rs.forward(request, response);
 		
+		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/admin/EditadoGuia.jsp");
+		rs.forward(request, response);
+
 	}
 
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	
 		String titulo = request.getParameter("titulo");
 		String texto = request.getParameter("desc");
-		String idUser = request.getParameter("id");
-		Integer id = Integer.parseInt(idUser);
+		String idJuego = request.getParameter("idJuego");
+		Integer id = Integer.parseInt(idJuego);
+		String idU = request.getParameter("id");
+		Integer idUser = Integer.parseInt(idU);
 		
 		
 		// Multipart RFC 7578
 
-				// Obtenemos una ruta en el servidor para guardar el archivo
-				String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY;
+		// Obtenemos una ruta en el servidor para guardar el archivo
+		String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY;
 
-				// Si la ruta no existe la crearemos
-				File uploadDir = new File(uploadPath);
-				if (!uploadDir.exists()) {
-					uploadDir.mkdir();
-				}
-				System.out.println("3");
+		// Si la ruta no existe la crearemos
+		File uploadDir = new File(uploadPath);
+		if (!uploadDir.exists()) {
+			uploadDir.mkdir();
+		}
 
-				// Lo utilizaremos para guardar el nombre del archivo
-				String fileName = null;
+		// Lo utilizaremos para guardar el nombre del archivo
+		String fileName = null;
 
-//				// Obtenemos el archivo y lo guardamos a disco
-//				for (Part part : request.getParts()) {
-//					fileName = getFileName(part);
-//					part.write(uploadPath + File.separator + fileName);
-//				}
-				
-				for (Part part : request.getParts()) {
-			          String nombre = getFileName(part);
-			           if(!nombre.equals("desconocido.txt")) {
-			                   fileName = nombre;
-			                   part.write(uploadPath + File.separator + fileName);
-			           }
-			}
-				
-				System.out.println("4");
-				
-				System.out.println(fileName);
+		// Obtenemos el archivo y lo guardamos a disco
+		for (Part part : request.getParts()) {
+			fileName = getFileName(part);
+			part.write(uploadPath + File.separator + fileName);
+		}
+		
+//		juegoEJB.updateJuego(titulo, desc, anyo, genero, plataforma, id);
+		
+		juegoEJB.updateGuia(titulo, texto, id);
+//		
+//		juegoEJB.updateJuegoFoto(fileName, id);
+		
+		juegoEJB.updateGuiaFoto(fileName, id);
 
-				int juego = juegoEJB.insertAnalisi(titulo, texto, id);
-
-				System.out.println(juego);
-				
-				juegoEJB.insertAnalisiFoto(fileName, juego);
-
-				response.sendRedirect("Perfil");
+		response.sendRedirect("EditarListaGuia?id="+idUser);
 		
 	}
 	
