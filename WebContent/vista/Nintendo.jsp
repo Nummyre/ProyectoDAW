@@ -93,6 +93,52 @@
 			out.print("</ul>");
 
 			out.print("</header>");
+			
+			//-----------------------------------------------------------------------------------------
+			
+			
+			out.print("<div class=\"container mt-5 p-4 ml-5\">");
+			out.print("<div class=\"row\"");
+			out.print("<div class=\"col\">");
+			out.print("<h3>Juegos de Nintendo Switch</h3>");
+			out.print("</div>");
+			out.print("</div>");
+			out.print("<hr>");
+			out.print("<div class=\"form-row mt-4\"");
+			out.print("<div class=\"col-md-4\">");
+			out.print("</div>");
+			//----TABLA------------------------------
+			out.print("<div class=\"col-md-4\">");
+			out.print("<table class=\"table\">");
+			out.print("<thead class=\"thead-dark\">");
+			out.print("<tr>");
+			out.print("<th scope=\"col\">(foto)</th>");
+			out.print("<th scope=\"col\">Título</th>");
+			out.print("<th scope=\"col\">Descripción</th>");
+			out.print("<th scope=\"col\">Año</th>");
+			out.print("<th scope=\"col\">Género</th>");
+			out.print("<th scope=\"col\">Plataforma</th>");
+			out.print("</tr>");
+			out.print("</thead>");
+			out.print("<tbody>");
+			if(nintendoList!=null){
+			for(Juego n : nintendoList){
+			out.print("<tr>");
+			out.print("<th scope=\"row\">1</th>");
+			out.print("<td><a href=\"FichaJuego?id="+n.getId()+"\">"+n.getTitulo()+"</a></td>");
+			out.print("<td>"+n.getDescripcion()+"</td>");
+			out.print("<td>"+n.getAnyo()+"</td>");
+			out.print("</tr>");
+			}
+			}
+			out.print("</tbody>");
+			out.print("</table>");
+			//-----------------------
+			out.print("</div>");
+			out.print("</div>");
+			
+		
+			
 		} else {
 			out.print("<header>");
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark p-5\">");
@@ -193,6 +239,7 @@
 			out.print("</tr>");
 			out.print("</thead>");
 			out.print("<tbody>");
+			if(nintendoList!=null){
 			for(Juego n : nintendoList){
 			out.print("<tr>");
 			out.print("<th scope=\"row\">1</th>");
@@ -200,6 +247,7 @@
 			out.print("<td>"+n.getDescripcion()+"</td>");
 			out.print("<td>"+n.getAnyo()+"</td>");
 			out.print("</tr>");
+			}
 			}
 			out.print("</tbody>");
 			out.print("</table>");

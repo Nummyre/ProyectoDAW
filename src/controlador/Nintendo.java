@@ -36,6 +36,7 @@ public class Nintendo extends HttpServlet {
 		HttpSession session = request.getSession(false);
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
+		
 		 ArrayList<Juego> nintendoList = juegoEJB.nintendoList();
 		
 
