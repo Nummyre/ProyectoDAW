@@ -87,7 +87,6 @@ public class FichaJuego extends HttpServlet {
 		
 		response.sendRedirect("FichaJuego?id="+idJuego);
 		
-		
 	}
 
 }
