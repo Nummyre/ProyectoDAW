@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="modelo.pojo.Usuario"%>
+<%@page import="modelo.pojo.Guia"%>
+<%@page import="modelo.pojo.Foto"%>
+<%@page import="modelo.pojo.Comentario"%>
+<%@page import="java.util.ArrayList"%>
 <%@page session="false"%>
 <!DOCTYPE html>
 <html>
@@ -12,13 +16,20 @@
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 </head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<%
 		Usuario user = (Usuario) request.getAttribute("usuario");
+		Guia guia = (Guia) request.getAttribute("guia");
+		ArrayList<Foto> foto = (ArrayList<Foto>) request.getAttribute("fotoGuia");
+		ArrayList<Comentario> coment = (ArrayList<Comentario>) request.getAttribute("coment");
+		ArrayList<Usuario> users = (ArrayList<Usuario>) request.getAttribute("users");
 	
 		if (user == null) {
 			out.print("<header>");
@@ -160,10 +171,175 @@
 			out.print("<a class=\"nav-link\" href=\"Nintendo\">Nintendo Switch</a>");
 			out.print("</li>");
 			out.print("</ul>");
-			
-			
+		
 			out.print("</header>");
+			
+			//------------------------------------------------------------------------------------------------
+			
+			out.print("<div class=\"container mt-5 p-2\">");//Principio de container
+			out.print("<form method=\"post\" action=\"FichaGuia\">");
+			if(coment != null){
+			out.print("<div class=\"row\">");
+			out.print("<div class=\"col\">");
+			out.print("<h2>" + guia.getTitulo() + "</h2>"); //getTitulo
+			out.print("</div>");
+			out.print("<hr>");
+			out.print("</div>");//fin 1º row
+			out.print("<div class=\"row\">");
+			out.print("<div class=\"col\"></div>");
+			out.print("<div class=\"col\"></div>");
+			out.print("</div>");
+			out.print("</div>");
+			out.print("<div class=\"row\">");
+			out.print("<div class=\"col\">");
+			for (Foto f : foto) {
+				if (guia.getId() == f.getId()) {
+					out.print("<img src=\"Imagenes/" + f.getFoto()
+							+ "\" width=\"300\" height=\"200\" class=\"rounded mx-auto d-block\">"); //getFoto
+				} else {
+					out.print("<p>Error</p>"); //getFoto
+				}
+			}
+			out.print("</div>");
+			out.print("<div class=\"col mt-3\">");
+			out.print("<p>" +guia.getTexto()+ "</p>"); //getTexto
+			out.print("</div>");
+			out.print("</div>");
+
+			out.print("<div class=\"row mt-5\">");
+			out.print("<div class=\"col\">");
+
+			int totalComentarios = coment.size(); //total de comentarios que hay
+
+			out.print("<h4>Comentarios " + totalComentarios + "</h4>"); //Comentarios
+			out.print("</div>");
+			out.print("</div>");
+			out.print("<div class=\"row mt-5\">");
+			out.print("<div class=\"col\">");
+			out.print("<textarea name=\"com\" rows=\"10\" cols=\"40\"></textarea>"); //input comentario
+			out.print("</div>");
+			out.print("</div>");
+			out.print("<button type=\"submit\" class=\"btn btn-success ml-5 mt-2 mb-5\">Comentar</button>");
+			out.print("<div class=\"row\">");
+			out.print("<div class=\"col\">");
+			
+	
+			if (user.getAdministrador() == 1) {
+				//for
+				int contador = 1;
+					for (Comentario co : coment) {
+						for (Usuario us : users) {
+							if (us.getId() == co.getIdUsuario()) {
+								if (!user.getFoto().equals("desconocido.txt")) {
+								out.print("<div class=\"card mt-3 bg-light text-white w-50\">");
+								out.print("<div class=\"card-body\"><h2 class=\"text-dark\">" + contador
+										+ "</h2><img src=\"Imagenes/" + us.getFoto()
+										+ "\" width=\"150\" height=\"100\" class=\"mr-5\">");//comentario
+								}else{
+									out.print("<div class=\"card mt-3 bg-light text-white w-50\">");
+									out.print("<div class=\"card-body\"><h2 class=\"text-dark\">" + contador
+											+ "</h2><img src=\"img/usuari.jpg\" width=\"150\" height=\"100\" class=\"mr-5\">");//comentario
+								}
+								out.print(
+										"<p class=\"text-dark\">" + us.getUser() + " - " + co.getFecha() + "</p>");
+								out.print("<br>");
+								out.print("<pre class=\"mr-5\">" + co.getComentario() + "</pre>");
+								out.print("<a href=\"BorrarComentarioGuia?id=" + co.getId() + "&idJ="
+										+ guia.getId()
+										+ "\" class=\"align-self-end ml-auto\"><button type=\"button\" class=\"btn btn-success mt-2 mb-5\">Borrar</button></a>");
+								out.print("</div>");
+								out.print("</div>");
+								out.print("<input id=\"id\" name=\"idC\" type=\"hidden\" value=\"" + co.getId()
+										+ "\">");
+								contador++;
+							}
+						}
+					}
+				
+			}else {
+				//for
+					out.print("<h3>Se el primero en comentar</h3");
+				int contador = 1;
+			
+					for (Comentario co : coment) {
+						for (Usuario us : users) {
+							if (us.getId() == co.getIdUsuario()) {
+								if (!user.getFoto().equals("desconocido.txt")) {
+									out.print("<div class=\"card mt-3 bg-light text-white w-50\">");
+									out.print("<div class=\"card-body\"><h2 class=\"text-dark\">" + contador
+											+ "</h2><img src=\"Imagenes/" + us.getFoto()
+											+ "\" width=\"150\" height=\"100\" class=\"mr-5\">");//comentario
+									}else{
+										out.print("<div class=\"card mt-3 bg-light text-white w-50\">");
+										out.print("<div class=\"card-body\"><h2 class=\"text-dark\">" + contador
+												+ "</h2><img src=\"img/usuari.jpg\" width=\"150\" height=\"100\" class=\"mr-5\">");//comentario
+									}
+								out.print(
+										"<p class=\"text-dark\">" + us.getUser() + " - " + co.getFecha() + "</p>");
+								out.print("<br>");
+								out.print("<pre class=\"mr-5\">" + co.getComentario() + "</pre>");
+								out.print("</div>");
+								out.print("</div>");
+								contador++;
+							}
+						}
+				}
+
+			}
+			
+			out.print("</div>");
+			out.print("</div>");
+			out.print("<input id=\"id\" name=\"idJ\" type=\"hidden\" value=\"" + guia.getId() + "\">");
+			out.print("<input id=\"idU\" name=\"idU\" type=\"hidden\" value=\"" + user.getId() + "\">");
+			
+			}else{
+				
+				out.print("<div class=\"row\">");
+				out.print("<div class=\"col\">");
+				out.print("<h2>" + guia.getTitulo() + "</h2>"); //getTitulo
+				out.print("</div>");
+				out.print("<hr>");
+				out.print("</div>");//fin 1º row
+				out.print("<div class=\"row\">");
+				out.print("<div class=\"col\"></div>");
+				out.print("<div class=\"col\"></div>");
+		
+				out.print("</div>");
+				out.print("<div class=\"row\">");
+				out.print("<div class=\"col\">");
+				for (Foto f : foto) {
+					if (guia.getId() == f.getId()) {
+						out.print("<img src=\"Imagenes/" + f.getFoto()
+								+ "\" width=\"300\" height=\"200\" class=\"rounded mx-auto d-block\">"); //getFoto
+					} else {
+						out.print("<p>Error</p>"); //getFoto
+					}
+				}
+				out.print("</div>");
+				out.print("<div class=\"col mt-3\">");
+				out.print("<p>" + guia.getTexto() + "</p>"); //getTexto
+				out.print("</div>");
+				out.print("</div>");
+				out.print("<div class=\"row mt-5\">");
+				out.print("<div class=\"col\">");
+				out.print("<h4>Se el primero en comentar</h4>");
+				out.print("</div>");
+				out.print("</div>");
+				out.print("<div class=\"row mt-5\">");
+				out.print("<div class=\"col\">");
+				out.print("<textarea name=\"com\" rows=\"10\" cols=\"40\"></textarea>"); //input comentario
+				out.print("</div>");
+				out.print("</div>");
+				out.print("<button type=\"submit\" class=\"btn btn-success ml-5 mt-2 mb-5\">Comentar</button>");
+				
+			}
+			out.print("<input id=\"id\" name=\"idJ\" type=\"hidden\" value=\"" + guia.getId() + "\">");
+			out.print("<input id=\"idU\" name=\"idU\" type=\"hidden\" value=\"" + user.getId() + "\">");
+			out.print("</form>");
+			out.print("</div>"); //Fin container
+
 		}
+	
 	%>
 </body>
 </html>
