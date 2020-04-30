@@ -47,6 +47,7 @@ HttpSession session = request.getSession(false);
 		
 		ArrayList<Foto> fotoAnalisis = juegoEJB.listaFotosAnalisi();
 		
+	
 		ArrayList<Usuario> users = userEJB.listaUsuarios();
 		
 		ArrayList<Comentario> coment = juegoEJB.listaComentarioAnalisi();
