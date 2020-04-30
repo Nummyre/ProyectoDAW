@@ -9,7 +9,7 @@ public class Juego {
 	private Integer genero;
 	private Integer plataforma;
 	private Integer idUsuario;
-	private Integer puntuacion;
+
 
 
 	public Juego() {
@@ -18,7 +18,7 @@ public class Juego {
 
 
 	public Juego(Integer id, String titulo, String descripcion, Integer anyo, Integer genero, Integer plataforma,
-			Integer idUsuario, Integer puntuacion) {
+			Integer idUsuario) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
@@ -27,7 +27,7 @@ public class Juego {
 		this.genero = genero;
 		this.plataforma = plataforma;
 		this.idUsuario = idUsuario;
-		this.puntuacion = puntuacion;
+		
 	}
 
 
@@ -101,15 +101,6 @@ public class Juego {
 	}
 
 
-	public Integer getPuntuacion() {
-		return puntuacion;
-	}
 
-
-	public void setPuntuacion(Integer puntuacion) {
-		this.puntuacion = puntuacion;
-	}
-
-	
 	
 }
