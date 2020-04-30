@@ -276,4 +276,10 @@ public class JuegoEJB {
 
 		return juegoList.listaAnalisis();
 	}
+	
+	public void updateValoracion(Integer valoracion, Integer id) {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		juegoList.updateValoracion(valoracion, id);
+	}
 }

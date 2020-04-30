@@ -490,8 +490,8 @@ public class JuegosDAO {
 
 			Connection connection = new Conexion().conecta();
 
-			String query = "INSERT INTO juego (titulo, descripcion, anyo, idGenero, idPlataforma, idUsuario) "
-					+ "VALUES ('" + titulo + "','" + desc + "','" + anyo + "','" + idGen + "','" + idPla + "','"
+			String query = "INSERT INTO juego (titulo, descripcion, anyo, puntuacion, idGenero, idPlataforma, idUsuario) "
+					+ "VALUES ('" + titulo + "','" + desc + "','" + anyo + "',0,'" + idGen + "','" + idPla + "','"
 					+ idUser + "');";
 
 			try (Statement stmt = connection.createStatement()) {
@@ -1579,4 +1579,27 @@ public class JuegosDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	//---------------------------------------------------------------------------------------------
+	
+	public void updateValoracion(Integer valoracion, Integer id) {
+		try {
+
+			// metodo
+			Connection connection = new Conexion().conecta();
+
+			if (connection != null) {
+
+				Statement stmt = connection.createStatement();
+
+				String query = "INSERT INTO juego (puntuacion)";
+					
+
+				stmt.executeUpdate(query);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }
