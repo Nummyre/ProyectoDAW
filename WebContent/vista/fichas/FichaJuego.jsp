@@ -192,7 +192,7 @@
 			out.print("<h2>" + juego.getTitulo() + "</h2>"); //getTitulo
 			out.print("</div>");
 			out.print("<div class=\"col\"></div>");
-			for(Puntuacion p : puntuacion){
+			for(Puntuacion p : puntuacion){//---------------------------------MEDIA PUNTUACION
 				double media = 0.0;
 				media = media + p.getPuntuacion();
 				media = media / p.getPuntuacion();
@@ -356,7 +356,7 @@
 				out.print("<h2>" + juego.getTitulo() + "</h2>"); //getTitulo
 				out.print("</div>");
 				out.print("<div class=\"col\"></div>");
-				for(Puntuacion p : puntuacion){
+				for(Puntuacion p : puntuacion){ //---------------------------------MEDIA PUNTUACION
 					double media = 0.0;
 					media = media + p.getPuntuacion();
 					media = media / p.getPuntuacion();
