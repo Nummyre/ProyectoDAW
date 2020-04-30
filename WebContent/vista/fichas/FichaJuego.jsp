@@ -6,6 +6,7 @@
 <%@page import="modelo.pojo.Genero"%>
 <%@page import="modelo.pojo.Foto"%>
 <%@page import="modelo.pojo.Comentario"%>
+<%@page import="modelo.pojo.Puntuacion"%>
 <%@page import="java.util.ArrayList"%>
 <%@page session="false"%>
 <!DOCTYPE html>
@@ -26,6 +27,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 		<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 	<script type="text/javascript" src="js/Fichas.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/Style.css">
 </head>
 <body onload="editor()">
 	<%
@@ -36,6 +38,7 @@
 		ArrayList<Foto> foto = (ArrayList<Foto>) request.getAttribute("fotoJuego");
 		ArrayList<Comentario> coment = (ArrayList<Comentario>) request.getAttribute("coment");
 		ArrayList<Usuario> users = (ArrayList<Usuario>) request.getAttribute("users");
+		ArrayList<Puntuacion> puntuacion = (ArrayList<Puntuacion>) request.getAttribute("valoracion");
 
 		if (user == null) {
 			out.print("<header>");
@@ -183,17 +186,45 @@
 			//-----------------------------------------------------------------------------
 
 			out.print("<div class=\"container mt-5 p-2\">");//Principio de container
-			out.print("<form method=\"post\" action=\"FichaJuego\">");
 			if(coment != null){
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col\">");
 			out.print("<h2>" + juego.getTitulo() + "</h2>"); //getTitulo
 			out.print("</div>");
-			if (juego.getPuntuacion() != null) {
-				out.print("<div class=\"col\"><h3>" + juego.getPuntuacion() + "/10</h3></div>");
+			out.print("<div class=\"col\"></div>");
+			for(Puntuacion p : puntuacion){//---------------------------------MEDIA PUNTUACION
+				double media = 0.0;
+				media = media + p.getPuntuacion();
+				media = media / p.getPuntuacion();
+			if (p.getPuntuacion() != null) {
+				out.print("<div class=\"col-sm-3 text-right\"><h3>"+Math.round(media)+"/10</h3></div>");
 			} else {
-				out.print("<div class=\"col\"><h3>0/10</h3></div>");
+				out.print("<div class=\"col-sm-3 text-right\"><h3>0/10</h3></div>");
 			}
+			}
+			out.print("<div class=\"col-sm-3 mr-5\">");
+			out.print("<form method=\"get\" action=\"ValoracionJuego\"");
+			out.print("<p class=\"clasificacion\">");
+			out.print("<input id=\"ra5\" type=\"radio\" name=\"estrellas\" value=\"5\">");
+			out.print("<label for=\"ra5\">★</label>");
+			out.print("<input id=\"ra4\" type=\"radio\" name=\"estrellas\" value=\"4\">");
+			out.print("<label for=\"ra4\">★</label>");
+			out.print("<input id=\"ra3\" type=\"radio\" name=\"estrellas\" value=\"3\">");
+			out.print("<label for=\"ra3\">★</label>");
+			out.print("<input id=\"ra2\" type=\"radio\" name=\"estrellas\" value=\"2\">");
+			out.print("<label for=\"ra2\">★</label>");
+			out.print(" <input id=\"ra1\" type=\"radio\" name=\"estrellas\" value=\"1\">");
+			out.print("<label for=\"ra1\">★</label>");
+			out.print("</p>");
+			out.print("<input id=\"idU\" name=\"idU\" type=\"hidden\" value=\"" + user.getId() + "\">");
+			out.print("<input id=\"id\" name=\"idJ\" type=\"hidden\" value=\"" + juego.getId() + "\">");
+			out.print("</div>");
+			out.print("<div class=\"row\">");
+			out.print("<div class=\"col\">");
+			out.print("<button type=\"submit\" class=\"btn btn-success mr-5\">Puntua!</button>");
+			out.print("</div>");
+			out.print("</div>");
+			out.print("</form>");	
 			out.print("<hr>");
 			out.print("</div>");//fin 1º row
 			out.print("<div class=\"row\">");
@@ -224,16 +255,14 @@
 				if (juego.getId() == f.getId()) {
 					out.print("<img src=\"Imagenes/" + f.getFoto()
 							+ "\" width=\"300\" height=\"200\" class=\"rounded mx-auto d-block\">"); //getFoto
-				} else {
-					out.print("<p>Error</p>"); //getFoto
-				}
+				} 
 			}
 			out.print("</div>");
 			out.print("<div class=\"col mt-3\">");
 			out.print("<p>" + juego.getDescripcion() + "</p>"); //getTexto
 			out.print("</div>");
 			out.print("</div>");
-
+			out.print("<form method=\"post\" action=\"FichaJuego\">"); //FORMCOmentarios
 			out.print("<div class=\"row mt-5\">");
 			out.print("<div class=\"col\">");
 
@@ -320,18 +349,46 @@
 			out.print("</div>");
 			out.print("<input id=\"id\" name=\"idJ\" type=\"hidden\" value=\"" + juego.getId() + "\">");
 			out.print("<input id=\"idU\" name=\"idU\" type=\"hidden\" value=\"" + user.getId() + "\">");
-			
+			out.print("</form>");
 			}else{
-				
 				out.print("<div class=\"row\">");
 				out.print("<div class=\"col\">");
 				out.print("<h2>" + juego.getTitulo() + "</h2>"); //getTitulo
 				out.print("</div>");
-				if (juego.getPuntuacion() != null) {
-					out.print("<div class=\"col\"><h3>" + juego.getPuntuacion() + "/10</h3></div>");
+				out.print("<div class=\"col\"></div>");
+				for(Puntuacion p : puntuacion){ //---------------------------------MEDIA PUNTUACION
+					double media = 0.0;
+					media = media + p.getPuntuacion();
+					media = media / p.getPuntuacion();
+					if (p.getPuntuacion() != null) {
+					out.print("<div class=\"col-sm-3 text-right\"><h3>"+Math.round(media)+"/10</h3></div>");
 				} else {
-					out.print("<div class=\"col\"><h3>0/10</h3></div>");
+					out.print("<div class=\"col-sm-3 text-right\"><h3>0/10</h3></div>");
 				}
+				}
+				out.print("<div class=\"col-sm-3 mr-5\">");
+				out.print("<form method=\"get\" action=\"ValoracionJuego\"");
+				out.print("<p class=\"clasificacion\">");
+				out.print("<input id=\"ra5\" type=\"radio\" name=\"estrellas\" value=\"5\">");
+				out.print("<label for=\"ra5\">★</label>");
+				out.print("<input id=\"ra4\" type=\"radio\" name=\"estrellas\" value=\"4\">");
+				out.print("<label for=\"ra4\">★</label>");
+				out.print("<input id=\"ra3\" type=\"radio\" name=\"estrellas\" value=\"3\">");
+				out.print("<label for=\"ra3\">★</label>");
+				out.print("<input id=\"ra2\" type=\"radio\" name=\"estrellas\" value=\"2\">");
+				out.print("<label for=\"ra2\">★</label>");
+				out.print(" <input id=\"ra1\" type=\"radio\" name=\"estrellas\" value=\"1\">");
+				out.print("<label for=\"ra1\">★</label>");
+				out.print("</p>");
+				out.print("<input id=\"idU\" name=\"idU\" type=\"hidden\" value=\"" + user.getId() + "\">");
+				out.print("<input id=\"id\" name=\"idJ\" type=\"hidden\" value=\"" + juego.getId() + "\">");	
+				out.print("</div>");
+				out.print("<div class=\"row\">");
+				out.print("<div class=\"col\">");
+				out.print("<button type=\"submit\" class=\"btn btn-success mr-5\">Puntua!</button>");
+				out.print("</div>");
+				out.print("</div>");
+				out.print("</form>");
 				out.print("<hr>");
 				out.print("</div>");//fin 1º row
 				out.print("<div class=\"row\">");
@@ -371,6 +428,7 @@
 				out.print("<p>" + juego.getDescripcion() + "</p>"); //getTexto
 				out.print("</div>");
 				out.print("</div>");
+				out.print("<form method=\"post\" action=\"FichaJuego\">");
 				out.print("<div class=\"row mt-5\">");
 				out.print("<div class=\"col\">");
 				out.print("<h4>Se el primero en comentar</h4>");

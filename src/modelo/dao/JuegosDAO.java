@@ -13,6 +13,7 @@ import modelo.pojo.Genero;
 import modelo.pojo.Guia;
 import modelo.pojo.Juego;
 import modelo.pojo.Plataforma;
+import modelo.pojo.Puntuacion;
 
 public class JuegosDAO {
 
@@ -44,14 +45,13 @@ public class JuegosDAO {
 					juego = new ArrayList<Juego>();
 
 					juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
-							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"), rs.getInt("idUsuario"),
-							rs.getInt("puntuacion")));
+							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"), rs.getInt("idUsuario")));
 
 					while (rs.next()) {
 
 						juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
 								rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
-								rs.getInt("idUsuario"), rs.getInt("puntuacion")));
+								rs.getInt("idUsuario")));
 					}
 				}
 
@@ -259,14 +259,13 @@ public class JuegosDAO {
 					juego = new ArrayList<Juego>();
 
 					juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
-							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"), rs.getInt("idUsuario"),
-							rs.getInt("puntuacion")));
+							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"), rs.getInt("idUsuario")));
 
 					while (rs.next()) {
 
 						juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
 								rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
-								rs.getInt("idUsuario"), rs.getInt("puntuacion")));
+								rs.getInt("idUsuario")));
 					}
 				}
 
@@ -490,8 +489,8 @@ public class JuegosDAO {
 
 			Connection connection = new Conexion().conecta();
 
-			String query = "INSERT INTO juego (titulo, descripcion, anyo, idGenero, idPlataforma, idUsuario) "
-					+ "VALUES ('" + titulo + "','" + desc + "','" + anyo + "','" + idGen + "','" + idPla + "','"
+			String query = "INSERT INTO juego (titulo, descripcion, anyo, puntuacion, idGenero, idPlataforma, idUsuario) "
+					+ "VALUES ('" + titulo + "','" + desc + "','" + anyo + "',0,'" + idGen + "','" + idPla + "','"
 					+ idUser + "');";
 
 			try (Statement stmt = connection.createStatement()) {
@@ -849,14 +848,13 @@ public class JuegosDAO {
 					juego = new ArrayList<Juego>();
 
 					juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
-							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"), rs.getInt("idUsuario"),
-							rs.getInt("puntuacion")));
+							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"), rs.getInt("idUsuario")));
 
 					while (rs.next()) {
 
 						juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
 								rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
-								rs.getInt("idUsuario"), rs.getInt("puntuacion")));
+								rs.getInt("idUsuario")));
 					}
 				}
 
@@ -897,14 +895,13 @@ public class JuegosDAO {
 					juego = new ArrayList<Juego>();
 
 					juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
-							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"), rs.getInt("idUsuario"),
-							rs.getInt("puntuacion")));
+							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"), rs.getInt("idUsuario")));
 
 					while (rs.next()) {
 
 						juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
 								rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
-								rs.getInt("idUsuario"), rs.getInt("puntuacion")));
+								rs.getInt("idUsuario")));
 					}
 				}
 
@@ -945,14 +942,13 @@ public class JuegosDAO {
 					juego = new ArrayList<Juego>();
 
 					juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
-							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"), rs.getInt("idUsuario"),
-							rs.getInt("puntuacion")));
+							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"), rs.getInt("idUsuario")));
 
 					while (rs.next()) {
 
 						juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
 								rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
-								rs.getInt("idUsuario"), rs.getInt("puntuacion")));
+								rs.getInt("idUsuario")));
 					}
 				}
 
@@ -992,14 +988,13 @@ public class JuegosDAO {
 					juego = new ArrayList<Juego>();
 
 					juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
-							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"), rs.getInt("idUsuario"),
-							rs.getInt("puntuacion")));
+							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"), rs.getInt("idUsuario")));
 
 					while (rs.next()) {
 
 						juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
 								rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
-								rs.getInt("idUsuario"), rs.getInt("puntuacion")));
+								rs.getInt("idUsuario")));
 					}
 				}
 
@@ -1049,8 +1044,7 @@ public class JuegosDAO {
 					// Coge los datos del usuario que a iniciado sesion de la base de datos
 					rs.first();
 					juego = (new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),
-							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"), rs.getInt("idUsuario"),
-							rs.getInt("puntuacion")));
+							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"), rs.getInt("idUsuario")));
 				}
 
 				rs.close();
@@ -1579,4 +1573,68 @@ public class JuegosDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	//---------------------------------------------------------------------------------------------
+	
+	public void insertValoracion(Integer valoracion, Integer idJuego, Integer idUsuario) {
+		try {
+
+			// metodo
+			Connection connection = new Conexion().conecta();
+
+			if (connection != null) {
+
+				Statement stmt = connection.createStatement();
+
+				String query = "INSERT INTO puntuacion (puntuacion, idJuego, idUsuario) VALUE ('"+valoracion+"','"+idJuego+"','"+idUsuario+"')";
+					
+
+				stmt.executeUpdate(query);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//-----------------------------------------------------------------------------------------------
+	
+	public ArrayList<Puntuacion> listaValoracion(Integer idJuego) {
+		ArrayList<Puntuacion> Cjuego = null;
+		try {
+
+			// metodo
+			Connection connection = new Conexion().conecta();
+			Statement stmt = null;
+
+			if (connection != null) {
+
+				// Si la conexion no es nula que ejecute la query del select con los datos
+				// obtenidos
+				stmt = connection.createStatement();
+				ResultSet rs = stmt.executeQuery("select * from puntuacion where id = "+idJuego+";");
+
+				rs.last();
+				if (rs.getRow() > 0) {
+
+					// Coge los datos del usuario que a iniciado sesion de la base de datos
+					rs.first();
+
+					Cjuego = new ArrayList<Puntuacion>();
+
+					Cjuego.add(new Puntuacion(rs.getInt("id"), rs.getInt("puntuacion"), rs.getInt("idJuego"), rs.getInt("idUsuario")));
+
+					while (rs.next()) {
+
+						Cjuego.add(new Puntuacion(rs.getInt("id"), rs.getInt("puntuacion"), rs.getInt("idJuego"), rs.getInt("idUsuario")));
+					}
+				}
+
+				rs.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return Cjuego;
+	}
+	
 }

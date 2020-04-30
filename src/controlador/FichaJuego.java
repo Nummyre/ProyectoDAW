@@ -23,6 +23,7 @@ import modelo.pojo.Foto;
 import modelo.pojo.Genero;
 import modelo.pojo.Juego;
 import modelo.pojo.Plataforma;
+import modelo.pojo.Puntuacion;
 import modelo.pojo.Usuario;
 
 @WebServlet("/FichaJuego")
@@ -53,8 +54,11 @@ public class FichaJuego extends HttpServlet {
 		ArrayList<Plataforma> juegoP = juegoEJB.plataforma();
 		ArrayList<Usuario> users = userEJB.listaUsuarios();
 		
+		ArrayList<Puntuacion> valoracion = juegoEJB.listaValoracion(id);
+		
 		ArrayList<Comentario> coment = juegoEJB.listaComentarioJuegos();
 		
+		request.setAttribute("valoracion", valoracion);
 		request.setAttribute("users", users);
 		request.setAttribute("plataforma", juegoP);
 		request.setAttribute("genero", juegoG);
