@@ -39,11 +39,13 @@ public class ValoracionJuego extends HttpServlet {
 		
 		String es = request.getParameter("estrellas");
 		String idJ = request.getParameter("idJ");
+		String idU = request.getParameter("idU");
 		
 		Integer id = Integer.parseInt(idJ);
+		Integer idUsu = Integer.parseInt(idU);
 		Integer estrella = Integer.parseInt(es);
 		
-		juegoEJB.updateValoracion(estrella, id);
+		juegoEJB.insertValoracion(estrella, id, idUsu);
 		
 		response.sendRedirect("FichaJuego?id="+id);
 		
