@@ -13,6 +13,7 @@ import modelo.pojo.Genero;
 import modelo.pojo.Guia;
 import modelo.pojo.Juego;
 import modelo.pojo.Plataforma;
+import modelo.pojo.Puntuacion;
 
 @Stateless
 @LocalBean
@@ -277,9 +278,15 @@ public class JuegoEJB {
 		return juegoList.listaAnalisis();
 	}
 	
-	public void updateValoracion(Integer valoracion, Integer id) {
+	public void insertValoracion(Integer valoracion, Integer idJuego, Integer idUsuario ) {
 		JuegosDAO juegoList = new JuegosDAO();
 
-		juegoList.updateValoracion(valoracion, id);
+		juegoList.insertValoracion(valoracion, idJuego, idUsuario);
+	}
+	
+	public ArrayList<Puntuacion> listaValoracion(Integer idJuego) {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.listaValoracion(idJuego);
 	}
 }
