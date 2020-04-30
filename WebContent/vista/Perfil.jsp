@@ -71,16 +71,16 @@
 			out.print("<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">");
 			out.print("<ul class=\"navbar-nav ml-5\">");
 			out.print("<li class=\"nav-item mr-5\">");
-			out.print("<a class=\"nav-link\" href=\"#\">PC</a>");
+			out.print("<a class=\"nav-link\" href=\"Pc\">PC</a>");
 			out.print("</li>");
 			out.print("<li class=\"nav-item mr-5\">");
-			out.print("<a class=\"nav-link\" href=\"#\">Xbox One</a>");
+			out.print("<a class=\"nav-link\" href=\"Xbox\">Xbox One</a>");
 			out.print("</li>");
 			out.print("<li class=\"nav-item mr-5\">");
-			out.print("<a class=\"nav-link\" href=\"#\">Play Station 4</a>");
+			out.print("<a class=\"nav-link\" href=\"PlayS\">Play Station 4</a>");
 			out.print("</li>");
 			out.print("<li class=\"nav-item mr-5\">");
-			out.print("<a class=\"nav-link\" href=\"#\">Nintendo Switch</a>");
+			out.print("<a class=\"nav-link\" href=\"Nintendo\">Nintendo Switch</a>");
 			out.print("</li>");
 			out.print("</ul>");
 			
@@ -130,12 +130,12 @@
 			out.print("<a class=\"dropdown-item\" href=\"Borrar?id="+user.getId()+"\">Borrar ficha Juego</a>");
 			out.print("<div class=\"dropdown-divider\"></div>");
 			out.print("<a class=\"dropdown-item\" href=\"AddGuia\">Añadir guía</a>");
-			out.print("<a class=\"dropdown-item\" href=\"EditarGuia\">Editar guía</a>");
+			out.print("<a class=\"dropdown-item\" href=\"EditarListaGuia?id="+user.getId()+"\">Editar guía</a>");
 			out.print("<a class=\"dropdown-item\" href=\"BorrarListaGuia?id="+user.getId()+"\">Borrar guía</a>");
 			out.print("<hr>");
-			out.print("<a class=\"dropdown-item\" href=\"#\">Añadir análisis</a>");
-			out.print("<a class=\"dropdown-item\" href=\"#\">Editar análisis</a>");
-			out.print("<a class=\"dropdown-item\" href=\"#\">Borrar análisis</a>");
+			out.print("<a class=\"dropdown-item\" href=\"AddAnalisis\">Añadir análisis</a>");
+			out.print("<a class=\"dropdown-item\" href=\"EditarListaAnalisis?id="+user.getId()+"\">Editar análisis</a>");
+			out.print("<a class=\"dropdown-item\" href=\"BorrarListaAnalisis?id="+user.getId()+"\">Borrar análisis</a>");
 			out.print("</div>");
 			out.print("</li>");
 			out.print("</ul>");

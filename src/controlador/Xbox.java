@@ -19,8 +19,8 @@ import modelo.pojo.Juego;
 import modelo.pojo.Usuario;
 
 
-@WebServlet("/Nintendo")
-public class Nintendo extends HttpServlet {
+@WebServlet("/Xbox")
+public class Xbox extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	@EJB
@@ -32,26 +32,21 @@ public class Nintendo extends HttpServlet {
 	@EJB
 	JuegoEJB juegoEJB;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
 		HttpSession session = request.getSession(false);
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
-		
-		 ArrayList<Juego> nintendoList = juegoEJB.nintendoList();
+		 ArrayList<Juego> xboxList = juegoEJB.xboxList();
 		
 
 		request.setAttribute("usuario", usuario);
-		request.setAttribute("nintendoList", nintendoList);
+		request.setAttribute("xboxList", xboxList);
 		
-		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Nintendo.jsp");
+		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Xbox.jsp");
 		rs.forward(request, response);
-		
-		
 	}
 
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		
 	}
 
 }

@@ -1,4 +1,4 @@
-package controlador;
+package controlador.admin.juego;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,43 +15,43 @@ import javax.servlet.http.HttpSession;
 import modelo.ejb.JuegoEJB;
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
+import modelo.pojo.Genero;
 import modelo.pojo.Juego;
 import modelo.pojo.Usuario;
 
 
-@WebServlet("/Nintendo")
-public class Nintendo extends HttpServlet {
+@WebServlet("/Borrar")
+public class Borrar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+ 
+    
 	@EJB
 	UsuariosEJB usuariosEJB;
 
 	@EJB
 	SesionesEJB sesionesEJB;
-	
+
 	@EJB
 	JuegoEJB juegoEJB;
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		HttpSession session = request.getSession(false);
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
+		String iduser = request.getParameter("id");
+		Integer id = Integer.parseInt(iduser);
 		
-		 ArrayList<Juego> nintendoList = juegoEJB.nintendoList();
-		
+		ArrayList<Juego> juego = juegoEJB.listaJuegosPorIdUser(id);
 
 		request.setAttribute("usuario", usuario);
-		request.setAttribute("nintendoList", nintendoList);
-		
-		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Nintendo.jsp");
+		request.setAttribute("listaJuego", juego);
+		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/admin/Borrar.jsp");
 		rs.forward(request, response);
-		
 		
 	}
 
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-	}
 
 }

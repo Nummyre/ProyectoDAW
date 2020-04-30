@@ -3,7 +3,7 @@
             <%@page import="modelo.pojo.Usuario"%>
 <%@page session="false"%>
 <%@page import="java.util.ArrayList"%>
-     <%@page import="modelo.pojo.Juego"%>
+     <%@page import="modelo.pojo.Analisis"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +21,7 @@
 <body>
 <%
 		Usuario user = (Usuario) request.getAttribute("usuario");
-		ArrayList<Juego> listaJuego = (ArrayList<Juego>) request.getAttribute("juego");
+		ArrayList<Analisis> listaJuego = (ArrayList<Analisis>) request.getAttribute("juego");
 	
 		if (user == null) {
 			out.print("<header>");
@@ -131,17 +131,17 @@
 			out.print("<div class=\"container mt-5 p-5\">"); //Empieza container
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col\">");
-			out.print("<h3>Tu lista de juegos añadidos</h3>");
+			out.print("<h3>Tu lista de análisis añadidos</h3>");
 			out.print("</div>");
 			out.print("<div class=\"col\">");
 			out.print("<ul class=\"list-group\">");
-			if(listaJuego != null){
-			for(Juego j : listaJuego){
-			out.print("<li class=\"list-group-item\">"+j.getTitulo()+" <a href=\"Editado?id="+j.getId()+"\"><button type=\"button\" class=\"btn btn-success ml-5\">Editar ficha Juego</button></a></li>");
+			if(listaJuego!=null){
+			for(Analisis a : listaJuego){
+			out.print("<li class=\"list-group-item\">"+a.getTitulo()+" <a href=\"EditadoAnalisis?id="+a.getId()+"\"><button type=\"button\" class=\"btn btn-success ml-5\">Editar Análisis</button></a></li>");
 			}
 			}else{
-				out.print("<h5>¿No tienes juegos? Añade el primero</h5>");
-				out.print("<a href=\"Add\"><button type=\"button\" class=\"btn btn-success ml-5\">Añadir juego</button></a>");
+				out.print("<h5>¿No tienes análisis? Añade el primero</h5>");
+				out.print("<a href=\"AddAnalisis\"><button type=\"button\" class=\"btn btn-success ml-5\">Añadir Análisis</button></a>");
 			}
 			out.print("</ul>");
 			out.print("</div>");

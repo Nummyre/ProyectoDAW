@@ -1,5 +1,6 @@
 package modelo.ejb;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.ejb.LocalBean;
@@ -18,7 +19,7 @@ public class UsuariosEJB {
 		return usuariosDAO.existeUsuario(user, pass);
 	}
 
-	public void insertUsuario(String nombre, String user, String password, String foto, String email, Date fechaAlta) {
+	public void insertUsuario(String nombre, String user, String password, String foto, String email, String fechaAlta) {
 		UsuariosDAO usuariosDAO = new UsuariosDAO();
 
 		usuariosDAO.insertUsuario(nombre, user, password, foto, email, fechaAlta);
@@ -42,4 +43,8 @@ public class UsuariosEJB {
 		usuariosDAO.updatePassUsuario(pass, id);
 	}
 
+	public ArrayList<Usuario> listaUsuarios() {
+		UsuariosDAO usuariosDAO = new UsuariosDAO();
+		return usuariosDAO.listaUsuarios();
+	}
 }

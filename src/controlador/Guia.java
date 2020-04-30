@@ -1,6 +1,7 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -16,34 +17,38 @@ import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
 import modelo.pojo.Usuario;
 
-@WebServlet("/Borrado")
-public class Borrado extends HttpServlet {
+@WebServlet("/Guia")
+public class Guia extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	@EJB
-	JuegoEJB juegoEJB;
-
+       
 	@EJB
 	UsuariosEJB usuariosEJB;
 
 	@EJB
 	SesionesEJB sesionesEJB;
+	
+	@EJB
+	JuegoEJB juegoEJB;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		HttpSession session = request.getSession(false);
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
-
-		String id = request.getParameter("id");
-
-		Integer idJ = Integer.parseInt(id);
-
-		juegoEJB.deleteJuego(idJ);
 		
+		 ArrayList<modelo.pojo.Guia> guias = juegoEJB.listaGuias();
 
-		response.sendRedirect("Borrar?id="+usuario.getId());
+		 
+		request.setAttribute("usuario", usuario);
+		request.setAttribute("guias", guias);
+		
+		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Guia.jsp");
+		rs.forward(request, response);
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 	}
 
 }

@@ -15,14 +15,12 @@ import javax.servlet.http.HttpSession;
 import modelo.ejb.JuegoEJB;
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
-import modelo.pojo.Juego;
 import modelo.pojo.Usuario;
 
 
-@WebServlet("/Nintendo")
-public class Nintendo extends HttpServlet {
+@WebServlet("/Analisis")
+public class Analisis extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
 	@EJB
 	UsuariosEJB usuariosEJB;
 
@@ -37,21 +35,19 @@ public class Nintendo extends HttpServlet {
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
 		
-		 ArrayList<Juego> nintendoList = juegoEJB.nintendoList();
-		
+		 ArrayList<modelo.pojo.Analisis> analisis = juegoEJB.listaAnalisis();
 
+		 
 		request.setAttribute("usuario", usuario);
-		request.setAttribute("nintendoList", nintendoList);
+		request.setAttribute("analisis", analisis);
 		
-		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Nintendo.jsp");
+		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Analisis.jsp");
 		rs.forward(request, response);
-		
-		
 	}
 
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		
 	}
 
 }

@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-            <%@page import="modelo.pojo.Usuario"%>
-<%@page session="false"%>
 <%@page import="java.util.ArrayList"%>
-     <%@page import="modelo.pojo.Juego"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@page import="modelo.pojo.Usuario"%>
+<%@page import="java.util.ArrayList"%>
+<%@page session="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,15 +14,20 @@
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 </head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+	<script type="text/javascript" src="js/Fichas.js"></script>
 </head>
-<body>
-<%
+<body onload="editor()">
+
+	<%
 		Usuario user = (Usuario) request.getAttribute("usuario");
-		ArrayList<Juego> listaJuego = (ArrayList<Juego>) request.getAttribute("juego");
-	
+
 		if (user == null) {
 			out.print("<header>");
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark p-5\">");
@@ -48,8 +53,8 @@
 					"<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Categorías</a>");
 			out.print("<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">");
 			out.print("<a class=\"dropdown-item\" href=\"Login\">TOP 10|Juegos</a>");
-			out.print("<a class=\"dropdown-item\" href=\"Login\">Análisis de videojuegos</a>");
-			out.print("<a class=\"dropdown-item\" href=\"Guia\">Guías de videojuegos</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Analisis\">Análisis</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Guia\">Guías</a>");
 			out.print("<div class=\"dropdown-divider\"></div>");
 			out.print("<a class=\"dropdown-item\" href=\"#\">Contacto</a>");
 			out.print("</div>");
@@ -97,8 +102,8 @@
 					"<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Categorías</a>");
 			out.print("<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">");
 			out.print("<a class=\"dropdown-item\" href=\"#\">TOP 10|Juegos</a>");
-			out.print("<a class=\"dropdown-item\" href=\"#\">Análisis de videojuegos</a>");
-			out.print("<a class=\"dropdown-item\" href=\"#\">Guías de videojuegos</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Analisis\">Análisis</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Guia\">Guías</a>");
 			out.print("<div class=\"dropdown-divider\"></div>");
 			out.print("<a class=\"dropdown-item\" href=\"#\">Contacto</a>");
 			out.print("</div>");
@@ -112,42 +117,79 @@
 			out.print("<form class=\"form-inline ml-5\">");
 			out.print("<div class=\"input-group\">");
 			out.print("<div class=\"input-group-prepend\">");
-			if(user.getFoto().equals("desconocido.txt")){
-			out.print("<img src=\"img/usuari.jpg\" width=\"65\" height=\"55\" class=\"img-circle\">");
-			}else{
-				if (user.getFoto().matches(".+\\.(jpg|png)")){
+			if (user.getFoto().equals("desconocido.txt")) {
+				out.print("<img src=\"img/usuari.jpg\" width=\"65\" height=\"55\" class=\"img-circle\">");
+			} else {
+				if (user.getFoto().matches(".+\\.(jpg|png)")) {
 					out.print("<img src=\"Imagenes/" + user.getFoto() + "\" width=\"60\" height=\"55\"/>");
 				}
 			}
 			out.print("</div>");
 			out.print(
-					"<input type=\"text\" readonly=\"readonly\"  disabled=\"disabled\" class=\"form-control mt-3 ml-2 text-center\" placeholder=\""+user.getUser()+"\" aria-label=\"Username\" aria-describedby=\"basic-addon1\">");
+					"<input type=\"text\" readonly=\"readonly\"  disabled=\"disabled\" class=\"form-control mt-3 ml-2 text-center\" placeholder=\""
+							+ user.getUser() + "\" aria-label=\"Username\" aria-describedby=\"basic-addon1\">");
 			out.print("</div>");
 			out.print("</form>");
 			out.print("</div>");
 			out.print("</nav>");
 			out.print("</header>");
+
+			//container----------------------------------------------
+
+			out.print("<div class=\"container mt-5 p-4 ml-5\">");
+
+			out.print("");
+			out.print("<div class=\"row\"");
+			out.print("<div class=\"col\">");
+			out.print("<h3>Añade una análisis</h3>");
+			out.print("</div>");
+			out.print("</div>");
+			out.print("<hr>");
+
+			//----" 2 row"------
+			out.print("<form method=\"post\" action=\"AddAnalisis\" enctype=\"multipart/form-data\">");
+			out.print("<div class=\"form-row mt-4\"");
+			out.print("<div class=\"col-md-4\">");
+			out.print("</div>");
+
+			out.print("<div class=\"col-md-4\">");
+			out.print("<label>Título</label>");
+			out.print("<input class=\"form-control\" type=\"text\" placeholder=\"Título\" name=\"titulo\">");
+			out.print("</div>");
+
+			//-----------4 row---
+			out.print("<div class=\"form-row\"");
+			out.print("<div class=\"col-md-4\">");
+			out.print("</div>");
+			out.print("<div class=\"col\">");
+			out.print("<div class=\"form-group\">");
+			out.print("<label for=\"editor1\">Texto</label>");
+			out.print("<textarea class=\"form-control\" id=\"editor1\" rows=\"10\" name=\"desc\"></textarea>");
+			out.print("</div>");
+			out.print("</div>");
+			out.print("</div>");
+
+			//------ 5 row ---- 
+			out.print("<div class=\"form-row\"");
+			out.print("<div class=\"col-md-4\">");
+			out.print("<label for=\"exampleFormControlFile1\">Sube una foto para el juego</label>");
+			out.print(
+					"<input type=\"file\" class=\"form-control-file\" id=\"exampleFormControlFile1\" name=\"foto\">");
+			out.print("</div>");
+			out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + user.getId() + "\" name=\"id\">");
+			out.print("<div class=\"col-4 mt-5\">");
+			out.print("<button type=\"submit\" class=\"btn btn-success\">Subir análisis a la lista</button>");
+			out.print("</div>");
+			out.print("</div>");
+
+			out.print("</form>"); //FIN del formulario para añadir juego
 			
-			out.print("<div class=\"container mt-5 p-5\">"); //Empieza container
-			out.print("<div class=\"row\">");
-			out.print("<div class=\"col\">");
-			out.print("<h3>Tu lista de juegos añadidos</h3>");
+			//---------container FIN
 			out.print("</div>");
-			out.print("<div class=\"col\">");
-			out.print("<ul class=\"list-group\">");
-			if(listaJuego != null){
-			for(Juego j : listaJuego){
-			out.print("<li class=\"list-group-item\">"+j.getTitulo()+" <a href=\"Editado?id="+j.getId()+"\"><button type=\"button\" class=\"btn btn-success ml-5\">Editar ficha Juego</button></a></li>");
-			}
-			}else{
-				out.print("<h5>¿No tienes juegos? Añade el primero</h5>");
-				out.print("<a href=\"Add\"><button type=\"button\" class=\"btn btn-success ml-5\">Añadir juego</button></a>");
-			}
-			out.print("</ul>");
-			out.print("</div>");
-			out.print("</div>");
-			out.print("</div>");
+
+			//----------------------------------------------------------
 		}
 	%>
+
 </body>
 </html>

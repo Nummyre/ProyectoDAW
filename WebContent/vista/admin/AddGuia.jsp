@@ -2,8 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="modelo.pojo.Usuario"%>
-<%@page import="modelo.pojo.Genero"%>
-<%@page import="modelo.pojo.Plataforma"%>
 <%@page import="java.util.ArrayList"%>
 <%@page session="false"%>
 <!DOCTYPE html>
@@ -22,13 +20,14 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+	<script type="text/javascript" src="js/Fichas.js"></script>
 </head>
-<body>
+<body onload="editor()">
 
 	<%
 		Usuario user = (Usuario) request.getAttribute("usuario");
-		ArrayList<Genero> juegoList = (ArrayList<Genero>) request.getAttribute("listaJuego");
-		ArrayList<Plataforma> juegoListP = (ArrayList<Plataforma>) request.getAttribute("plataforma");
+
 
 		if (user == null) {
 			out.print("<header>");
@@ -55,8 +54,8 @@
 					"<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Categorías</a>");
 			out.print("<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">");
 			out.print("<a class=\"dropdown-item\" href=\"Login\">TOP 10|Juegos</a>");
-			out.print("<a class=\"dropdown-item\" href=\"Login\">Análisis de videojuegos</a>");
-			out.print("<a class=\"dropdown-item\" href=\"Guia\">Guías de videojuegos</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Analisis\">Análisis</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Guia\">Guías</a>");
 			out.print("<div class=\"dropdown-divider\"></div>");
 			out.print("<a class=\"dropdown-item\" href=\"#\">Contacto</a>");
 			out.print("</div>");
@@ -104,8 +103,8 @@
 					"<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Categorías</a>");
 			out.print("<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">");
 			out.print("<a class=\"dropdown-item\" href=\"#\">TOP 10|Juegos</a>");
-			out.print("<a class=\"dropdown-item\" href=\"#\">Análisis de videojuegos</a>");
-			out.print("<a class=\"dropdown-item\" href=\"#\">Guías de videojuegos</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Analisis\">Análisis</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Guia\">Guías</a>");
 			out.print("<div class=\"dropdown-divider\"></div>");
 			out.print("<a class=\"dropdown-item\" href=\"#\">Contacto</a>");
 			out.print("</div>");
@@ -203,10 +202,10 @@
 			out.print("<div class=\"form-row\"");
 			out.print("<div class=\"col-md-4\">");
 			out.print("</div>");
-			out.print("<div class=\"col-md-4\">");
+			out.print("<div class=\"col\">");
 			out.print("<div class=\"form-group\">");
-			out.print("<label for=\"Textarea1\">Texto</label>");
-			out.print("<textarea class=\"form-control\" id=\"Textarea1\" rows=\"10\" name=\"desc\"></textarea>");
+			out.print("<label for=\"editor1\">Texto</label>");
+			out.print("<textarea class=\"form-control\" id=\"editor1\" rows=\"10\" cols=\"40\" name=\"desc\"></textarea>");
 			out.print("</div>");
 			out.print("</div>");
 			out.print("</div>");

@@ -136,8 +136,13 @@ ArrayList<Guia> listaJuego = (ArrayList<Guia>) request.getAttribute("listaJuego"
 			out.print("</div>");
 			out.print("<div class=\"col\">");
 			out.print("<ul class=\"list-group\">");
+			if(listaJuego!=null){
 			for(Guia g : listaJuego){
 			out.print("<li class=\"list-group-item\">"+g.getTitulo()+" <a href=\"BorradoGuia?id="+g.getId()+"\"><button type=\"button\" class=\"btn btn-success ml-5\">Borrar Guia</button></a></li>");
+			}
+			}else{
+				out.print("<h5>¿No tienes guías? Añade el primero</h5>");
+				out.print("<a href=\"AddGuia\"><button type=\"button\" class=\"btn btn-success ml-5\">Añadir guía</button></a>");
 			}
 			out.print("</ul>");
 			out.print("</div>");
