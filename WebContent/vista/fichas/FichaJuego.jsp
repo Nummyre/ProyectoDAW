@@ -24,8 +24,10 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+	<script type="text/javascript" src="js/Fichas.js"></script>
 </head>
-<body>
+<body onload="editor()">
 	<%
 		Usuario user = (Usuario) request.getAttribute("usuario");
 		Juego juego = (Juego) request.getAttribute("juego");
@@ -60,8 +62,8 @@
 					"<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Categorías</a>");
 			out.print("<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">");
 			out.print("<a class=\"dropdown-item\" href=\"Login\">TOP 10|Juegos</a>");
-			out.print("<a class=\"dropdown-item\" href=\"Login\">Análisis de videojuegos</a>");
-			out.print("<a class=\"dropdown-item\" href=\"Guia\">Guías de videojuegos</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Analisis\">Análisis</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Guia\">Guías</a>");
 			out.print("<div class=\"dropdown-divider\"></div>");
 			out.print("<a class=\"dropdown-item\" href=\"#\">Contacto</a>");
 			out.print("</div>");
@@ -127,8 +129,8 @@
 					"<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Categorías</a>");
 			out.print("<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">");
 			out.print("<a class=\"dropdown-item\" href=\"#\">TOP 10|Juegos</a>");
-			out.print("<a class=\"dropdown-item\" href=\"#\">Análisis de videojuegos</a>");
-			out.print("<a class=\"dropdown-item\" href=\"#\">Guías de videojuegos</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Analisis\">Análisis</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Guia\">Guías</a>");
 			out.print("<div class=\"dropdown-divider\"></div>");
 			out.print("<a class=\"dropdown-item\" href=\"#\">Contacto</a>");
 			out.print("</div>");
@@ -242,7 +244,7 @@
 			out.print("</div>");
 			out.print("<div class=\"row mt-5\">");
 			out.print("<div class=\"col\">");
-			out.print("<textarea name=\"com\" rows=\"10\" cols=\"40\"></textarea>"); //input comentario
+			out.print("<textarea id=\"editor1\" name=\"com\" rows=\"10\" cols=\"40\"></textarea>"); //input comentario
 			out.print("</div>");
 			out.print("</div>");
 			out.print("<button type=\"submit\" class=\"btn btn-success ml-5 mt-2 mb-5\">Comentar</button>");
@@ -376,7 +378,7 @@
 				out.print("</div>");
 				out.print("<div class=\"row mt-5\">");
 				out.print("<div class=\"col\">");
-				out.print("<textarea name=\"com\" rows=\"10\" cols=\"40\"></textarea>"); //input comentario
+				out.print("<textarea id=\"editor1\" name=\"com\" rows=\"10\" cols=\"40\"></textarea>"); //input comentario
 				out.print("</div>");
 				out.print("</div>");
 				out.print("<button type=\"submit\" class=\"btn btn-success ml-5 mt-2 mb-5\">Comentar</button>");

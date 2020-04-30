@@ -22,8 +22,11 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	
+	<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+	<script type="text/javascript" src="js/Fichas.js"></script>
 </head>
-<body>
+<body onload="editor()">
 	<%
 		Usuario user = (Usuario) request.getAttribute("usuario");
 		Guia guia = (Guia) request.getAttribute("guia");
@@ -106,7 +109,7 @@
 			
 			out.print("<div class=\"container mt-5 p-5\">");//Principio de container
 			if(coment != null){
-			out.print("<div class=\"row\">");
+			out.print("<div class=\"row mb-5\">");
 			out.print("<div class=\"col\">");
 			out.print("<h2>" + guia.getTitulo() + "</h2>"); //getTitulo
 			out.print("</div>");
@@ -122,9 +125,7 @@
 			for (Foto f : foto) {
 				if (guia.getId() == f.getId()) {
 					out.print("<img src=\"Imagenes/" + f.getFoto()
-							+ "\" width=\"300\" height=\"200\" class=\"rounded mx-auto d-block\">"); //getFoto
-				} else {
-					out.print("<p>Error</p>"); //getFoto
+							+ "\" width=\"300\" height=\"200\" class=\"mt-5\">"); //getFoto
 				}
 			}
 			out.print("</div>");
@@ -206,9 +207,7 @@
 					if (guia.getId() == f.getId()) {
 						out.print("<img src=\"Imagenes/" + f.getFoto()
 								+ "\" width=\"300\" height=\"200\" class=\"rounded mx-auto d-block\">"); //getFoto
-					} else {
-						out.print("<p>Error</p>"); //getFoto
-					}
+					} 
 				}
 				out.print("</div>");
 				out.print("<div class=\"col mt-3\">");
@@ -344,28 +343,15 @@
 				if (guia.getId() == f.getId()) {
 					out.print("<img src=\"Imagenes/" + f.getFoto()
 							+ "\" width=\"300\" height=\"200\" class=\"rounded mx-auto d-block\">"); //getFoto
-				} else {
-					out.print("<p>Error</p>"); //getFoto
-				}
+				} 
 			}
 			out.print("</div>");
-			out.print("<div class=\"col mt-3\">");
+			out.print("<div class=\"col mt-3 mr-5\">");
 			out.print("<p>" +guia.getTexto()+ "</p>"); //getTexto
 			out.print("</div>");
 			out.print("</div>");
-
-			out.print("<div class=\"row mt-5\">");
-			out.print("<div class=\"col\">");
-
-			int totalComentarios = coment.size(); //total de comentarios que hay
-
-			out.print("<h4>Comentarios " + totalComentarios + "</h4>"); //Comentarios
-			out.print("</div>");
-			out.print("</div>");
-			out.print("<div class=\"row mt-5\">");
-			out.print("<div class=\"col\">");
 			out.print("<div class=\"row\">");
-			out.print("<div class=\"col\">");
+			out.print("<div class=\"col ml-5\">");
 		
 			for (Usuario us : users) {
 				if(us.getId()==guia.getIdUsuario()){
@@ -375,12 +361,24 @@
 			
 			out.print("</div>");
 			out.print("</div>");
-			out.print("<textarea name=\"com\" rows=\"10\" cols=\"40\"></textarea>"); //input comentario
+			out.print("<div class=\"row mt-5\">");
+			out.print("<div class=\"col ml-5\">");
+
+			int totalComentarios = coment.size(); //total de comentarios que hay
+
+			out.print("<h4>Comentarios " + totalComentarios + "</h4>"); //Comentarios
+			out.print("</div>");
+			out.print("</div>");
+			out.print("<div class=\"row mt-5\">");
+			out.print("<div class=\"col\">");
+			out.print("<div class=\"row\">");
+			out.print("<div class=\"col ml-5\">");
+			out.print("<textarea id=\"editor1\" name=\"com\" rows=\"1\" cols=\"20\"></textarea>"); //input comentario
 			out.print("</div>");
 			out.print("</div>");
 			out.print("<button type=\"submit\" class=\"btn btn-success ml-5 mt-2 mb-5\">Comentar</button>");
 			out.print("<div class=\"row\">");
-			out.print("<div class=\"col\">");
+			out.print("<div class=\"col ml-5\">");
 			
 	
 			if (user.getAdministrador() == 1) {
@@ -460,8 +458,6 @@
 				out.print("<hr>");
 				out.print("</div>");//fin 1º row
 				out.print("<div class=\"row\">");
-				out.print("<div class=\"col\"></div>");
-				out.print("<div class=\"col\"></div>");
 		
 				out.print("</div>");
 				out.print("<div class=\"row\">");
@@ -470,12 +466,10 @@
 					if (guia.getId() == f.getId()) {
 						out.print("<img src=\"Imagenes/" + f.getFoto()
 								+ "\" width=\"300\" height=\"200\" class=\"rounded mx-auto d-block\">"); //getFoto
-					} else {
-						out.print("<p>Error</p>"); //getFoto
-					}
+					} 
 				}
 				out.print("</div>");
-				out.print("<div class=\"col mt-3\">");
+				out.print("<div class=\"col mt-3 mr-5\">");
 				out.print("<p>" + guia.getTexto() + "</p>"); //getTexto
 				out.print("</div>");
 				out.print("</div>");
@@ -497,7 +491,8 @@
 				out.print("</div>");
 				out.print("<div class=\"row mt-5\">");
 				out.print("<div class=\"col\">");
-				out.print("<textarea name=\"com\" rows=\"10\" cols=\"40\"></textarea>"); //input comentario
+				out.print("<div class=\"col\"></div>");
+				out.print("<textarea  id=\"editor1\" name=\"com\" rows=\"1\" cols=\"20\"></textarea>"); //input comentario
 				out.print("</div>");
 				out.print("</div>");
 				out.print("<button type=\"submit\" class=\"btn btn-success ml-5 mt-2 mb-5\">Comentar</button>");

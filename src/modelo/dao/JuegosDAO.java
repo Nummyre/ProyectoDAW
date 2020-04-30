@@ -1355,7 +1355,7 @@ public class JuegosDAO {
 			Connection connection = new Conexion().conecta();
 
 			String query = "INSERT INTO comentario_analisis (comentario, fecha, meGusta, noMeGusta, idUsuario, idAnalisis) " + "VALUES ('" + comentario
-					+ "','" + fecha + "','0', '0', '"+idUsuario+"', '"+idAnalisis+"');";
+					+ "','" + fecha + "',0, 0, '"+idUsuario+"', '"+idAnalisis+"');";
 
 			try (Statement stmt = connection.createStatement()) {
 
