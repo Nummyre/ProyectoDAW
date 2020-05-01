@@ -16,6 +16,7 @@ import modelo.ejb.JuegoEJB;
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
 import modelo.pojo.Juego;
+import modelo.pojo.Puntuacion;
 import modelo.pojo.Usuario;
 
 @WebServlet("/ValoracionJuego")
@@ -33,24 +34,46 @@ public class ValoracionJuego extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+//		HttpSession session = request.getSession(false);
+//
+//		Usuario usuario = sesionesEJB.usuarioLogeado(session);
+//		
+//		String es = request.getParameter("estrellas");
+//		String idJ = request.getParameter("idJ");
+//		String idU = request.getParameter("idU");
+//		System.out.println(idJ + "idJuego");
+//		System.out.println(idU + "idUsuario");
+//		System.out.println(es + "idJuego");
+//		Integer id = Integer.parseInt(idJ);
+//		Integer idUsu = Integer.parseInt(idU);
+//		Integer estrella = Integer.parseInt(es);
+//		
+//	
+//		
+//		juegoEJB.insertValoracion(estrella, id, idUsu);
+//		
+//		response.sendRedirect("FichaJuego?id="+id);
+		
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
 		
 		String es = request.getParameter("estrellas");
 		String idJ = request.getParameter("idJ");
-		String idU = request.getParameter("idU");
+		String idU = request.getParameter("idU");	
 		
 		Integer id = Integer.parseInt(idJ);
 		Integer idUsu = Integer.parseInt(idU);
 		Integer estrella = Integer.parseInt(es);
-		
+				
 		juegoEJB.insertValoracion(estrella, id, idUsu);
 		
 		response.sendRedirect("FichaJuego?id="+id);
 		
+
 	}
-
-	
-
 }
