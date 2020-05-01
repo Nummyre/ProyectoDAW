@@ -1598,8 +1598,8 @@ public class JuegosDAO {
 	
 	//-----------------------------------------------------------------------------------------------
 	
-	public ArrayList<Puntuacion> listaValoracion(Integer idJuego) {
-		ArrayList<Puntuacion> Cjuego = null;
+	public Puntuacion listaValoracion(Integer idJuego) {
+		Puntuacion Cjuego = null;
 		try {
 
 			// metodo
@@ -1611,7 +1611,7 @@ public class JuegosDAO {
 				// Si la conexion no es nula que ejecute la query del select con los datos
 				// obtenidos
 				stmt = connection.createStatement();
-				ResultSet rs = stmt.executeQuery("select * from puntuacion where id = "+idJuego+";");
+				ResultSet rs = stmt.executeQuery("select avg(puntuacion) as valoracion, id, puntuacion, idJuego, idUsuario from puntuacion where idJuego = "+idJuego+";");
 
 				rs.last();
 				if (rs.getRow() > 0) {
@@ -1619,14 +1619,8 @@ public class JuegosDAO {
 					// Coge los datos del usuario que a iniciado sesion de la base de datos
 					rs.first();
 
-					Cjuego = new ArrayList<Puntuacion>();
-
-					Cjuego.add(new Puntuacion(rs.getInt("id"), rs.getInt("puntuacion"), rs.getInt("idJuego"), rs.getInt("idUsuario")));
-
-					while (rs.next()) {
-
-						Cjuego.add(new Puntuacion(rs.getInt("id"), rs.getInt("puntuacion"), rs.getInt("idJuego"), rs.getInt("idUsuario")));
-					}
+					Cjuego = (new Puntuacion(rs.getInt("id"), rs.getInt("puntuacion"), rs.getInt("idJuego"), rs.getInt("idUsuario"), rs.getDouble("valoracion")));
+			
 				}
 
 				rs.close();

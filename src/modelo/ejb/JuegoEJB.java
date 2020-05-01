@@ -284,7 +284,7 @@ public class JuegoEJB {
 		juegoList.insertValoracion(valoracion, idJuego, idUsuario);
 	}
 	
-	public ArrayList<Puntuacion> listaValoracion(Integer idJuego) {
+	public Puntuacion listaValoracion(Integer idJuego) {
 		JuegosDAO juegoList = new JuegosDAO();
 
 		return juegoList.listaValoracion(idJuego);
