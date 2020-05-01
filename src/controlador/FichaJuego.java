@@ -54,7 +54,7 @@ public class FichaJuego extends HttpServlet {
 		ArrayList<Plataforma> juegoP = juegoEJB.plataforma();
 		ArrayList<Usuario> users = userEJB.listaUsuarios();
 		
-		ArrayList<Puntuacion> valoracion = juegoEJB.listaValoracion(id);
+		Puntuacion valoracion = juegoEJB.listaValoracion(id);
 		
 		ArrayList<Comentario> coment = juegoEJB.listaComentarioJuegos();
 		

@@ -38,7 +38,7 @@
 		ArrayList<Foto> foto = (ArrayList<Foto>) request.getAttribute("fotoJuego");
 		ArrayList<Comentario> coment = (ArrayList<Comentario>) request.getAttribute("coment");
 		ArrayList<Usuario> users = (ArrayList<Usuario>) request.getAttribute("users");
-		ArrayList<Puntuacion> puntuacion = (ArrayList<Puntuacion>) request.getAttribute("valoracion");
+		Puntuacion puntuacion = (Puntuacion) request.getAttribute("valoracion");
 
 		if (user == null) {
 			out.print("<header>");
@@ -192,15 +192,11 @@
 			out.print("<h2>" + juego.getTitulo() + "</h2>"); //getTitulo
 			out.print("</div>");
 			out.print("<div class=\"col\"></div>");
-			for(Puntuacion p : puntuacion){//---------------------------------MEDIA PUNTUACION
-				double media = 0.0;
-				media = media + p.getPuntuacion();
-				media = media / p.getPuntuacion();
-			if (p.getPuntuacion() != null) {
-				out.print("<div class=\"col-sm-3 text-right\"><h3>"+Math.round(media)+"/10</h3></div>");
+			//---------------------------------MEDIA PUNTUACION
+			if (puntuacion.getPuntuacion() != null) {
+				out.print("<div class=\"col-sm-3 text-right\"><h3>"+Math.round(puntuacion.getValoracion())+"/10</h3></div>");
 			} else {
-				out.print("<div class=\"col-sm-3 text-right\"><h3>0/10</h3></div>");
-			}
+				out.print("<div class=\"col-sm-3 text-right\"><h3>0/10</h3></div>");	
 			}
 			out.print("<div class=\"col-sm-3 mr-5\">");
 			out.print("<form method=\"get\" action=\"ValoracionJuego\"");
@@ -356,15 +352,12 @@
 				out.print("<h2>" + juego.getTitulo() + "</h2>"); //getTitulo
 				out.print("</div>");
 				out.print("<div class=\"col\"></div>");
-				for(Puntuacion p : puntuacion){ //---------------------------------MEDIA PUNTUACION
-					double media = 0.0;
-					media = media + p.getPuntuacion();
-					media = media / p.getPuntuacion();
-					if (p.getPuntuacion() != null) {
-					out.print("<div class=\"col-sm-3 text-right\"><h3>"+Math.round(media)+"/10</h3></div>");
+				//---------------------------------MEDIA PUNTUACION
+					if (puntuacion.getPuntuacion() != null) {
+					out.print("<div class=\"col-sm-3 text-right\"><h3>"+Math.round(puntuacion.getValoracion())+"/10</h3></div>");
 				} else {
 					out.print("<div class=\"col-sm-3 text-right\"><h3>0/10</h3></div>");
-				}
+				
 				}
 				out.print("<div class=\"col-sm-3 mr-5\">");
 				out.print("<form method=\"get\" action=\"ValoracionJuego\"");
