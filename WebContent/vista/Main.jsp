@@ -44,7 +44,7 @@
 			out.print(
 					"<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Categorías</a>");
 			out.print("<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">");
-			out.print("<a class=\"dropdown-item\" href=\"Login\">TOP 10|Juegos</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Top10\">TOP 10|Juegos</a>");
 			out.print("<a class=\"dropdown-item\" href=\"Analisis\">Análisis</a>");
 			out.print("<a class=\"dropdown-item\" href=\"Guia\">Guías</a>");
 			out.print("<div class=\"dropdown-divider\"></div>");
@@ -112,7 +112,7 @@
 			out.print(
 					"<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Categorías</a>");
 			out.print("<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">");
-			out.print("<a class=\"dropdown-item\" href=\"#\">TOP 10|Juegos</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Top10\">TOP 10|Juegos</a>");
 			out.print("<a class=\"dropdown-item\" href=\"Analisis\">Análisis</a>");
 			out.print("<a class=\"dropdown-item\" href=\"Guia\">Guías</a>");
 			out.print("<div class=\"dropdown-divider\"></div>");
