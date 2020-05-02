@@ -14,10 +14,22 @@ import modelo.pojo.Guia;
 import modelo.pojo.Juego;
 import modelo.pojo.Plataforma;
 import modelo.pojo.Puntuacion;
+import modelo.pojo.Top10;
 
 @Stateless
 @LocalBean
 public class JuegoEJB {
+	
+	public ArrayList<Top10> listaTop10Plataformas(Integer id) {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.listaTop10Plataformas(id);
+	}
+	public ArrayList<Top10> listaTop10() {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.listaTop10();
+	}
 
 	public ArrayList<Juego> listaJuego() {
 		JuegosDAO juegoList = new JuegosDAO();

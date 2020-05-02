@@ -14,6 +14,7 @@ import modelo.pojo.Guia;
 import modelo.pojo.Juego;
 import modelo.pojo.Plataforma;
 import modelo.pojo.Puntuacion;
+import modelo.pojo.Top10;
 
 public class JuegosDAO {
 
@@ -1621,6 +1622,94 @@ public class JuegosDAO {
 
 					Cjuego = (new Puntuacion(rs.getInt("id"), rs.getInt("puntuacion"), rs.getInt("idJuego"), rs.getInt("idUsuario"), rs.getDouble("valoracion")));
 			
+				}
+
+				rs.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return Cjuego;
+	}
+	//-----------------------------------------------------------------------------------------
+	public ArrayList<Top10> listaTop10() {
+		ArrayList<Top10> Cjuego = null;
+		try {
+
+			// metodo
+			Connection connection = new Conexion().conecta();
+			Statement stmt = null;
+
+			if (connection != null) {
+
+				// Si la conexion no es nula que ejecute la query del select con los datos
+				// obtenidos
+				stmt = connection.createStatement();
+				ResultSet rs = stmt.executeQuery("select DISTINCT avg(puntuacion) as valoracion, juego.id, juego.titulo, genero.nombre as genero, plataforma.nombre as plataforma, juego.anyo, genero.id as idGenero, plataforma.id as idPlataforma from juego inner join puntuacion on  puntuacion.idJuego = juego.id" + 
+						"    inner join plataforma on juego.idPlataforma = plataforma.id" + 
+						"    inner join genero on juego.idGenero = genero.id" + 
+						"    group by puntuacion order by valoracion <10;");
+
+				rs.last();
+				if (rs.getRow() > 0) {
+
+					// Coge los datos del usuario que a iniciado sesion de la base de datos
+					rs.first();
+
+					Cjuego = new ArrayList<Top10>();
+
+					Cjuego.add(new Top10(rs.getInt("id"), rs.getString("titulo"), rs.getInt("anyo"),
+							rs.getString("genero"), rs.getString("plataforma"), rs.getInt("valoracion"), rs.getInt("idGenero"), rs.getInt("idPlataforma")));
+
+					while (rs.next()) {
+
+						Cjuego.add(new Top10(rs.getInt("id"), rs.getString("titulo"), rs.getInt("anyo"),
+								rs.getString("genero"), rs.getString("plataforma"), rs.getInt("valoracion"), rs.getInt("idGenero"), rs.getInt("idPlataforma")));
+					}
+				}
+
+				rs.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return Cjuego;
+	}
+	//------------------------------------------------------------------------------
+	public ArrayList<Top10> listaTop10Plataformas(Integer id) {
+		ArrayList<Top10> Cjuego = null;
+		try {
+
+			// metodo
+			Connection connection = new Conexion().conecta();
+			Statement stmt = null;
+
+			if (connection != null) {
+
+				// Si la conexion no es nula que ejecute la query del select con los datos
+				// obtenidos
+				stmt = connection.createStatement();
+				ResultSet rs = stmt.executeQuery("select DISTINCT avg(puntuacion) as valoracion, juego.id, juego.titulo, genero.nombre as genero, plataforma.nombre as plataforma, juego.anyo, genero.id as idGenero, plataforma.id as idPlataforma from juego inner join puntuacion on  puntuacion.idJuego = juego.id" + 
+						"    inner join plataforma on juego.idPlataforma = plataforma.id AND plataforma.id = "+id+ 
+						"    inner join genero on juego.idGenero = genero.id" + 
+						"    group by puntuacion order by valoracion <10;");
+
+				rs.last();
+				if (rs.getRow() > 0) {
+
+					// Coge los datos del usuario que a iniciado sesion de la base de datos
+					rs.first();
+
+					Cjuego = new ArrayList<Top10>();
+
+					Cjuego.add(new Top10(rs.getInt("id"), rs.getString("titulo"), rs.getInt("anyo"),
+							rs.getString("genero"), rs.getString("plataforma"), rs.getInt("valoracion"), rs.getInt("idGenero"), rs.getInt("idPlataforma")));
+
+					while (rs.next()) {
+
+						Cjuego.add(new Top10(rs.getInt("id"), rs.getString("titulo"), rs.getInt("anyo"),
+								rs.getString("genero"), rs.getString("plataforma"), rs.getInt("valoracion"), rs.getInt("idGenero"), rs.getInt("idPlataforma")));
+					}
 				}
 
 				rs.close();
