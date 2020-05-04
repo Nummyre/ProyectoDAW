@@ -1,4 +1,4 @@
-package controlador;
+package controlador.top10;
 
 import java.io.IOException;
 import java.util.ArrayList;

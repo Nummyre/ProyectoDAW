@@ -47,6 +47,7 @@
 			out.print("<a class=\"dropdown-item\" href=\"Top10\">TOP 10|Juegos</a>");
 			out.print("<a class=\"dropdown-item\" href=\"Analisis\">Análisis</a>");
 			out.print("<a class=\"dropdown-item\" href=\"Guia\">Guías</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Comunidad\">Comunidad</a>");
 			out.print("<div class=\"dropdown-divider\"></div>");
 			out.print("<a class=\"dropdown-item\" href=\"#\">Contacto</a>");
 			out.print("</div>");
@@ -115,6 +116,7 @@
 			out.print("<a class=\"dropdown-item\" href=\"Top10\">TOP 10|Juegos</a>");
 			out.print("<a class=\"dropdown-item\" href=\"Analisis\">Análisis</a>");
 			out.print("<a class=\"dropdown-item\" href=\"Guia\">Guías</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Comunidad\">Comunidad</a>");
 			out.print("<div class=\"dropdown-divider\"></div>");
 			out.print("<a class=\"dropdown-item\" href=\"#\">Contacto</a>");
 			out.print("</div>");

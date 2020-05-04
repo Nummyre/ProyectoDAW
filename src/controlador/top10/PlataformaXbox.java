@@ -19,8 +19,8 @@ import modelo.pojo.Foto;
 import modelo.pojo.Usuario;
 
 
-@WebServlet("/PlataformaPc")
-public class PlataformaPc extends HttpServlet {
+@WebServlet("/PlataformaXbox")
+public class PlataformaXbox extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	@EJB
@@ -31,9 +31,7 @@ public class PlataformaPc extends HttpServlet {
 	
 	@EJB
 	JuegoEJB juegoEJB;
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		HttpSession session = request.getSession(false);
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
@@ -49,13 +47,13 @@ public class PlataformaPc extends HttpServlet {
 			request.setAttribute("usuario", usuario);
 			request.setAttribute("top", top);
 			
-			RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/top10/Top10Pc.jsp");
+			RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/top10/Top10Xbox.jsp");
 			rs.forward(request, response);
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+
 	}
 
 }

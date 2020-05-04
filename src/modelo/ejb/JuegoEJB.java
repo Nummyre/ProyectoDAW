@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 import modelo.dao.JuegosDAO;
 import modelo.pojo.Analisis;
 import modelo.pojo.Comentario;
+import modelo.pojo.Comunidad;
 import modelo.pojo.Foto;
 import modelo.pojo.Genero;
 import modelo.pojo.Guia;
@@ -300,5 +301,17 @@ public class JuegoEJB {
 		JuegosDAO juegoList = new JuegosDAO();
 
 		return juegoList.listaValoracion(idJuego);
+	}
+	
+	public ArrayList<Comunidad> listaHilos(){
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.listaHilos();
+	}
+	
+	public int insertHilo(String titulo, String hilo, String fecha, Integer idUsuario, String foto) {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.insertHilo(titulo, hilo, fecha, idUsuario, foto);
 	}
 }

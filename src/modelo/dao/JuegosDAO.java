@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import modelo.pojo.Analisis;
 import modelo.pojo.Comentario;
+import modelo.pojo.Comunidad;
 import modelo.pojo.Foto;
 import modelo.pojo.Genero;
 import modelo.pojo.Guia;
@@ -1718,6 +1719,79 @@ public class JuegosDAO {
 			e.printStackTrace();
 		}
 		return Cjuego;
+	}
+	
+	//-------------------------------------------------------------------------------------
+	
+	public ArrayList<Comunidad> listaHilos(){
+		ArrayList<Comunidad> comunidad = null;
+		try {
+
+			// metodo
+			Connection connection = new Conexion().conecta();
+			Statement stmt = null;
+
+			if (connection != null) {
+
+				// Si la conexion no es nula que ejecute la query del select con los datos
+				// obtenidos
+				stmt = connection.createStatement();
+				ResultSet rs = stmt.executeQuery("select * from comunidad;");
+
+				rs.last();
+				if (rs.getRow() > 0) {
+
+					// Coge los datos del usuario que a iniciado sesion de la base de datos
+					rs.first();
+
+					comunidad = new ArrayList<Comunidad>();
+
+					comunidad.add(new Comunidad(rs.getInt("id"), rs.getString("titulo"), rs.getString("hilo"),
+							rs.getString("fecha"), rs.getInt("idUsuario"), rs.getString("foto")));
+
+					while (rs.next()) {
+						comunidad.add(new Comunidad(rs.getInt("id"), rs.getString("titulo"), rs.getString("hilo"),
+								rs.getString("fecha"), rs.getInt("idUsuario"),rs.getString("foto")));
+					}
+				}
+
+				rs.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return comunidad;
+	}
+	
+	
+	//------------------------------------------------------------------------------------
+	
+	public int insertHilo(String titulo, String hilo, String fecha, Integer idUsuario, String foto) {
+		int rowID = 0;
+		try {
+			Connection connection = new Conexion().conecta();
+
+			String query = "INSERT INTO comunidad (titulo, hilo, idUsuario, fecha) " + "VALUES ('" + titulo
+					+ "','" + hilo + "','"+fecha+"', '"+idUsuario+"', '"+foto+"');";
+
+			try (Statement stmt = connection.createStatement()) {
+
+				stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+				ResultSet rs = stmt.getGeneratedKeys();
+
+				if (rs.next()) {
+					rowID = rs.getInt(1);
+
+				}
+			} catch (Exception e) {
+
+			}
+			connection.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rowID;
 	}
 	
 }

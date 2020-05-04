@@ -1,4 +1,4 @@
-package controlador;
+package controlador.plataformas;
 
 import java.io.IOException;
 import java.util.ArrayList;

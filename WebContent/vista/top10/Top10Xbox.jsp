@@ -102,7 +102,7 @@
 			out.print("<div class=\"container mt-5 p-4 ml-5\">");
 			out.print("<div class=\"row\"");
 			out.print("<div class=\"col\">");
-			out.print("<h3>Top10 | Juegos Pc</h3>");
+			out.print("<h3>Top10 | Juegos Xbox</h3>");
 			out.print("</div>");
 			out.print("</div>");
 			out.print("<hr>");
@@ -263,7 +263,7 @@
 				
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col\">");
-			out.print("<h3>Top10 | Juegos Pc</h3>");
+			out.print("<h3>Top10 | Juegos Xbox</h3>");
 			out.print("</div>");
 			out.print("</div>");
 			out.print("<hr>");

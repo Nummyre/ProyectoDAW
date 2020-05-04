@@ -1,4 +1,4 @@
-package controlador;
+package controlador.fichas;
 
 import java.io.IOException;
 import java.text.DateFormat;
