@@ -415,7 +415,7 @@
 				
 			}else {
 				//for
-					out.print("<h3>Se el primero en comentar</h3");
+					out.print("<h3>Se el primero en comentar</h3>");
 				int contador = 1;
 			
 					for (Comentario co : coment) {
