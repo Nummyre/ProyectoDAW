@@ -401,7 +401,7 @@
 										"<p class=\"text-dark\">" + us.getUser() + " - " + co.getFecha() + "</p>");
 								out.print("<br>");
 								out.print("<pre class=\"mr-5\">" + co.getComentario() + "</pre>");
-								out.print("<a href=\"BorrarComentarioGuia?id=" + co.getId() + "&idJ="
+								out.print("<a href=\"BorrarComentarioAnalisis?id=" + co.getId() + "&idJ="
 										+ analisis.getId()
 										+ "\" class=\"align-self-end ml-auto\"><button type=\"button\" class=\"btn btn-success mt-2 mb-5\">Borrar</button></a>");
 								out.print("</div>");
@@ -415,7 +415,7 @@
 				
 			}else {
 				//for
-					out.print("<h3>Se el primero en comentar</h3");
+					out.print("<h3>Se el primero en comentar</h3>");
 				int contador = 1;
 			
 					for (Comentario co : coment) {

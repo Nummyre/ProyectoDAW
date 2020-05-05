@@ -51,7 +51,7 @@
 			out.print(
 					"<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Categorías</a>");
 			out.print("<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">");
-			out.print("<a class=\"dropdown-item\" href=\"Top10\">TOP 10|Juegos</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Top10\">TOP 10 | Juegos</a>");
 			out.print("<a class=\"dropdown-item\" href=\"Analisis\">Análisis</a>");
 			out.print("<a class=\"dropdown-item\" href=\"Guia\">Guías</a>");
 			out.print("<div class=\"dropdown-divider\"></div>");
@@ -123,31 +123,10 @@
 			out.print("</div>");
 			out.print("<hr>");
 			out.print("<div class=\"form-row mt-4\">");
-			out.print("<div class=\"col-md-4\">");
-			out.print("</div>");
 			//----TABLA------------------------------
-			out.print("<div class=\"col-md-4\">");
+			out.print("<div class=\"col\">");
 
-			if(comunidad!=null){
-			for(Comunidad c : comunidad){
-				for (Usuario us : users) {
-					if (!user.getFoto().equals("desconocido.txt")) {
-				out.print("<div class=\"card mt-3 bg-light text-white w-50\">");
-				out.print("<div class=\"card-body\"><h2 class=\"text-dark\"></h2><img src=\"Imagenes/" + us.getFoto()+ "\" width=\"150\" height=\"100\" class=\"mr-5\">");//comentario
-					}else{
-						out.print("<div class=\"card mt-3 bg-light text-white w-50\">");
-						out.print("<div class=\"card-body\"><h2 class=\"text-dark\"></h2><img src=\"img/usuari.jpg\" width=\"150\" height=\"100\" class=\"mr-5\">");//comentario
-					}
-					out.print(
-							"<p class=\"text-dark\">" + us.getUser() + " - " + c.getFecha() + "</p>");
-					out.print("<br>");
-					out.print("<a href=\"FichaHilo?id="+c.getId()+"><h3 class=\"mr-5\">" + c.getTitulo() + "</h3></a>");
-					out.print("</div>");
-					out.print("</div>");
-				}
-				
-				}
-			}
+			out.print("<p>¿Quieres colaborar en nuestra comunidad? Sí no tienes una cuenta registrate en nuestra web o si ya tienes una cuenta inicia sesión</p>");
 
 			//-----------------------
 			out.print("</div>");
@@ -179,7 +158,7 @@
 			out.print(
 					"<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Categorías</a>");
 			out.print("<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">");
-			out.print("<a class=\"dropdown-item\" href=\"Top10\">TOP 10|Juegos</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Top10\">TOP 10 | Juegos</a>");
 			out.print("<a class=\"dropdown-item\" href=\"Analisis\">Análisis</a>");
 			out.print("<a class=\"dropdown-item\" href=\"Guia\">Guías</a>");
 			out.print("<div class=\"dropdown-divider\"></div>");
@@ -252,7 +231,7 @@
 			out.print("</div>");
 			out.print("<div class=\"col\">");
 			out.print("</div>");
-			out.print("<a href=\"Hilo\"><button type=\"button\" class=\"btn btn-info\">Crea un hilo</button></a>");
+			out.print("<a href=\"InsertHilo\"><button type=\"button\" class=\"btn btn-info\">Crea un hilo</button></a>");
 			out.print("</div>");
 			out.print("</div>");
 			out.print("<hr>");
@@ -265,19 +244,21 @@
 			if(comunidad!=null){
 			for(Comunidad c : comunidad){
 				for (Usuario us : users) {
+					if(us.getId() == c.getIdUsuario()){
 					if (!user.getFoto().equals("desconocido.txt")) {
-				out.print("<div class=\"card mt-3 bg-light text-white w-50\">");
+				out.print("<div class=\"card mt-3 bg-light text-white w-100\">");
 				out.print("<div class=\"card-body\"><h2 class=\"text-dark\"></h2><img src=\"Imagenes/" + us.getFoto()+ "\" width=\"150\" height=\"100\" class=\"mr-5\">");//comentario
 					}else{
-						out.print("<div class=\"card mt-3 bg-light text-white w-50\">");
+						out.print("<div class=\"card mt-3 bg-light text-white w-100\">");
 						out.print("<div class=\"card-body\"><h2 class=\"text-dark\"></h2><img src=\"img/usuari.jpg\" width=\"150\" height=\"100\" class=\"mr-5\">");//comentario
 					}
 					out.print(
 							"<p class=\"text-dark\">" + us.getUser() + " - " + c.getFecha() + "</p>");
 					out.print("<br>");
-					out.print("<a href=\"FichaHilo?id="+c.getId()+"><h3 class=\"mr-5\">" + c.getTitulo() + "</h3></a>");
+					out.print("<a href=\"FichaHilo?id="+c.getId()+"\"><h3 class=\"mr-5\">" + c.getTitulo() + "</h3></a>");
 					out.print("</div>");
 					out.print("</div>");
+				}
 				}
 				
 				}
