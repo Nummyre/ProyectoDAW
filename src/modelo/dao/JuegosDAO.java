@@ -1372,6 +1372,35 @@ public class JuegosDAO {
 		}
 		return rowID;
 	}
+	//----------------------------------------------------------------------------------------------------------------
+	
+	public int insertComentarioComunidad(String comentario, String fecha, Integer idUsuario, Integer idComunidad) {
+		int rowID = 0;
+		try {
+			Connection connection = new Conexion().conecta();
+
+			String query = "INSERT INTO comentarioComunidad (comentario, fecha, meGusta, noMeGusta, idUsuario, idComunidad) " + "VALUES ('" + comentario
+					+ "','" + fecha + "',0, 0, '"+idUsuario+"', '"+idComunidad+"');";
+
+			try (Statement stmt = connection.createStatement()) {
+
+				stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+				ResultSet rs = stmt.getGeneratedKeys();
+
+				if (rs.next()) {
+					rowID = rs.getInt(1);
+
+				}
+			} catch (Exception e) {
+
+			}
+			connection.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rowID;
+	}
 	
 	//------------------------------------------------------------------------------------------------
 
@@ -1513,6 +1542,53 @@ public class JuegosDAO {
 		return Cjuego;
 	}
 	
+	// ---------------------------------------------------------------------------------------------------
+	
+	
+	public ArrayList<Comentario> listaComentarioComunidad() {
+		ArrayList<Comentario> Cjuego = null;
+		try {
+
+			// metodo
+			Connection connection = new Conexion().conecta();
+			Statement stmt = null;
+
+			if (connection != null) {
+
+				// Si la conexion no es nula que ejecute la query del select con los datos
+				// obtenidos
+				stmt = connection.createStatement();
+				ResultSet rs = stmt.executeQuery("SELECT * FROM comentarioComunidad");
+
+				rs.last();
+				if (rs.getRow() > 0) {
+
+					// Coge los datos del usuario que a iniciado sesion de la base de datos
+					rs.first();
+
+					Cjuego = new ArrayList<Comentario>();
+
+					Cjuego.add(new Comentario(rs.getInt("id"), rs.getInt("idUsuario"), rs.getInt("idComunidad"),
+							rs.getString("comentario"), rs.getString("fecha"), rs.getInt("meGusta"),
+							rs.getInt("noMeGusta")));
+
+					while (rs.next()) {
+
+						Cjuego.add(new Comentario(rs.getInt("id"), rs.getInt("idUsuario"), rs.getInt("idComunidad"),
+								rs.getString("comentario"), rs.getString("fecha"), rs.getInt("meGusta"),
+								rs.getInt("noMeGusta")));
+					}
+				}
+
+				rs.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return Cjuego;
+	}
+	
+	
 	//-----------------------------------------------------------------------------------------------
 
 	public void deleteComentarioJuego(Integer id) {
@@ -1533,6 +1609,28 @@ public class JuegosDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	//-----------------------------------------------------------------------------------------------
+
+		public void deleteComentarioComunidad(Integer id) {
+			try {
+
+				// metodo
+				Connection connection = new Conexion().conecta();
+
+				if (connection != null) {
+
+					Statement stmt = connection.createStatement();
+
+					String queryBorrar = "DELETE FROM comentarioComunidad WHERE id=" + id + ";";
+
+					stmt.executeUpdate(queryBorrar);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	
 	//------------------------------------------------------------------------------------------
 	
@@ -1771,7 +1869,7 @@ public class JuegosDAO {
 		try {
 			Connection connection = new Conexion().conecta();
 
-			String query = "INSERT INTO comunidad (titulo, hilo, idUsuario, fecha) " + "VALUES ('" + titulo
+			String query = "INSERT INTO comunidad (titulo, hilo, fecha, idUsuario, foto) " + "VALUES ('" + titulo
 					+ "','" + hilo + "','"+fecha+"', '"+idUsuario+"', '"+foto+"');";
 
 			try (Statement stmt = connection.createStatement()) {
@@ -1792,6 +1890,43 @@ public class JuegosDAO {
 			e.printStackTrace();
 		}
 		return rowID;
+	}
+	
+	//----------------------------------------------------------------------------------------------
+	
+	
+	public Comunidad hilo(Integer id){
+	Comunidad hilo = null;
+		try {
+
+			// metodo
+			Connection connection = new Conexion().conecta();
+			Statement stmt = null;
+
+			if (connection != null) {
+
+				// Si la conexion no es nula que ejecute la query del select con los datos
+				// obtenidos
+				stmt = connection.createStatement();
+				ResultSet rs = stmt.executeQuery("select * from comunidad where id="+id+";");
+
+				rs.last();
+				if (rs.getRow() > 0) {
+
+					// Coge los datos del usuario que a iniciado sesion de la base de datos
+					rs.first();
+
+					hilo = (new Comunidad(rs.getInt("id"), rs.getString("titulo"), rs.getString("hilo"),
+							rs.getString("fecha"), rs.getInt("idUsuario"), rs.getString("foto")));
+
+				}
+
+				rs.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return hilo;
 	}
 	
 }

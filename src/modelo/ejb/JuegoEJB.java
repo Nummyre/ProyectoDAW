@@ -314,4 +314,28 @@ public class JuegoEJB {
 
 		return juegoList.insertHilo(titulo, hilo, fecha, idUsuario, foto);
 	}
+	
+	public Comunidad hilo(Integer id){
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.hilo(id);
+	}
+	
+	public void deleteComentarioComunidad(Integer id) {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		juegoList.deleteComentarioComunidad(id);
+	}
+	
+	public int insertComentarioComunidad(String comentario, String fecha, Integer idUsuario, Integer idComunidad) {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.insertComentarioComunidad(comentario, fecha, idUsuario, idComunidad);
+	}
+	
+	public ArrayList<Comentario> listaComentarioComunidad() {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.listaComentarioComunidad();
+	}
 }
