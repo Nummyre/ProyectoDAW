@@ -14,6 +14,7 @@ import modelo.pojo.Genero;
 import modelo.pojo.Guia;
 import modelo.pojo.Juego;
 import modelo.pojo.Plataforma;
+import modelo.pojo.PopurriMain;
 import modelo.pojo.Puntuacion;
 import modelo.pojo.Top10;
 
@@ -1862,6 +1863,100 @@ public class JuegosDAO {
 	}
 	
 	
+	//-------------------------------------------------------------------------------------
+	
+		public ArrayList<PopurriMain> listaMain(){
+			ArrayList<PopurriMain> listaMain = null;
+			try {
+
+				// metodo
+				Connection connection = new Conexion().conecta();
+				Statement stmt = null;
+
+				if (connection != null) {
+
+					// Si la conexion no es nula que ejecute la query del select con los datos
+					// obtenidos
+					stmt = connection.createStatement();
+					ResultSet rs = stmt.executeQuery("SELECT  G.tituloGuia, A.tituloAnalisis, J.tituloJuego, J.plata, J.idJuego, G.idGuia, A.idAnalisis " + 
+							"FROM (SELECT titulo as tituloGuia, id as idGuia" + 
+							" FROM guia) G " + 
+							"CROSS JOIN (SELECT titulo as tituloAnalisis, id as idAnalisis" + 
+							" FROM analisi) A " + 
+							"CROSS JOIN (SELECT titulo as tituloJuego, plataforma.nombre as plata, juego.id as idJuego" + 
+							" FROM juego inner join plataforma on juego.idPlataforma = plataforma.id) J;");
+
+					rs.last();
+					if (rs.getRow() > 0) {
+
+						// Coge los datos del usuario que a iniciado sesion de la base de datos
+						rs.first();
+
+						listaMain = new ArrayList<PopurriMain>();
+
+						listaMain.add(new PopurriMain(rs.getInt("idJuego"),rs.getInt("idGuia"),rs.getInt("idAnalisis"),rs.getString("tituloJuego"),rs.getString("tituloGuia"),rs.getString("tituloAnalisis"),rs.getString("plata")));
+
+						while (rs.next()) {
+							listaMain.add(new PopurriMain(rs.getInt("idJuego"),rs.getInt("idGuia"),rs.getInt("idAnalisis"),rs.getString("tituloJuego"),rs.getString("tituloGuia"),rs.getString("tituloAnalisis"),rs.getString("plata")));
+						}
+					}
+
+					rs.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return listaMain;
+		}
+		
+		//------------------------------------------------------------------------
+		
+		
+		public ArrayList<PopurriMain> listaBusca(){
+			ArrayList<PopurriMain> listaMain = null;
+			try {
+
+				// metodo
+				Connection connection = new Conexion().conecta();
+				Statement stmt = null;
+
+				if (connection != null) {
+
+					// Si la conexion no es nula que ejecute la query del select con los datos
+					// obtenidos
+					stmt = connection.createStatement();
+					ResultSet rs = stmt.executeQuery("SELECT  G.tituloGuia, A.tituloAnalisis, J.tituloJuego, J.plata, J.idJuego, G.idGuia, A.idAnalisis " + 
+							"FROM (SELECT titulo as tituloGuia, id as idGuia" + 
+							" FROM guia) G " + 
+							"CROSS JOIN (SELECT titulo as tituloAnalisis, id as idAnalisis" + 
+							" FROM analisi) A " + 
+							"CROSS JOIN (SELECT titulo as tituloJuego, plataforma.nombre as plata, juego.id as idJuego" + 
+							" FROM juego inner join plataforma on juego.idPlataforma = plataforma.id) J;");
+
+					rs.last();
+					if (rs.getRow() > 0) {
+
+						// Coge los datos del usuario que a iniciado sesion de la base de datos
+						rs.first();
+
+						listaMain = new ArrayList<PopurriMain>();
+
+						listaMain.add(new PopurriMain(rs.getInt("idJuego"),rs.getInt("idGuia"),rs.getInt("idAnalisis"),rs.getString("tituloJuego"),rs.getString("tituloGuia"),rs.getString("tituloAnalisis"),rs.getString("plata")));
+
+						while (rs.next()) {
+							listaMain.add(new PopurriMain(rs.getInt("idJuego"),rs.getInt("idGuia"),rs.getInt("idAnalisis"),rs.getString("tituloJuego"),rs.getString("tituloGuia"),rs.getString("tituloAnalisis"),rs.getString("plata")));
+						}
+					}
+
+					rs.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return listaMain;
+		}
+		
+	
 	//------------------------------------------------------------------------------------
 	
 	public int insertHilo(String titulo, String hilo, String fecha, Integer idUsuario, String foto) {
@@ -1930,3 +2025,5 @@ public class JuegosDAO {
 	}
 	
 }
+	
+

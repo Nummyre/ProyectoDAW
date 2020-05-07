@@ -14,6 +14,7 @@ import modelo.pojo.Genero;
 import modelo.pojo.Guia;
 import modelo.pojo.Juego;
 import modelo.pojo.Plataforma;
+import modelo.pojo.PopurriMain;
 import modelo.pojo.Puntuacion;
 import modelo.pojo.Top10;
 
@@ -25,6 +26,12 @@ public class JuegoEJB {
 		JuegosDAO juegoList = new JuegosDAO();
 
 		return juegoList.listaTop10Plataformas(id);
+	}
+	
+	public ArrayList<PopurriMain> listaMain(){
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.listaMain();
 	}
 	public ArrayList<Top10> listaTop10() {
 		JuegosDAO juegoList = new JuegosDAO();
