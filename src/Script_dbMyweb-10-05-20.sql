@@ -107,7 +107,6 @@ CREATE TABLE `comentario_analisis` (
 
 LOCK TABLES `comentario_analisis` WRITE;
 /*!40000 ALTER TABLE `comentario_analisis` DISABLE KEYS */;
-INSERT INTO `comentario_analisis` VALUES (1,'<p>as</p>\r\n','30/04/2020 02:10:35',0,0,1,1);
 /*!40000 ALTER TABLE `comentario_analisis` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,6 +141,69 @@ LOCK TABLES `comentario_guia` WRITE;
 /*!40000 ALTER TABLE `comentario_guia` DISABLE KEYS */;
 INSERT INTO `comentario_guia` VALUES (2,'asasa','29/04/2020 19:35:24',0,0,1,2),(3,'<p>aassa</p>\r\n','30/04/2020 02:06:13',0,0,1,1),(4,'<p>aass</p>\r\n','30/04/2020 02:08:10',0,0,1,1);
 /*!40000 ALTER TABLE `comentario_guia` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `comentariocomunidad`
+--
+
+DROP TABLE IF EXISTS `comentariocomunidad`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `comentariocomunidad` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `comentario` varchar(225) DEFAULT NULL,
+  `fecha` varchar(255) DEFAULT NULL,
+  `meGusta` int(11) DEFAULT NULL,
+  `noMeGusta` int(11) DEFAULT NULL,
+  `idUsuario` int(11) NOT NULL,
+  `idComunidad` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idUsuario` (`idUsuario`),
+  KEY `idComunidad` (`idComunidad`),
+  CONSTRAINT `comentariocomunidad_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`id`),
+  CONSTRAINT `comentariocomunidad_ibfk_2` FOREIGN KEY (`idComunidad`) REFERENCES `comunidad` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `comentariocomunidad`
+--
+
+LOCK TABLES `comentariocomunidad` WRITE;
+/*!40000 ALTER TABLE `comentariocomunidad` DISABLE KEYS */;
+INSERT INTO `comentariocomunidad` VALUES (2,'<p>no se</p>\r\n','05/05/2020 18:11:04',0,0,1,1);
+/*!40000 ALTER TABLE `comentariocomunidad` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `comunidad`
+--
+
+DROP TABLE IF EXISTS `comunidad`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `comunidad` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(225) DEFAULT NULL,
+  `hilo` varchar(225) DEFAULT NULL,
+  `fecha` varchar(255) DEFAULT NULL,
+  `idUsuario` int(11) NOT NULL,
+  `foto` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idUsuario` (`idUsuario`),
+  CONSTRAINT `comunidad_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `comunidad`
+--
+
+LOCK TABLES `comunidad` WRITE;
+/*!40000 ALTER TABLE `comunidad` DISABLE KEYS */;
+INSERT INTO `comunidad` VALUES (1,'Â¿CÃºando sale L.A Noire 2 para Pc?','<p>Escuh&eacute; un rumor de que el juego saldr&iacute;a para pc dentro poco, algui&eacute;n sabe cual es la fecha si lo han dicho ?</p>\r\n','05/05/2020 17:45:07',1,'d.jpg');
+/*!40000 ALTER TABLE `comunidad` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -353,7 +415,7 @@ CREATE TABLE `puntuacion` (
   KEY `idJuego` (`idJuego`),
   CONSTRAINT `puntuacion_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`id`),
   CONSTRAINT `puntuacion_ibfk_2` FOREIGN KEY (`idJuego`) REFERENCES `juego` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -362,6 +424,7 @@ CREATE TABLE `puntuacion` (
 
 LOCK TABLES `puntuacion` WRITE;
 /*!40000 ALTER TABLE `puntuacion` DISABLE KEYS */;
+INSERT INTO `puntuacion` VALUES (1,3,2,1),(2,4,2,1),(3,5,2,1),(4,3,2,1),(5,2,2,1),(6,3,2,1),(7,4,2,1),(8,5,2,1),(9,3,2,1),(10,5,2,1),(11,4,2,1),(12,1,1,1),(13,1,1,1),(14,1,1,1),(15,2,1,1),(16,3,2,1),(17,4,1,1),(18,5,2,1),(19,3,2,1),(20,4,2,1),(21,2,1,1),(22,2,1,1),(23,1,1,1),(24,1,1,1),(25,1,1,1),(26,1,1,1),(27,1,1,1),(28,1,1,1),(29,1,1,1),(30,3,2,5),(31,2,2,5),(32,3,1,5),(33,3,1,5),(34,3,1,5),(35,3,1,5),(36,3,1,5);
 /*!40000 ALTER TABLE `puntuacion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -382,7 +445,7 @@ CREATE TABLE `usuario` (
   `fechaAlta` varchar(255) NOT NULL,
   `administrador` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -391,7 +454,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'cinti','Admin','123','desconocido.txt','cintia.349@gmail.com','25-05-2020',1),(2,'manoli','manolita','123','a5fccbac3b974a8078db4b34daf9b418.png','cintiia.349@gmail.com','29/04/2020 17:03:33',NULL),(3,'cinti','Paquita','123','desconocido.txt','cintia.349@gmail.com','25-05-2020',0),(4,'cinti','Paquita','123','desconocido.txt','cintia.349@gmail.com','25-05-2020',0);
+INSERT INTO `usuario` VALUES (1,'cinti','Admin','123','images.jpg','cintia.349@gmail.com','25-05-2020',1),(2,'manoli','manolita','123','a5fccbac3b974a8078db4b34daf9b418.png','cintiia.349@gmail.com','29/04/2020 17:03:33',NULL),(3,'cinti','Paquita','123','desconocido.txt','cintia.349@gmail.com','25-05-2020',0),(4,'cinti','Paquita','123','desconocido.txt','cintia.349@gmail.com','25-05-2020',0),(5,'paquita','paca','123','images.jpg','cintiia.349@gmail.com','01/05/2020 23:19:42',NULL);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -456,4 +519,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-30 17:17:57
+-- Dump completed on 2020-05-10 19:37:15
