@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import modelo.ejb.GuiaEJB;
 import modelo.ejb.JuegoEJB;
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
@@ -27,7 +28,7 @@ public class BorrarComentarioGuia extends HttpServlet {
 	SesionesEJB sesionesEJB;
 	
 	@EJB
-	JuegoEJB juegoEJB;
+	GuiaEJB guiaEJB;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 
@@ -39,7 +40,7 @@ public class BorrarComentarioGuia extends HttpServlet {
 		Integer idC = Integer.parseInt(id);
 		Integer idGuia = Integer.parseInt(idJ);
 
-		juegoEJB.deleteComentarioGuia(idC);
+		guiaEJB.deleteComentarioGuia(idC);
 		
 
 		response.sendRedirect("FichaGuia?id="+idGuia);

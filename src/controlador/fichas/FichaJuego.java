@@ -1,4 +1,4 @@
-package controlador;
+package controlador.fichas;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -20,13 +20,16 @@ import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
 import modelo.pojo.Comentario;
 import modelo.pojo.Foto;
-import modelo.pojo.Guia;
+import modelo.pojo.Genero;
+import modelo.pojo.Juego;
+import modelo.pojo.Plataforma;
+import modelo.pojo.Puntuacion;
 import modelo.pojo.Usuario;
 
-
-@WebServlet("/FichaAnalisis")
-public class FichaAnalisis extends HttpServlet {
+@WebServlet("/FichaJuego")
+public class FichaJuego extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
 	@EJB
 	UsuariosEJB userEJB;
 	
@@ -35,49 +38,58 @@ public class FichaAnalisis extends HttpServlet {
 	
 	@EJB
 	JuegoEJB juegoEJB;
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-HttpSession session = request.getSession(false);
-		
+	
+		HttpSession session = request.getSession(false);
 		Usuario usuario = sesionEJB.usuarioLogeado(session);
 		
-		String idA = request.getParameter("id");
-		Integer id = Integer.parseInt(idA);
+		String idJ = request.getParameter("id");
+		Integer id = Integer.parseInt(idJ);
 
-		modelo.pojo.Analisis  analisis = juegoEJB.analisis(id);
 		
-		ArrayList<Foto> fotoAnalisis = juegoEJB.listaFotosAnalisi();
-		
-	
+		Juego juego = juegoEJB.juego(id);
+		ArrayList<Foto> fotoJuego = juegoEJB.listaFotosJuegos();
+		ArrayList<Genero> juegoG = juegoEJB.genero();
+		ArrayList<Plataforma> juegoP = juegoEJB.plataforma();
 		ArrayList<Usuario> users = userEJB.listaUsuarios();
 		
-		ArrayList<Comentario> coment = juegoEJB.listaComentarioAnalisi();
+		Puntuacion valoracion = juegoEJB.listaValoracion(id);
 		
-		request.setAttribute("usuario", usuario);
-		request.setAttribute("analisis", analisis);
-		request.setAttribute("fotoAnalisis", fotoAnalisis);
+		ArrayList<Comentario> coment = juegoEJB.listaComentarioJuegos();
+		
+		request.setAttribute("valoracion", valoracion);
 		request.setAttribute("users", users);
+		request.setAttribute("plataforma", juegoP);
+		request.setAttribute("genero", juegoG);
+		request.setAttribute("juego", juego);
+		request.setAttribute("usuario", usuario);
+		request.setAttribute("fotoJuego", fotoJuego);
 		request.setAttribute("coment", coment);
 		
-		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/fichas/FichaAnalisis.jsp");
+		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/fichas/FichaJuego.jsp");
 		rs.forward(request, response);
+
 	}
 
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
 		String comentario = request.getParameter("com");
-		String idA = request.getParameter("idJ");
+		String idJ = request.getParameter("idJ");
 		String idU = request.getParameter("idU");
 		
-		Integer idAnalisis = Integer.parseInt(idA);
+		Integer idJuego = Integer.parseInt(idJ);
 		Integer idUsuario = Integer.parseInt(idU);
 		
 		Date date = new Date();
 		
 		DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		
-		juegoEJB.insertComentarioAnalisis(comentario, hourdateFormat.format(date), idUsuario, idAnalisis);
+		juegoEJB.insertComentario(comentario, hourdateFormat.format(date), idUsuario, idJuego);
 		
-		response.sendRedirect("FichaAnalisis?id="+idAnalisis);
+		response.sendRedirect("FichaJuego?id="+idJuego);
+		
 	}
 
 }

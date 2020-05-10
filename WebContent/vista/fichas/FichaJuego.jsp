@@ -21,6 +21,7 @@
 </head>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
@@ -38,7 +39,7 @@
 		ArrayList<Foto> foto = (ArrayList<Foto>) request.getAttribute("fotoJuego");
 		ArrayList<Comentario> coment = (ArrayList<Comentario>) request.getAttribute("coment");
 		ArrayList<Usuario> users = (ArrayList<Usuario>) request.getAttribute("users");
-		ArrayList<Puntuacion> puntuacion = (ArrayList<Puntuacion>) request.getAttribute("valoracion");
+		Puntuacion puntuacion = (Puntuacion) request.getAttribute("valoracion");
 
 		if (user == null) {
 			out.print("<header>");
@@ -192,18 +193,15 @@
 			out.print("<h2>" + juego.getTitulo() + "</h2>"); //getTitulo
 			out.print("</div>");
 			out.print("<div class=\"col\"></div>");
-			for(Puntuacion p : puntuacion){//---------------------------------MEDIA PUNTUACION
-				double media = 0.0;
-				media = media + p.getPuntuacion();
-				media = media / p.getPuntuacion();
-			if (p.getPuntuacion() != null) {
-				out.print("<div class=\"col-sm-3 text-right\"><h3>"+Math.round(media)+"/10</h3></div>");
+			//---------------------------------MEDIA PUNTUACION
+			if (puntuacion.getPuntuacion() != null) {
+				out.print("<div class=\"col-sm-3 text-right\"><h3>"+Math.round(puntuacion.getValoracion())+"/10</h3></div>");
 			} else {
-				out.print("<div class=\"col-sm-3 text-right\"><h3>0/10</h3></div>");
-			}
+				out.print("<div class=\"col-sm-3 text-right\"><h3>0/10</h3></div>");	
 			}
 			out.print("<div class=\"col-sm-3 mr-5\">");
-			out.print("<form method=\"get\" action=\"ValoracionJuego\"");
+			out.print("<form method=\"post\" action=\"ValoracionJuego\" id=\"formularioP\">");
+			if(puntuacion.getIdUsuario() != user.getId()){
 			out.print("<p class=\"clasificacion\">");
 			out.print("<input id=\"ra5\" type=\"radio\" name=\"estrellas\" value=\"5\">");
 			out.print("<label for=\"ra5\">★</label>");
@@ -216,12 +214,15 @@
 			out.print(" <input id=\"ra1\" type=\"radio\" name=\"estrellas\" value=\"1\">");
 			out.print("<label for=\"ra1\">★</label>");
 			out.print("</p>");
+			}else{
+				out.print("<p>Gracias por votar!</p>");
+			}
 			out.print("<input id=\"idU\" name=\"idU\" type=\"hidden\" value=\"" + user.getId() + "\">");
-			out.print("<input id=\"id\" name=\"idJ\" type=\"hidden\" value=\"" + juego.getId() + "\">");
+			out.print("<input id=\"idJ\" name=\"idJ\" type=\"hidden\" value=\"" + juego.getId() + "\">");
 			out.print("</div>");
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col\">");
-			out.print("<button type=\"submit\" class=\"btn btn-success mr-5\">Puntua!</button>");
+			out.print("<p class\"resp\"></p>");
 			out.print("</div>");
 			out.print("</div>");
 			out.print("</form>");	
@@ -356,18 +357,16 @@
 				out.print("<h2>" + juego.getTitulo() + "</h2>"); //getTitulo
 				out.print("</div>");
 				out.print("<div class=\"col\"></div>");
-				for(Puntuacion p : puntuacion){ //---------------------------------MEDIA PUNTUACION
-					double media = 0.0;
-					media = media + p.getPuntuacion();
-					media = media / p.getPuntuacion();
-					if (p.getPuntuacion() != null) {
-					out.print("<div class=\"col-sm-3 text-right\"><h3>"+Math.round(media)+"/10</h3></div>");
+				//---------------------------------MEDIA PUNTUACION
+					if (puntuacion.getPuntuacion() != null) {
+					out.print("<div class=\"col-sm-3 text-right\"><h3>"+Math.round(puntuacion.getValoracion())+"/10</h3></div>");
 				} else {
 					out.print("<div class=\"col-sm-3 text-right\"><h3>0/10</h3></div>");
-				}
+				
 				}
 				out.print("<div class=\"col-sm-3 mr-5\">");
-				out.print("<form method=\"get\" action=\"ValoracionJuego\"");
+				out.print("<form method=\"post\" action=\"ValoracionJuego\" id=\"formularioP\">");
+				if(puntuacion.getIdUsuario() != user.getId()){
 				out.print("<p class=\"clasificacion\">");
 				out.print("<input id=\"ra5\" type=\"radio\" name=\"estrellas\" value=\"5\">");
 				out.print("<label for=\"ra5\">★</label>");
@@ -380,12 +379,15 @@
 				out.print(" <input id=\"ra1\" type=\"radio\" name=\"estrellas\" value=\"1\">");
 				out.print("<label for=\"ra1\">★</label>");
 				out.print("</p>");
+				}else{
+					out.print("<p>Gracias por votar!</p>");
+				}
 				out.print("<input id=\"idU\" name=\"idU\" type=\"hidden\" value=\"" + user.getId() + "\">");
-				out.print("<input id=\"id\" name=\"idJ\" type=\"hidden\" value=\"" + juego.getId() + "\">");	
+				out.print("<input id=\"idJ\" name=\"idJ\" type=\"hidden\" value=\"" + juego.getId() + "\">");	
 				out.print("</div>");
 				out.print("<div class=\"row\">");
 				out.print("<div class=\"col\">");
-				out.print("<button type=\"submit\" class=\"btn btn-success mr-5\">Puntua!</button>");
+				out.print("<p class\"resp\"></p>");
 				out.print("</div>");
 				out.print("</div>");
 				out.print("</form>");

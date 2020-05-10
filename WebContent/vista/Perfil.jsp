@@ -46,9 +46,9 @@
 			out.print(
 					"<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Categorías</a>");
 			out.print("<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">");
-			out.print("<a class=\"dropdown-item\" href=\"Login\">TOP 10|Juegos</a>");
-			out.print("<a class=\"dropdown-item\" href=\"Login\">Análisis de videojuegos</a>");
-			out.print("<a class=\"dropdown-item\" href=\"Guia\">Guías de videojuegos</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Top10\">TOP 10|Juegos</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Analisis\">Análisis</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Guia\">Guías</a>");
 			out.print("<div class=\"dropdown-divider\"></div>");
 			out.print("<a class=\"dropdown-item\" href=\"#\">Contacto</a>");
 			out.print("</div>");
@@ -112,9 +112,9 @@
 			out.print(
 					"<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Categorías</a>");
 			out.print("<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">");
-			out.print("<a class=\"dropdown-item\" href=\"#\">TOP 10|Juegos</a>");
-			out.print("<a class=\"dropdown-item\" href=\"#\">Análisis de videojuegos</a>");
-			out.print("<a class=\"dropdown-item\" href=\"#\">Guías de videojuegos</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Top10\">TOP 10|Juegos</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Analisis\">Análisis</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Guia\">Guías</a>");
 			out.print("<div class=\"dropdown-divider\"></div>");
 			out.print("<a class=\"dropdown-item\" href=\"#\">Contacto</a>");
 			out.print("</div>");
@@ -168,16 +168,16 @@
 			out.print("<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">");
 			out.print("<ul class=\"navbar-nav ml-5\">");
 			out.print("<li class=\"nav-item mr-5\">");
-			out.print("<a class=\"nav-link\" href=\"#\">PC</a>");
+			out.print("<a class=\"nav-link\" href=\"Pc\">PC</a>");
 			out.print("</li>");
 			out.print("<li class=\"nav-item mr-5\">");
-			out.print("<a class=\"nav-link\" href=\"#\">Xbox One</a>");
+			out.print("<a class=\"nav-link\" href=\"Xbox\">Xbox One</a>");
 			out.print("</li>");
 			out.print("<li class=\"nav-item mr-5\">");
-			out.print("<a class=\"nav-link\" href=\"#\">Play Station 4</a>");
+			out.print("<a class=\"nav-link\" href=\"PlayS\">Play Station 4</a>");
 			out.print("</li>");
 			out.print("<li class=\"nav-item mr-5\">");
-			out.print("<a class=\"nav-link\" href=\"#\">Nintendo Switch</a>");
+			out.print("<a class=\"nav-link\" href=\"Nintendo\">Nintendo Switch</a>");
 			out.print("</li>");
 			out.print("</ul>");
 			

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import modelo.ejb.GuiaEJB;
 import modelo.ejb.JuegoEJB;
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
@@ -30,7 +31,7 @@ public class AddGuia extends HttpServlet {
 	UsuariosEJB usuariosEJB;
 
 	@EJB
-	JuegoEJB juegoEJB;
+	GuiaEJB guiaEJB;
 
 	@EJB
 	SesionesEJB sesionesEJB;
@@ -88,9 +89,9 @@ public class AddGuia extends HttpServlet {
 				
 				System.out.println(fileName);
 				
-				int guia = juegoEJB.insertGuia(titulo, texto, id);
+				int guia = guiaEJB.insertGuia(titulo, texto, id);
 				
-				juegoEJB.insertGuiaFoto(fileName, guia);
+				guiaEJB.insertGuiaFoto(fileName, guia);
 				
 				response.sendRedirect("Perfil");
 				

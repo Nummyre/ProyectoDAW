@@ -1,4 +1,4 @@
-package controlador;
+package controlador.plataformas;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,9 +19,10 @@ import modelo.pojo.Juego;
 import modelo.pojo.Usuario;
 
 
-@WebServlet("/Pc")
-public class Pc extends HttpServlet {
+@WebServlet("/Xbox")
+public class Xbox extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
 	@EJB
 	UsuariosEJB usuariosEJB;
 
@@ -30,22 +31,19 @@ public class Pc extends HttpServlet {
 	
 	@EJB
 	JuegoEJB juegoEJB;
-
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
-		 ArrayList<Juego> pcList = juegoEJB.pcList();
+		 ArrayList<Juego> xboxList = juegoEJB.xboxList();
 		
 
 		request.setAttribute("usuario", usuario);
-		request.setAttribute("pcList", pcList);
+		request.setAttribute("xboxList", xboxList);
 		
-		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Pc.jsp");
+		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Xbox.jsp");
 		rs.forward(request, response);
 	}
-
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
