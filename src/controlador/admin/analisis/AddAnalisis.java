@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import modelo.ejb.AnalisisEJB;
 import modelo.ejb.JuegoEJB;
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
@@ -32,7 +33,7 @@ public class AddAnalisis extends HttpServlet {
 	UsuariosEJB usuariosEJB;
 
 	@EJB
-	JuegoEJB juegoEJB;
+	AnalisisEJB analisisEJB;
 
 	@EJB
 	SesionesEJB sesionesEJB;
@@ -90,11 +91,11 @@ public class AddAnalisis extends HttpServlet {
 				
 				System.out.println(fileName);
 
-				int juego = juegoEJB.insertAnalisi(titulo, texto, id);
+				int juego = analisisEJB.insertAnalisi(titulo, texto, id);
 
 				System.out.println(juego);
 				
-				juegoEJB.insertAnalisiFoto(fileName, juego);
+				analisisEJB.insertAnalisiFoto(fileName, juego);
 
 				response.sendRedirect("Perfil");
 		

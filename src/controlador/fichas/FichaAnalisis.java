@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import modelo.ejb.AnalisisEJB;
 import modelo.ejb.JuegoEJB;
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
@@ -34,7 +35,7 @@ public class FichaAnalisis extends HttpServlet {
 	SesionesEJB sesionEJB;
 	
 	@EJB
-	JuegoEJB juegoEJB;
+	AnalisisEJB analisisEJB;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 HttpSession session = request.getSession(false);
 		
@@ -43,14 +44,14 @@ HttpSession session = request.getSession(false);
 		String idA = request.getParameter("id");
 		Integer id = Integer.parseInt(idA);
 
-		modelo.pojo.Analisis  analisis = juegoEJB.analisis(id);
+		modelo.pojo.Analisis  analisis = analisisEJB.analisis(id);
 		
-		ArrayList<Foto> fotoAnalisis = juegoEJB.listaFotosAnalisi();
+		ArrayList<Foto> fotoAnalisis = analisisEJB.listaFotosAnalisi();
 		
 	
 		ArrayList<Usuario> users = userEJB.listaUsuarios();
 		
-		ArrayList<Comentario> coment = juegoEJB.listaComentarioAnalisi();
+		ArrayList<Comentario> coment = analisisEJB.listaComentarioAnalisi();
 		
 		request.setAttribute("usuario", usuario);
 		request.setAttribute("analisis", analisis);
@@ -75,7 +76,7 @@ HttpSession session = request.getSession(false);
 		
 		DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		
-		juegoEJB.insertComentarioAnalisis(comentario, hourdateFormat.format(date), idUsuario, idAnalisis);
+		analisisEJB.insertComentarioAnalisis(comentario, hourdateFormat.format(date), idUsuario, idAnalisis);
 		
 		response.sendRedirect("FichaAnalisis?id="+idAnalisis);
 	}

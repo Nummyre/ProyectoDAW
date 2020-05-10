@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import modelo.ejb.GuiaEJB;
 import modelo.ejb.JuegoEJB;
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
@@ -33,7 +34,7 @@ public class EditadoGuia extends HttpServlet {
 	UsuariosEJB usuariosEJB;
 
 	@EJB
-	JuegoEJB juegoEJB;
+	GuiaEJB guiaEJB;
 
 	@EJB
 	SesionesEJB sesionesEJB;
@@ -51,7 +52,7 @@ public class EditadoGuia extends HttpServlet {
 		
 	
 		
-		Guia juego = juegoEJB.guia(id);
+		Guia juego = guiaEJB.guia(id);
 		
 		System.out.println(id);
 		
@@ -97,11 +98,11 @@ public class EditadoGuia extends HttpServlet {
 		
 //		juegoEJB.updateJuego(titulo, desc, anyo, genero, plataforma, id);
 		
-		juegoEJB.updateGuia(titulo, texto, id);
+		guiaEJB.updateGuia(titulo, texto, id);
 //		
 //		juegoEJB.updateJuegoFoto(fileName, id);
 		
-		juegoEJB.updateGuiaFoto(fileName, id);
+		guiaEJB.updateGuiaFoto(fileName, id);
 
 		response.sendRedirect("EditarListaGuia?id="+idUser);
 		

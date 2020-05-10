@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import modelo.ejb.AnalisisEJB;
 import modelo.ejb.JuegoEJB;
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
@@ -21,7 +22,7 @@ public class BorradoAnalisis extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	@EJB
-	JuegoEJB juegoEJB;
+	AnalisisEJB analisisEJB;
 
 	@EJB
 	UsuariosEJB usuariosEJB;
@@ -38,7 +39,7 @@ public class BorradoAnalisis extends HttpServlet {
 
 		Integer idJ = Integer.parseInt(id);
 
-		juegoEJB.deleteAnalisis(idJ);
+		analisisEJB.deleteAnalisis(idJ);
 		
 
 		response.sendRedirect("BorrarListaAnalisis?id="+usuario.getId());

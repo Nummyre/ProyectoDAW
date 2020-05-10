@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import modelo.ejb.AnalisisEJB;
 import modelo.ejb.JuegoEJB;
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
@@ -30,7 +31,7 @@ public class BorrarListaAnalisis extends HttpServlet {
 	SesionesEJB sesionesEJB;
 
 	@EJB
-	JuegoEJB juegoEJB;
+	AnalisisEJB analisisEJB;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession(false);
@@ -39,7 +40,7 @@ public class BorrarListaAnalisis extends HttpServlet {
 		String iduser = request.getParameter("id");
 		Integer id = Integer.parseInt(iduser);
 		
-		ArrayList<Analisis> analisi = juegoEJB.listaAnalisisPorIdUser(id);
+		ArrayList<Analisis> analisi = analisisEJB.listaAnalisisPorIdUser(id);
 
 		request.setAttribute("usuario", usuario);
 		request.setAttribute("listaJuego", analisi);

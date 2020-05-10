@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import modelo.ejb.AnalisisEJB;
 import modelo.ejb.JuegoEJB;
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
@@ -30,7 +31,7 @@ public class EditadoAnalisis extends HttpServlet {
 	UsuariosEJB usuariosEJB;
 
 	@EJB
-	JuegoEJB juegoEJB;
+	AnalisisEJB analisisEJB;
 
 	@EJB
 	SesionesEJB sesionesEJB;
@@ -45,7 +46,7 @@ public class EditadoAnalisis extends HttpServlet {
 		
 	
 		
-		Analisis juego = juegoEJB.analisis(id);
+		Analisis juego = analisisEJB.analisis(id);
 		
 		System.out.println(id);
 		
@@ -90,9 +91,9 @@ public class EditadoAnalisis extends HttpServlet {
 				
 
 				
-				juegoEJB.updateAnalisi(titulo, texto, id);			
+				analisisEJB.updateAnalisi(titulo, texto, id);			
 				
-				juegoEJB.updateAnalisisFoto(fileName, id);
+				analisisEJB.updateAnalisisFoto(fileName, id);
 
 				response.sendRedirect("EditarListaAnalisis?id="+idUser);
 	}

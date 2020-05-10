@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import modelo.ejb.AnalisisEJB;
+import modelo.ejb.GuiaEJB;
 import modelo.ejb.JuegoEJB;
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
@@ -30,13 +32,16 @@ public class Guia extends HttpServlet {
 	@EJB
 	JuegoEJB juegoEJB;
 
+	
+	@EJB
+	GuiaEJB guiaEJB;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession(false);
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
 		
-		 ArrayList<modelo.pojo.Guia> guias = juegoEJB.listaGuias();
+		 ArrayList<modelo.pojo.Guia> guias = guiaEJB.listaGuias();
 
 		 
 		request.setAttribute("usuario", usuario);

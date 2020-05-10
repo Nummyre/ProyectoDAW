@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import modelo.ejb.GuiaEJB;
 import modelo.ejb.JuegoEJB;
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
@@ -21,7 +22,7 @@ public class BorradoGuia extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
-	JuegoEJB juegoEJB;
+	GuiaEJB guiaEJB;
 
 	@EJB
 	UsuariosEJB usuariosEJB;
@@ -39,7 +40,7 @@ public class BorradoGuia extends HttpServlet {
 
 		Integer idJ = Integer.parseInt(id);
 
-		juegoEJB.deleteGuia(idJ);
+		guiaEJB.deleteGuia(idJ);
 		
 
 		response.sendRedirect("BorrarListaGuia?id="+usuario.getId());

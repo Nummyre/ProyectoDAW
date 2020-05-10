@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import modelo.ejb.AnalisisEJB;
 import modelo.ejb.JuegoEJB;
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
@@ -28,7 +29,7 @@ public class EditarListaAnalisis extends HttpServlet {
 	UsuariosEJB usuariosEJB;
 
 	@EJB
-	JuegoEJB juegoEJB;
+	AnalisisEJB analisisEJB;
 
 	@EJB
 	SesionesEJB sesionesEJB;
@@ -43,7 +44,7 @@ public class EditarListaAnalisis extends HttpServlet {
 		
 		Integer id = Integer.parseInt(idJ);
 		
-		ArrayList<Analisis> juego = juegoEJB.listaAnalisisPorIdUser(id);
+		ArrayList<Analisis> juego = analisisEJB.listaAnalisisPorIdUser(id);
 		
 		request.setAttribute("juego", juego);
 		request.setAttribute("usuario",usuario);

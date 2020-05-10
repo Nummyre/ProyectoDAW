@@ -14,7 +14,7 @@ import modelo.pojo.Genero;
 import modelo.pojo.Guia;
 import modelo.pojo.Juego;
 import modelo.pojo.Plataforma;
-import modelo.pojo.PopurriMain;
+
 import modelo.pojo.Puntuacion;
 import modelo.pojo.Top10;
 
@@ -69,87 +69,10 @@ public class JuegosDAO {
 	
 	//-----------------------------------------------------------------------------------------------
 	
-	public ArrayList<Guia> listaGuias() {
-		ArrayList<Guia> juego = null;
-		try {
-
-			// metodo
-			Connection connection = new Conexion().conecta();
-
-			if (connection != null) {
-
-				// Si la conexion no es nula que ejecute la query del select con los datos
-				// obtenidos
-				Statement stmt = connection.createStatement();
-				ResultSet rs = stmt.executeQuery("SELECT * FROM guia");
-
-				rs.last();
-				if (rs.getRow() > 0) {
-
-					// Coge los datos del usuario que a iniciado sesion de la base de datos
-					rs.first();
-
-					juego = new ArrayList<Guia>();
-
-					juego.add(new Guia(rs.getInt("id"), rs.getString("titulo"), rs.getString("guia"),
-							rs.getInt("idUsuario")));
-
-					while (rs.next()) {
-
-						juego.add(new Guia(rs.getInt("id"), rs.getString("titulo"), rs.getString("guia"),
-								rs.getInt("idUsuario")));
-					}
-				}
-
-				rs.close();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return juego;
-	}
+	
 	//-------------------------------------------------------------------------------------------
 	
 	
-	public ArrayList<Analisis> listaAnalisis() {
-		ArrayList<Analisis> juego = null;
-		try {
-
-			// metodo
-			Connection connection = new Conexion().conecta();
-
-			if (connection != null) {
-
-				// Si la conexion no es nula que ejecute la query del select con los datos
-				// obtenidos
-				Statement stmt = connection.createStatement();
-				ResultSet rs = stmt.executeQuery("SELECT * FROM analisi");
-
-				rs.last();
-				if (rs.getRow() > 0) {
-
-					// Coge los datos del usuario que a iniciado sesion de la base de datos
-					rs.first();
-
-					juego = new ArrayList<Analisis>();
-
-					juego.add(new Analisis(rs.getInt("id"), rs.getString("titulo"), rs.getString("analisi"),
-							rs.getInt("idUsuario")));
-
-					while (rs.next()) {
-
-						juego.add(new Analisis(rs.getInt("id"), rs.getString("titulo"), rs.getString("analisi"),
-								rs.getInt("idUsuario")));
-					}
-				}
-
-				rs.close();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return juego;
-	}
 	
 	// -----------------------------------------------------------------------------------
 
@@ -179,55 +102,11 @@ public class JuegosDAO {
 
 	// ----------------------------------------------------------------------------------------
 
-	/**
-	 * Método que elimina una guía
-	 * 
-	 * @param id = clave de identificación de una guía
-	 */
-	public void deleteGuia(Integer id) {
-		try {
 
-			// metodo
-			Connection connection = new Conexion().conecta();
-
-			if (connection != null) {
-
-				Statement stmt = connection.createStatement();
-
-				String queryBorrar = " delete from guia where id = " + id;
-
-				stmt.executeUpdate(queryBorrar);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	// -------------------------------------------------------------------------------------------
 
-	/**
-	 * Método que elimina un análisis
-	 * 
-	 * @param id = clave de identificación de un análisis
-	 */
-	public void deleteAnalisis(Integer id) {
-		try {
-
-			// metodo
-			Connection connection = new Conexion().conecta();
-
-			if (connection != null) {
-
-				Statement stmt = connection.createStatement();
-
-				String queryBorrar = " delete from analisi where id = " + id;
-
-				stmt.executeUpdate(queryBorrar);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	
 
 	// --------------------------------------------------------------------------------------------------------
 
@@ -282,102 +161,9 @@ public class JuegosDAO {
 
 	// ----------------------------------------------------------------------------------------
 
-	/**
-	 * Método que lista las guías por id del usuario
-	 * 
-	 * @param id = clave de identificación del usuario
-	 * @return devuelve una lista de guías por usuario
-	 */
-
-	public ArrayList<Guia> listaGuiasPorIdUser(Integer id) {
-		ArrayList<Guia> guia = null;
-		try {
-
-			// metodo
-			Connection connection = new Conexion().conecta();
-			Statement stmt = null;
-
-			if (connection != null) {
-
-				// Si la conexion no es nula que ejecute la query del select con los datos
-				// obtenidos
-				stmt = connection.createStatement();
-				ResultSet rs = stmt.executeQuery("SELECT * FROM guia where idUsuario = " + id);
-
-				rs.last();
-				if (rs.getRow() > 0) {
-
-					// Coge los datos del usuario que a iniciado sesion de la base de datos
-					rs.first();
-
-					guia = new ArrayList<Guia>();
-
-					guia.add(new Guia(rs.getInt("id"), rs.getString("titulo"), rs.getString("guia"),
-							rs.getInt("idUsuario")));
-
-					while (rs.next()) {
-
-						guia.add(new Guia(rs.getInt("id"), rs.getString("titulo"), rs.getString("guia"),
-								rs.getInt("idUsuario")));
-					}
-				}
-
-				rs.close();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return guia;
-	}
 
 	// --------------------------------------------------------------------------------
 
-	/**
-	 * Método que lista los análisis por id del usuario
-	 * 
-	 * @param id = clave de identificación del usuario
-	 * @return devuelve una lista de análisis por usuario
-	 */
-	public ArrayList<Analisis> listaAnalisisPorIdUser(Integer id) {
-		ArrayList<Analisis> guia = null;
-		try {
-
-			// metodo
-			Connection connection = new Conexion().conecta();
-			Statement stmt = null;
-
-			if (connection != null) {
-
-				// Si la conexion no es nula que ejecute la query del select con los datos
-				// obtenidos
-				stmt = connection.createStatement();
-				ResultSet rs = stmt.executeQuery("SELECT * FROM Analisi where idUsuario = " + id);
-
-				rs.last();
-				if (rs.getRow() > 0) {
-
-					// Coge los datos del usuario que a iniciado sesion de la base de datos
-					rs.first();
-
-					guia = new ArrayList<Analisis>();
-
-					guia.add(new Analisis(rs.getInt("id"), rs.getString("titulo"), rs.getString("analisi"),
-							rs.getInt("idUsuario")));
-
-					while (rs.next()) {
-
-						guia.add(new Analisis(rs.getInt("id"), rs.getString("titulo"), rs.getString("analisi"),
-								rs.getInt("idUsuario")));
-					}
-				}
-
-				rs.close();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return guia;
-	}
 
 	// ------------------------------------------------------------------------------------------
 
@@ -518,79 +304,8 @@ public class JuegosDAO {
 
 	// --------------------------------------------------------------------------------------------------------
 
-	/**
-	 * Método que inserta una guía
-	 * 
-	 * @param titulo    = titulo de la guía
-	 * @param texto     = texto en el que se quiera escribir en la guía
-	 * @param idUsuario = clave de identificación del usuario
-	 * @return devuelve el id generado de la guía
-	 */
-	public int insertGuia(String titulo, String texto, Integer idUsuario) {
-		int rowID = 0;
-		try {
-			Connection connection = new Conexion().conecta();
-
-			String query = "INSERT INTO guia (titulo, guia, idUsuario) " + "VALUES ('" + titulo + "','" + texto + "', "
-					+ idUsuario + ");";
-
-			try (Statement stmt = connection.createStatement()) {
-
-				stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
-				ResultSet rs = stmt.getGeneratedKeys();
-
-				if (rs.next()) {
-					rowID = rs.getInt(1);
-
-				}
-			} catch (Exception e) {
-
-			}
-			connection.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return rowID;
-	}
 
 	// ----------------------------------------------------------------------------------------------------------
-
-	/**
-	 * Método que inserta un análisis
-	 * 
-	 * @param titulo    = titulo de la análisis
-	 * @param texto     = texto en el que se quiera escribir en la análisis
-	 * @param idUsuario = clave de identificación de un usuario
-	 * @return devuelve el id generado del análisis
-	 */
-	public int insertAnalisi(String titulo, String texto, Integer idUsuario) {
-		int rowID = 0;
-		try {
-			Connection connection = new Conexion().conecta();
-
-			String query = "INSERT INTO analisi (titulo, analisi, idUsuario) " + "VALUES ('" + titulo + "','" + texto
-					+ "', " + idUsuario + ");";
-
-			try (Statement stmt = connection.createStatement()) {
-
-				stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
-				ResultSet rs = stmt.getGeneratedKeys();
-
-				if (rs.next()) {
-					rowID = rs.getInt(1);
-
-				}
-			} catch (Exception e) {
-
-			}
-			connection.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return rowID;
-	}
 
 	// ------------------------------------------------------------------------------------------
 
@@ -624,107 +339,16 @@ public class JuegosDAO {
 
 	// -----------------------------------------------------------------------------------------------------
 
-	/**
-	 * Método para actualizar una guía
-	 * 
-	 * @param titulo = titulo de la guía
-	 * @param texto  = texto en el que se quiera escribir en la guía
-	 * @param id     = clave de identificación del usuario
-	 */
-
-	public void updateGuia(String titulo, String texto, Integer id) {
-
-		try {
-			Connection connection = new Conexion().conecta();
-
-			String query = "update guia set titulo = '" + titulo + "', guia = '" + texto + "' where id = " + id;
-			Statement stmt = connection.createStatement();
-			stmt.executeUpdate(query);
-
-			connection.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
 
 //------------------------------------------------------------------------------------------------------
 
-	/**
-	 * Método para actualizar un análisis
-	 * 
-	 * @param titulo = titulo del análisis
-	 * @param texto  = texto en el que se quiera escribir en el análisis
-	 * @param id     = clave de indetificación de un usuario
-	 */
-
-	public void updateAnalisi(String titulo, String texto, Integer id) {
-
-		try {
-			Connection connection = new Conexion().conecta();
-
-			String query = "update analisi set titulo = '" + titulo + "', guia = '" + texto + "' where id = " + id;
-			Statement stmt = connection.createStatement();
-			stmt.executeUpdate(query);
-
-			connection.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
+	
 
 	// --------------------------------------------------------------------------------------------------------
 
-	/**
-	 * Método que inserta una foto para una guía
-	 * 
-	 * @param foto   = párametro donde guarda el nombre de la foto
-	 * @param idGuia = clave de identificación de una guía
-	 */
-	public void insertGuiaFoto(String foto, Integer idGuia) {
-		try {
-			Connection connection = new Conexion().conecta();
-
-			String query = "INSERT INTO fotoGuia (foto, idGuia) " + "VALUES ('" + foto + "'," + idGuia + ");";
-			Statement stmt = connection.createStatement();
-
-			stmt.executeUpdate(query);
-
-			connection.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	// ----------------------------------------------------------------------------------------------------------
 
-	/**
-	 * Método que inserta una foto para un análisis
-	 * 
-	 * @param foto       = párametro donde guarda el nombre de la foto
-	 * @param idAnalisis = clave de identificación de un análaisis
-	 */
-	public void insertAnalisiFoto(String foto, Integer idAnalisis) {
-		try {
-			Connection connection = new Conexion().conecta();
-
-			String query = "INSERT INTO fotoAnalisi (foto, idAnalisis) " + "VALUES ('" + foto + "'," + idAnalisis
-					+ ");";
-			Statement stmt = connection.createStatement();
-
-			stmt.executeUpdate(query);
-
-			connection.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
+	
 	// -------------------------------------------------------------------------------------------------
 
 	/**
@@ -777,54 +401,9 @@ public class JuegosDAO {
 
 	// -----------------------------------------------------------------------------------------------------
 
-	/**
-	 * Método que actualiza la foto de una guía
-	 * 
-	 * @param foto   = párametro que guarda el nombre de la foto
-	 * @param idGuia = clave de identificación de guía
-	 */
-	public void updateGuiaFoto(String foto, Integer idGuia) {
-
-		try {
-			Connection connection = new Conexion().conecta();
-
-			String query = "update fotoGuia set foto = " + foto + " where idJuego = " + idGuia;
-			Statement stmt = connection.createStatement();
-
-			stmt.executeUpdate(query);
-
-			connection.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	// ----------------------------------------------------------------------------------------------------------
 
-	/**
-	 * Método que actualiza la foto de un análisis
-	 * 
-	 * @param foto       = párametro que guarda el nombre de la foto
-	 * @param idAnalisis = clave de identificación de un análisis
-	 */
-	public void updateAnalisisFoto(String foto, Integer idAnalisis) {
-
-		try {
-			Connection connection = new Conexion().conecta();
-
-			String query = "update fotoAnalisi set foto = " + foto + " where idJuego = " + idAnalisis;
-			Statement stmt = connection.createStatement();
-
-			stmt.executeUpdate(query);
-
-			connection.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
+	
 	// -------------------------------------------------------------------------------------------------------
 
 	/**
@@ -1062,94 +641,10 @@ public class JuegosDAO {
 
 	// -----------------------------------------------------------------------------------------
 
-	/**
-	 * Método que devuelve una guía
-	 * 
-	 * @param id = clave de identificación de una guía
-	 * @return devuelve una guía
-	 */
-	public Guia guia(Integer id) {
-
-		Guia juego = null;
-		try {
-
-			// Si el usuario y la contraseña no son nulos que abra conexion mediante el
-			// metodo
-
-			Connection connection = new Conexion().conecta();
-			Statement stmt = null;
-
-			if (connection != null) {
-
-				// Si la conexion no es nula que ejecute la query del select con los datos
-				// obtenidos
-				stmt = connection.createStatement();
-				ResultSet rs = stmt.executeQuery("select * from guia where id = " + id + ";");
-
-				rs.last();
-				if (rs.getRow() > 0) {
-
-					// Coge los datos del usuario que a iniciado sesion de la base de datos
-					rs.first();
-					juego = (new Guia(rs.getInt("id"), rs.getString("titulo"), rs.getString("guia"),
-							rs.getInt("idUsuario")));
-				}
-
-				rs.close();
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return juego;
-	}
 
 	// ----------------------------------------------------------------------------------------------------
 
-	/**
-	 * Método que devuelve un análisis
-	 * 
-	 * @param id = clave de identificación de un análisis
-	 * @return devuelve un análisis
-	 */
-	public Analisis analisis(Integer id) {
-
-		Analisis juego = null;
-		try {
-
-			// Si el usuario y la contraseña no son nulos que abra conexion mediante el
-			// metodo
-
-			Connection connection = new Conexion().conecta();
-			Statement stmt = null;
-
-			if (connection != null) {
-
-				// Si la conexion no es nula que ejecute la query del select con los datos
-				// obtenidos
-				stmt = connection.createStatement();
-				ResultSet rs = stmt.executeQuery("select * from analisi where id = " + id + ";");
-
-				rs.last();
-				if (rs.getRow() > 0) {
-
-					// Coge los datos del usuario que a iniciado sesion de la base de datos
-					rs.first();
-					juego = (new Analisis(rs.getInt("id"), rs.getString("titulo"), rs.getString("analisi"),
-							rs.getInt("idUsuario")));
-				}
-
-				rs.close();
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return juego;
-	}
-
+	
 	// -------------------------------------------------------------------------------------------------------
 
 	/**
@@ -1197,86 +692,10 @@ public class JuegosDAO {
 	}
 	
 	//------------------------------------------------------------------------------------------------
-	
-	public ArrayList<Foto> listaFotosGuia() {
-		ArrayList<Foto> Fjuego = null;
-		try {
 
-			// metodo
-			Connection connection = new Conexion().conecta();
-			Statement stmt = null;
-
-			if (connection != null) {
-
-				// Si la conexion no es nula que ejecute la query del select con los datos
-				// obtenidos
-				stmt = connection.createStatement();
-				ResultSet rs = stmt.executeQuery("SELECT * FROM fotoGuia");
-
-				rs.last();
-				if (rs.getRow() > 0) {
-
-					// Coge los datos del usuario que a iniciado sesion de la base de datos
-					rs.first();
-
-					Fjuego = new ArrayList<Foto>();
-
-					Fjuego.add(new Foto(rs.getInt("id"), rs.getString("foto"), rs.getInt("idGuia")));
-
-					while (rs.next()) {
-
-						Fjuego.add(new Foto(rs.getInt("id"), rs.getString("foto"), rs.getInt("idGuia")));
-					}
-				}
-
-				rs.close();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return Fjuego;
-	}
 	
 	//-------------------------------------------------------------------------------------------------------
 	
-	public ArrayList<Foto> listaFotosAnalisi() {
-		ArrayList<Foto> Fjuego = null;
-		try {
-
-			// metodo
-			Connection connection = new Conexion().conecta();
-			Statement stmt = null;
-
-			if (connection != null) {
-
-				// Si la conexion no es nula que ejecute la query del select con los datos
-				// obtenidos
-				stmt = connection.createStatement();
-				ResultSet rs = stmt.executeQuery("SELECT * FROM fotoAnalisi");
-
-				rs.last();
-				if (rs.getRow() > 0) {
-
-					// Coge los datos del usuario que a iniciado sesion de la base de datos
-					rs.first();
-
-					Fjuego = new ArrayList<Foto>();
-
-					Fjuego.add(new Foto(rs.getInt("id"), rs.getString("foto"), rs.getInt("idAnalisis")));
-
-					while (rs.next()) {
-
-						Fjuego.add(new Foto(rs.getInt("id"), rs.getString("foto"), rs.getInt("idAnalisis")));
-					}
-				}
-
-				rs.close();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return Fjuego;
-	}
 
 	// -------------------------------------------------------------------------------------------------------
 
@@ -1317,62 +736,10 @@ public class JuegosDAO {
 	}
 
 	//------------------------------------------------------------------------------------------------------
-	public int insertComentarioGuia(String comentario, String fecha, Integer idUsuario, Integer idGuia) {
-		int rowID = 0;
-		try {
-			Connection connection = new Conexion().conecta();
 
-			String query = "INSERT INTO comentario_guia (comentario, fecha, meGusta, noMeGusta, idUsuario, idGuia) " + "VALUES ('" + comentario
-					+ "','" + fecha + "','0', '0', '"+idUsuario+"', '"+idGuia+"');";
-
-			try (Statement stmt = connection.createStatement()) {
-
-				stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
-				ResultSet rs = stmt.getGeneratedKeys();
-
-				if (rs.next()) {
-					rowID = rs.getInt(1);
-
-				}
-			} catch (Exception e) {
-
-			}
-			connection.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return rowID;
-	}
 	// --------------------------------------------------------------------------------------------------
 	
-	public int insertComentarioAnalisis(String comentario, String fecha, Integer idUsuario, Integer idAnalisis) {
-		int rowID = 0;
-		try {
-			Connection connection = new Conexion().conecta();
 
-			String query = "INSERT INTO comentario_analisis (comentario, fecha, meGusta, noMeGusta, idUsuario, idAnalisis) " + "VALUES ('" + comentario
-					+ "','" + fecha + "',0, 0, '"+idUsuario+"', '"+idAnalisis+"');";
-
-			try (Statement stmt = connection.createStatement()) {
-
-				stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
-				ResultSet rs = stmt.getGeneratedKeys();
-
-				if (rs.next()) {
-					rowID = rs.getInt(1);
-
-				}
-			} catch (Exception e) {
-
-			}
-			connection.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return rowID;
-	}
 	//----------------------------------------------------------------------------------------------------------------
 	
 	public int insertComentarioComunidad(String comentario, String fecha, Integer idUsuario, Integer idComunidad) {
@@ -1454,94 +821,11 @@ public class JuegosDAO {
 	}
 	
 	//--------------------------------------------------------------------------------------------------
-	
-	public ArrayList<Comentario> listaComentarioGuia() {
-		ArrayList<Comentario> Cjuego = null;
-		try {
 
-			// metodo
-			Connection connection = new Conexion().conecta();
-			Statement stmt = null;
-
-			if (connection != null) {
-
-				// Si la conexion no es nula que ejecute la query del select con los datos
-				// obtenidos
-				stmt = connection.createStatement();
-				ResultSet rs = stmt.executeQuery("SELECT * FROM comentario_guia");
-
-				rs.last();
-				if (rs.getRow() > 0) {
-
-					// Coge los datos del usuario que a iniciado sesion de la base de datos
-					rs.first();
-
-					Cjuego = new ArrayList<Comentario>();
-
-					Cjuego.add(new Comentario(rs.getInt("id"), rs.getInt("idUsuario"), rs.getInt("idGuia"),
-							rs.getString("comentario"), rs.getString("fecha"), rs.getInt("meGusta"),
-							rs.getInt("noMeGusta")));
-
-					while (rs.next()) {
-
-						Cjuego.add(new Comentario(rs.getInt("id"), rs.getInt("idUsuario"), rs.getInt("idGuia"),
-								rs.getString("comentario"), rs.getString("fecha"), rs.getInt("meGusta"),
-								rs.getInt("noMeGusta")));
-					}
-				}
-
-				rs.close();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return Cjuego;
-	}
 	// ---------------------------------------------------------------------------------------------------
 	
 	
-	public ArrayList<Comentario> listaComentarioAnalisi() {
-		ArrayList<Comentario> Cjuego = null;
-		try {
-
-			// metodo
-			Connection connection = new Conexion().conecta();
-			Statement stmt = null;
-
-			if (connection != null) {
-
-				// Si la conexion no es nula que ejecute la query del select con los datos
-				// obtenidos
-				stmt = connection.createStatement();
-				ResultSet rs = stmt.executeQuery("SELECT * FROM comentario_analisis");
-
-				rs.last();
-				if (rs.getRow() > 0) {
-
-					// Coge los datos del usuario que a iniciado sesion de la base de datos
-					rs.first();
-
-					Cjuego = new ArrayList<Comentario>();
-
-					Cjuego.add(new Comentario(rs.getInt("id"), rs.getInt("idUsuario"), rs.getInt("idAnalisis"),
-							rs.getString("comentario"), rs.getString("fecha"), rs.getInt("meGusta"),
-							rs.getInt("noMeGusta")));
-
-					while (rs.next()) {
-
-						Cjuego.add(new Comentario(rs.getInt("id"), rs.getInt("idUsuario"), rs.getInt("idAnalisis"),
-								rs.getString("comentario"), rs.getString("fecha"), rs.getInt("meGusta"),
-								rs.getInt("noMeGusta")));
-					}
-				}
-
-				rs.close();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return Cjuego;
-	}
+	
 	
 	// ---------------------------------------------------------------------------------------------------
 	
@@ -1635,45 +919,10 @@ public class JuegosDAO {
 	
 	//------------------------------------------------------------------------------------------
 	
-	public void deleteComentarioGuia(Integer id) {
-		try {
-
-			// metodo
-			Connection connection = new Conexion().conecta();
-
-			if (connection != null) {
-
-				Statement stmt = connection.createStatement();
-
-				String queryBorrar = "DELETE FROM comentario_guia WHERE id=" + id + ";";
-
-				stmt.executeUpdate(queryBorrar);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 	
 	//-------------------------------------------------------------------------------------
 	
-	public void deleteComentarioAnalisis(Integer id) {
-		try {
-
-			// metodo
-			Connection connection = new Conexion().conecta();
-
-			if (connection != null) {
-
-				Statement stmt = connection.createStatement();
-
-				String queryBorrar = "DELETE FROM comentario_analisis WHERE id=" + id + ";";
-
-				stmt.executeUpdate(queryBorrar);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	
 	
 	//---------------------------------------------------------------------------------------------
 	
@@ -1863,98 +1112,7 @@ public class JuegosDAO {
 	}
 	
 	
-	//-------------------------------------------------------------------------------------
 	
-		public ArrayList<PopurriMain> listaMain(){
-			ArrayList<PopurriMain> listaMain = null;
-			try {
-
-				// metodo
-				Connection connection = new Conexion().conecta();
-				Statement stmt = null;
-
-				if (connection != null) {
-
-					// Si la conexion no es nula que ejecute la query del select con los datos
-					// obtenidos
-					stmt = connection.createStatement();
-					ResultSet rs = stmt.executeQuery("SELECT  G.tituloGuia, A.tituloAnalisis, J.tituloJuego, J.plata, J.idJuego, G.idGuia, A.idAnalisis " + 
-							"FROM (SELECT titulo as tituloGuia, id as idGuia" + 
-							" FROM guia) G " + 
-							"CROSS JOIN (SELECT titulo as tituloAnalisis, id as idAnalisis" + 
-							" FROM analisi) A " + 
-							"CROSS JOIN (SELECT titulo as tituloJuego, plataforma.nombre as plata, juego.id as idJuego" + 
-							" FROM juego inner join plataforma on juego.idPlataforma = plataforma.id) J;");
-
-					rs.last();
-					if (rs.getRow() > 0) {
-
-						// Coge los datos del usuario que a iniciado sesion de la base de datos
-						rs.first();
-
-						listaMain = new ArrayList<PopurriMain>();
-
-						listaMain.add(new PopurriMain(rs.getInt("idJuego"),rs.getInt("idGuia"),rs.getInt("idAnalisis"),rs.getString("tituloJuego"),rs.getString("tituloGuia"),rs.getString("tituloAnalisis"),rs.getString("plata")));
-
-						while (rs.next()) {
-							listaMain.add(new PopurriMain(rs.getInt("idJuego"),rs.getInt("idGuia"),rs.getInt("idAnalisis"),rs.getString("tituloJuego"),rs.getString("tituloGuia"),rs.getString("tituloAnalisis"),rs.getString("plata")));
-						}
-					}
-
-					rs.close();
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return listaMain;
-		}
-		
-		//------------------------------------------------------------------------
-		
-		
-		public ArrayList<PopurriMain> listaBusca(){
-			ArrayList<PopurriMain> listaMain = null;
-			try {
-
-				// metodo
-				Connection connection = new Conexion().conecta();
-				Statement stmt = null;
-
-				if (connection != null) {
-
-					// Si la conexion no es nula que ejecute la query del select con los datos
-					// obtenidos
-					stmt = connection.createStatement();
-					ResultSet rs = stmt.executeQuery("SELECT  G.tituloGuia, A.tituloAnalisis, J.tituloJuego, J.plata, J.idJuego, G.idGuia, A.idAnalisis " + 
-							"FROM (SELECT titulo as tituloGuia, id as idGuia" + 
-							" FROM guia) G " + 
-							"CROSS JOIN (SELECT titulo as tituloAnalisis, id as idAnalisis" + 
-							" FROM analisi) A " + 
-							"CROSS JOIN (SELECT titulo as tituloJuego, plataforma.nombre as plata, juego.id as idJuego" + 
-							" FROM juego inner join plataforma on juego.idPlataforma = plataforma.id) J;");
-
-					rs.last();
-					if (rs.getRow() > 0) {
-
-						// Coge los datos del usuario que a iniciado sesion de la base de datos
-						rs.first();
-
-						listaMain = new ArrayList<PopurriMain>();
-
-						listaMain.add(new PopurriMain(rs.getInt("idJuego"),rs.getInt("idGuia"),rs.getInt("idAnalisis"),rs.getString("tituloJuego"),rs.getString("tituloGuia"),rs.getString("tituloAnalisis"),rs.getString("plata")));
-
-						while (rs.next()) {
-							listaMain.add(new PopurriMain(rs.getInt("idJuego"),rs.getInt("idGuia"),rs.getInt("idAnalisis"),rs.getString("tituloJuego"),rs.getString("tituloGuia"),rs.getString("tituloAnalisis"),rs.getString("plata")));
-						}
-					}
-
-					rs.close();
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return listaMain;
-		}
 		
 	
 	//------------------------------------------------------------------------------------

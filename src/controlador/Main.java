@@ -14,13 +14,15 @@ import javax.servlet.http.HttpSession;
 
 import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
 
+import modelo.ejb.AnalisisEJB;
+import modelo.ejb.GuiaEJB;
 import modelo.ejb.JuegoEJB;
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
 import modelo.pojo.Genero;
 import modelo.pojo.Juego;
 import modelo.pojo.Plataforma;
-import modelo.pojo.PopurriMain;
+
 import modelo.pojo.Usuario;
 
 
@@ -37,7 +39,14 @@ public class Main extends HttpServlet {
 	@EJB
 	JuegoEJB juegoEJB;
 	
-
+	
+	@EJB
+	GuiaEJB guiaEJB;
+	
+	
+	@EJB
+	AnalisisEJB analisisEJB;
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession(false);
@@ -47,8 +56,8 @@ public class Main extends HttpServlet {
 //		ArrayList<PopurriMain> main = juegoEJB.listaMain();
 		
 		ArrayList<Juego> juego = juegoEJB.listaJuego();
-		ArrayList<modelo.pojo.Guia> guia = juegoEJB.listaGuias();
-		ArrayList<modelo.pojo.Analisis> analisi = juegoEJB.listaAnalisis();
+		ArrayList<modelo.pojo.Guia> guia = guiaEJB.listaGuias();
+		ArrayList<modelo.pojo.Analisis> analisi = analisisEJB.listaAnalisis();
 		ArrayList<Genero> genero = juegoEJB.genero();
 		ArrayList<Plataforma> plata = juegoEJB.plataforma();
 		

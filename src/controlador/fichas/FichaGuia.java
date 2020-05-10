@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import modelo.ejb.GuiaEJB;
 import modelo.ejb.JuegoEJB;
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
@@ -36,7 +37,7 @@ public class FichaGuia extends HttpServlet {
 	SesionesEJB sesionEJB;
 	
 	@EJB
-	JuegoEJB juegoEJB;
+	GuiaEJB guiaEJB;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		HttpSession session = request.getSession(false);
@@ -46,13 +47,13 @@ public class FichaGuia extends HttpServlet {
 		String idG = request.getParameter("id");
 		Integer id = Integer.parseInt(idG);
 
-		Guia  guia = juegoEJB.guia(id);
+		Guia  guia = guiaEJB.guia(id);
 		
-		ArrayList<Foto> fotoGuia = juegoEJB.listaFotosGuia();
+		ArrayList<Foto> fotoGuia = guiaEJB.listaFotosGuia();
 		
 		ArrayList<Usuario> users = userEJB.listaUsuarios();
 		
-		ArrayList<Comentario> coment = juegoEJB.listaComentarioGuia();
+		ArrayList<Comentario> coment = guiaEJB.listaComentarioGuia();
 		
 		request.setAttribute("usuario", usuario);
 		request.setAttribute("guia", guia);
@@ -81,7 +82,7 @@ public class FichaGuia extends HttpServlet {
 		
 		DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		
-		juegoEJB.insertComentarioGuia(comentario, hourdateFormat.format(date),idUsuario, idGuia);
+		guiaEJB.insertComentarioGuia(comentario, hourdateFormat.format(date),idUsuario, idGuia);
 		
 		response.sendRedirect("FichaGuia?id="+idGuia);
 		
