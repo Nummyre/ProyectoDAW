@@ -36,3 +36,41 @@ input[type="radio"]:checked ~ label {
   color: orange;
 }
 
+.fa {
+  padding: 20px;
+  font-size: 30px;
+    width:55px;
+    height: 55px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  border-radius: 50%;
+}
+
+.fa:hover {
+ text-decoration: none;
+    color: white;
+   
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+
+.fa-instagram {
+ background: linear-gradient(to bottom left, #ff33cc 18%, #ff6600 98%);
+  color: white;
+}
+
+.fa-tumblr {
+  background: #2c4762;
+  color: white;
+}
+
