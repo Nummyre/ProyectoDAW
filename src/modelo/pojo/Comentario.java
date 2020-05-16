@@ -7,8 +7,6 @@ public class Comentario {
 	private Integer idJuego;
 	private String comentario;
 	private String fecha;
-	private Integer meGusta;
-	private Integer noMeGusta;
 	
 	
 	public Comentario () {
@@ -16,16 +14,14 @@ public class Comentario {
 	}
 	
 
-	public Comentario(Integer id, Integer idUsuario, Integer idJuego, String comentario, String fecha, Integer meGusta,
-			Integer noMeGusta) {
+	public Comentario(Integer id, Integer idUsuario, Integer idJuego, String comentario, String fecha) {
 		super();
 		this.id = id;
 		this.idUsuario = idUsuario;
 		this.idJuego = idJuego;
 		this.comentario = comentario;
 		this.fecha = fecha;
-		this.meGusta = meGusta;
-		this.noMeGusta = noMeGusta;
+
 	}
 
 
@@ -69,21 +65,7 @@ public class Comentario {
 		this.fecha = fecha;
 	}
 
-	public Integer getMeGusta() {
-		return meGusta;
-	}
 
-	public void setMeGusta(Integer meGusta) {
-		this.meGusta = meGusta;
-	}
-
-	public Integer getNoMeGusta() {
-		return noMeGusta;
-	}
-
-	public void setNoMeGusta(Integer noMeGusta) {
-		this.noMeGusta = noMeGusta;
-	}
 	
 	
 
