@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+
 #form {
   width: 250px;
   margin: 0 auto;
@@ -36,3 +37,88 @@ input[type="radio"]:checked ~ label {
   color: orange;
 }
 
+.fa {
+  padding: 20px;
+  font-size: 30px;
+    width:55px;
+    height: 55px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  border-radius: 50%;
+}
+
+.fa:hover {
+ text-decoration: none;
+    color: white;
+   
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+
+.fa-instagram {
+ background: linear-gradient(to bottom left, #ff33cc 18%, #ff6600 98%);
+  color: white;
+}
+
+.fa-tumblr {
+  background: #2c4762;
+  color: white;
+}
+
+.h:hover{
+	opacity: 0.4;
+	background: black;
+	border-radius: 3px;
+}
+
+.nav-link:hover{
+	opacity: 0.4;
+	
+}
+
+.navbar{
+	border-bottom: 2px solid #29C45A;
+}
+
+
+.dropdown-menu>.dropdown-item:hover{
+	background: #29C45A;
+}
+
+#us{
+	opacity: 0.9;
+	width: 100px;
+	border-radius: 5px;
+	margin-right:20px;
+	text-align: center;
+}
+
+td{
+	padding:20px;
+	
+}
+
+table{
+	text-align: center;
+}
+
+
+.e{
+	text-decoration: none;
+	color: black;
+}
+h3{
+	border-radius: 2px;
+	color: white;
+	padding: 10px;
+background: linear-gradient(90deg, rgba(25,23,23,1) 0%, rgba(10,10,10,0.8855917366946778) 19%, rgba(191,191,191,1) 46%, rgba(255,255,255,1) 66%);	

@@ -34,12 +34,11 @@ public class AnalisisDAO {
 
 					juego = new ArrayList<Analisis>();
 
-					juego.add(new Analisis(rs.getInt("id"), rs.getString("titulo"), rs.getString("analisi"),
+					juego.add(new Analisis(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),rs.getString("fecha"), rs.getString("analisi"),
 							rs.getInt("idUsuario")));
 
 					while (rs.next()) {
-
-						juego.add(new Analisis(rs.getInt("id"), rs.getString("titulo"), rs.getString("analisi"),
+						juego.add(new Analisis(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),rs.getString("fecha"), rs.getString("analisi"),
 								rs.getInt("idUsuario")));
 					}
 				}
@@ -110,12 +109,12 @@ public class AnalisisDAO {
 
 					guia = new ArrayList<Analisis>();
 
-					guia.add(new Analisis(rs.getInt("id"), rs.getString("titulo"), rs.getString("analisi"),
+				guia.add(new Analisis(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),rs.getString("fecha"), rs.getString("analisi"),
 							rs.getInt("idUsuario")));
 
 					while (rs.next()) {
 
-						guia.add(new Analisis(rs.getInt("id"), rs.getString("titulo"), rs.getString("analisi"),
+						guia.add(new Analisis(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),rs.getString("fecha"), rs.getString("analisi"),
 								rs.getInt("idUsuario")));
 					}
 				}
@@ -271,7 +270,7 @@ public class AnalisisDAO {
 
 					// Coge los datos del usuario que a iniciado sesion de la base de datos
 					rs.first();
-					juego = (new Analisis(rs.getInt("id"), rs.getString("titulo"), rs.getString("analisi"),
+					juego = (new Analisis(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),rs.getString("fecha"), rs.getString("analisi"),
 							rs.getInt("idUsuario")));
 				}
 
@@ -382,14 +381,12 @@ public class AnalisisDAO {
 					Cjuego = new ArrayList<Comentario>();
 
 					Cjuego.add(new Comentario(rs.getInt("id"), rs.getInt("idUsuario"), rs.getInt("idAnalisis"),
-							rs.getString("comentario"), rs.getString("fecha"), rs.getInt("meGusta"),
-							rs.getInt("noMeGusta")));
+							rs.getString("comentario"), rs.getString("fecha")));
 
 					while (rs.next()) {
 
 						Cjuego.add(new Comentario(rs.getInt("id"), rs.getInt("idUsuario"), rs.getInt("idAnalisis"),
-								rs.getString("comentario"), rs.getString("fecha"), rs.getInt("meGusta"),
-								rs.getInt("noMeGusta")));
+								rs.getString("comentario"), rs.getString("fecha")));
 					}
 				}
 

@@ -4,21 +4,30 @@ public class Analisis {
 
 	private Integer id;
 	private String titulo;
+	private String descripcion;
+	private String fecha;
 	private String texto;
 	private Integer idUsuario;
 	
-	public Analisis(Integer id, String titulo, String texto, Integer idUsuario) {
-	
-		this.id = id;
-		this.titulo = titulo;
-		this.texto = texto;
-		this.idUsuario = idUsuario;
-	}
-	
-	
+
 	public Analisis() {
 		
 	}
+
+
+	
+	
+	public Analisis(Integer id, String titulo, String descripcion, String fecha, String texto, Integer idUsuario) {
+		super();
+		this.id = id;
+		this.titulo = titulo;
+		this.descripcion = descripcion;
+		this.fecha = fecha;
+		this.texto = texto;
+		this.idUsuario = idUsuario;
+	}
+
+
 
 
 	public Integer getId() {
@@ -41,6 +50,26 @@ public class Analisis {
 	}
 
 
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+
+	public String getFecha() {
+		return fecha;
+	}
+
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+
+
 	public String getTexto() {
 		return texto;
 	}
@@ -59,7 +88,8 @@ public class Analisis {
 	public void setIdUsuario(Integer idUsuario) {
 		this.idUsuario = idUsuario;
 	}
-	
+
+
 	
 	
 	

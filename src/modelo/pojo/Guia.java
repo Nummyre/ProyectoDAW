@@ -4,17 +4,12 @@ public class Guia {
 
 	private Integer id;
 	private String titulo;
+	private String fecha;
 	private String texto;
 	private Integer idUsuario;
 
 	
-	public Guia(Integer id, String titulo, String texto, Integer idUsuario) {
-		
-		this.id = id;
-		this.titulo = titulo;
-		this.texto = texto;
-		this.idUsuario = idUsuario;
-	}
+	
 
 
 	public Guia() {
@@ -22,9 +17,24 @@ public class Guia {
 	}
 
 
+
+	public Guia(Integer id, String titulo, String fecha, String texto, Integer idUsuario) {
+		super();
+		this.id = id;
+		this.titulo = titulo;
+		this.fecha = fecha;
+		this.texto = texto;
+		this.idUsuario = idUsuario;
+	}
+
+
+
 	public Integer getId() {
 		return id;
 	}
+
+
+
 
 
 	public void setId(Integer id) {
@@ -32,9 +42,15 @@ public class Guia {
 	}
 
 
+
+
+
 	public String getTitulo() {
 		return titulo;
 	}
+
+
+
 
 
 	public void setTitulo(String titulo) {
@@ -42,9 +58,31 @@ public class Guia {
 	}
 
 
+
+
+
+	public String getFecha() {
+		return fecha;
+	}
+
+
+
+
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+
+
+
+
+
 	public String getTexto() {
 		return texto;
 	}
+
+
+
 
 
 	public void setTexto(String texto) {
@@ -52,16 +90,22 @@ public class Guia {
 	}
 
 
+
+
+
 	public Integer getIdUsuario() {
 		return idUsuario;
 	}
+
+
+
 
 
 	public void setIdUsuario(Integer idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 
-
+	
 	
 	
 	

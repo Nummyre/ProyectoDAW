@@ -801,14 +801,12 @@ public class JuegosDAO {
 					Cjuego = new ArrayList<Comentario>();
 
 					Cjuego.add(new Comentario(rs.getInt("id"), rs.getInt("idUsuario"), rs.getInt("idJuego"),
-							rs.getString("comentario"), rs.getString("fecha"), rs.getInt("meGusta"),
-							rs.getInt("noMeGusta")));
+							rs.getString("comentario"), rs.getString("fecha")));
 
 					while (rs.next()) {
 
 						Cjuego.add(new Comentario(rs.getInt("id"), rs.getInt("idUsuario"), rs.getInt("idJuego"),
-								rs.getString("comentario"), rs.getString("fecha"), rs.getInt("meGusta"),
-								rs.getInt("noMeGusta")));
+								rs.getString("comentario"), rs.getString("fecha")));
 					}
 				}
 
@@ -854,14 +852,12 @@ public class JuegosDAO {
 					Cjuego = new ArrayList<Comentario>();
 
 					Cjuego.add(new Comentario(rs.getInt("id"), rs.getInt("idUsuario"), rs.getInt("idComunidad"),
-							rs.getString("comentario"), rs.getString("fecha"), rs.getInt("meGusta"),
-							rs.getInt("noMeGusta")));
+							rs.getString("comentario"), rs.getString("fecha")));
 
 					while (rs.next()) {
 
 						Cjuego.add(new Comentario(rs.getInt("id"), rs.getInt("idUsuario"), rs.getInt("idComunidad"),
-								rs.getString("comentario"), rs.getString("fecha"), rs.getInt("meGusta"),
-								rs.getInt("noMeGusta")));
+								rs.getString("comentario"), rs.getString("fecha")));
 					}
 				}
 
