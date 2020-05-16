@@ -19,6 +19,7 @@ import modelo.ejb.GuiaEJB;
 import modelo.ejb.JuegoEJB;
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
+import modelo.pojo.Foto;
 import modelo.pojo.Genero;
 import modelo.pojo.Juego;
 import modelo.pojo.Plataforma;
@@ -60,9 +61,14 @@ public class Main extends HttpServlet {
 		ArrayList<modelo.pojo.Analisis> analisi = analisisEJB.listaAnalisis();
 		ArrayList<Genero> genero = juegoEJB.genero();
 		ArrayList<Plataforma> plata = juegoEJB.plataforma();
+		ArrayList<Foto> juegoFoto = juegoEJB.listaFotosJuegos();
+		ArrayList<Foto> GuiaFoto = guiaEJB.listaFotosGuia();
+		ArrayList<Foto> analisisFoto = analisisEJB.listaFotosAnalisi();
 		
 		
-		
+		request.setAttribute("juegoFoto", juegoFoto);
+		request.setAttribute("guiaFoto", GuiaFoto);
+		request.setAttribute("analisisFoto", analisisFoto);
 		
 		request.setAttribute("juego", juego);
 		request.setAttribute("genero", genero);

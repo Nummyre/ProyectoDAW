@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+
 #form {
   width: 250px;
   margin: 0 auto;
@@ -74,3 +75,50 @@ input[type="radio"]:checked ~ label {
   color: white;
 }
 
+.h:hover{
+	opacity: 0.4;
+	background: black;
+	border-radius: 3px;
+}
+
+.nav-link:hover{
+	opacity: 0.4;
+	
+}
+
+.navbar{
+	border-bottom: 2px solid #29C45A;
+}
+
+
+.dropdown-menu>.dropdown-item:hover{
+	background: #29C45A;
+}
+
+#us{
+	opacity: 0.9;
+	width: 100px;
+	border-radius: 5px;
+	margin-right:20px;
+	text-align: center;
+}
+
+td{
+	padding:20px;
+	
+}
+
+table{
+	text-align: center;
+}
+
+
+.e{
+	text-decoration: none;
+	color: black;
+}
+h3{
+	border-radius: 2px;
+	color: white;
+	padding: 10px;
+background: linear-gradient(90deg, rgba(25,23,23,1) 0%, rgba(10,10,10,0.8855917366946778) 19%, rgba(191,191,191,1) 46%, rgba(255,255,255,1) 66%);	
