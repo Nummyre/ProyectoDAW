@@ -36,12 +36,12 @@ public class GuiasDAO {
 
 					juego = new ArrayList<Guia>();
 
-					juego.add(new Guia(rs.getInt("id"), rs.getString("titulo"), rs.getString("guia"),
+					juego.add(new Guia(rs.getInt("id"), rs.getString("titulo"), rs.getString("fecha"), rs.getString("guia"),
 							rs.getInt("idUsuario")));
 
 					while (rs.next()) {
 
-						juego.add(new Guia(rs.getInt("id"), rs.getString("titulo"), rs.getString("guia"),
+						juego.add(new Guia(rs.getInt("id"), rs.getString("titulo"), rs.getString("fecha"), rs.getString("guia"),
 								rs.getInt("idUsuario")));
 					}
 				}
@@ -133,13 +133,12 @@ public class GuiasDAO {
 					rs.first();
 
 					guia = new ArrayList<Guia>();
-
-					guia.add(new Guia(rs.getInt("id"), rs.getString("titulo"), rs.getString("guia"),
-							rs.getInt("idUsuario")));
+					guia.add(new Guia(rs.getInt("id"), rs.getString("titulo"), rs.getString("fecha"), rs.getString("guia"),
+							rs.getInt("idUsuario")));;
 
 					while (rs.next()) {
 
-						guia.add(new Guia(rs.getInt("id"), rs.getString("titulo"), rs.getString("guia"),
+						guia.add(new Guia(rs.getInt("id"), rs.getString("titulo"), rs.getString("fecha"), rs.getString("guia"),
 								rs.getInt("idUsuario")));
 					}
 				}
@@ -265,7 +264,7 @@ public class GuiasDAO {
 
 					// Coge los datos del usuario que a iniciado sesion de la base de datos
 					rs.first();
-					juego = (new Guia(rs.getInt("id"), rs.getString("titulo"), rs.getString("guia"),
+					juego = (new Guia(rs.getInt("id"), rs.getString("titulo"), rs.getString("fecha"), rs.getString("guia"),
 							rs.getInt("idUsuario")));
 				}
 
@@ -371,14 +370,12 @@ public class GuiasDAO {
 					Cjuego = new ArrayList<Comentario>();
 
 					Cjuego.add(new Comentario(rs.getInt("id"), rs.getInt("idUsuario"), rs.getInt("idGuia"),
-							rs.getString("comentario"), rs.getString("fecha"), rs.getInt("meGusta"),
-							rs.getInt("noMeGusta")));
+							rs.getString("comentario"), rs.getString("fecha")));
 
 					while (rs.next()) {
 
 						Cjuego.add(new Comentario(rs.getInt("id"), rs.getInt("idUsuario"), rs.getInt("idGuia"),
-								rs.getString("comentario"), rs.getString("fecha"), rs.getInt("meGusta"),
-								rs.getInt("noMeGusta")));
+								rs.getString("comentario"), rs.getString("fecha")));
 					}
 				}
 
