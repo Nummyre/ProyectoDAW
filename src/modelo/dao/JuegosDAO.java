@@ -278,8 +278,8 @@ public class JuegosDAO {
 
 			Connection connection = new Conexion().conecta();
 
-			String query = "INSERT INTO juego (titulo, descripcion, anyo, puntuacion, idGenero, idPlataforma, idUsuario) "
-					+ "VALUES ('" + titulo + "','" + desc + "','" + anyo + "',0,'" + idGen + "','" + idPla + "','"
+			String query = "INSERT INTO juego (titulo, descripcion, anyo, idGenero, idPlataforma, idUsuario) "
+					+ "VALUES ('" + titulo + "','" + desc + "','" + anyo + "','" + idGen + "','" + idPla + "','"
 					+ idUser + "');";
 
 			try (Statement stmt = connection.createStatement()) {

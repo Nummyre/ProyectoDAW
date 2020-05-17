@@ -139,7 +139,7 @@
 			out.print("<div class=\"container mt-5 p-4 ml-5\">");
 
 			out.print("");
-			out.print("<div class=\"row\"");
+			out.print("<div class=\"row\">");
 			out.print("<div class=\"col\">");
 			out.print("<h3>Añade una análisis</h3>");
 			out.print("</div>");
@@ -148,7 +148,7 @@
 
 			//----" 2 row"------
 			out.print("<form method=\"post\" action=\"AddAnalisis\" enctype=\"multipart/form-data\">");
-			out.print("<div class=\"form-row mt-4\"");
+			out.print("<div class=\"form-row mt-4\">");
 			out.print("<div class=\"col-md-4\">");
 			out.print("</div>");
 
@@ -156,9 +156,21 @@
 			out.print("<label>Título</label>");
 			out.print("<input class=\"form-control\" type=\"text\" placeholder=\"Título\" name=\"titulo\">");
 			out.print("</div>");
+			
+			
+			out.print("<div class=\"form-row\">");
+			out.print("<div class=\"col-md-4\">");
+			out.print("</div>");
+			out.print("<div class=\"col\">");
+			out.print("<div class=\"form-group\">");
+			out.print("<label for=\"editor1\">Descripción</label>");
+			out.print("<textarea class=\"form-control\" id=\"editor1\" rows=\"10\" name=\"descr\"></textarea>");
+			out.print("</div>");
+			out.print("</div>");
+			out.print("</div>");
 
 			//-----------4 row---
-			out.print("<div class=\"form-row\"");
+			out.print("<div class=\"form-row\">");
 			out.print("<div class=\"col-md-4\">");
 			out.print("</div>");
 			out.print("<div class=\"col\">");
@@ -168,9 +180,10 @@
 			out.print("</div>");
 			out.print("</div>");
 			out.print("</div>");
+			
 
 			//------ 5 row ---- 
-			out.print("<div class=\"form-row\"");
+			out.print("<div class=\"form-row\">");
 			out.print("<div class=\"col-md-4\">");
 			out.print("<label for=\"exampleFormControlFile1\">Sube una foto para el juego</label>");
 			out.print(

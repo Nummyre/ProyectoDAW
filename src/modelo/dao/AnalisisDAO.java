@@ -137,12 +137,12 @@ public class AnalisisDAO {
 	 * @param idUsuario = clave de identificación de un usuario
 	 * @return devuelve el id generado del análisis
 	 */
-	public int insertAnalisi(String titulo, String texto, Integer idUsuario) {
+	public int insertAnalisi(String titulo, String descripcion, String fecha, String texto, Integer idUsuario) {
 		int rowID = 0;
 		try {
 			Connection connection = new Conexion().conecta();
 
-			String query = "INSERT INTO analisi (titulo, analisi, idUsuario) " + "VALUES ('" + titulo + "','" + texto
+			String query = "INSERT INTO analisi (titulo, descripcion, fecha, analisi, idUsuario) " + "VALUES ('" + titulo + "', '" + descripcion+ "','" + fecha + "','" + texto
 					+ "', " + idUsuario + ");";
 
 			try (Statement stmt = connection.createStatement()) {

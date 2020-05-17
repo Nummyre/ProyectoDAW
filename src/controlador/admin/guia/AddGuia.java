@@ -2,7 +2,10 @@ package controlador.admin.guia;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -87,9 +90,13 @@ public class AddGuia extends HttpServlet {
 			}
 				System.out.println("4");
 				
+				Date date = new Date();
+
+				DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+				
 				System.out.println(fileName);
 				
-				int guia = guiaEJB.insertGuia(titulo, texto, id);
+				int guia = guiaEJB.insertGuia(titulo, hourdateFormat.format(date), texto, id);
 				
 				guiaEJB.insertGuiaFoto(fileName, guia);
 				

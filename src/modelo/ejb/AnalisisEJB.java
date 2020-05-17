@@ -27,10 +27,10 @@ public class AnalisisEJB {
 		juegoList.deleteAnalisis(id);
 	}
 
-	public int insertAnalisi(String titulo, String texto, Integer idUsuario) {
+	public int insertAnalisi(String titulo, String descripcion, String fecha, String texto, Integer idUsuario) {
 		AnalisisDAO juegoList = new AnalisisDAO();
 
-		return juegoList.insertAnalisi(titulo, texto, idUsuario);
+		return juegoList.insertAnalisi(titulo, descripcion, fecha, texto, idUsuario);
 	}
 
 	public void updateAnalisi(String titulo, String texto, Integer id) {

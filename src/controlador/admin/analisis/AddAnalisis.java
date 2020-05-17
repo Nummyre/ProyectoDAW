@@ -2,7 +2,10 @@ package controlador.admin.analisis;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -60,6 +63,7 @@ public class AddAnalisis extends HttpServlet {
 		
 		String titulo = request.getParameter("titulo");
 		String texto = request.getParameter("desc");
+		String desc = request.getParameter("descr");
 		String idUser = request.getParameter("id");
 		Integer id = Integer.parseInt(idUser);
 		
@@ -87,11 +91,15 @@ public class AddAnalisis extends HttpServlet {
 			           }
 			}
 				
+				Date date = new Date();
+
+				DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+				
 				System.out.println("4");
 				
 				System.out.println(fileName);
 
-				int juego = analisisEJB.insertAnalisi(titulo, texto, id);
+				int juego = analisisEJB.insertAnalisi(titulo, desc, hourdateFormat.format(date), texto, id);
 
 				System.out.println(juego);
 				

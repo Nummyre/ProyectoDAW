@@ -159,12 +159,12 @@ public class GuiasDAO {
 	 * @param idUsuario = clave de identificación del usuario
 	 * @return devuelve el id generado de la guía
 	 */
-	public int insertGuia(String titulo, String texto, Integer idUsuario) {
+	public int insertGuia(String titulo, String fecha, String texto, Integer idUsuario) {
 		int rowID = 0;
 		try {
 			Connection connection = new Conexion().conecta();
 
-			String query = "INSERT INTO guia (titulo, guia, idUsuario) " + "VALUES ('" + titulo + "','" + texto + "', "
+			String query = "INSERT INTO guia (titulo, fecha, guia, idUsuario) " + "VALUES ('" + titulo + "','" + fecha + "','" + texto + "', "
 					+ idUsuario + ");";
 
 			try (Statement stmt = connection.createStatement()) {
