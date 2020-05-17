@@ -97,11 +97,36 @@ input[type="radio"]:checked ~ label {
 
 #us{
 	opacity: 0.9;
-	width: 100px;
+
 	border-radius: 5px;
-	margin-right:20px;
+
 	text-align: center;
 }
+
+#us1{
+	opacity: 0.9;
+	color: white;
+	margin-right: -230px;
+	border-radius: 5px;
+	text-align: center;
+}
+
+.ad{
+	margin-top: 132px;
+	text-decoration: none;
+	 list-style: none;
+       
+}
+
+.ad li{
+	margin-right: 25px;
+	display:inline;
+}
+  .ad li a {
+         color: white;
+         text-decoration: none;
+         padding: 20px;
+     }
 
 td{
 	padding:20px;
@@ -113,10 +138,11 @@ table{
 }
 
 
-.e{
+table tr td a{
 	text-decoration: none;
 	color: black;
 }
+
 h3{
 	border-radius: 2px;
 	color: white;
