@@ -5,12 +5,15 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import org.slf4j.LoggerFactory;
+
+import ch.qos.logback.classic.Logger;
 import modelo.pojo.Analisis;
 import modelo.pojo.Comentario;
 import modelo.pojo.Foto;
 
 public class AnalisisDAO {
-
+	private static final Logger logger = (Logger) LoggerFactory.getLogger(AnalisisDAO.class);	
 
 	public ArrayList<Analisis> listaAnalisis() {
 		ArrayList<Analisis> juego = null;
@@ -34,25 +37,23 @@ public class AnalisisDAO {
 
 					juego = new ArrayList<Analisis>();
 
-					juego.add(new Analisis(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),rs.getString("fecha"), rs.getString("analisi"),
-							rs.getInt("idUsuario")));
+					juego.add(new Analisis(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),
+							rs.getString("fecha"), rs.getString("analisi"), rs.getInt("idUsuario")));
 
 					while (rs.next()) {
-						juego.add(new Analisis(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),rs.getString("fecha"), rs.getString("analisi"),
-								rs.getInt("idUsuario")));
+						juego.add(new Analisis(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),
+								rs.getString("fecha"), rs.getString("analisi"), rs.getInt("idUsuario")));
 					}
 				}
 
 				rs.close();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return juego;
 	}
-	
-	
-	
+
 	/**
 	 * Método que elimina un análisis
 	 * 
@@ -73,12 +74,9 @@ public class AnalisisDAO {
 				stmt.executeUpdate(queryBorrar);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 	}
-	
-	
-	
 
 	/**
 	 * Método que lista los análisis por id del usuario
@@ -109,25 +107,23 @@ public class AnalisisDAO {
 
 					guia = new ArrayList<Analisis>();
 
-				guia.add(new Analisis(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),rs.getString("fecha"), rs.getString("analisi"),
-							rs.getInt("idUsuario")));
+					guia.add(new Analisis(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),
+							rs.getString("fecha"), rs.getString("analisi"), rs.getInt("idUsuario")));
 
 					while (rs.next()) {
 
-						guia.add(new Analisis(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),rs.getString("fecha"), rs.getString("analisi"),
-								rs.getInt("idUsuario")));
+						guia.add(new Analisis(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),
+								rs.getString("fecha"), rs.getString("analisi"), rs.getInt("idUsuario")));
 					}
 				}
 
 				rs.close();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return guia;
 	}
-	
-	
 
 	/**
 	 * Método que inserta un análisis
@@ -142,8 +138,8 @@ public class AnalisisDAO {
 		try {
 			Connection connection = new Conexion().conecta();
 
-			String query = "INSERT INTO analisi (titulo, descripcion, fecha, analisi, idUsuario) " + "VALUES ('" + titulo + "', '" + descripcion+ "','" + fecha + "','" + texto
-					+ "', " + idUsuario + ");";
+			String query = "INSERT INTO analisi (titulo, descripcion, fecha, analisi, idUsuario) " + "VALUES ('"
+					+ titulo + "', '" + descripcion + "','" + fecha + "','" + texto + "', " + idUsuario + ");";
 
 			try (Statement stmt = connection.createStatement()) {
 
@@ -155,18 +151,16 @@ public class AnalisisDAO {
 
 				}
 			} catch (Exception e) {
-
+				logger.error(e.getMessage());
 			}
 			connection.close();
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return rowID;
 	}
 
-	
-	
 	/**
 	 * Método para actualizar un análisis
 	 * 
@@ -187,12 +181,11 @@ public class AnalisisDAO {
 			connection.close();
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 
 	}
-	
-	
+
 	/**
 	 * Método que inserta una foto para un análisis
 	 * 
@@ -212,11 +205,10 @@ public class AnalisisDAO {
 			connection.close();
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 	}
 
-	
 	/**
 	 * Método que actualiza la foto de un análisis
 	 * 
@@ -236,11 +228,10 @@ public class AnalisisDAO {
 			connection.close();
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 	}
 
-	
 	/**
 	 * Método que devuelve un análisis
 	 * 
@@ -270,22 +261,20 @@ public class AnalisisDAO {
 
 					// Coge los datos del usuario que a iniciado sesion de la base de datos
 					rs.first();
-					juego = (new Analisis(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),rs.getString("fecha"), rs.getString("analisi"),
-							rs.getInt("idUsuario")));
+					juego = (new Analisis(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),
+							rs.getString("fecha"), rs.getString("analisi"), rs.getInt("idUsuario")));
 				}
 
 				rs.close();
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 
 		return juego;
 	}
 
-	
-	
 	public ArrayList<Foto> listaFotosAnalisi() {
 		ArrayList<Foto> Fjuego = null;
 		try {
@@ -320,21 +309,18 @@ public class AnalisisDAO {
 				rs.close();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return Fjuego;
 	}
 
-	
-	
-	
 	public int insertComentarioAnalisis(String comentario, String fecha, Integer idUsuario, Integer idAnalisis) {
 		int rowID = 0;
 		try {
 			Connection connection = new Conexion().conecta();
 
-			String query = "INSERT INTO comentario_analisis (comentario, fecha, meGusta, noMeGusta, idUsuario, idAnalisis) " + "VALUES ('" + comentario
-					+ "','" + fecha + "',0, 0, '"+idUsuario+"', '"+idAnalisis+"');";
+			String query = "INSERT INTO comentario_analisis (comentario, fecha, meGusta, noMeGusta, idUsuario, idAnalisis) "
+					+ "VALUES ('" + comentario + "','" + fecha + "',0, 0, '" + idUsuario + "', '" + idAnalisis + "');";
 
 			try (Statement stmt = connection.createStatement()) {
 
@@ -346,17 +332,16 @@ public class AnalisisDAO {
 
 				}
 			} catch (Exception e) {
-
+				logger.error(e.getMessage());
 			}
 			connection.close();
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return rowID;
 	}
-	
-	
+
 	public ArrayList<Comentario> listaComentarioAnalisi() {
 		ArrayList<Comentario> Cjuego = null;
 		try {
@@ -393,12 +378,11 @@ public class AnalisisDAO {
 				rs.close();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return Cjuego;
 	}
-	
-	
+
 	public void deleteComentarioAnalisis(Integer id) {
 		try {
 
@@ -414,8 +398,8 @@ public class AnalisisDAO {
 				stmt.executeUpdate(queryBorrar);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 	}
-	
+
 }

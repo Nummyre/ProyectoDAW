@@ -14,6 +14,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Freak's Corner</title>
+<link href="img/logo4.png" rel="icon" type="image/x-icon" />
 <link rel="stylesheet" type="text/css" href="css/Style.css">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -32,7 +33,7 @@
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
 </head>
-<body>
+<body class="cuerpo">
 	<%
 		Usuario user = (Usuario) request.getAttribute("usuario");
 		ArrayList<Juego> juego = (ArrayList<Juego>) request.getAttribute("juego");
@@ -59,10 +60,10 @@
 			out.print("<a class=\"h nav-link text-white\" href=\"Main\">Inicio</a>");
 			out.print("</li>");
 			out.print("<li class=\"nav-item\">");
-			out.print("<a class=\"nav-link\" href=\"Registro\">Registrarse</a>");
+			out.print("<a class=\" nav-link text-white\" href=\"Registro\">Registrarse</a>");
 			out.print("</li>");
-			out.print("<li class=\"nav-item mr-5\">");
-			out.print("<a class=\"nav-link\" href=\"Login\">Iniciar Sesión</a>");
+			out.print("<li class=\"nav-item\">");
+			out.print("<a class=\" nav-link text-white\" href=\"Login\">Iniciar Sesión</a>");
 			out.print("</li>");
 			out.print("<li class=\"nav-item dropdown\">");
 			out.print(
@@ -71,10 +72,12 @@
 			out.print("<a class=\"dropdown-item\" href=\"Top10\">TOP 10 | Juegos</a>");
 			out.print("<a class=\"dropdown-item\" href=\"Analisis\">Análisis</a>");
 			out.print("<a class=\"dropdown-item\" href=\"Guia\">Guías</a>");
-			out.print("<a class=\"dropdown-item\" href=\"Comunidad\">Comunidad</a>");
 			out.print("<div class=\"dropdown-divider\"></div>");
-			out.print("<a class=\"dropdown-item\" href=\"#\">Contacto</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Comunidad\">Comunidad</a>");
 			out.print("</div>");
+			out.print("</li>");
+			out.print("<li class=\"nav-item\">");
+			out.print("<a class=\"nav-link text-white\" href=\"Contacto\">Contacto</a>");
 			out.print("</li>");
 			out.print("</ul>");
 			out.print("<form class=\"form-inline ml-5\">");
@@ -108,15 +111,53 @@
 
 			out.print("</header>");
 
-			out.print("<div class=\"container p-5 mt-5\">");
+			out.print("<div class=\"container p-5\">");
 
-			out.print("<div class=\"row\">"); //videos
-			out.print("<div class=\"col\">");
-			// 			out.print("<h3></h3>");
+			out.print("<div id=\"carousel\" class=\"carousel slide\" data-ride=\"carousel\">");
+			out.print("<ol class=\"carousel-indicators\">");
+			out.print("<li data-target=\"#carousel\" data-slide-to=\"0\" class=\"active\"></li>");
+			out.print("<li data-target=\"#carousel\" data-slide-to=\"1\" ></li>");
+			out.print("<li data-target=\"#carousel\" data-slide-to=\"2\" ></li>");
+			out.print("</ol>");
+			out.print("<div class=\"carousel-inner\">");
+			out.print("<div class=\"carousel-item active\">");
+			out.print("<a href=\"Analisis\"><img class=\"d-block w-100\" src=\"img/foto7.jpg\" width=\"100\" height=\"500\" alt=\"First slide\"></a>");
+			out.print("<div class=\"carousel-caption d-none d-md-block\">");
+			out.print("<h5>Análisis</h5>");
+			out.print("<p>¡Explora los videojuegos con nuestros análisis!</p>");
 			out.print("</div>");
 			out.print("</div>");
 
-			out.print("<div class=\"row\">");
+			out.print("<div class=\"carousel-item \">");
+			out.print("<a href=\"Guia\"><img class=\"d-block w-100\" src=\"img/fo3.jpg\" width=\"100\" height=\"500\" alt=\"Second slide\"></a>");
+			out.print("<div class=\"carousel-caption d-none d-md-block\">");
+			out.print("<h5 class=\"text-dark font-weight\">Guías</h5>");
+			out.print("<p class=\"text-dark\">¡Ayúdate con nuestras guías!</p>");
+			out.print("</div>");
+			out.print("</div>");
+
+			out.print("<div class=\"carousel-item \">");
+			out.print("<a href=\"Top10\"><img class=\"d-block w-100\" src=\"img/foto2.jpg\" width=\"100\" height=\"500\" alt=\"tercero slide\"></a>");
+			out.print("<div class=\"carousel-caption d-none d-md-block\">");
+			out.print("<h5>Top 10</h5>");
+			out.print("<p>¡Entérate que videojuegos están a la última!</p>");
+			out.print("</div>");
+			out.print("</div>");
+
+			out.print("<a class=\"carousel-control-prev\" href=\"#carousel\" role=\"button\" data-slide=\"prev\">");
+			out.print("<span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"></span>");
+			out.print("<span class=\"sr-only\">Previous</span>");
+			out.print("</a>");
+
+			out.print("<a class=\"carousel-control-next\" href=\"#carousel\" role=\"button\" data-slide=\"next\">");
+			out.print("<span class=\"carousel-control-next-icon\" aria-hidden=\"true\"></span>");
+			out.print("<span class=\"sr-only\">Next</span>");
+			out.print("</a>");
+
+			out.print("</div>");
+			out.print("</div>");
+
+			out.print("<div class=\"row mt-5\">");
 			out.print("<div class=\"col\">");//titulo
 			out.print("<h3>Juegos</h3>");
 			out.print("</div>");
@@ -255,12 +296,6 @@
 			out.print("<li class=\"nav-item active\">");
 			out.print("<a class=\"h nav-link text-white\" href=\"Main\">Inicio</a>");
 			out.print("</li>");
-			out.print("<li class=\"nav-item\">");
-			out.print("<a class=\"nav-link\" href=\"Registro\">Registrarse</a>");
-			out.print("</li>");
-			out.print("<li class=\"nav-item mr-5\">");
-			out.print("<a class=\"nav-link\" href=\"Login\">Iniciar Sesión</a>");
-			out.print("</li>");
 			out.print("<li class=\"nav-item dropdown\">");
 			out.print(
 					"<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Categorías</a>");
@@ -268,10 +303,12 @@
 			out.print("<a class=\"dropdown-item\" href=\"Top10\">TOP 10 | Juegos</a>");
 			out.print("<a class=\"dropdown-item\" href=\"Analisis\">Análisis</a>");
 			out.print("<a class=\"dropdown-item\" href=\"Guia\">Guías</a>");
-			out.print("<a class=\"dropdown-item\" href=\"Comunidad\">Comunidad</a>");
 			out.print("<div class=\"dropdown-divider\"></div>");
-			out.print("<a class=\"dropdown-item\" href=\"#\">Contacto</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Comunidad\">Comunidad</a>");
 			out.print("</div>");
+			out.print("</li>");
+			out.print("<li class=\"nav-item\">");
+			out.print("<a class=\"nav-link text-white\" href=\"Contacto\">Contacto</a>");
 			out.print("</li>");
 			out.print("</ul>");
 			out.print("<form class=\"form-inline ml-5\">");
@@ -301,7 +338,7 @@
 			out.print("</nav>");
 
 			//--------------------------------------------------------
-			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-success\">");
+			out.print("<nav class=\"n navbar navbar-expand-lg navbar-dark bg-success\">");
 			out.print("<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">");
 			out.print("<ul class=\"navbar-nav ml-5\">");
 			out.print("<li class=\"nav-item mr-5\">");
@@ -320,7 +357,7 @@
 
 			out.print("</header>");
 
-			out.print("<div class=\"container p-5\">");
+			out.print("<div class=\"container p-5 mt-2 mb-2\">");
 
 			// 			out.print("<h3></h3>");
 			out.print("<div id=\"carousel\" class=\"carousel slide\" data-ride=\"carousel\">");
@@ -331,15 +368,27 @@
 			out.print("</ol>");
 			out.print("<div class=\"carousel-inner\">");
 			out.print("<div class=\"carousel-item active\">");
-			out.print("<img class=\"d-block w-100\" src=\"img/juegos.jpg\" alt=\"First slide\">");
+			out.print("<a href=\"Analisis\"><img class=\"d-block w-100\" src=\"img/foto7.jpg\" width=\"100\" height=\"500\" alt=\"First slide\"></a>");
+			out.print("<div class=\"carousel-caption d-none d-md-block\">");
+			out.print("<h5>Análisis</h5>");
+			out.print("<p>¡Explora los videojuegos con nuestros análisis!</p>");
+			out.print("</div>");
 			out.print("</div>");
 
 			out.print("<div class=\"carousel-item \">");
-			out.print("<img class=\"d-block w-100\" src=\"img/foto1.png\" alt=\"Second slide\">");
+			out.print("<a href=\"Guia\"><img class=\"d-block w-100\" src=\"img/fo3.jpg\" width=\"100\" height=\"500\" alt=\"Second slide\"></a>");
+			out.print("<div class=\"carousel-caption d-none d-md-block\">");
+			out.print("<h5 class=\"text-dark font-weight\">Guías</h5>");
+			out.print("<p class=\"text-dark\">¡Ayúdate con nuestras guías!</p>");
+			out.print("</div>");
 			out.print("</div>");
 
 			out.print("<div class=\"carousel-item \">");
-			out.print("<img class=\"d-block w-100\" src=\"img/foto2.jpg\" alt=\"tercero slide\">");
+			out.print("<a href=\"Top10\"><img class=\"d-block w-100\" src=\"img/foto2.jpg\" width=\"100\" height=\"500\" alt=\"tercero slide\"></a>");
+			out.print("<div class=\"carousel-caption d-none d-md-block\">");
+			out.print("<h5>Top 10</h5>");
+			out.print("<p>¡Entérate que videojuegos están a la última!</p>");
+			out.print("</div>");
 			out.print("</div>");
 
 			out.print("<a class=\"carousel-control-prev\" href=\"#carousel\" role=\"button\" data-slide=\"prev\">");

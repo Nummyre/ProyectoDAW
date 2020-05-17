@@ -60,6 +60,7 @@ public class Add extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String titulo = request.getParameter("titulo");
 		String any = request.getParameter("anyo");
 		String gen = request.getParameter("gen");
@@ -97,8 +98,6 @@ public class Add extends HttpServlet {
 		}
 
 		int juego = juegoEJB.insertJuego(titulo, desc, anyo, genero, plataforma, id);
-
-		System.out.println(juego);
 
 		juegoEJB.insertJuegoFoto(fileName, juego);
 

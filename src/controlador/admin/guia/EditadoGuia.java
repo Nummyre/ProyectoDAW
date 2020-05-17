@@ -53,8 +53,7 @@ public class EditadoGuia extends HttpServlet {
 	
 		
 		Guia juego = guiaEJB.guia(id);
-		
-		System.out.println(id);
+
 		
 		request.setAttribute("juego", juego);
 
@@ -67,7 +66,7 @@ public class EditadoGuia extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		request.setCharacterEncoding("UTF-8");
 		String titulo = request.getParameter("titulo");
 		String texto = request.getParameter("desc");
 		String idJuego = request.getParameter("idJuego");
@@ -96,12 +95,8 @@ public class EditadoGuia extends HttpServlet {
 			part.write(uploadPath + File.separator + fileName);
 		}
 		
-//		juegoEJB.updateJuego(titulo, desc, anyo, genero, plataforma, id);
-		
-		guiaEJB.updateGuia(titulo, texto, id);
-//		
-//		juegoEJB.updateJuegoFoto(fileName, id);
-		
+		guiaEJB.updateGuia(titulo, texto, id);		
+
 		guiaEJB.updateGuiaFoto(fileName, id);
 
 		response.sendRedirect("EditarListaGuia?id="+idUser);

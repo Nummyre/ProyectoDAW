@@ -3,6 +3,9 @@ package modelo.dao;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import org.slf4j.LoggerFactory;
+
+import ch.qos.logback.classic.Logger;
 import modelo.pojo.Usuario;
 
 import java.sql.Connection;
@@ -11,7 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UsuariosDAO {
-
+	private static final Logger logger = (Logger) LoggerFactory.getLogger(UsuariosDAO.class);	
 	public ArrayList<Usuario> listaUsuarios() {
 		ArrayList<Usuario> user = null;
 		try {
@@ -50,7 +53,7 @@ public class UsuariosDAO {
 				rs.close();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return user;
 	}
@@ -71,7 +74,7 @@ public class UsuariosDAO {
 			connection.close();
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 	}
 
@@ -109,7 +112,7 @@ public class UsuariosDAO {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 
 		return usuario;
@@ -130,7 +133,7 @@ public class UsuariosDAO {
 			stmt.executeUpdate(query);
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 
 		}
 
@@ -150,7 +153,7 @@ public class UsuariosDAO {
 			stmt.executeUpdate(query);
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 
 		}
 	}
@@ -170,7 +173,7 @@ public class UsuariosDAO {
 			stmt.executeUpdate(query);
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 
 		}
 	}

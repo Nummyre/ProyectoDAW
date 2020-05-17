@@ -22,6 +22,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import org.slf4j.LoggerFactory;
+
+import ch.qos.logback.classic.Logger;
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
 
@@ -29,6 +32,8 @@ import modelo.ejb.UsuariosEJB;
 @MultipartConfig(maxFileSize = 1024 * 1024 * 5)
 public class Registro extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private static final Logger logger = (Logger) LoggerFactory.getLogger(Registro.class);
 
 	// Variable para guardar la imagen
 	private static final String UPLOAD_DIRECTORY = "Imagenes";
@@ -49,6 +54,7 @@ public class Registro extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		request.setCharacterEncoding("UTF-8");
 		String user = request.getParameter("user");
 		String pass = request.getParameter("pass");
 		String nombre = request.getParameter("nom");
@@ -115,7 +121,8 @@ public class Registro extends HttpServlet {
 			// Cierre.
 			t.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.debug(e.getMessage());
+			logger.error(e.getMessage());
 		}
 
 		// Metodo para registrar al usuario

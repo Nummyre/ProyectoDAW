@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import org.slf4j.LoggerFactory;
+
+import ch.qos.logback.classic.Logger;
 import modelo.pojo.Analisis;
 import modelo.pojo.Comentario;
 import modelo.pojo.Comunidad;
@@ -20,6 +23,9 @@ import modelo.pojo.Top10;
 
 public class JuegosDAO {
 
+	private static final Logger logger = (Logger) LoggerFactory.getLogger(JuegosDAO.class);	
+	
+	
 	/**
 	 * Método para listar los juegos
 	 * 
@@ -61,7 +67,7 @@ public class JuegosDAO {
 				rs.close();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return juego;
 	}
@@ -96,7 +102,7 @@ public class JuegosDAO {
 				stmt.executeUpdate(queryBorrar);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 	}
 
@@ -154,7 +160,7 @@ public class JuegosDAO {
 				rs.close();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return juego;
 	}
@@ -206,7 +212,7 @@ public class JuegosDAO {
 				rs.close();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return juego;
 
@@ -253,7 +259,7 @@ public class JuegosDAO {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 
 		return juego;
@@ -292,12 +298,12 @@ public class JuegosDAO {
 
 				}
 			} catch (Exception e) {
-
+				logger.error(e.getMessage());
 			}
 			connection.close();
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return rowID;
 	}
@@ -332,7 +338,7 @@ public class JuegosDAO {
 			connection.close();
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 
 	}
@@ -370,7 +376,7 @@ public class JuegosDAO {
 			connection.close();
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 	}
 
@@ -395,7 +401,7 @@ public class JuegosDAO {
 			connection.close();
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 	}
 
@@ -445,7 +451,7 @@ public class JuegosDAO {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return juego;
 
@@ -492,7 +498,7 @@ public class JuegosDAO {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return juego;
 
@@ -539,7 +545,7 @@ public class JuegosDAO {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return juego;
 
@@ -585,7 +591,7 @@ public class JuegosDAO {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return juego;
 
@@ -633,7 +639,7 @@ public class JuegosDAO {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 
 		return juego;
@@ -686,7 +692,7 @@ public class JuegosDAO {
 				rs.close();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return Fjuego;
 	}
@@ -725,12 +731,12 @@ public class JuegosDAO {
 
 				}
 			} catch (Exception e) {
-
+				logger.error(e.getMessage());
 			}
 			connection.close();
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return rowID;
 	}
@@ -760,12 +766,12 @@ public class JuegosDAO {
 
 				}
 			} catch (Exception e) {
-
+				logger.error(e.getMessage());
 			}
 			connection.close();
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return rowID;
 	}
@@ -813,7 +819,7 @@ public class JuegosDAO {
 				rs.close();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return Cjuego;
 	}
@@ -864,7 +870,7 @@ public class JuegosDAO {
 				rs.close();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return Cjuego;
 	}
@@ -887,7 +893,7 @@ public class JuegosDAO {
 				stmt.executeUpdate(queryBorrar);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 	}
 	
@@ -909,7 +915,7 @@ public class JuegosDAO {
 					stmt.executeUpdate(queryBorrar);
 				}
 			} catch (Exception e) {
-				e.printStackTrace();
+				logger.error(e.getMessage());
 			}
 		}
 	
@@ -938,7 +944,7 @@ public class JuegosDAO {
 				stmt.executeUpdate(query);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 	}
 	
@@ -972,7 +978,7 @@ public class JuegosDAO {
 				rs.close();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return Cjuego;
 	}
@@ -1016,7 +1022,7 @@ public class JuegosDAO {
 				rs.close();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return Cjuego;
 	}
@@ -1060,7 +1066,7 @@ public class JuegosDAO {
 				rs.close();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return Cjuego;
 	}
@@ -1102,7 +1108,7 @@ public class JuegosDAO {
 				rs.close();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return comunidad;
 	}
@@ -1136,7 +1142,7 @@ public class JuegosDAO {
 			connection.close();
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return rowID;
 	}
@@ -1173,7 +1179,7 @@ public class JuegosDAO {
 				rs.close();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return hilo;
 	}

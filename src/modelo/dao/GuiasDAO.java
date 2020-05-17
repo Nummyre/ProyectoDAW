@@ -5,13 +5,16 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import org.slf4j.LoggerFactory;
+
+import ch.qos.logback.classic.Logger;
 import modelo.pojo.Comentario;
 import modelo.pojo.Foto;
 import modelo.pojo.Guia;
 
 public class GuiasDAO {
 	
-	
+	private static final Logger logger = (Logger) LoggerFactory.getLogger(GuiasDAO.class);	
 	
 	public ArrayList<Guia> listaGuias() {
 		
@@ -49,7 +52,7 @@ public class GuiasDAO {
 				rs.close();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return juego;
 	}
@@ -74,7 +77,7 @@ public class GuiasDAO {
 			connection.close();
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 	}
 
@@ -100,7 +103,7 @@ public class GuiasDAO {
 				stmt.executeUpdate(queryBorrar);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 	}
 
@@ -146,7 +149,7 @@ public class GuiasDAO {
 				rs.close();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return guia;
 	}
@@ -182,7 +185,7 @@ public class GuiasDAO {
 			connection.close();
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return rowID;
 	}
@@ -207,7 +210,7 @@ public class GuiasDAO {
 			connection.close();
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 
 	}
@@ -231,7 +234,7 @@ public class GuiasDAO {
 			connection.close();
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 	}
 
@@ -272,7 +275,7 @@ public class GuiasDAO {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 
 		return juego;
@@ -312,7 +315,7 @@ public class GuiasDAO {
 				rs.close();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return Fjuego;
 	}
@@ -336,12 +339,12 @@ public class GuiasDAO {
 
 				}
 			} catch (Exception e) {
-
+				logger.error(e.getMessage());
 			}
 			connection.close();
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return rowID;
 	}
@@ -382,7 +385,7 @@ public class GuiasDAO {
 				rs.close();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return Cjuego;
 	}
@@ -402,7 +405,7 @@ public class GuiasDAO {
 				stmt.executeUpdate(queryBorrar);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 	}
 

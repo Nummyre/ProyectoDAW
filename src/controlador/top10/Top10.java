@@ -21,38 +21,34 @@ import modelo.pojo.Usuario;
 @WebServlet("/Top10")
 public class Top10 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	   
-		@EJB
-		UsuariosEJB usuariosEJB;
 
-		@EJB
-		SesionesEJB sesionesEJB;
-		
-		@EJB
-		JuegoEJB juegoEJB;
+	@EJB
+	UsuariosEJB usuariosEJB;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@EJB
+	SesionesEJB sesionesEJB;
+
+	@EJB
+	JuegoEJB juegoEJB;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		HttpSession session = request.getSession(false);
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
-		
+
 		ArrayList<modelo.pojo.Top10> top = juegoEJB.listaTop10();
-		
-		 ArrayList<Foto> foto = juegoEJB.listaFotosJuegos();
-		 
-		 request.setAttribute("foto", foto);
-			request.setAttribute("usuario", usuario);
-			request.setAttribute("top", top);
-			
-			RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Top10.jsp");
-			rs.forward(request, response);
-		
-	}
 
+		ArrayList<Foto> foto = juegoEJB.listaFotosJuegos();
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		request.setAttribute("foto", foto);
+		request.setAttribute("usuario", usuario);
+		request.setAttribute("top", top);
+
+		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Top10.jsp");
+		rs.forward(request, response);
+
 	}
 
 }

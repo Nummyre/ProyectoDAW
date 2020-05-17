@@ -30,7 +30,7 @@ public class Login extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		String error = request.getParameter("error");
 
-		//Intentamos obtener el usuario de la sesión
+		// Intentamos obtener el usuario de la sesión
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
 
 		if (usuario != null) {
@@ -49,7 +49,6 @@ public class Login extends HttpServlet {
 
 		if (session != null) {
 			Usuario usuarios = (Usuario) session.getAttribute("usuario");
-	
 
 			if (usuarios != null) {
 				// Enviarlo al Main
@@ -68,7 +67,7 @@ public class Login extends HttpServlet {
 
 			// Si el usuario es nulo
 			if (usuario != null) {
-			
+
 				// Cierra la session
 				sesionesEJB.loginUsuario(session, usuario);
 			}

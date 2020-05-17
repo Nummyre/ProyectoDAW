@@ -75,9 +75,6 @@ public class FichaGuia extends HttpServlet {
 		Integer idGuia = Integer.parseInt(idG);
 		Integer idUsuario = Integer.parseInt(idU);
 		
-		System.out.println(idGuia);
-		System.out.println(idUsuario);
-		
 		Date date = new Date();
 		
 		DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");

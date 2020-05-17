@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
-
 import modelo.ejb.AnalisisEJB;
 import modelo.ejb.GuiaEJB;
 import modelo.ejb.JuegoEJB;
@@ -26,11 +24,18 @@ import modelo.pojo.Plataforma;
 
 import modelo.pojo.Usuario;
 
-
+/**
+ * Servlet para la página principal
+ * @author Cintia
+ *
+ */
 @WebServlet("/Main")
 public class Main extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    
+	/**
+	 * EJB para llamar a los métodos
+	 */
 	@EJB
 	UsuariosEJB usuariosEJB;
 
@@ -48,13 +53,14 @@ public class Main extends HttpServlet {
 	@EJB
 	AnalisisEJB analisisEJB;
 	
+	/**
+	 * Doget para mostrar el contenido de la página prncipal
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession(false);
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
-		
-//		ArrayList<PopurriMain> main = juegoEJB.listaMain();
 		
 		ArrayList<Juego> juego = juegoEJB.listaJuego();
 		ArrayList<modelo.pojo.Guia> guia = guiaEJB.listaGuias();
@@ -82,12 +88,5 @@ public class Main extends HttpServlet {
 		rs.forward(request, response);
 	}
 	
-
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		
-		
-	}
 
 }
