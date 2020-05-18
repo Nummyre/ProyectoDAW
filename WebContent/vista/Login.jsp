@@ -103,16 +103,15 @@
 				</div>
 			</div>
 			<%
-				if (error == null) {	
-				} else {
+				if (error != null) {	
 					out.print("<div class=\"row mt-2 mb-5\">");
 					out.print("<div class=\"col-4\">");
 					out.print("<div class=\"alert alert-danger\">");
-					out.print("<strong>¡Error!</strong>La contraseña es incorrecta, intentelo de nuevo.");
+					out.print("<strong>¡Error!</strong> La contraseña o el usuario son incorrectos, intentelo de nuevo.");
 					out.print("</div>");
 					out.print("</div>");
 					out.print("</div>");
-				}
+				} 
 			%>
 			<div class="row mt-5">
 				<div class="col-4">

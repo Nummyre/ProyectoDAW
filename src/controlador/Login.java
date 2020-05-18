@@ -29,7 +29,8 @@ public class Login extends HttpServlet {
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession(false);
-	
+		
+		String error = request.getParameter("error");
 		
 		// Intentamos obtener el usuario de la sesión
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
@@ -38,6 +39,7 @@ public class Login extends HttpServlet {
 			// Ya está logeado, lo redirigimos a la principal
 			response.sendRedirect("Main");
 		} else {
+			request.setAttribute("error", error);
 			RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Login.jsp");
 			rs.forward(request, response);
 		}
@@ -49,16 +51,14 @@ public class Login extends HttpServlet {
 		
 		HttpSession session = request.getSession(false);
 		
-		String error = request.getParameter("error");
 		
-		request.setAttribute("error", error);
 
 		if (session != null) {
 			Usuario usuarios = (Usuario) session.getAttribute("usuario");
 
 			if (usuarios != null) {
 				// Enviarlo al Main
-				System.out.println("1");
+			
 				response.sendRedirect("Main");
 			}
 		}
@@ -71,24 +71,23 @@ public class Login extends HttpServlet {
 		for(Usuario uss : us) {
 			
 		// Si la sesion esta abierta
-		if (user == uss.getUser() && pass == uss.getPassword()) {
-			System.out.println("3");
+		if (((user != null) && (user.equals(uss.getUser()))||((pass!=null) && (pass.equals(uss.getPassword()))))) {
+			
 			// Comprueba si el usuario existe
 			Usuario usuario = usuariosEJB.existeUsuario(user, pass);
 
 			// Si el usuario es nulo
 			if (usuario != null) {
-				System.out.println("2");
+			
 				// Cierra la session
 				sesionesEJB.loginUsuario(session, usuario);
 				
 			}
-			System.out.println("4"); //entra aquí
+			
 			response.sendRedirect("Main");
 		}else{
-			System.out.println("5");
-			RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Login.jsp");
-			rs.forward(request, response);
+		
+			response.sendRedirect("Login?error=hay");
 		
 			
 		}
