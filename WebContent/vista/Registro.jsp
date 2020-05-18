@@ -71,7 +71,7 @@
 	</nav>
 
 
-	<div class='container p-5 mt-5'>
+	<div class='container p-5 mt-5 mb-5'>
 
 		<div class="row">
 			<div class="col">
@@ -213,11 +213,6 @@ Mas información en la Agencia Española de Protección de Datos:
 		</form>
 	</div>
 	<div class="footer bg-dark">
-		<div class="text-center center-block p-5">
-			<a href="#" class="fa fa-facebook"></a> <a href="#"
-				class="fa fa-twitter"></a> <a href="#" class="fa fa-instagram"></a>
-			<a href="#" class="fa fa-tumblr"></a>
-		</div>
 		<div class="footer-copyright text-center py-3 bg-success">
 			© 2020 Copyright: <a class="text-white"
 				href="https://Freak'sCorner.com/">Freak'sCorner.com</a>
