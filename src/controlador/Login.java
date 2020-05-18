@@ -1,6 +1,7 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -28,8 +29,8 @@ public class Login extends HttpServlet {
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession(false);
-		String error = request.getParameter("error");
-
+	
+		
 		// Intentamos obtener el usuario de la sesión
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
 
@@ -45,36 +46,54 @@ public class Login extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		HttpSession session = request.getSession(false);
+		
+		String error = request.getParameter("error");
+		
+		request.setAttribute("error", error);
 
 		if (session != null) {
 			Usuario usuarios = (Usuario) session.getAttribute("usuario");
 
 			if (usuarios != null) {
 				// Enviarlo al Main
+				System.out.println("1");
 				response.sendRedirect("Main");
 			}
 		}
 		// Variables para el usuario y el password
 		String user = request.getParameter("usuario");
 		String pass = request.getParameter("password");
-
+	
+		ArrayList<Usuario> us = usuariosEJB.listaUsuarios();
+		
+		for(Usuario uss : us) {
+			
 		// Si la sesion esta abierta
-		if ((user != null) && (pass != null)) {
-
+		if (user == uss.getUser() && pass == uss.getPassword()) {
+			System.out.println("3");
 			// Comprueba si el usuario existe
 			Usuario usuario = usuariosEJB.existeUsuario(user, pass);
 
 			// Si el usuario es nulo
 			if (usuario != null) {
-
+				System.out.println("2");
 				// Cierra la session
 				sesionesEJB.loginUsuario(session, usuario);
+				
 			}
-
+			System.out.println("4"); //entra aquí
 			response.sendRedirect("Main");
-		} else {
-			response.sendRedirect("Login?error=hay");
+		}else{
+			System.out.println("5");
+			RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Login.jsp");
+			rs.forward(request, response);
+		
+			
 		}
+			
+		
+	}
 	}
 }
