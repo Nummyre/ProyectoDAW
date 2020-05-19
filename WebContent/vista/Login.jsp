@@ -8,6 +8,7 @@
 <link href="img/logo4.png" rel="icon" type="image/x-icon" />
 <link rel="stylesheet" type="text/css" href="css/Style.css">
 <script type="text/javascript" src="js/Style.js"></script>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 <link
@@ -99,6 +100,10 @@
 						type="password" class="form-control" id="validationTooltip02"
 						placeholder="Contraseña" name="password">
 						<a href="RestablecerPass">¿Has olvidado la contraseña?</a>
+				</div>
+				
+					<div class="col-2 mb-3 mt-4 ml-2">
+				<i class='fas fa-eye-slash' id="ojo" onclick="abrir()"></i>
 				</div>
 			</div>
 			<%
