@@ -33,3 +33,45 @@ function pres() {
     
 	
 }
+
+
+/**
+ * Javascript para LOGIN
+ * @returns
+ */
+
+
+function abrir(){
+	
+	if(document.getElementById('ojo').onclick){
+		document.getElementById('validationTooltip02').setAttribute("type", "text");
+		document.getElementById('ojo').setAttribute("class", "fas fa-eye");
+		document.getElementById('ojo').setAttribute("onclick", "cerrar()");
+		
+	}
+
+	
+}
+
+function cerrar(){
+	if(document.getElementById('ojo').onclick){
+		document.getElementById('validationTooltip02').setAttribute("type", "password");
+		document.getElementById('ojo').setAttribute("class", "fas fa-eye-slash");
+		document.getElementById('ojo').setAttribute("onclick", "abrir()");
+		
+	}
+}
+
+/**
+ * Javascript para AddJuego
+ * @returns
+ */
+
+//Solo permite introducir numeros.
+function soloNumeros(e){
+  var key = window.event ? e.which : e.keyCode;
+  if (key < 48 || key > 57) {
+    e.preventDefault();
+  }
+}
+
