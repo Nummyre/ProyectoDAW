@@ -51,7 +51,7 @@ public class Login extends HttpServlet {
 		
 		HttpSession session = request.getSession(false);
 		
-		
+		try {
 
 		if (session != null) {
 			Usuario usuarios = (Usuario) session.getAttribute("usuario");
@@ -85,6 +85,7 @@ public class Login extends HttpServlet {
 			}
 			
 			response.sendRedirect("Main");
+		
 		}else{
 		
 			response.sendRedirect("Login?error=hay");
@@ -94,5 +95,8 @@ public class Login extends HttpServlet {
 			
 		
 	}
+	}catch (Exception e) {
+		
 	}
+}
 }

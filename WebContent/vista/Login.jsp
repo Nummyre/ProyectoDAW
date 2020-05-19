@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="modelo.pojo.Usuario"%>
-<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -100,6 +98,7 @@
 					<label for="validationTooltip02">Contraseña:</label> <input
 						type="password" class="form-control" id="validationTooltip02"
 						placeholder="Contraseña" name="password">
+						<a href="RestablecerPass">¿Has olvidado la contraseña?</a>
 				</div>
 			</div>
 			<%
