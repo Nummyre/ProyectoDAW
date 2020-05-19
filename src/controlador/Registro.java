@@ -57,14 +57,13 @@ public class Registro extends HttpServlet {
 
 		String user = request.getParameter("user");
 		String pass = request.getParameter("pass");
-		String nombre = request.getParameter("nom");
+		String nombre1 = request.getParameter("nom");
 		String email = request.getParameter("email");
 
 		Date date = new Date();
 
 		DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
-		// Multipart RFC 7578
 
 		// Obtenemos una ruta en el servidor para guardar el archivo
 		String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY;
@@ -78,11 +77,16 @@ public class Registro extends HttpServlet {
 		// Lo utilizaremos para guardar el nombre del archivo
 		String fileName = null;
 
-		// Obtenemos el archivo y lo guardamos a disco
 		for (Part part : request.getParts()) {
-			fileName = getFileName(part);
-			part.write(uploadPath + File.separator + fileName);
+			String nombre = getFileName(part);
+			
+			if(!nombre.equals("desconocido.txt") && !nombre.equals("")) {
+				fileName = nombre;
+				part.write(uploadPath + File.separator + fileName);
+			}
+			
 		}
+				
 
 		try {
 			// Propiedades de la conexi�n
@@ -126,7 +130,7 @@ public class Registro extends HttpServlet {
 		}
 
 		// Metodo para registrar al usuario
-		int idUser = usuariosEJB.insertUsuario(nombre, user, pass, fileName, email, hourdateFormat.format(date));
+		int idUser = usuariosEJB.insertUsuario(nombre1, user, pass, fileName, email, hourdateFormat.format(date));
 		
 		usuariosEJB.insertEmail(email, idUser);
 
