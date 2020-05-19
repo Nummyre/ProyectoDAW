@@ -718,8 +718,8 @@ public class JuegosDAO {
 		try {
 			Connection connection = new Conexion().conecta();
 
-			String query = "INSERT INTO comentario (comentario, fecha, meGusta, noMeGusta, idUsuario, idJuego) " + "VALUES ('" + comentario
-					+ "','" + fecha + "','0', '0', '"+idUsuario+"', '"+idJuego+"');";
+			String query = "INSERT INTO comentario (comentario, fecha, idUsuario, idJuego) " + "VALUES ('" + comentario
+					+ "','" + fecha + "', '"+idUsuario+"', '"+idJuego+"');";
 
 			try (Statement stmt = connection.createStatement()) {
 
@@ -753,8 +753,8 @@ public class JuegosDAO {
 		try {
 			Connection connection = new Conexion().conecta();
 
-			String query = "INSERT INTO comentarioComunidad (comentario, fecha, meGusta, noMeGusta, idUsuario, idComunidad) " + "VALUES ('" + comentario
-					+ "','" + fecha + "',0, 0, '"+idUsuario+"', '"+idComunidad+"');";
+			String query = "INSERT INTO comentarioComunidad (comentario, fecha, idUsuario, idComunidad) " + "VALUES ('" + comentario
+					+ "','" + fecha + "', '"+idUsuario+"', '"+idComunidad+"');";
 
 			try (Statement stmt = connection.createStatement()) {
 

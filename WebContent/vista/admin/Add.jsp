@@ -188,7 +188,7 @@
 
 			out.print("<div class=\"col-md-4\">");
 			out.print("<label>Año del juego</label>");
-			out.print("<input class=\"form-control\" type=\"text\" placeholder=\"Año\" name=\"anyo\" onkeypress=\"soloNumeros(event)\">");
+			out.print("<input class=\"form-control\" type=\"number\" placeholder=\"Año\" name=\"anyo\">");
 			out.print("</div>");
 			out.print("</div>");
 

@@ -83,7 +83,7 @@
 
 			<div class="form-row mt-4">
 				<div class="col-4 mb-3">
-					<label for="validationTooltipUsername">Usuario</label>
+					Usuario
 					<div class="input-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"
@@ -96,9 +96,8 @@
 					</div>
 				</div>
 				<div class="col-4 mb-3">
-					<label for="validationTooltip02">Contraseña:</label> <input
-						type="password" class="form-control" id="validationTooltip02"
-						placeholder="Contraseña" name="password">
+					Contraseña:
+					<input type="password" class="form-control" id="validationTooltip02"placeholder="Contraseña" name="password">
 						<a href="RestablecerPass">¿Has olvidado la contraseña?</a>
 				</div>
 				

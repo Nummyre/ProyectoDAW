@@ -103,7 +103,7 @@ public class Editado extends HttpServlet {
 
 		juegoEJB.updateJuegoFoto(fileName, id);
 
-		response.sendRedirect("Editar");
+		response.sendRedirect("Editar?id="+id);
 
 	}
 

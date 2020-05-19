@@ -62,16 +62,4 @@ function cerrar(){
 	}
 }
 
-/**
- * Javascript para AddJuego
- * @returns
- */
-
-//Solo permite introducir numeros.
-function soloNumeros(e){
-  var key = window.event ? e.which : e.keyCode;
-  if (key < 48 || key > 57) {
-    e.preventDefault();
-  }
-}
 
