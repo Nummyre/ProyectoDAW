@@ -67,7 +67,7 @@ public class Login extends HttpServlet {
 		String pass = request.getParameter("password");
 	
 		ArrayList<Usuario> us = usuariosEJB.listaUsuarios();
-		
+	
 		for(Usuario uss : us) {
 			
 		// Si la sesion esta abierta
