@@ -99,7 +99,7 @@
 
 				<div class="col-md-8 mb-3">
 					<label>*Repite la contraseña:</label> <input type="password"
-						class="form-control w-50" placeholder="Contraseña" name="pass" id="passR"
+						class="form-control w-50" placeholder="Contraseña" id="passR"
 						required>
 				</div>
 			</div>

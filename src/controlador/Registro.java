@@ -54,7 +54,7 @@ public class Registro extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		request.setCharacterEncoding("UTF-8");
+
 		String user = request.getParameter("user");
 		String pass = request.getParameter("pass");
 		String nombre = request.getParameter("nom");
@@ -90,7 +90,7 @@ public class Registro extends HttpServlet {
 			props.setProperty("mail.smtp.host", "smtp.gmail.com");
 			props.setProperty("mail.smtp.starttls.enable", "true");
 			props.setProperty("mail.smtp.port", "587");
-			props.setProperty("mail.smtp.user", "email.ejemplo@");
+			props.setProperty("mail.smtp.user", "freakscorner2020@gmail.com");
 			props.setProperty("mail.smtp.auth", "true");
 
 			// Preparamos la sesion
@@ -99,9 +99,9 @@ public class Registro extends HttpServlet {
 			// Construimos el mensaje
 			MimeMessage message = new MimeMessage(session);
 			// la persona k tiene k verificar
-			message.setFrom(new InternetAddress("email.ejemplo@"));
+			message.setFrom(new InternetAddress("freakscorner2020@gmail.com"));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
-			message.addHeader("Disposition-Notification-To", "email.ejemplo@");
+			message.addHeader("Disposition-Notification-To", "freakscorner2020@gmail.com");
 			message.setSubject("Correo de verificacion, porfavor no responder");
 			message.setText("<h3>¡Hola " + user + "!</h3>\n" + "<p>Gracias por unirte a Freak's Corner<br>"
 					+ "Porfavor haga un buen uso de su cuenta y respete siempre la opinión de los demás.<br>"
@@ -115,7 +115,7 @@ public class Registro extends HttpServlet {
 
 			// Lo enviamos.
 			Transport t = session.getTransport("smtp");
-			t.connect("email.ejemplo@", "contraseña.ejemplo");
+			t.connect("freakscorner2020@gmail.com", "123467hBp");
 			t.sendMessage(message, message.getAllRecipients());
 
 			// Cierre.
@@ -126,7 +126,9 @@ public class Registro extends HttpServlet {
 		}
 
 		// Metodo para registrar al usuario
-		usuariosEJB.insertUsuario(nombre, user, pass, fileName, email, hourdateFormat.format(date));
+		int idUser = usuariosEJB.insertUsuario(nombre, user, pass, fileName, email, hourdateFormat.format(date));
+		
+		usuariosEJB.insertEmail(email, idUser);
 
 		response.sendRedirect("Login");
 
