@@ -300,14 +300,16 @@
 			out.print(
 					"<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Categorías</a>");
 			out.print("<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">");
-			out.print("<a class=\"dropdown-item\" href=\"Top10\">TOP 10 | Juegos</a>");
 			out.print("<a class=\"dropdown-item\" href=\"Analisis\">Análisis</a>");
 			out.print("<a class=\"dropdown-item\" href=\"Guia\">Guías</a>");
 			out.print("<div class=\"dropdown-divider\"></div>");
-			out.print("<a class=\"dropdown-item\" href=\"Comunidad\">Comunidad</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Top10\">TOP 10 | Juegos</a>");
 			out.print("</div>");
 			out.print("</li>");
 			out.print("<li class=\"nav-item\">");
+			out.print("<a class=\"nav-link text-white\" href=\"Comunidad\">Comunidad</a>");
+			out.print("</li>");
+			out.print("<li class=\"nav-item mr-5\">");
 			out.print("<a class=\"nav-link text-white\" href=\"Contacto\">Contacto</a>");
 			out.print("</li>");
 			out.print("</ul>");
@@ -318,7 +320,7 @@
 				out.print("<img src=\"img/usuari.png\" width=\"100\" height=\"65\" class=\"img-circle\">");
 			} else {
 				if (user.getFoto().matches(".+\\.(jpg|png)")) {
-					out.print("<img src=\"Imagenes/" + user.getFoto() + "\" width=\"100\" height=\"65\"/>");
+					out.print("<img src=\"Imagenes/" + user.getFoto() + "\" width=\"95\" height=\"65\" class=\"rounded-circle mr-4\"/>");
 				}
 			}
 			out.print("</div>");
