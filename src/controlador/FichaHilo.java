@@ -21,11 +21,18 @@ import modelo.ejb.UsuariosEJB;
 import modelo.pojo.Comentario;
 import modelo.pojo.Usuario;
 
-
+/**
+ * Servlet para mostrar ficha del hilo
+ * @author Cintia
+ *
+ */
 @WebServlet("/FichaHilo")
 public class FichaHilo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    
+	/**
+	 * EJB para llamar los métodos
+	 */
 	@EJB
 	UsuariosEJB usuariosEJB;
 
@@ -35,6 +42,9 @@ public class FichaHilo extends HttpServlet {
 	@EJB
 	JuegoEJB juegoEJB;
 	
+	/**
+	 * Doget para mostrar la ficha de hilo
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 
@@ -61,7 +71,9 @@ public class FichaHilo extends HttpServlet {
 		
 	}
 
-
+	/**
+	 * Dopost para insertar los datos de los comentarios por los usuarios
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String comentario = request.getParameter("com");

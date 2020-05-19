@@ -1,6 +1,7 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -28,15 +29,17 @@ public class Login extends HttpServlet {
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession(false);
+		
 		String error = request.getParameter("error");
-
-		//Intentamos obtener el usuario de la sesión
+		
+		// Intentamos obtener el usuario de la sesión
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
 
 		if (usuario != null) {
 			// Ya está logeado, lo redirigimos a la principal
 			response.sendRedirect("Main");
 		} else {
+			request.setAttribute("error", error);
 			RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Login.jsp");
 			rs.forward(request, response);
 		}
@@ -45,24 +48,31 @@ public class Login extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		HttpSession session = request.getSession(false);
+		
+		try {
 
 		if (session != null) {
 			Usuario usuarios = (Usuario) session.getAttribute("usuario");
-	
 
 			if (usuarios != null) {
 				// Enviarlo al Main
+			
 				response.sendRedirect("Main");
 			}
 		}
 		// Variables para el usuario y el password
 		String user = request.getParameter("usuario");
 		String pass = request.getParameter("password");
-
+	
+		ArrayList<Usuario> us = usuariosEJB.listaUsuarios();
+	
+		for(Usuario uss : us) {
+			
 		// Si la sesion esta abierta
-		if ((user != null) && (pass != null)) {
-
+		if (((user != null) && (user.equals(uss.getUser()))||((pass!=null) && (pass.equals(uss.getPassword()))))) {
+			
 			// Comprueba si el usuario existe
 			Usuario usuario = usuariosEJB.existeUsuario(user, pass);
 
@@ -71,11 +81,22 @@ public class Login extends HttpServlet {
 			
 				// Cierra la session
 				sesionesEJB.loginUsuario(session, usuario);
+				
 			}
-
+			
 			response.sendRedirect("Main");
-		} else {
+		
+		}else{
+		
 			response.sendRedirect("Login?error=hay");
+		
+			
 		}
+			
+		
 	}
+	}catch (Exception e) {
+		
+	}
+}
 }

@@ -22,6 +22,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import org.slf4j.LoggerFactory;
+
+import ch.qos.logback.classic.Logger;
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
 
@@ -29,6 +32,8 @@ import modelo.ejb.UsuariosEJB;
 @MultipartConfig(maxFileSize = 1024 * 1024 * 5)
 public class Registro extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private static final Logger logger = (Logger) LoggerFactory.getLogger(Registro.class);
 
 	// Variable para guardar la imagen
 	private static final String UPLOAD_DIRECTORY = "Imagenes";
@@ -49,16 +54,16 @@ public class Registro extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+
 		String user = request.getParameter("user");
 		String pass = request.getParameter("pass");
-		String nombre = request.getParameter("nom");
+		String nombre1 = request.getParameter("nom");
 		String email = request.getParameter("email");
 
 		Date date = new Date();
 
 		DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
-		// Multipart RFC 7578
 
 		// Obtenemos una ruta en el servidor para guardar el archivo
 		String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY;
@@ -72,11 +77,16 @@ public class Registro extends HttpServlet {
 		// Lo utilizaremos para guardar el nombre del archivo
 		String fileName = null;
 
-		// Obtenemos el archivo y lo guardamos a disco
 		for (Part part : request.getParts()) {
-			fileName = getFileName(part);
-			part.write(uploadPath + File.separator + fileName);
+			String nombre = getFileName(part);
+			
+			if(!nombre.equals("desconocido.txt") && !nombre.equals("")) {
+				fileName = nombre;
+				part.write(uploadPath + File.separator + fileName);
+			}
+			
 		}
+				
 
 		try {
 			// Propiedades de la conexi�n
@@ -84,7 +94,7 @@ public class Registro extends HttpServlet {
 			props.setProperty("mail.smtp.host", "smtp.gmail.com");
 			props.setProperty("mail.smtp.starttls.enable", "true");
 			props.setProperty("mail.smtp.port", "587");
-			props.setProperty("mail.smtp.user", "email.ejemplo@");
+			props.setProperty("mail.smtp.user", "freakscorner2020@gmail.com");
 			props.setProperty("mail.smtp.auth", "true");
 
 			// Preparamos la sesion
@@ -93,9 +103,9 @@ public class Registro extends HttpServlet {
 			// Construimos el mensaje
 			MimeMessage message = new MimeMessage(session);
 			// la persona k tiene k verificar
-			message.setFrom(new InternetAddress("email.ejemplo@"));
+			message.setFrom(new InternetAddress("freakscorner2020@gmail.com"));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
-			message.addHeader("Disposition-Notification-To", "email.ejemplo@");
+			message.addHeader("Disposition-Notification-To", "freakscorner2020@gmail.com");
 			message.setSubject("Correo de verificacion, porfavor no responder");
 			message.setText("<h3>¡Hola " + user + "!</h3>\n" + "<p>Gracias por unirte a Freak's Corner<br>"
 					+ "Porfavor haga un buen uso de su cuenta y respete siempre la opinión de los demás.<br>"
@@ -109,17 +119,20 @@ public class Registro extends HttpServlet {
 
 			// Lo enviamos.
 			Transport t = session.getTransport("smtp");
-			t.connect("email.ejemplo@", "contraseña.ejemplo");
+			t.connect("freakscorner2020@gmail.com", "123467hBp");
 			t.sendMessage(message, message.getAllRecipients());
 
 			// Cierre.
 			t.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.debug(e.getMessage());
+			logger.error(e.getMessage());
 		}
 
 		// Metodo para registrar al usuario
-		usuariosEJB.insertUsuario(nombre, user, pass, fileName, email, hourdateFormat.format(date));
+		int idUser = usuariosEJB.insertUsuario(nombre1, user, pass, fileName, email, hourdateFormat.format(date));
+		
+		usuariosEJB.insertEmail(email, idUser);
 
 		response.sendRedirect("Login");
 

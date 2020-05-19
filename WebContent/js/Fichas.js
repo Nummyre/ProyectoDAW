@@ -66,7 +66,7 @@ function editor() {
 
 				]
 			});
-	CKEDITOR.config.width = "55%";
+	CKEDITOR.config.width = "100%";
 
 };
 

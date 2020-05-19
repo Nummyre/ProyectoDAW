@@ -7,6 +7,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 import modelo.dao.UsuariosDAO;
+import modelo.pojo.Email;
 import modelo.pojo.Usuario;
 
 @Stateless
@@ -19,12 +20,24 @@ public class UsuariosEJB {
 		return usuariosDAO.existeUsuario(user, pass);
 	}
 
-	public void insertUsuario(String nombre, String user, String password, String foto, String email, String fechaAlta) {
+	public int insertUsuario(String nombre, String user, String password, String foto, String email, String fechaAlta) {
 		UsuariosDAO usuariosDAO = new UsuariosDAO();
 
-		usuariosDAO.insertUsuario(nombre, user, password, foto, email, fechaAlta);
+		return usuariosDAO.insertUsuario(nombre, user, password, foto, email, fechaAlta);
+	}
+	
+	public ArrayList<Email> listaEmail() {
+		UsuariosDAO usuariosDAO = new UsuariosDAO();
+
+		return usuariosDAO.listaEmail();
 	}
 
+	public void insertEmail(String nombre, Integer idUsuario) {
+		UsuariosDAO usuariosDAO = new UsuariosDAO();
+
+		usuariosDAO.insertEmail(nombre, idUsuario);
+	}
+	
 	public void darseDeBaja(Integer id) {
 		UsuariosDAO usuariosDAO = new UsuariosDAO();
 

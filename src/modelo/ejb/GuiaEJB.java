@@ -38,9 +38,9 @@ public class GuiaEJB {
 		juegoList.updateGuiaFoto(foto, idGuia);
 	}
 	
-	public int insertGuia(String titulo, String texto, Integer idUsuario) {
+	public int insertGuia(String titulo, String fecha, String texto, Integer idUsuario) {
 		GuiasDAO juegoList = new GuiasDAO();
-		return juegoList.insertGuia(titulo, texto, idUsuario);
+		return juegoList.insertGuia(titulo, fecha, texto, idUsuario);
 	}
 	
 	public void insertGuiaFoto(String foto, Integer idGuia) {

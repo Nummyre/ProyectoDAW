@@ -17,10 +17,19 @@ import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
 import modelo.pojo.Usuario;
 
-
+/**
+ * Servlet para Comunidad
+ * @author Cintia
+ *
+ */
 @WebServlet("/Comunidad")
 public class Comunidad extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * EJB para llamar a los métodos
+	 */
 	@EJB
 	UsuariosEJB usuariosEJB;
 
@@ -30,6 +39,9 @@ public class Comunidad extends HttpServlet {
 	@EJB
 	JuegoEJB juegoEJB;
 
+	/**
+	 * Doget para mostrar el contenido de comunidad
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 
@@ -46,9 +58,5 @@ public class Comunidad extends HttpServlet {
 		rs.forward(request, response);
 	}
 
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-	}
 
 }

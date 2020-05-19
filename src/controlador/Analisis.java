@@ -18,10 +18,19 @@ import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
 import modelo.pojo.Usuario;
 
-
+/**
+ * Servlet para el análisis
+ * @author Cintia
+ *
+ */
 @WebServlet("/Analisis")
 public class Analisis extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * EJB para llamar a los métodos
+	 */
 	@EJB
 	UsuariosEJB usuariosEJB;
 
@@ -33,6 +42,10 @@ public class Analisis extends HttpServlet {
 	
 	@EJB
 	AnalisisEJB analisisEJB;
+	
+	/**
+	 * Doget para mostrar el contenido de análisis
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		HttpSession session = request.getSession(false);
@@ -49,9 +62,5 @@ public class Analisis extends HttpServlet {
 		rs.forward(request, response);
 	}
 
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
 
 }
