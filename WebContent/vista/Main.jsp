@@ -536,9 +536,9 @@
 	%>
 	<div class="footer bg-dark">
 		<div class="text-center center-block p-5">
-			<a href="#" class="fa fa-facebook"></a> <a href="#"
-				class="fa fa-twitter"></a> <a href="#" class="fa fa-instagram"></a>
-			<a href="#" class="fa fa-tumblr"></a>
+			<a href="https://es-es.facebook.com/" class="fa fa-facebook"></a> <a href="https://twitter.com/compose/tweet?hashtags=FreaksCorner&hashtags=Videojuegos"
+				class="fa fa-twitter"></a> <a href="https://www.instagram.com/?hl=es" class="fa fa-instagram"></a>
+			<a href="https://www.tumblr.com/dashboard" class="fa fa-tumblr"></a>
 		</div>
 		<div class="footer-copyright text-center py-3 bg-success">
 			© 2020 Copyright: <a class="text-white"
