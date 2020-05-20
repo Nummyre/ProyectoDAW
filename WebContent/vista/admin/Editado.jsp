@@ -10,6 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>Freak's Corner</title>
 <link href="img/logo4.png" rel="icon" type="image/x-icon" />
 <link rel="stylesheet" type="text/css" href="css/Style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -186,7 +187,7 @@
 			out.print("</div>");
 
 			//----" 2 row"------
-			out.print("<form method=\"post\" action=\"Editado\" enctype=\"multipart/form-data\">"); //-----------form----------
+			out.print("<form method=\"post\" action=\"Editado\">"); //-----------form----------
 			out.print("<div class=\"form-row mt-4\">");
 			out.print("<div class=\"col-md-4\">");
 			out.print("Título");
@@ -250,24 +251,35 @@
 			out.print("</div>");
 
 			//------ 5 row ---- 
-			out.print("<div class=\"form-row\">");
-			out.print("<div class=\"col-md-4 mt-5\">");
-			out.print("Actualiza la foto para el juego");
-			out.print(
-					"<input type=\"file\" class=\"form-control-file\" id=\"exampleFormControlFile1\" name=\"foto\">");
-			out.print("</div>");
 			out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + juego.getId() + "\" name=\"idJuego\">");
 			out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + user.getId() + "\" name=\"id\">");
-			out.print("</div>");
-			out.print("<div class=\"row mt-5\">");
+		
+			out.print("<div class=\"row mt-3\">");
 			out.print("<div class=\"col-md-4\">");
 			out.print("<button type=\"submit\" class=\"btn btn-success mt-5\">Actualizar ficha</button>");
 			out.print("</div>");
 			out.print("</div>");
 
 			out.print("</form>"); //FIN del formulario para añadir juego
+	
+			out.print("<form method=\"post\" action=\"UpdateFotoJuego\" enctype=\"multipart/form-data\">");
+			out.print("<div class=\"form-row\">");
+			out.print("<div class=\"col-4 mt-5\">");
+			out.print("Actualiza la foto para el juego");
+			out.print(
+					"<input type=\"file\" class=\"form-control-file\" id=\"exampleFormControlFile1\" name=\"foto\">");
+			out.print("</div>");
+			out.print("<div class=\"col-4\">");
+			out.print("<button type=\"submit\" class=\"btn btn-success mt-5\">Actualizar foto</button>");
+			out.print("</div>");
+			out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + juego.getId() + "\" name=\"idJuego\">");
+			out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + user.getId() + "\" name=\"id\">");
+			out.print("</div>");
 			
+			out.print("</form>");
+		
 			//---------container FIN
+			out.print("</div>");
 			out.print("</div>");
 
 			//----------------------------------------------------------
@@ -278,6 +290,7 @@
 		<div class="footer-copyright text-center py-3 bg-success">
 			© 2020 Copyright: <a class="text-white"
 				href="https://Freak'sCorner.com/">Freak'sCorner.com</a>
+				<p class="mt-3">Esta web es ficticia para un proyecto de 2º FP Superior DAW</p>
 		</div>
 	</div>
 </body>

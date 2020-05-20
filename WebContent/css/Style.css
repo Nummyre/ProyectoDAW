@@ -48,7 +48,7 @@ input[type="radio"]:checked ~ label {
 
 .fa:hover {
 	text-decoration: none;
-	color: white;
+	color: black;
 }
 
 .fa-facebook {
@@ -166,5 +166,10 @@ width: 100%;
 .card .card-body a{
 	text-decoration: none;
 	color: black;
-	margin-left: 500px;
+margin: auto;
+}
+
+
+.ta tr {
+	border: 1px solid #29C45A;
 }

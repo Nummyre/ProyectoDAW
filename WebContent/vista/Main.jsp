@@ -482,7 +482,6 @@
 					}
 					out.print("<td><a class=\"e\" href=\"FichaGuia?id=" + g.getId() + "\">" + g.getTitulo()
 							+ "</td>");
-					out.print("<table>");
 					out.print("</tr>");
 					out.print("</table>");
 
@@ -544,6 +543,7 @@
 		<div class="footer-copyright text-center py-3 bg-success">
 			© 2020 Copyright: <a class="text-white"
 				href="https://Freak'sCorner.com/">Freak'sCorner.com</a>
+				<p class="mt-3">Esta web es ficticia para un proyecto de 2º FP Superior DAW</p>
 		</div>
 	</div>
 </body>

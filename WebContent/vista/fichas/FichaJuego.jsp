@@ -121,22 +121,6 @@
 				} else {
 					out.print("<div class=\"col-sm-3 text-right\"><h3>0/10</h3></div>");
 				}
-				out.print("<div class=\"col-sm-3 mr-5\">");
-				
-					out.print("<p class=\"clasificacion\">");
-					out.print("<input id=\"ra5\" type=\"radio\" name=\"estrellas\" value=\"5\">");
-					out.print("<label for=\"ra5\">★</label>");
-					out.print("<input id=\"ra4\" type=\"radio\" name=\"estrellas\" value=\"4\">");
-					out.print("<label for=\"ra4\">★</label>");
-					out.print("<input id=\"ra3\" type=\"radio\" name=\"estrellas\" value=\"3\">");
-					out.print("<label for=\"ra3\">★</label>");
-					out.print("<input id=\"ra2\" type=\"radio\" name=\"estrellas\" value=\"2\">");
-					out.print("<label for=\"ra2\">★</label>");
-					out.print(" <input id=\"ra1\" type=\"radio\" name=\"estrellas\" value=\"1\">");
-					out.print("<label for=\"ra1\">★</label>");
-					out.print("</p>");
-			
-				out.print("</div>");
 			
 				out.print("<hr>");
 				out.print("</div>");//fin 1º row
@@ -167,7 +151,7 @@
 				for (Foto f : foto) {
 					if (juego.getId() == f.getId()) {
 						out.print("<img src=\"Imagenes/" + f.getFoto()
-								+ "\" width=\"300\" height=\"200\" class=\"rounded mx-auto d-block\">"); //getFoto
+								+ "\" width=\"400\" height=\"300\" class=\"rounded mx-auto d-block\">"); //getFoto
 					}
 				}
 				out.print("</div>");
@@ -187,7 +171,7 @@
 				
 				out.print("<div class=\"row mt-5\">");
 				out.print("<div class=\"col-8\">");
-				out.print("<h4>Registrate o Inicia Sesión para comentar</h4>");
+				out.print("<h3>Registrate o Inicia Sesión para comentar</h3>");
 				out.print("</div>");
 				out.print("</div>");
 				
@@ -285,7 +269,7 @@
 			out.print("<div class=\"container mt-5 p-2\">");//Principio de container
 			if (coment != null) {
 				out.print("<div class=\"row\">");
-				out.print("<div class=\"col-4\">");
+				out.print("<div class=\"col-8\">");
 				out.print("<h2>" + juego.getTitulo() + "</h2>"); //getTitulo
 				out.print("</div>");
 				out.print("<div class=\"col\"></div>");
@@ -352,7 +336,7 @@
 				for (Foto f : foto) {
 					if (juego.getId() == f.getId()) {
 						out.print("<img src=\"Imagenes/" + f.getFoto()
-								+ "\" width=\"300\" height=\"200\" class=\"rounded mx-auto d-block\">"); //getFoto
+								+ "\" width=\"400\" height=\"300\" class=\"rounded mx-auto d-block\">"); //getFoto
 					}
 				}
 				out.print("</div>");
@@ -389,7 +373,7 @@
 									out.print("<div class=\"card mt-3 bg-light text-white mb-5\">");
 									out.print("<div class=\"card-body\"><h2 class=\"text-dark\">" + contador
 											+ "</h2><img src=\"Imagenes/" + us.getFoto()
-											+ "\" width=\"150\" height=\"100\" class=\"mr-5\">");//comentario
+											+ "\" width=\"150\" height=\"100\" class=\"rounded-circle mr-5\">");//comentario
 								} else {
 									out.print("<div class=\"card mt-3 bg-light text-white w-100 mb-5\">");
 									out.print("<div class=\"card-body\"><h2 class=\"text-dark\">" + contador
@@ -424,7 +408,7 @@
 									out.print("<div class=\"card mt-3 bg-light text-white w-50\">");
 									out.print("<div class=\"card-body\"><h2 class=\"text-dark\">" + contador
 											+ "</h2><img src=\"Imagenes/" + us.getFoto()
-											+ "\" width=\"150\" height=\"100\" class=\"mr-5\">");//comentario
+											+ "\" width=\"150\" height=\"100\" class=\"rounded-circle mr-5\">");//comentario
 								} else {
 									out.print("<div class=\"card mt-3 bg-light text-white w-50\">");
 									out.print("<div class=\"card-body\"><h2 class=\"text-dark\">" + contador
@@ -450,7 +434,7 @@
 				out.print("</form>");
 			} else {
 				out.print("<div class=\"row\">");
-				out.print("<div class=\"col-4\">");
+				out.print("<div class=\"col-8\">");
 				out.print("<h2>" + juego.getTitulo() + "</h2>"); //getTitulo
 				out.print("</div>");
 				out.print("<div class=\"col\"></div>");
@@ -518,9 +502,7 @@
 				for (Foto f : foto) {
 					if (juego.getId() == f.getId()) {
 						out.print("<img src=\"Imagenes/" + f.getFoto()
-								+ "\" width=\"300\" height=\"200\" class=\"rounded mx-auto d-block\">"); //getFoto
-					} else {
-						out.print("<p>Error</p>"); //getFoto
+								+ "\" width=\"400\" height=\"300\" class=\"rounded mx-auto d-block\">"); //getFoto
 					}
 				}
 				out.print("</div>");
@@ -552,6 +534,7 @@
 		<div class="footer-copyright text-center py-3 bg-success">
 			© 2020 Copyright: <a class="text-white"
 				href="https://Freak'sCorner.com/">Freak'sCorner.com</a>
+				<p class="mt-3">Esta web es ficticia para un proyecto de 2º FP Superior DAW</p>
 		</div>
 	</div>
 </body>
