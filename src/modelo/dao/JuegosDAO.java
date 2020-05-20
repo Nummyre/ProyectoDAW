@@ -393,7 +393,7 @@ public class JuegosDAO {
 		try {
 			Connection connection = new Conexion().conecta();
 
-			String query = "update fotoJuego set foto = " + foto + " where idJuego = " + idJuego;
+			String query = "update fotoJuego set foto = '" + foto + "' where idJuego = " + idJuego;
 			Statement stmt = connection.createStatement();
 
 			stmt.executeUpdate(query);
