@@ -33,10 +33,10 @@ public class AnalisisEJB {
 		return juegoList.insertAnalisi(titulo, descripcion, fecha, texto, idUsuario);
 	}
 
-	public void updateAnalisi(String titulo, String texto, Integer id) {
+	public void updateAnalisi(String titulo, String descripcion, String texto, Integer id) {
 		AnalisisDAO juegoList = new AnalisisDAO();
 
-		juegoList.updateAnalisi(titulo, texto, id);
+		juegoList.updateAnalisi(titulo, descripcion, texto, id);
 	}
 
 	public void insertAnalisiFoto(String foto, Integer idAnalisis) {
