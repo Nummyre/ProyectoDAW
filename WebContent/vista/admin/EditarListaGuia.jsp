@@ -196,9 +196,9 @@
 					out.print("</tr>");
 				}
 			} else {
-				out.print("<h5>¿No tienes juegos? Añade el primero</h5>");
+				out.print("<h5>¿No tienes guías? Añade el primero</h5>");
 				out.print(
-						"<a href=\"Add\"><button type=\"button\" class=\"btn btn-success ml-5\">Añadir juego</button></a>");
+						"<a href=\"AddGuia\"><button type=\"button\" class=\"btn btn-success ml-5\">Añadir guía</button></a>");
 			}
 		
 			out.print("</table>");

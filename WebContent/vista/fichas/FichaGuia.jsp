@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="modelo.pojo.Usuario"%>
@@ -141,12 +142,14 @@
 			out.print("<div class=\"row mt-5\">");
 			out.print("<div class=\"col\">");
 
-			if(coment!=null){
 			int totalComentarios = coment.size(); //total de comentarios que hay
 
-			out.print("<h4>Comentarios " + totalComentarios + "</h4>"); //Comentarios
-			}else{
-				out.print("<h4>Comentarios 0</h4>"); //Comentarios
+			for (Comentario co : coment) {
+				if (co.getIdJuego() == guia.getId()) {
+					out.print("<h4>Comentarios " + totalComentarios + "</h4>"); //Comentarios
+				} else {
+					out.print("<h4>Comentarios 0</h4>"); //Comentarios
+				}
 			}
 			out.print("</div>");
 			out.print("</div>");
@@ -278,7 +281,13 @@
 
 			int totalComentarios = coment.size(); //total de comentarios que hay
 
-			out.print("<h4>Comentarios " + totalComentarios + "</h4>"); //Comentarios
+			for (Comentario co : coment) {
+				if (co.getIdJuego() == guia.getId()) {
+					out.print("<h4>Comentarios " + totalComentarios + "</h4>"); //Comentarios
+				} else {
+					out.print("<h4>Comentarios 0</h4>"); //Comentarios
+				}
+			}
 			out.print("</div>");
 			out.print("</div>");
 			out.print("<div class=\"row mt-5\">");
@@ -298,7 +307,7 @@
 				int contador = 1;
 					for (Comentario co : coment) {
 						for (Usuario us : users) {
-							if (us.getId() == co.getIdUsuario()) {
+							if ((us.getId() == co.getIdUsuario()) && (co.getIdJuego() == guia.getId())) {
 								if (!user.getFoto().equals("desconocido.txt")) {
 								out.print("<div class=\"card mt-3 bg-light text-white mb-5\">");
 								out.print("<div class=\"card-body\"><h2 class=\"text-dark\">" + contador
@@ -333,7 +342,7 @@
 			
 					for (Comentario co : coment) {
 						for (Usuario us : users) {
-							if (us.getId() == co.getIdUsuario()) {
+							if ((us.getId() == co.getIdUsuario()) && (co.getIdJuego() == guia.getId())) {
 								if (!user.getFoto().equals("desconocido.txt")) {
 									out.print("<div class=\"card mt-3 bg-light text-white \">");
 									out.print("<div class=\"card-body\"><h2 class=\"text-dark\">" + contador
@@ -376,7 +385,7 @@
 				for (Foto f : foto) {
 					if (guia.getId() == f.getId()) {
 						out.print("<img src=\"Imagenes/" + f.getFoto()
-								+ "\" width=\"500\" height=\"400\" class=\"rounded mx-auto d-block\">"); //getFoto
+								+ "\" width=\"400\" height=\"300\" class=\"rounded mx-auto d-block\">"); //getFoto
 					} 
 				}
 				out.print("</div>");
@@ -423,7 +432,7 @@
 		<div class="footer-copyright text-center py-3 bg-success">
 			© 2020 Copyright: <a class="text-white"
 				href="https://Freak'sCorner.com/">Freak'sCorner.com</a>
-				<p class="mt-3">Esta web es ficticia para un proyecto de 2º FP Superior DAW</p>
+				
 		</div>
 	</div>
 </body>

@@ -198,7 +198,7 @@ ArrayList<Guia> listaJuego = (ArrayList<Guia>) request.getAttribute("listaJuego"
 			} else {
 				out.print("<h5>¿No tienes guías? Añade el primero</h5>");
 				out.print(
-						"<a href=\"Add\"><button type=\"button\" class=\"btn btn-success ml-5\">Añadir guíajuego</button></a>");
+						"<a href=\"AddGuia\"><button type=\"button\" class=\"btn btn-success ml-5\">Añadir guía</button></a>");
 			}
 		
 			out.print("</table>");

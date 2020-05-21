@@ -160,3 +160,15 @@ window.onload = function() {
 		document.getElementById("ra5").disabled = false;
 	}
 }
+
+
+function contadorChars(obj){
+    var maxLength = 255;
+    var strLength = obj.value.length;
+    var caracteres = (maxLength - strLength);
+    
+    if(charRemain < 0){
+    }else{
+        document.getElementById("charNum").innerHTML = caracteres+' carácteres';
+    }
+}

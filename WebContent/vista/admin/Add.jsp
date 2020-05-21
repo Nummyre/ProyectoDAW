@@ -37,9 +37,8 @@
 
 		if (user == null) {
 			out.print("<header>");
-			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark p-5\">");
-			out.print("<a class=\"navbar-brand\" href=\"#\">Freak's Corner</a>");
-			//<!-- 	<img src="img/logo1.png" width="300" height="250"> -->
+			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">");
+			out.print("<img src=\"img/logo4.png\" width=\"200\" height=\"200\">");
 			out.print(
 					"<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">");
 			out.print("<span class=\"navbar-toggler-icon\"></span>");
@@ -47,42 +46,58 @@
 			out.print("<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">");
 			out.print("<ul class=\"navbar-nav mr-auto\">");
 			out.print("<li class=\"nav-item active\">");
-			out.print("<a class=\"nav-link fas fa-home mr-3 text-white\" href=\"Main\"></a>");
+			out.print("<a class=\"h nav-link text-white\" href=\"Main\">Inicio</a>");
 			out.print("</li>");
 			out.print("<li class=\"nav-item\">");
-			out.print("<a class=\"nav-link\" href=\"Registro\">Registrarse</a>");
+			out.print("<a class=\" nav-link text-white\" href=\"Registro\">Registrarse</a>");
 			out.print("</li>");
-			out.print("<li class=\"nav-item mr-5\">");
-			out.print("<a class=\"nav-link\" href=\"Login\">Iniciar Sesión</a>");
+			out.print("<li class=\"nav-item\">");
+			out.print("<a class=\" nav-link text-white\" href=\"Login\">Iniciar Sesión</a>");
 			out.print("</li>");
 			out.print("<li class=\"nav-item dropdown\">");
 			out.print(
 					"<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Categorías</a>");
 			out.print("<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">");
-			out.print("<a class=\"dropdown-item\" href=\"Login\">TOP 10|Juegos</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Top10\">TOP 10 | Juegos</a>");
 			out.print("<a class=\"dropdown-item\" href=\"Analisis\">Análisis</a>");
 			out.print("<a class=\"dropdown-item\" href=\"Guia\">Guías</a>");
 			out.print("<div class=\"dropdown-divider\"></div>");
-			out.print("<a class=\"dropdown-item\" href=\"#\">Contacto</a>");
+			out.print("<a class=\"dropdown-item\" href=\"Comunidad\">Comunidad</a>");
 			out.print("</div>");
 			out.print("</li>");
+			out.print("<li class=\"nav-item\">");
+			out.print("<a class=\"nav-link text-white\" href=\"Contacto\">Contacto</a>");
+			out.print("</li>");
 			out.print("</ul>");
-			out.print("<form class=\"form-inline my-2 my-lg-0 mr-5\">");
-			out.print(
-					"<input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"Búsqueda\" aria-label=\"Search\">");
-			out.print("<button class=\"btn btn-outline-success my-2 my-sm-0\" type=\"submit\">Búsqueda</button>");
-			out.print("</form>");
 			out.print("<form class=\"form-inline ml-5\">");
 			out.print("<div class=\"input-group\">");
 			out.print("<div class=\"input-group-prepend\">");
-			out.print("<img src=\"img/usuari.jpg\" width=\"65\" height=\"55\" class=\"img-circle\">");
+			out.print("<img src=\"img/usuari.png\" width=\"100\" height=\"65\" class=\"img-circle\">");
 			out.print("</div>");
 			out.print(
-					"<input type=\"text\" readonly=\"readonly\"  disabled=\"disabled\" class=\"form-control mt-3 ml-2\" placeholder=\"Invitado\" aria-label=\"Username\" aria-describedby=\"basic-addon1\">");
+					"<input type=\"text\" readonly=\"readonly\"  disabled=\"disabled\" class=\"form-control mt-3 ml-2\" placeholder=\"Invitado\" aria-label=\"Username\" aria-describedby=\"basic-addon1\" id=\"us\">");
 			out.print("</div>");
 			out.print("</form>");
 			out.print("</div>");
 			out.print("</nav>");
+			//--------------------------------------------------------
+			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-success\">");
+			out.print("<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">");
+			out.print("<ul class=\"navbar-nav ml-5\">");
+			out.print("<li class=\"nav-item mr-5\">");
+			out.print("<a class=\"nav-link text-white\" href=\"Pc\">PC</a>");
+			out.print("</li>");
+			out.print("<li class=\"nav-item mr-5\">");
+			out.print("<a class=\"nav-link text-white\" href=\"Xbox\">Xbox One</a>");
+			out.print("</li>");
+			out.print("<li class=\"nav-item mr-5\">");
+			out.print("<a class=\"nav-link text-white\" href=\"PlayS\">Play Station 4</a>");
+			out.print("</li>");
+			out.print("<li class=\"nav-item mr-5\">");
+			out.print("<a class=\"nav-link text-white\" href=\"Nintendo\">Nintendo Switch</a>");
+			out.print("</li>");
+			out.print("</ul>");
+
 			out.print("</header>");
 		} else {
 			out.print("<header>");
@@ -182,12 +197,12 @@
 			out.print("<div class=\"form-row mt-5\">");
 			
 			out.print("<div class=\"col-md-4\">");
-			out.print("<label>Título</label>");
+			out.print("Título");
 			out.print("<input class=\"form-control\" type=\"text\" placeholder=\"Título\" name=\"titulo\">");
 			out.print("</div>");
 
 			out.print("<div class=\"col-md-4\">");
-			out.print("<label>Año del juego</label>");
+			out.print("Año del juego");
 			out.print("<input class=\"form-control\" type=\"number\" placeholder=\"Año\" name=\"anyo\">");
 			out.print("</div>");
 			out.print("</div>");
@@ -225,7 +240,7 @@
 			out.print("<div class=\"form-row mt-2\">");
 			out.print("<div class=\"col\">");
 			out.print("<div class=\"form-group\">");
-			out.print("<label for=\"editor1\">Descripción del juego</label>");
+			out.print("Descripción del juego");
 			out.print("<textarea  class=\"form-control\" id=\"editor1\" rows=\"1\" cols=\"40\" name=\"desc\"></textarea>");
 			out.print("</div>");
 			out.print("</div>");

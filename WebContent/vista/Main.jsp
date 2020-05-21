@@ -268,6 +268,7 @@
 					}
 					out.print("<td><a class=\"e\" href=\"FichaAnalisis?id=" + a.getId() + "\">" + a.getTitulo()
 							+ "</td>");
+					out.print("<td>"+a.getDescripcion()+"</td>");
 					out.print("<table>");
 					out.print("</tr>");
 					out.print("</table>");
@@ -360,8 +361,7 @@
 			out.print("</header>");
 
 			out.print("<div class=\"container p-5 mt-2 mb-2\">");
-
-			// 			out.print("<h3></h3>");
+			
 			out.print("<div id=\"carousel\" class=\"carousel slide\" data-ride=\"carousel\">");
 			out.print("<ol class=\"carousel-indicators\">");
 			out.print("<li data-target=\"#carousel\" data-slide-to=\"0\" class=\"active\"></li>");
@@ -414,7 +414,7 @@
 			out.print("</div>");
 			out.print("</div>");
 
-			out.print("<div class=\"row\">");//lista
+			out.print("<div class=\"row mt-5\">");//lista
 			out.print("<div class=\"col\">");
 			if (juego != null) {
 				for (Juego j : juego) {
@@ -425,7 +425,7 @@
 					out.print("<th>Título</th>");
 					out.print("<th>Género</th>");
 					out.print("<th>Plataforma</th>");
-					out.print("<tr>");
+					out.print("</tr>");
 					out.print("<tr>");
 					for (Foto fj : juegoFoto) {
 						if (fj.getIdJuego() == j.getId()) {
@@ -460,19 +460,23 @@
 
 			//--------------------------------------------------------------
 
-			out.print("<div class=\"row\">");
+			out.print("<div class=\"row mt-5\">");
 			out.print("<div class=\"col\">");//titulo
 			out.print("<h3>Guías</h3>");
 			out.print("</div>");
 			out.print("</div>");
 
-			out.print("<div class=\"row\">");//lista
+			out.print("<div class=\"row mt-5\">");//lista
 			out.print("<div class=\"col\">");
 			if (guia != null) {
 				for (Guia g : guia) {
 					out.print("<div class=\"shadow-lg p-3 mb-5 bg-white rounded w-75\">");
 
 					out.print("<table>");
+					out.print("<tr");
+					out.print("<th></th>");
+					out.print("<th>Título</th>");
+					out.print("</tr>");
 					out.print("<tr>");
 					for (Foto fg : guiaFoto) {
 						if (fg.getIdJuego() == g.getId()) {
@@ -496,19 +500,24 @@
 
 			//-----------------------------------------------------------------------
 
-			out.print("<div class=\"row\">");
+			out.print("<div class=\"row mt-5\">");
 			out.print("<div class=\"col\">");//titulo
 			out.print("<h3>Análisis</h3>");
 			out.print("</div>");
 			out.print("</div>");
 
-			out.print("<div class=\"row\">");//lista
+			out.print("<div class=\"row mt-5\">");//lista
 			out.print("<div class=\"col\">");
 			if (analisi != null) {
 				for (Analisis a : analisi) {
 					out.print("<div class=\"shadow-lg p-3 mb-5 bg-white rounded w-75\">");
 
 					out.print("<table>");
+					out.print("<tr>");
+					out.print("<th></th>");
+					out.print("<th>Título</th>");
+					out.print("<th>Descripción</th>");
+					out.print("</tr>");
 					out.print("<tr>");
 					for (Foto fa : analisisFoto) {
 						if (fa.getIdJuego() == a.getId()) {
@@ -518,7 +527,8 @@
 					}
 					out.print("<td><a class=\"e\" href=\"FichaAnalisis?id=" + a.getId() + "\">" + a.getTitulo()
 							+ "</td>");
-					out.print("<table>");
+	
+					out.print("<td><p>"+a.getDescripcion().substring(0, 120)+"...</p></td>");
 					out.print("</tr>");
 					out.print("</table>");
 

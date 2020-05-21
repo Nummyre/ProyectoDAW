@@ -17,7 +17,8 @@
 
 <link href="img/logo4.png" rel="icon" type="image/x-icon" />
 <link rel="stylesheet" type="text/css" href="css/Style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script
@@ -26,8 +27,8 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-		<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
-	<script type="text/javascript" src="js/Fichas.js"></script>
+<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+<script type="text/javascript" src="js/Fichas.js"></script>
 </head>
 
 <body onload="editor()">
@@ -106,84 +107,91 @@
 
 			out.print("</header>");
 			//-----------------------------------
-			
-				out.print("<div class=\"container mt-5 p-5\">");//Principio de container
+
+			out.print("<div class=\"container mt-5 p-5\">");//Principio de container
+
+			out.print("<div class=\"row\">");
+			out.print("<div class=\"col\">");
+			out.print("<h2>" + juego.getTitulo() + "</h2>"); //getTitulo
+			out.print("</div>");
+			out.print("<div class=\"col\"></div>");
+			//---------------------------------MEDIA PUNTUACION
+			if (puntuacion.getPuntuacion() != null) {
+				out.print("<div class=\"col-sm-3 text-right\"><h3>" + Math.round(puntuacion.getValoracion())
+						+ "/10</h3></div>");
+			} else {
+				out.print("<div class=\"col-sm-3 text-right\"><h3>0/10</h3></div>");
+			}
+
+			out.print("<hr>");
+			out.print("</div>");//fin 1º row
+			out.print("<div class=\"row \">");
+			out.print("<div class=\"col\"></div>");
+			out.print("<div class=\"col\"></div>");
+			out.print("<div class=\"col\">");
+			out.print("<div class=\"card text-center bg-info text-white\">");
+			for (Genero g : juegoList) {
+				if (juego.getGenero() == g.getId()) {
+					out.print("<div class=\"card-body\">" + g.getNombre() + "</div>");//getGenero
+				}
+			}
+			out.print(" </div>");
+			out.print("</div>");
+			out.print("<div class=\"col\">");
+			out.print("<div class=\"card text-center bg-info text-white\">");
+			for (Plataforma p : juegoListP) {
+				if (juego.getPlataforma() == p.getId()) {
+					out.print("<div class=\"card-body\">" + p.getNombre() + "</div>");//getGenero
+				}
+			}
+			out.print(" </div>");
+			out.print("</div>");
+			out.print("</div>");
+			out.print("<div class=\"row\">");
+			out.print("<div class=\"col\">");
+			for (Foto f : foto) {
+				if (juego.getId() == f.getId()) {
+					out.print("<img src=\"Imagenes/" + f.getFoto()
+							+ "\" width=\"400\" height=\"300\" class=\"rounded mx-auto d-block\">"); //getFoto
+				}
+			}
+			out.print("</div>");
+			out.print("<div class=\"col mt-3 mb-5\">");
+			out.print("<p>" + juego.getDescripcion() + "</p>"); //getTexto
+			out.print("</div>");
+			out.print("</div>");
+			out.print("<hr>");
+			out.print("<div class=\"row mt-5\">");
+			out.print("<div class=\"col\">");
+
+			int totalComentarios = coment.size(); //total de comentarios que hay
 		
-				out.print("<div class=\"row\">");
-				out.print("<div class=\"col\">");
-				out.print("<h2>" + juego.getTitulo() + "</h2>"); //getTitulo
-				out.print("</div>");
-				out.print("<div class=\"col\"></div>");
-				//---------------------------------MEDIA PUNTUACION
-				if (puntuacion.getPuntuacion() != null) {
-					out.print("<div class=\"col-sm-3 text-right\"><h3>" + Math.round(puntuacion.getValoracion())
-							+ "/10</h3></div>");
+			for (Comentario co : coment) {
+				if (co.getIdJuego() == juego.getId()) {
+					out.print("<h4>Comentarios " + totalComentarios + "</h4>"); //Comentarios
 				} else {
-					out.print("<div class=\"col-sm-3 text-right\"><h3>0/10</h3></div>");
+					out.print("<h4>Comentarios 0</h4>"); //Comentarios
 				}
-			
-				out.print("<hr>");
-				out.print("</div>");//fin 1º row
-				out.print("<div class=\"row \">");
-				out.print("<div class=\"col\"></div>");
-				out.print("<div class=\"col\"></div>");
-				out.print("<div class=\"col\">");
-				out.print("<div class=\"card text-center bg-info text-white\">");
-				for (Genero g : juegoList) {
-					if (juego.getGenero() == g.getId()) {
-						out.print("<div class=\"card-body\">" + g.getNombre() + "</div>");//getGenero
-					}
-				}
-				out.print(" </div>");
-				out.print("</div>");
-				out.print("<div class=\"col\">");
-				out.print("<div class=\"card text-center bg-info text-white\">");
-				for (Plataforma p : juegoListP) {
-					if (juego.getPlataforma() == p.getId()) {
-						out.print("<div class=\"card-body\">" + p.getNombre() + "</div>");//getGenero
-					}
-				}
-				out.print(" </div>");
-				out.print("</div>");
-				out.print("</div>");
-				out.print("<div class=\"row\">");
-				out.print("<div class=\"col\">");
-				for (Foto f : foto) {
-					if (juego.getId() == f.getId()) {
-						out.print("<img src=\"Imagenes/" + f.getFoto()
-								+ "\" width=\"400\" height=\"300\" class=\"rounded mx-auto d-block\">"); //getFoto
-					}
-				}
-				out.print("</div>");
-				out.print("<div class=\"col mt-3 mb-5\">");
-				out.print("<p>" + juego.getDescripcion() + "</p>"); //getTexto
-				out.print("</div>");
-				out.print("</div>");
-				out.print("<hr>");
-				out.print("<div class=\"row mt-5\">");
-				out.print("<div class=\"col\">");
+			}
+			out.print("</div>");
+			out.print("</div>");
+			out.print("<div class=\"row mt-5\">");
+			out.print("<div class=\"col-8\">");
+			out.print("<h3>Registrate o Inicia Sesión para comentar</h3>");
+			out.print("</div>");
+			out.print("</div>");
 
-				int totalComentarios = coment.size(); //total de comentarios que hay
+			out.print("<div class=\"row w-100 mt-5\">");
+			out.print("<div class=\"col-4\">");
+			out.print(
+					"<a href=\"Login\"><button type=\"button\" class=\"btn btn-success ml-5 mt-2 mb-5\">Iniciar sesión</button></a>");
+			out.print("</div>");
+			out.print("<div class=\"col-4\">");
+			out.print(
+					"<a href=\"Registro\"><button type=\"button\" class=\"btn btn-primary ml-5 mt-2 mb-5\">Registrarse</button></a>");
+			out.print("</div>");
+			out.print("</div>");
 
-				out.print("<h4>Comentarios " + totalComentarios + "</h4>"); //Comentarios
-				out.print("</div>");
-				out.print("</div>");
-				
-				out.print("<div class=\"row mt-5\">");
-				out.print("<div class=\"col-8\">");
-				out.print("<h3>Registrate o Inicia Sesión para comentar</h3>");
-				out.print("</div>");
-				out.print("</div>");
-				
-				out.print("<div class=\"row w-100 mt-5\">");
-				out.print("<div class=\"col-4\">");
-				out.print("<a href=\"Login\"><button type=\"button\" class=\"btn btn-success ml-5 mt-2 mb-5\">Iniciar sesión</button></a>");
-				out.print("</div>");
-				out.print("<div class=\"col-4\">");
-				out.print("<a href=\"Registro\"><button type=\"button\" class=\"btn btn-primary ml-5 mt-2 mb-5\">Registrarse</button></a>");
-				out.print("</div>");
-				out.print("</div>");
-			
 			out.print("</div>");
 			out.print("</div>"); //Fin container
 
@@ -349,8 +357,13 @@
 				out.print("<div class=\"col\">");
 
 				int totalComentarios = coment.size(); //total de comentarios que hay
-
-				out.print("<h4>Comentarios " + totalComentarios + "</h4>"); //Comentarios
+				for (Comentario co : coment) {
+					if (co.getIdJuego() == juego.getId()) {
+						out.print("<h4>Comentarios " + totalComentarios + "</h4>"); //Comentarios
+					} else {
+						out.print("<h4>Comentarios 0</h4>"); //Comentarios
+					}
+				}
 				out.print("</div>");
 				out.print("</div>");
 				out.print("<div class=\"row mt-5\">");
@@ -367,7 +380,7 @@
 					int contador = 1;
 					for (Comentario co : coment) {
 						for (Usuario us : users) {
-							if (us.getId() == co.getIdUsuario()) {
+							if ((us.getId() == co.getIdUsuario()) && (co.getIdJuego() == juego.getId())) {
 
 								if (!user.getFoto().equals("desconocido.txt")) {
 									out.print("<div class=\"card mt-3 bg-light text-white mb-5\">");
@@ -385,8 +398,7 @@
 								out.print("<pre class=\"mr-5\">" + co.getComentario() + "</pre>");
 								out.print("<hr>");
 								out.print("<a href=\"BorrarComentarioJuego?id=" + co.getId() + "&idJ="
-										+ juego.getId()
-										+ "\"><i class=\"fa fa-trash-o\"></i></a>");
+										+ juego.getId() + "\"><i class=\"fa fa-trash-o\"></i></a>");
 								out.print("</div>");
 								out.print("</div>");
 								out.print("<input id=\"id\" name=\"idC\" type=\"hidden\" value=\"" + co.getId()
@@ -403,7 +415,7 @@
 
 					for (Comentario co : coment) {
 						for (Usuario us : users) {
-							if (us.getId() == co.getIdUsuario()) {
+							if ((us.getId() == co.getIdUsuario()) && (co.getIdJuego() == juego.getId())) {
 								if (!user.getFoto().equals("desconocido.txt")) {
 									out.print("<div class=\"card mt-3 bg-light text-white w-50\">");
 									out.print("<div class=\"card-body\"><h2 class=\"text-dark\">" + contador
@@ -530,11 +542,12 @@
 
 		}
 	%>
-		<div class="footer bg-dark">
+	<div class="footer bg-dark">
 		<div class="footer-copyright text-center py-3 bg-success">
 			© 2020 Copyright: <a class="text-white"
 				href="https://Freak'sCorner.com/">Freak'sCorner.com</a>
-				<p class="mt-3">Esta web es ficticia para un proyecto de 2º FP Superior DAW</p>
+			<p class="mt-3">Esta web es ficticia para un proyecto de 2º FP
+				Superior DAW</p>
 		</div>
 	</div>
 </body>
