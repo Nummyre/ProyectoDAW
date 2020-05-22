@@ -82,22 +82,21 @@
 			out.print("</header>");
 			
 			//-------------------------------------------TOP10 PLATAFORMAS
-			out.print("<div class=\"row\">");
-			out.print("<div class=\"col\">");
+
 			out.print("<div class=\"pos-f-t\">");
 			out.print("<div class=\"collapse\" id=\"navbarToggleExternalContent\">");
 			out.print("<div class=\"bg-success p-4\">");
-			out.print("<ul class=\"navbar-nav ml-1\">");
-			out.print("<li class=\"nav-item mr-5\">");
+			out.print("<ul class=\"navbar-nav\">");
+			out.print("<li class=\"nav-item \">");
 			out.print("<a class=\"nav-link text-white\" href=\"PlataformaPc?id=4\">PC</a>");
 			out.print("</li>");
-			out.print("<li class=\"nav-item mr-5\">");
+			out.print("<li class=\"nav-item\">");
 			out.print("<a class=\"nav-link text-white\" href=\"PlataformaXbox?id=2\">Xbox One</a>");
 			out.print("</li>");
-			out.print("<li class=\"nav-item mr-5\">");
+			out.print("<li class=\"nav-item \">");
 			out.print("<a class=\"nav-link text-white\" href=\"PlataformaPlay?id=1\">Play Station 4</a>");
 			out.print("</li>");
-			out.print("<li class=\"nav-item mr-5\">");
+			out.print("<li class=\"nav-item \">");
 			out.print("<a class=\"nav-link text-white\" href=\"PlataformaNintendo?id=3\">Nintendo Switch</a>");
 			out.print("</li>");
 			out.print("</ul>");
@@ -109,8 +108,7 @@
 			out.print("</button>");
 			out.print("</nav>");
 			out.print("</div>");
-			out.print("</div>");
-			out.print("</div>");
+
 			
 			//-----------------------------------------------------------------------------------------
 			
@@ -118,14 +116,14 @@
 			out.print("<div class=\"container mt-5 p-5\">");
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col\">");
-			out.print("<h3>Top10|Juegos</h3>");
+			out.print("<h3>Top10 | Juegos</h3>");
 			out.print("</div>");
 			out.print("</div>");
 			out.print("<div class=\"form-row mt-4\">");
 
 			//----TABLA------------------------------
 			out.print("<div class=\"col-md-4\">");
-			out.print("<table class=\"table\">");
+			out.print("<table class=\"table shadow-lg\">");
 			out.print("<thead class=\"thead-dark\">");
 			out.print("<tr>");
 			out.print("<th scope=\"col\">Ranking</th>");
@@ -153,7 +151,7 @@
 			out.print("<td>"+t.getAnyo()+"</td>");
 			out.print("<td>"+t.getGenero()+"</td>");
 			out.print("<td>"+t.getPlataforma()+"</td>");
-			out.print("<td>"+t.getPuntuacion()+"/10</td>");
+			out.print("<td class=\"bg-success text-white\">"+t.getPuntuacion()+"/10</td>");
 			out.print("</tr>");	
 			count++;
 			}
@@ -161,6 +159,7 @@
 			out.print("</tbody>");
 			out.print("</table>");
 			//-----------------------
+			out.print("</div>");
 			out.print("</div>");
 			out.print("</div>");
 			
@@ -223,78 +222,58 @@
 			out.print("</form>");
 			out.print("</nav>");
 
-			//--------------------------------------------------------
-			out.print("<nav class=\"n navbar navbar-expand-lg navbar-dark bg-success\">");
-			out.print("<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">");
-			out.print("<ul class=\"navbar-nav ml-5\">");
-			out.print("<li class=\"nav-item mr-5\">");
-			out.print("<a class=\"nav-link text-white\" href=\"Pc\">PC</a>");
-			out.print("</li>");
-			out.print("<li class=\"nav-item mr-5\">");
-			out.print("<a class=\"nav-link text-white\" href=\"Xbox\">Xbox One</a>");
-			out.print("</li>");
-			out.print("<li class=\"nav-item mr-5\">");
-			out.print("<a class=\"nav-link text-white\" href=\"PlayS\">Play Station 4</a>");
-			out.print("</li>");
-			out.print("<li class=\"nav-item mr-5\">");
-			out.print("<a class=\"nav-link text-white\" href=\"Nintendo\">Nintendo Switch</a>");
-			out.print("</li>");
-			out.print("</ul>");
-
 			out.print("</header>");
 
-			
+		
 			//-------------------------------------------TOP10 PLATAFORMAS
-			out.print("<div class=\"row\">");
-			out.print("<div class=\"col\">");
+
 			out.print("<div class=\"pos-f-t\">");
-			out.print(" <div class=\"collapse\" id=\"navbarToggleExternalContent\">");
-			out.print(" <div class=\"bg-success p-4\">");
-			out.print("<ul class=\"navbar-nav ml-1\">");
-			out.print("<li class=\"nav-item mr-5\">");
+			out.print("<div class=\"collapse\" id=\"navbarToggleExternalContent\">");
+			out.print("<div class=\"bg-success p-4\">");
+			out.print("<ul class=\"navbar-nav\">");
+			out.print("<li class=\"nav-item \">");
 			out.print("<a class=\"nav-link text-white\" href=\"PlataformaPc?id=4\">PC</a>");
 			out.print("</li>");
-			out.print("<li class=\"nav-item mr-5\">");
+			out.print("<li class=\"nav-item\">");
 			out.print("<a class=\"nav-link text-white\" href=\"PlataformaXbox?id=2\">Xbox One</a>");
 			out.print("</li>");
-			out.print("<li class=\"nav-item mr-5\">");
+			out.print("<li class=\"nav-item \">");
 			out.print("<a class=\"nav-link text-white\" href=\"PlataformaPlay?id=1\">Play Station 4</a>");
 			out.print("</li>");
-			out.print("<li class=\"nav-item mr-5\">");
+			out.print("<li class=\"nav-item \">");
 			out.print("<a class=\"nav-link text-white\" href=\"PlataformaNintendo?id=3\">Nintendo Switch</a>");
 			out.print("</li>");
 			out.print("</ul>");
 			out.print("</div>");
 			out.print("</div>");
-			out.print("  <nav class=\"navbar navbar-light bg-success\"><h5>Top 10 | Plataformas</h5>");
-			out.print(" <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarToggleExternalContent\" aria-controls=\"navbarToggleExternalContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">");
-			out.print("  <span class=\"navbar-toggler-icon\"></span>");
+			out.print("<nav class=\"navbar navbar-light bg-success text-white\"><h5>Top 10 | Plataformas</h5>");
+			out.print("<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarToggleExternalContent\" aria-controls=\"navbarToggleExternalContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">");
+			out.print(" <span class=\"navbar-toggler-icon\"></span>");
 			out.print("</button>");
 			out.print("</nav>");
 			out.print("</div>");
-			out.print("</div>");
-			out.print("</div>");
+
 			
-			out.print("<div class=\"container mt-5 p-3\">");
-				
+			//-----------------------------------------------------------------------------------------
+			
+			
+			out.print("<div class=\"container mt-5 p-5\">");
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col\">");
-			out.print("<h3>Top10|Juegos</h3>");
+			out.print("<h3>Top10 | Juegos</h3>");
 			out.print("</div>");
 			out.print("</div>");
-			out.print("<hr>");
-			out.print("<div class=\"form-row mt-4\"");
-			out.print("<div class=\"col-md-4\">");
-			out.print("</div>");
+			out.print("<div class=\"form-row mt-4\">");
+
 			//----TABLA------------------------------
 			out.print("<div class=\"col-md-4\">");
-			out.print("<table class=\"table\">");
+			out.print("<table class=\"table shadow-lg\">");
 			out.print("<thead class=\"thead-dark\">");
 			out.print("<tr>");
 			out.print("<th scope=\"col\">Ranking</th>");
-			out.print("<th scope=\"col\">(foto)</th>");
+			out.print("<th scope=\"col\">Foto</th>");
 			out.print("<th scope=\"col\">Título</th>");
-			out.print("<th scope=\"col\">Año de Lanzamiento</th>");
+			out.print("<th scope=\"col\">Año de lanzamiento</th>");
 			out.print("<th scope=\"col\">Género</th>");
 			out.print("<th scope=\"col\">Plataforma</th>");
 			out.print("<th scope=\"col\">Valoración</th>");
@@ -303,31 +282,39 @@
 			out.print("<tbody>");
 			int count = 1;
 			if(top!=null){
-				for(Top10 t : top){
-				out.print("<tr>");
-				out.print("<th scope=\"row\">"+count+"</th>");
-				for(Foto f : foto){
-					if(f.getIdJuego() == t.getId()){
-						out.print("<td><img src=\"Imagenes/" + f.getFoto()
-						+ "\" width=\"50\" height=\"50\" class=\"rounded mx-auto d-block\"></td>"); //getFoto
-					}
+			for(Top10 t : top){
+			out.print("<tr>");
+			out.print("<th scope=\"row\">"+count+"</th>");
+			for(Foto f : foto){
+				if(f.getIdJuego() == t.getId()){
+					out.print("<td><img src=\"Imagenes/" + f.getFoto()
+					+ "\" width=\"60\" height=\"50\" class=\"rounded mx-auto d-block\"></td>"); //getFoto
 				}
-				out.print("<td><a href=\"FichaJuego?id="+t.getId()+"\">"+t.getNombre()+"</a></td>");
-				out.print("<td>"+t.getAnyo()+"</td>");
-				out.print("<td>"+t.getGenero()+"</td>");
-				out.print("<td>"+t.getPlataforma()+"</td>");
-				out.print("<td>"+t.getPuntuacion()+"/10</td>");
-				out.print("</tr>");
-					count++;
-				}
-				}
+			}
+			out.print("<td><a href=\"FichaJuego?id="+t.getId()+"\">"+t.getNombre()+"</a></td>");
+			out.print("<td>"+t.getAnyo()+"</td>");
+			out.print("<td>"+t.getGenero()+"</td>");
+			out.print("<td>"+t.getPlataforma()+"</td>");
+			out.print("<td class=\"bg-success text-white\">"+t.getPuntuacion()+"/10</td>");
+			out.print("</tr>");	
+			count++;
+			}
+			}
 			out.print("</tbody>");
 			out.print("</table>");
 			//-----------------------
 			out.print("</div>");
 			out.print("</div>");
+			out.print("</div>");
 			
 		}
 	%>
+		<div class="footer bg-dark">
+		<div class="footer-copyright text-center py-3 bg-success">
+			© 2020 Copyright: <a class="text-white"
+				href="https://Freak'sCorner.com/">Freak'sCorner.com</a>
+		
+		</div>
+	</div>
 </body>
 </html>

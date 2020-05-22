@@ -175,3 +175,7 @@ margin: auto;
 .ta tr {
 	border: 1px solid #29C45A;
 }
+
+.table tr th{
+	padding: 35px;
+}
