@@ -268,7 +268,7 @@
 					}
 					out.print("<td><a class=\"e\" href=\"FichaAnalisis?id=" + a.getId() + "\">" + a.getTitulo()
 							+ "</td>");
-					out.print("<td>"+a.getDescripcion()+"</td>");
+					out.print("<td><p>"+a.getDescripcion().substring(0, 120)+"...</p></td>");
 					out.print("<table>");
 					out.print("</tr>");
 					out.print("</table>");
