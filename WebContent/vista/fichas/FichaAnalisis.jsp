@@ -363,19 +363,19 @@
 				
 			}else {
 				//for
-					out.print("<h3>Se el primero en comentar</h3>");
+					out.print("<hr>");
 				int contador = 1;
 			
 					for (Comentario co : coment) {
 						for (Usuario us : users) {
 							if ((us.getId() == co.getIdUsuario()) && (co.getIdJuego() == analisis.getId())) {
 								if (!user.getFoto().equals("desconocido.txt")) {
-									out.print("<div class=\"card mt-3 bg-light text-white w-50\">");
+									out.print("<div class=\"card mt-3 bg-light text-white mt-5  w-100\">");
 									out.print("<div class=\"card-body\"><h2 class=\"text-dark\">" + contador
 											+ "</h2><img src=\"Imagenes/" + us.getFoto()
 											+ "\" width=\"150\" height=\"100\" class=\"mr-5\">");//comentario
 									}else{
-										out.print("<div class=\"card mt-3 bg-light text-white w-50\">");
+										out.print("<div class=\"card mt-3 bg-light text-white\">");
 										out.print("<div class=\"card-body\"><h2 class=\"text-dark\">" + contador
 												+ "</h2><img src=\"img/usuari.jpg\" width=\"150\" height=\"100\" class=\"mr-5\">");//comentario
 									}

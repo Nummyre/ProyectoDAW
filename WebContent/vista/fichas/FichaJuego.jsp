@@ -169,15 +169,8 @@
 			out.print("<div class=\"row mt-5\">");
 			out.print("<div class=\"col\">");
 
-			int totalComentarios = coment.size(); //total de comentarios que hay
-
-			for (Comentario co : coment) {
-				if (co.getIdJuego() == juego.getId()) {
-					out.print("<h4>Comentarios " + totalComentarios + "</h4>"); //Comentarios
-				} else {
-					out.print("<h4>Comentarios 0</h4>"); //Comentarios
-				}
-			}
+			out.print("<h4>Comentarios</h4>"); //Comentarios
+			
 			out.print("</div>");
 			out.print("</div>");
 			out.print("<div class=\"row mt-5\">");
@@ -318,7 +311,7 @@
 				out.print("<input id=\"idU\" name=\"idU\" type=\"hidden\" value=\"" + user.getId() + "\">");
 				out.print("<input id=\"idJ\" name=\"idJ\" type=\"hidden\" value=\"" + juego.getId() + "\">");
 				out.print("</div>");
-				out.print("</div>");
+		
 				out.print("</form>");
 
 	
@@ -358,26 +351,23 @@
 				out.print("<p>" + juego.getDescripcion() + "</p>"); //getTexto
 				out.print("</div>");
 				out.print("</div>");
-				out.print("<form method=\"post\" action=\"FichaJuego\">"); //FORMCOmentarios
 				out.print("<div class=\"row mt-5\">");
 				out.print("<div class=\"col\">");
-
-				int totalComentarios = coment.size(); //total de comentarios que hay
-				for (Comentario co : coment) {
-					if (co.getIdJuego() == juego.getId()) {
-						out.print("<h4>Comentarios " + totalComentarios + "</h4>"); //Comentarios
-					} else {
-						out.print("<h4>Comentarios 0</h4>"); //Comentarios
-					}
-				}
+			
+				out.print("<h4>Comentarios</h4>"); //Comentarios
+				
 				out.print("</div>");
 				out.print("</div>");
+				out.print("<form method=\"post\" action=\"FichaJuego\">"); //FORMCOmentarios
 				out.print("<div class=\"row mt-5\">");
 				out.print("<div class=\"col\">");
 				out.print("<textarea id=\"editor1\" name=\"com\" rows=\"10\" cols=\"40\"></textarea>"); //input comentario
 				out.print("</div>");
 				out.print("</div>");
 				out.print("<button type=\"submit\" class=\"btn btn-success ml-5 mt-2 mb-5\">Comentar</button>");
+				out.print("<input id=\"id\" name=\"idJ\" type=\"hidden\" value=\"" + juego.getId() + "\">");
+				out.print("<input id=\"idU\" name=\"idU\" type=\"hidden\" value=\"" + user.getId() + "\">");
+				out.print("</form>");
 				out.print("<div class=\"row\">");
 				out.print("<div class=\"col\">");
 
@@ -416,21 +406,22 @@
 
 				} else {
 					//for
-					out.print("<h3>Se el primero en comentar</h3");
+					out.print("<hr>");
 					int contador = 1;
 
 					for (Comentario co : coment) {
 						for (Usuario us : users) {
 							if ((us.getId() == co.getIdUsuario()) && (co.getIdJuego() == juego.getId())) {
 								if (!user.getFoto().equals("desconocido.txt")) {
-									out.print("<div class=\"card mt-3 bg-light text-white w-50\">");
+									out.print("<div class=\"card mt-3 bg-light text-white mt-5 mb-5\">");
 									out.print("<div class=\"card-body\"><h2 class=\"text-dark\">" + contador
 											+ "</h2><img src=\"Imagenes/" + us.getFoto()
 											+ "\" width=\"150\" height=\"100\" class=\"rounded-circle mr-5\">");//comentario
 								} else {
-									out.print("<div class=\"card mt-3 bg-light text-white w-50\">");
+									out.print("<div class=\"card mt-3 bg-light text-white w-100 mb-5\">");
 									out.print("<div class=\"card-body\"><h2 class=\"text-dark\">" + contador
 											+ "</h2><img src=\"img/usuari.png\" width=\"150\" height=\"100\" class=\"mr-5\">");//comentario
+
 								}
 								out.print(
 										"<p class=\"text-dark\">" + us.getUser() + " - " + co.getFecha() + "</p>");
@@ -438,6 +429,8 @@
 								out.print("<pre class=\"mr-5\">" + co.getComentario() + "</pre>");
 								out.print("</div>");
 								out.print("</div>");
+								out.print("<input id=\"id\" name=\"idC\" type=\"hidden\" value=\"" + co.getId()
+										+ "\">");
 								contador++;
 							}
 						}
@@ -447,9 +440,7 @@
 
 				out.print("</div>");
 				out.print("</div>");
-				out.print("<input id=\"id\" name=\"idJ\" type=\"hidden\" value=\"" + juego.getId() + "\">");
-				out.print("<input id=\"idU\" name=\"idU\" type=\"hidden\" value=\"" + user.getId() + "\">");
-				out.print("</form>");
+			
 			} else {
 				out.print("<div class=\"row\">");
 				out.print("<div class=\"col-8\">");
@@ -556,8 +547,7 @@
 		<div class="footer-copyright text-center py-3 bg-success">
 			© 2020 Copyright: <a class="text-white"
 				href="https://Freak'sCorner.com/">Freak'sCorner.com</a>
-			<p class="mt-3">Esta web es ficticia para un proyecto de 2º FP
-				Superior DAW</p>
+	
 		</div>
 	</div>
 </body>

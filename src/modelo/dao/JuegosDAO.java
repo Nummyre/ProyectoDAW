@@ -1121,7 +1121,7 @@ public class JuegosDAO {
 				ResultSet rs = stmt.executeQuery("select DISTINCT avg(puntuacion) as valoracion, juego.id, juego.titulo, genero.nombre as genero, plataforma.nombre as plataforma, juego.anyo, genero.id as idGenero, plataforma.id as idPlataforma from juego inner join puntuacion on  puntuacion.idJuego = juego.id" + 
 						"    inner join plataforma on juego.idPlataforma = plataforma.id AND plataforma.id = "+id+ 
 						"    inner join genero on juego.idGenero = genero.id" + 
-						"    group by puntuacion order by valoracion <10;");
+						"    group by juego.id ORDER BY valoracion DESC LIMIT 10;");
 
 				rs.last();
 				if (rs.getRow() > 0) {

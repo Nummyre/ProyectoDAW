@@ -142,15 +142,8 @@
 			out.print("<div class=\"row mt-5\">");
 			out.print("<div class=\"col\">");
 
-			int totalComentarios = coment.size(); //total de comentarios que hay
-
-			for (Comentario co : coment) {
-				if (co.getIdJuego() == guia.getId()) {
-					out.print("<h4>Comentarios " + totalComentarios + "</h4>"); //Comentarios
-				} else {
-					out.print("<h4>Comentarios 0</h4>"); //Comentarios
-				}
-			}
+					out.print("<h4>Comentarios</h4>"); //Comentarios
+			
 			out.print("</div>");
 			out.print("</div>");
 				out.print("<div class=\"row\">");
@@ -278,16 +271,8 @@
 			out.print("</div>");
 			out.print("<div class=\"row mt-5\">");
 			out.print("<div class=\"col ml-5\">");
-
-			int totalComentarios = coment.size(); //total de comentarios que hay
-
-			for (Comentario co : coment) {
-				if (co.getIdJuego() == guia.getId()) {
-					out.print("<h4>Comentarios " + totalComentarios + "</h4>"); //Comentarios
-				} else {
-					out.print("<h4>Comentarios 0</h4>"); //Comentarios
-				}
-			}
+					out.print("<h4>Comentarios</h4>"); //Comentarios
+			
 			out.print("</div>");
 			out.print("</div>");
 			out.print("<div class=\"row mt-5\">");
