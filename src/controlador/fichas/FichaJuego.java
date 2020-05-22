@@ -25,6 +25,7 @@ import modelo.pojo.Juego;
 import modelo.pojo.Plataforma;
 import modelo.pojo.Puntuacion;
 import modelo.pojo.Usuario;
+import modelo.pojo.ValoracionLista;
 
 @WebServlet("/FichaJuego")
 public class FichaJuego extends HttpServlet {
@@ -54,11 +55,14 @@ public class FichaJuego extends HttpServlet {
 		ArrayList<Plataforma> juegoP = juegoEJB.plataforma();
 		ArrayList<Usuario> users = userEJB.listaUsuarios();
 		
-		Puntuacion valoracion = juegoEJB.listaValoracion(id);
+	ArrayList<ValoracionLista> valoracion = juegoEJB.listaValoracion();
+	Puntuacion puntos = juegoEJB.valoracionJuego(id);
+
 		
 		ArrayList<Comentario> coment = juegoEJB.listaComentarioJuegos();
 		
 		request.setAttribute("valoracion", valoracion);
+		request.setAttribute("puntos", puntos);
 		request.setAttribute("users", users);
 		request.setAttribute("plataforma", juegoP);
 		request.setAttribute("genero", juegoG);

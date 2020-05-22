@@ -17,6 +17,7 @@ import modelo.pojo.Plataforma;
 
 import modelo.pojo.Puntuacion;
 import modelo.pojo.Top10;
+import modelo.pojo.ValoracionLista;
 
 @Stateless
 @LocalBean
@@ -154,10 +155,17 @@ public class JuegoEJB {
 		juegoList.insertValoracion(valoracion, idJuego, idUsuario);
 	}
 
-	public Puntuacion listaValoracion(Integer idJuego) {
+	public ArrayList<ValoracionLista> listaValoracion() {
 		JuegosDAO juegoList = new JuegosDAO();
 
-		return juegoList.listaValoracion(idJuego);
+		return juegoList.listaValoracion();
+	}
+	
+	
+	public Puntuacion valoracionJuegoXIdUsuario(Integer idJuego, Integer idUsuario) {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.valoracionJuegoXIdUsuario(idJuego, idUsuario);
 	}
 
 	public ArrayList<Comunidad> listaHilos() {
@@ -170,6 +178,11 @@ public class JuegoEJB {
 		JuegosDAO juegoList = new JuegosDAO();
 
 		return juegoList.insertHilo(titulo, hilo, fecha, idUsuario, foto);
+	}
+	public Puntuacion valoracionJuego(Integer idJuego) {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.valoracionJuego(idJuego);
 	}
 
 	public Comunidad hilo(Integer id) {

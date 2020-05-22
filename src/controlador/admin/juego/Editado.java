@@ -65,6 +65,10 @@ public class Editado extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		HttpSession session = request.getSession(false);
+
+		Usuario usuario = sesionesEJB.usuarioLogeado(session);
 
 		request.setCharacterEncoding("UTF-8");
 		String titulo = request.getParameter("titulo");
@@ -73,6 +77,8 @@ public class Editado extends HttpServlet {
 		String pla = request.getParameter("pla");
 		String desc = request.getParameter("desc");
 		String idJuego = request.getParameter("idJuego");
+		String idU = request.getParameter("id");
+		Integer idUsuario = Integer.parseInt(idU);
 
 		Integer anyo = Integer.parseInt(any);
 		Integer genero = Integer.parseInt(gen);
@@ -83,7 +89,7 @@ public class Editado extends HttpServlet {
 		juegoEJB.updateJuego(titulo, desc, anyo, genero, plataforma, id);
 
 
-		response.sendRedirect("Editar?id="+id);
+		response.sendRedirect("Editar?id="+idUsuario);
 
 	}
 

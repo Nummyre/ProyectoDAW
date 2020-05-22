@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import org.slf4j.LoggerFactory;
 
 import ch.qos.logback.classic.Logger;
+import controlador.ValoracionJuego;
 import modelo.pojo.Analisis;
 import modelo.pojo.Comentario;
 import modelo.pojo.Comunidad;
@@ -20,6 +21,8 @@ import modelo.pojo.Plataforma;
 
 import modelo.pojo.Puntuacion;
 import modelo.pojo.Top10;
+import modelo.pojo.Usuario;
+import modelo.pojo.ValoracionLista;
 
 public class JuegosDAO {
 
@@ -330,8 +333,7 @@ public class JuegosDAO {
 		try {
 			Connection connection = new Conexion().conecta();
 
-			String query = "update juego set titulo = '" + titulo + "', Descripcion = '" + desc + "', anyo = " + anyo
-					+ ", idGenero = " + idGen + ", idPlataforma = " + idPla + " where id = " + idJuego;
+			String query = "update juego set titulo = '" + titulo + "', Descripcion = '" + desc + "', anyo = " + anyo+ ", idGenero = " + idGen + ", idPlataforma = " + idPla + " where id = " + idJuego;
 			Statement stmt = connection.createStatement();
 			stmt.executeUpdate(query);
 
@@ -950,8 +952,8 @@ public class JuegosDAO {
 	
 	//-----------------------------------------------------------------------------------------------
 	
-	public Puntuacion listaValoracion(Integer idJuego) {
-		Puntuacion Cjuego = null;
+	public ArrayList<ValoracionLista> listaValoracion() {
+		ArrayList<ValoracionLista> Cjuego = null;
 		try {
 
 			// metodo
@@ -963,16 +965,23 @@ public class JuegosDAO {
 				// Si la conexion no es nula que ejecute la query del select con los datos
 				// obtenidos
 				stmt = connection.createStatement();
-				ResultSet rs = stmt.executeQuery("select avg(puntuacion) as valoracion, id, puntuacion, idJuego, idUsuario from puntuacion where idJuego = "+idJuego+";");
+				ResultSet rs = stmt.executeQuery("select * from puntuacion;");
 
 				rs.last();
 				if (rs.getRow() > 0) {
 
 					// Coge los datos del usuario que a iniciado sesion de la base de datos
 					rs.first();
+					Cjuego = new ArrayList<ValoracionLista>();
 
-					Cjuego = (new Puntuacion(rs.getInt("id"), rs.getInt("puntuacion"), rs.getInt("idJuego"), rs.getInt("idUsuario"), rs.getDouble("valoracion")));
-			
+					Cjuego.add(new ValoracionLista(rs.getInt("id"), rs.getInt("puntuacion"), rs.getInt("idJuego"),
+							rs.getInt("idUsuario")));
+
+					while (rs.next()) {
+
+						Cjuego.add(new ValoracionLista(rs.getInt("id"), rs.getInt("puntuacion"), rs.getInt("idJuego"),
+								rs.getInt("idUsuario")));
+					}
 				}
 
 				rs.close();
@@ -981,6 +990,75 @@ public class JuegosDAO {
 			logger.error(e.getMessage());
 		}
 		return Cjuego;
+	}
+	
+	
+	public Puntuacion valoracionJuegoXIdUsuario(Integer idJuego, Integer idUsuario) {
+
+		Puntuacion puntos = null;
+		try {
+
+				Connection connection = new Conexion().conecta();
+				Statement stmt = null;
+
+				if (connection != null) {
+
+					// Si la conexion no es nula que ejecute la query del select con los datos
+					// obtenidos
+					stmt = connection.createStatement();
+					ResultSet rs = stmt.executeQuery("select  * from puntuacion where idUsuario = "+idUsuario+" AND idJuego = "+idJuego+";");
+
+					rs.last();
+					if (rs.getRow() > 0) {
+
+						// Coge los datos del usuario que a iniciado sesion de la base de datos
+						rs.first();
+						puntos = new Puntuacion(rs.getInt("id"), rs.getInt("puntuacion"), rs.getInt("idJuego"),
+								rs.getInt("idUsuario"), rs.getDouble("valoracion"));
+					}
+
+					rs.close();
+				}
+
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+
+		return puntos;
+	}
+	
+	public Puntuacion valoracionJuego(Integer idJuego) {
+
+		Puntuacion puntos = null;
+		try {
+
+				Connection connection = new Conexion().conecta();
+				Statement stmt = null;
+
+				if (connection != null) {
+
+					// Si la conexion no es nula que ejecute la query del select con los datos
+					// obtenidos
+					stmt = connection.createStatement();
+					ResultSet rs = stmt.executeQuery("select avg(puntuacion) as valoracion, id, puntuacion, idJuego, idUsuario from puntuacion where idJuego = "+idJuego+";");
+
+					rs.last();
+					if (rs.getRow() > 0) {
+
+						// Coge los datos del usuario que a iniciado sesion de la base de datos
+						rs.first();
+						puntos = new Puntuacion(rs.getInt("id"), rs.getInt("puntuacion"), rs.getInt("idJuego"),
+								rs.getInt("idUsuario"), rs.getDouble("valoracion"));
+					}
+
+					rs.close();
+				}
+
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+
+		return puntos;
 	}
 	//-----------------------------------------------------------------------------------------
 	public ArrayList<Top10> listaTop10() {
@@ -999,7 +1077,7 @@ public class JuegosDAO {
 				ResultSet rs = stmt.executeQuery("select DISTINCT avg(puntuacion) as valoracion, juego.id, juego.titulo, genero.nombre as genero, plataforma.nombre as plataforma, juego.anyo, genero.id as idGenero, plataforma.id as idPlataforma from juego inner join puntuacion on  puntuacion.idJuego = juego.id" + 
 						"    inner join plataforma on juego.idPlataforma = plataforma.id" + 
 						"    inner join genero on juego.idGenero = genero.id" + 
-						"    group by puntuacion order by valoracion <10;");
+						"    group by juego.id ORDER BY valoracion DESC LIMIT 10;");
 
 				rs.last();
 				if (rs.getRow() > 0) {

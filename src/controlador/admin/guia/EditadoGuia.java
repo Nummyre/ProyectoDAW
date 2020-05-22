@@ -66,6 +66,11 @@ public class EditadoGuia extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		HttpSession session = request.getSession(false);
+
+		Usuario usuario = sesionesEJB.usuarioLogeado(session);
+		
 		request.setCharacterEncoding("UTF-8");
 		String titulo = request.getParameter("titulo");
 		String texto = request.getParameter("desc");

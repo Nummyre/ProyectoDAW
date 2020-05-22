@@ -71,7 +71,7 @@ function editor() {
 };
 
 $(document).ready(function() {
-	$("#ra1").click(function() {
+	$("#ra1").on( "click", function() {
 		var idJ = $("#idJ").val();
 		var idU = $("#idU").val();
 		var estrellas = $("#ra1").val();
@@ -79,11 +79,12 @@ $(document).ready(function() {
 			idJ : idJ,
 			idU : idU,
 			estrellas : estrellas
+			
 		})
-
+	$(".clasificacion").hide();
 	});
 
-	$("#ra2").click(function() {
+	$("#ra2").on( "click", function() {
 		var idJ = $("#idJ").val();
 		var idU = $("#idU").val();
 		var estrellas = $("#ra2").val();
@@ -92,10 +93,10 @@ $(document).ready(function() {
 			idU : idU,
 			estrellas : estrellas
 		})
-
+		$(".clasificacion").hide();
 	});
 
-	$("#ra3").click(function() {
+	$("#ra3").on( "click", function() {
 		var idJ = $("#idJ").val();
 		var idU = $("#idU").val();
 		var estrellas = $("#ra3").val();
@@ -104,10 +105,10 @@ $(document).ready(function() {
 			idU : idU,
 			estrellas : estrellas
 		})
-
+		$(".clasificacion").hide();
 	});
 
-	$("#ra4").click(function() {
+	$("#ra4").on( "click", function() {
 		var idJ = $("#idJ").val();
 		var idU = $("#idU").val();
 		var estrellas = $("#ra4").val();
@@ -116,10 +117,10 @@ $(document).ready(function() {
 			idU : idU,
 			estrellas : estrellas
 		})
-
+		$(".clasificacion").hide();
 	});
 
-	$("#ra5").click(function() {
+	$("#ra5").on( "click", function() {
 		var idJ = $("#idJ").val();
 		var idU = $("#idU").val();
 		var estrellas = $("#ra5").val();
@@ -128,8 +129,9 @@ $(document).ready(function() {
 			idU : idU,
 			estrellas : estrellas
 		})
-
+		$(".clasificacion").hide();
 	});
+
 });
 
 window.onload = function() {

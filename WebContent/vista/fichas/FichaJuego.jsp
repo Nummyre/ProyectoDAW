@@ -7,6 +7,7 @@
 <%@page import="modelo.pojo.Foto"%>
 <%@page import="modelo.pojo.Comentario"%>
 <%@page import="modelo.pojo.Puntuacion"%>
+<%@page import="modelo.pojo.ValoracionLista"%>
 <%@page import="java.util.ArrayList"%>
 <%@page session="false"%>
 <!DOCTYPE html>
@@ -35,12 +36,13 @@
 	<%
 		Usuario user = (Usuario) request.getAttribute("usuario");
 		Juego juego = (Juego) request.getAttribute("juego");
+		Puntuacion puntos = (Puntuacion) request.getAttribute("puntos");
 		ArrayList<Genero> juegoList = (ArrayList<Genero>) request.getAttribute("genero");
 		ArrayList<Plataforma> juegoListP = (ArrayList<Plataforma>) request.getAttribute("plataforma");
 		ArrayList<Foto> foto = (ArrayList<Foto>) request.getAttribute("fotoJuego");
 		ArrayList<Comentario> coment = (ArrayList<Comentario>) request.getAttribute("coment");
 		ArrayList<Usuario> users = (ArrayList<Usuario>) request.getAttribute("users");
-		Puntuacion puntuacion = (Puntuacion) request.getAttribute("valoracion");
+		ArrayList<ValoracionLista> puntuacion = (ArrayList<ValoracionLista>) request.getAttribute("valoracion");
 
 		if (user == null) {
 			out.print("<header>");
@@ -116,13 +118,16 @@
 			out.print("</div>");
 			out.print("<div class=\"col\"></div>");
 			//---------------------------------MEDIA PUNTUACION
-			if (puntuacion.getPuntuacion() != null) {
-				out.print("<div class=\"col-sm-3 text-right\"><h3>" + Math.round(puntuacion.getValoracion())
-						+ "/10</h3></div>");
-			} else {
-				out.print("<div class=\"col-sm-3 text-right\"><h3>0/10</h3></div>");
-			}
-
+			
+				if (puntos != null) {
+					if (puntos.getIdJuego() == juego.getId()) {
+						out.print("<div class=\"col-sm-3 text-right\"><h3>" + Math.round(puntos.getValoracion())
+								+ "/10</h3></div>");
+					} else {
+						out.print("<div class=\"col-sm-3 text-right\"><h3>0/10</h3></div>");
+					}
+				}
+		
 			out.print("<hr>");
 			out.print("</div>");//fin 1º row
 			out.print("<div class=\"row \">");
@@ -150,7 +155,7 @@
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col\">");
 			for (Foto f : foto) {
-				if (juego.getId() == f.getId()) {
+				if (juego.getId() == f.getIdJuego()) {
 					out.print("<img src=\"Imagenes/" + f.getFoto()
 							+ "\" width=\"400\" height=\"300\" class=\"rounded mx-auto d-block\">"); //getFoto
 				}
@@ -165,7 +170,7 @@
 			out.print("<div class=\"col\">");
 
 			int totalComentarios = coment.size(); //total de comentarios que hay
-		
+
 			for (Comentario co : coment) {
 				if (co.getIdJuego() == juego.getId()) {
 					out.print("<h4>Comentarios " + totalComentarios + "</h4>"); //Comentarios
@@ -282,40 +287,41 @@
 				out.print("</div>");
 				out.print("<div class=\"col\"></div>");
 				//---------------------------------MEDIA PUNTUACION
-				if (puntuacion.getPuntuacion() != null) {
-					out.print("<div class=\"col-sm-3 text-right\"><h3>" + Math.round(puntuacion.getValoracion())
+
+				if (puntos.getIdJuego() == juego.getId()) {
+					out.print("<div class=\"col-sm-3 text-right\"><h3>" + Math.round(puntos.getValoracion())
 							+ "/10</h3></div>");
 				} else {
 					out.print("<div class=\"col-sm-3 text-right\"><h3>0/10</h3></div>");
 				}
+
 				out.print("<div class=\"col-sm-3 mr-5\">");
 				out.print("<form method=\"post\" action=\"ValoracionJuego\" id=\"formularioP\">");
-				if (puntuacion.getIdUsuario() != user.getId()) {
-					out.print("<p class=\"clasificacion\">");
-					out.print("<input id=\"ra5\" type=\"radio\" name=\"estrellas\" value=\"5\">");
-					out.print("<label for=\"ra5\">★</label>");
-					out.print("<input id=\"ra4\" type=\"radio\" name=\"estrellas\" value=\"4\">");
-					out.print("<label for=\"ra4\">★</label>");
-					out.print("<input id=\"ra3\" type=\"radio\" name=\"estrellas\" value=\"3\">");
-					out.print("<label for=\"ra3\">★</label>");
-					out.print("<input id=\"ra2\" type=\"radio\" name=\"estrellas\" value=\"2\">");
-					out.print("<label for=\"ra2\">★</label>");
-					out.print(" <input id=\"ra1\" type=\"radio\" name=\"estrellas\" value=\"1\">");
-					out.print("<label for=\"ra1\">★</label>");
-					out.print("</p>");
-				} else {
-					out.print("<p>Gracias por votar!</p>");
-				}
+					if(puntos!=null){
+					if(puntos.getIdUsuario() != user.getId()){
+							out.print("<p class=\"clasificacion\">");
+							out.print("<input id=\"ra5\" type=\"radio\" name=\"estrellas\" value=\"5\">");
+							out.print("<label for=\"ra5\">★</label>");
+							out.print("<input id=\"ra4\" type=\"radio\" name=\"estrellas\" value=\"4\">");
+							out.print("<label for=\"ra4\">★</label>");
+							out.print("<input id=\"ra3\" type=\"radio\" name=\"estrellas\" value=\"3\">");
+							out.print("<label for=\"ra3\">★</label>");
+							out.print("<input id=\"ra2\" type=\"radio\" name=\"estrellas\" value=\"2\">");
+							out.print("<label for=\"ra2\">★</label>");
+							out.print(" <input id=\"ra1\" type=\"radio\" name=\"estrellas\" value=\"1\">");
+							out.print("<label for=\"ra1\">★</label>");
+							out.print("</p>");
+					
+					}
+					}
+	
 				out.print("<input id=\"idU\" name=\"idU\" type=\"hidden\" value=\"" + user.getId() + "\">");
 				out.print("<input id=\"idJ\" name=\"idJ\" type=\"hidden\" value=\"" + juego.getId() + "\">");
 				out.print("</div>");
-				out.print("<div class=\"row\">");
-				out.print("<div class=\"col\">");
-				out.print("<p class\"resp\"></p>");
-				out.print("</div>");
 				out.print("</div>");
 				out.print("</form>");
-				out.print("<hr>");
+
+	
 				out.print("</div>");//fin 1º row
 				out.print("<div class=\"row mt-5\">");
 				out.print("<div class=\"col\"></div>");
@@ -342,7 +348,7 @@
 				out.print("<div class=\"row\">");
 				out.print("<div class=\"col\">");
 				for (Foto f : foto) {
-					if (juego.getId() == f.getId()) {
+					if (juego.getId() == f.getIdJuego()) {
 						out.print("<img src=\"Imagenes/" + f.getFoto()
 								+ "\" width=\"400\" height=\"300\" class=\"rounded mx-auto d-block\">"); //getFoto
 					}
@@ -451,42 +457,42 @@
 				out.print("</div>");
 				out.print("<div class=\"col\"></div>");
 				//---------------------------------MEDIA PUNTUACION
-				if (puntuacion.getPuntuacion() != null) {
-					out.print("<div class=\"col-sm-3 text-right\"><h3>" + Math.round(puntuacion.getValoracion())
-							+ "/10</h3></div>");
-				} else {
-					out.print("<div class=\"col-sm-3 text-right\"><h3>0/10</h3></div>");
-
+				for (ValoracionLista p : puntuacion) {
+					if (p.getPuntuacion() != null) {
+						if (p.getIdJuego() == juego.getId()) {
+							out.print("<div class=\"col-sm-3 text-right\"><h3>" + Math.round(puntos.getValoracion())
+									+ "/10</h3></div>");
+						} else {
+							out.print("<div class=\"col-sm-3 text-right\"><h3>0/10</h3></div>");
+						}
+					}
 				}
 				out.print("<div class=\"col-sm-3 mr-5\">");
 				out.print("<form method=\"post\" action=\"ValoracionJuego\" id=\"formularioP\">");
-				if (puntuacion.getIdUsuario() != user.getId()) {
-					out.print("<p class=\"clasificacion\">");
-					out.print("<input id=\"ra5\" type=\"radio\" name=\"estrellas\" value=\"5\">");
-					out.print("<label for=\"ra5\">★</label>");
-					out.print("<input id=\"ra4\" type=\"radio\" name=\"estrellas\" value=\"4\">");
-					out.print("<label for=\"ra4\">★</label>");
-					out.print("<input id=\"ra3\" type=\"radio\" name=\"estrellas\" value=\"3\">");
-					out.print("<label for=\"ra3\">★</label>");
-					out.print("<input id=\"ra2\" type=\"radio\" name=\"estrellas\" value=\"2\">");
-					out.print("<label for=\"ra2\">★</label>");
-					out.print(" <input id=\"ra1\" type=\"radio\" name=\"estrellas\" value=\"1\">");
-					out.print("<label for=\"ra1\">★</label>");
-					out.print("</p>");
-				} else {
-					out.print("<p>Gracias por votar!</p>");
-				}
+			
+
+					if (puntos.getIdUsuario() != user.getId()) {
+						out.print("<p class=\"clasificacion\">");
+						out.print("<input id=\"ra5\" type=\"radio\" name=\"estrellas\" value=\"5\">");
+						out.print("<label for=\"ra5\">★</label>");
+						out.print("<input id=\"ra4\" type=\"radio\" name=\"estrellas\" value=\"4\">");
+						out.print("<label for=\"ra4\">★</label>");
+						out.print("<input id=\"ra3\" type=\"radio\" name=\"estrellas\" value=\"3\">");
+						out.print("<label for=\"ra3\">★</label>");
+						out.print("<input id=\"ra2\" type=\"radio\" name=\"estrellas\" value=\"2\">");
+						out.print("<label for=\"ra2\">★</label>");
+						out.print(" <input id=\"ra1\" type=\"radio\" name=\"estrellas\" value=\"1\">");
+						out.print("<label for=\"ra1\">★</label>");
+						out.print("</p>");
+					} 
+
+				
 				out.print("<input id=\"idU\" name=\"idU\" type=\"hidden\" value=\"" + user.getId() + "\">");
 				out.print("<input id=\"idJ\" name=\"idJ\" type=\"hidden\" value=\"" + juego.getId() + "\">");
 				out.print("</div>");
-				out.print("<div class=\"row\">");
-				out.print("<div class=\"col\">");
-				out.print("<p class\"resp\"></p>");
-				out.print("</div>");
-				out.print("</div>");
 				out.print("</form>");
-				out.print("<hr>");
 				out.print("</div>");//fin 1º row
+
 				out.print("<div class=\"row\">");
 				out.print("<div class=\"col\"></div>");
 				out.print("<div class=\"col\"></div>");
@@ -509,10 +515,11 @@
 				out.print(" </div>");
 				out.print("</div>");
 				out.print("</div>");
+
 				out.print("<div class=\"row\">");
 				out.print("<div class=\"col\">");
 				for (Foto f : foto) {
-					if (juego.getId() == f.getId()) {
+					if (juego.getId() == f.getIdJuego()) {
 						out.print("<img src=\"Imagenes/" + f.getFoto()
 								+ "\" width=\"400\" height=\"300\" class=\"rounded mx-auto d-block\">"); //getFoto
 					}
@@ -522,12 +529,14 @@
 				out.print("<p>" + juego.getDescripcion() + "</p>"); //getTexto
 				out.print("</div>");
 				out.print("</div>");
+
 				out.print("<form method=\"post\" action=\"FichaJuego\">");
 				out.print("<div class=\"row mt-5\">");
 				out.print("<div class=\"col\">");
 				out.print("<h4>Se el primero en comentar</h4>");
 				out.print("</div>");
 				out.print("</div>");
+
 				out.print("<div class=\"row mt-5\">");
 				out.print("<div class=\"col\">");
 				out.print("<textarea id=\"editor1\" name=\"com\" rows=\"10\" cols=\"40\"></textarea>"); //input comentario
@@ -538,6 +547,7 @@
 				out.print("<input id=\"idU\" name=\"idU\" type=\"hidden\" value=\"" + user.getId() + "\">");
 			}
 			out.print("</form>");
+			out.print("</div>");
 			out.print("</div>"); //Fin container
 
 		}
