@@ -1,65 +1,59 @@
-
 /**
  * Javascript para REGISTRO
+ * 
  * @returns
  */
 
-
-
-
 function myFunction() {
-	 document.getElementById('box2').disabled = true;
-	
+	document.getElementById('box2').disabled = true;
+
 	if (document.getElementById('condiciones').onclick) {
 
-        document.getElementById('box2').checked = true;
-      
-        document.getElementById('registro').disabled = false;
-    } else {
-    	   document.getElementById('box2').checked = false;
-    
-           document.getElementById('registro').disabled = true;
-    }
-	
-	
+		document.getElementById('box2').checked = true;
+
+		document.getElementById('registro').disabled = false;
+	} else {
+		document.getElementById('box2').checked = false;
+
+		document.getElementById('registro').disabled = true;
+	}
+
 }
 
 function pres() {
 
-        document.getElementById('box2').checked = true;
-      
-        document.getElementById('registro').disabled = false;
-  
-    
-	
-}
+	document.getElementById('box2').checked = true;
 
+	document.getElementById('registro').disabled = false;
+
+}
 
 /**
  * Javascript para LOGIN
+ * 
  * @returns
  */
 
+function abrir() {
 
-function abrir(){
-	
-	if(document.getElementById('ojo').onclick){
-		document.getElementById('validationTooltip02').setAttribute("type", "text");
+	if (document.getElementById('ojo').onclick) {
+		document.getElementById('validationTooltip02').setAttribute("type",
+				"text");
 		document.getElementById('ojo').setAttribute("class", "fas fa-eye");
 		document.getElementById('ojo').setAttribute("onclick", "cerrar()");
-		
+
 	}
 
-	
 }
 
-function cerrar(){
-	if(document.getElementById('ojo').onclick){
-		document.getElementById('validationTooltip02').setAttribute("type", "password");
-		document.getElementById('ojo').setAttribute("class", "fas fa-eye-slash");
+function cerrar() {
+	if (document.getElementById('ojo').onclick) {
+		document.getElementById('validationTooltip02').setAttribute("type",
+				"password");
+		document.getElementById('ojo')
+				.setAttribute("class", "fas fa-eye-slash");
 		document.getElementById('ojo').setAttribute("onclick", "abrir()");
-		
+
 	}
 }
-
 

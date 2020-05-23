@@ -16,6 +16,7 @@ import modelo.ejb.JuegoEJB;
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
 import modelo.pojo.Juego;
+import modelo.pojo.PlataformasJuegos;
 import modelo.pojo.Usuario;
 
 
@@ -37,13 +38,13 @@ public class Nintendo extends HttpServlet {
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
 		
-		 ArrayList<Juego> nintendoList = juegoEJB.nintendoList();
+		 ArrayList<PlataformasJuegos> nintendoList = juegoEJB.nintendoList();
 		
 
 		request.setAttribute("usuario", usuario);
 		request.setAttribute("nintendoList", nintendoList);
 		
-		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Nintendo.jsp");
+		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/plataformas/Nintendo.jsp");
 		rs.forward(request, response);
 		
 		

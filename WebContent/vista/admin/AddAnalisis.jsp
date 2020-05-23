@@ -184,7 +184,7 @@
 			out.print("</div>");
 
 			//----" 2 row"------
-			out.print("<form method=\"post\" action=\"AddAnalisis\" enctype=\"multipart/form-data\">");
+			out.print("<form class=\"needs-validation\" method=\"post\" action=\"AddAnalisis\" enctype=\"multipart/form-data\">");
 			
 			out.print("<div class=\"form-row mt-4\">");
 			out.print("<div class=\"col-md-4\">");

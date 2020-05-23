@@ -13,6 +13,7 @@ import modelo.pojo.Foto;
 import modelo.pojo.Genero;
 import modelo.pojo.Guia;
 import modelo.pojo.Juego;
+import modelo.pojo.PlataformasJuegos;
 import modelo.pojo.Plataforma;
 
 import modelo.pojo.Puntuacion;
@@ -99,7 +100,7 @@ public class JuegoEJB {
 		juegoList.insertJuegoFoto(foto, idJuego);
 	}
 
-	public ArrayList<Juego> nintendoList() {
+	public ArrayList<PlataformasJuegos> nintendoList() {
 
 		JuegosDAO juegoList = new JuegosDAO();
 
@@ -118,13 +119,13 @@ public class JuegoEJB {
 		return juegoList.listaComentarioJuegos();
 	}
 
-	public ArrayList<Juego> xboxList() {
+	public ArrayList<PlataformasJuegos> xboxList() {
 		JuegosDAO juegoList = new JuegosDAO();
 
 		return juegoList.xboxList();
 	}
 
-	public ArrayList<Juego> playSList() {
+	public ArrayList<PlataformasJuegos> playSList() {
 		JuegosDAO juegoList = new JuegosDAO();
 
 		return juegoList.playSList();
@@ -136,7 +137,7 @@ public class JuegoEJB {
 		return juegoList.insertComentario(comentario, fecha, idUsuario, idJuego);
 	}
 
-	public ArrayList<Juego> pcList() {
+	public ArrayList<PlataformasJuegos> pcList() {
 		JuegosDAO juegoList = new JuegosDAO();
 
 		return juegoList.pcList();

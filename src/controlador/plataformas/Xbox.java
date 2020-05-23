@@ -16,6 +16,7 @@ import modelo.ejb.JuegoEJB;
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
 import modelo.pojo.Juego;
+import modelo.pojo.PlataformasJuegos;
 import modelo.pojo.Usuario;
 
 
@@ -35,13 +36,13 @@ public class Xbox extends HttpServlet {
 		HttpSession session = request.getSession(false);
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
-		 ArrayList<Juego> xboxList = juegoEJB.xboxList();
+		 ArrayList<PlataformasJuegos> xboxList = juegoEJB.xboxList();
 		
 
 		request.setAttribute("usuario", usuario);
 		request.setAttribute("xboxList", xboxList);
 		
-		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Xbox.jsp");
+		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/plataformas/Xbox.jsp");
 		rs.forward(request, response);
 	}
 

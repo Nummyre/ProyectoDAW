@@ -16,6 +16,7 @@ import modelo.ejb.AnalisisEJB;
 import modelo.ejb.JuegoEJB;
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
+import modelo.pojo.Foto;
 import modelo.pojo.Usuario;
 
 /**
@@ -53,8 +54,9 @@ public class Analisis extends HttpServlet {
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
 		
 		 ArrayList<modelo.pojo.Analisis> analisis = analisisEJB.listaAnalisis();
+		 ArrayList<Foto> fotoAnali = analisisEJB.listaFotosAnalisi();
 
-		 
+		 request.setAttribute("foto", fotoAnali);
 		request.setAttribute("usuario", usuario);
 		request.setAttribute("analisis", analisis);
 		

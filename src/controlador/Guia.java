@@ -17,6 +17,7 @@ import modelo.ejb.GuiaEJB;
 import modelo.ejb.JuegoEJB;
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
+import modelo.pojo.Foto;
 import modelo.pojo.Usuario;
 
 @WebServlet("/Guia")
@@ -42,6 +43,9 @@ public class Guia extends HttpServlet {
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
 		
 		 ArrayList<modelo.pojo.Guia> guias = guiaEJB.listaGuias();
+		 ArrayList<Foto> fotoGuia = guiaEJB.listaFotosGuia();
+
+		 request.setAttribute("foto", fotoGuia);
 
 		 
 		request.setAttribute("usuario", usuario);

@@ -31,6 +31,12 @@
 		<script type="text/javascript" src="js/Fichas.js"></script>
 </head>
 <body onload="editor()">
+<div class="redes">
+	<div class="face"><a href="https://es-es.facebook.com/" class="fa fa-facebook"></a></div>
+	<div class="twitter"><a href="https://twitter.com/compose/tweet?url=http://freakCorner.com&hashtags=FreaksCorner&hashtags=Análisis" class="fa fa-twitter"></a></div>
+	<div class="insta"><a href="https://www.instagram.com/?hl=es" class="fa fa-instagram"></a></div>
+	<div class="tumb"><a href="https://www.tumblr.com/dashboard" class="fa fa-tumblr"></a></div>
+	</div>
 	<%
 		Usuario user = (Usuario) request.getAttribute("usuario");
 		Analisis analisis = (Analisis) request.getAttribute("analisis");
@@ -153,14 +159,10 @@
 				
 				out.print("<div class=\"row mt-5\">");
 				out.print("<div class=\"col\">");
-				int totalComentarios = coment.size(); //total de comentarios que hay
-				for (Comentario co : coment) {
-					if (co.getIdJuego() == analisis.getId()) {
-						out.print("<h4>Comentarios " + totalComentarios + "</h4>"); //Comentarios
-					} else {
-						out.print("<h4>Comentarios 0</h4>"); //Comentarios
-					}
-				}
+
+				
+						out.print("<h4>Comentarios</h4>"); //Comentarios
+				
 				out.print("</div>");
 				out.print("</div>");
 				

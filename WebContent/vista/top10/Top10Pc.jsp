@@ -116,7 +116,7 @@
 			out.print("</div>");
 			out.print("<div class=\"form-row mt-4\">");
 			//----TABLA------------------------------
-			out.print("<div class=\"col-md-4\">");
+			out.print("<div class=\"col\">");
 			out.print("<table class=\"table shadow-lg\">");
 			out.print("<thead class=\"thead-dark\">");
 			out.print("<tr>");
@@ -257,7 +257,7 @@
 			out.print("<div class=\"form-row mt-4\">");
 
 			//----TABLA------------------------------
-			out.print("<div class=\"col-md-4\">");
+			out.print("<div class=\"col\">");
 			out.print("<table class=\"table shadow-lg\">");
 			out.print("<thead class=\"thead-dark\">");
 			out.print("<tr>");

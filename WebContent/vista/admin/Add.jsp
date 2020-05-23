@@ -192,7 +192,7 @@
 
 
 			//----" 2 row"------
-			out.print("<form method=\"post\" action=\"Add\" enctype=\"multipart/form-data\">");
+			out.print("<form class=\"needs-validation\" method=\"post\" action=\"Add\" enctype=\"multipart/form-data\">");
 			
 			out.print("<div class=\"form-row mt-5\">");
 			

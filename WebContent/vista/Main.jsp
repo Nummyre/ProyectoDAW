@@ -16,6 +16,8 @@
 <title>Freak's Corner</title>
 <link href="img/logo4.png" rel="icon" type="image/x-icon" />
 <link rel="stylesheet" type="text/css" href="css/Style.css">
+<script type = "text/javascript" charset ="UTF-8" src ="http://chs03.cookie-script.com/s/23c5591bf6df5a3f209a79ff16ceb577.js"></script>
+<script type="text/javascript" src="js/Style.js"></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 <link
@@ -24,9 +26,8 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
 <script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
@@ -121,7 +122,8 @@
 			out.print("</ol>");
 			out.print("<div class=\"carousel-inner\">");
 			out.print("<div class=\"carousel-item active\">");
-			out.print("<a href=\"Analisis\"><img class=\"d-block w-100\" src=\"img/foto7.jpg\" width=\"100\" height=\"500\" alt=\"First slide\"></a>");
+			out.print(
+					"<a href=\"Analisis\"><img class=\"d-block w-100\" src=\"img/foto7.jpg\" width=\"100\" height=\"500\" alt=\"First slide\"></a>");
 			out.print("<div class=\"carousel-caption d-none d-md-block\">");
 			out.print("<h5>Análisis</h5>");
 			out.print("<p>¡Explora los videojuegos con nuestros análisis!</p>");
@@ -129,7 +131,8 @@
 			out.print("</div>");
 
 			out.print("<div class=\"carousel-item \">");
-			out.print("<a href=\"Guia\"><img class=\"d-block w-100\" src=\"img/fo3.jpg\" width=\"100\" height=\"500\" alt=\"Second slide\"></a>");
+			out.print(
+					"<a href=\"Guia\"><img class=\"d-block w-100\" src=\"img/fo3.jpg\" width=\"100\" height=\"500\" alt=\"Second slide\"></a>");
 			out.print("<div class=\"carousel-caption d-none d-md-block\">");
 			out.print("<h5 class=\"text-dark font-weight\">Guías</h5>");
 			out.print("<p class=\"text-dark\">¡Ayúdate con nuestras guías!</p>");
@@ -137,7 +140,8 @@
 			out.print("</div>");
 
 			out.print("<div class=\"carousel-item \">");
-			out.print("<a href=\"Top10\"><img class=\"d-block w-100\" src=\"img/foto2.jpg\" width=\"100\" height=\"500\" alt=\"tercero slide\"></a>");
+			out.print(
+					"<a href=\"Top10\"><img class=\"d-block w-100\" src=\"img/foto2.jpg\" width=\"100\" height=\"500\" alt=\"tercero slide\"></a>");
 			out.print("<div class=\"carousel-caption d-none d-md-block\">");
 			out.print("<h5>Top 10</h5>");
 			out.print("<p>¡Entérate que videojuegos están a la última!</p>");
@@ -159,11 +163,11 @@
 
 			out.print("<div class=\"row mt-5\">");
 			out.print("<div class=\"col\">");//titulo
-			out.print("<h3>Juegos</h3>");
+			out.print("<h3>Juegos recientemente añadidos</h3>");
 			out.print("</div>");
 			out.print("</div>");
 
-			out.print("<div class=\"row\">");//lista
+			out.print("<div class=\"row mt-3\">");//lista
 			out.print("<div class=\"col\">");
 			if (juego != null) {
 				for (Juego j : juego) {
@@ -174,7 +178,7 @@
 					out.print("<th>Título</th>");
 					out.print("<th>Género</th>");
 					out.print("<th>Plataforma</th>");
-					out.print("<tr>");
+					out.print("</tr>");
 					out.print("<tr>");
 					for (Foto fj : juegoFoto) {
 						if (fj.getIdJuego() == j.getId()) {
@@ -194,7 +198,7 @@
 							out.print("<td>" + p.getNombre() + "</td>");
 						}
 					}
-					out.print("<table>");
+			
 					out.print("</tr>");
 					out.print("</table>");
 
@@ -215,7 +219,7 @@
 			out.print("</div>");
 			out.print("</div>");
 
-			out.print("<div class=\"row\">");//lista
+			out.print("<div class=\"row  mt-3\">");//lista
 			out.print("<div class=\"col\">");
 			if (guia != null) {
 				for (Guia g : guia) {
@@ -252,7 +256,7 @@
 			out.print("</div>");
 			out.print("</div>");
 
-			out.print("<div class=\"row\">");//lista
+			out.print("<div class=\"row  mt-3\">");//lista
 			out.print("<div class=\"col\">");
 			if (analisi != null) {
 				for (Analisis a : analisi) {
@@ -268,7 +272,7 @@
 					}
 					out.print("<td><a class=\"e\" href=\"FichaAnalisis?id=" + a.getId() + "\">" + a.getTitulo()
 							+ "</td>");
-					out.print("<td><p>"+a.getDescripcion().substring(0, 120)+"...</p></td>");
+					out.print("<td><p>" + a.getDescripcion().substring(0, 120) + "...</p></td>");
 					out.print("<table>");
 					out.print("</tr>");
 					out.print("</table>");
@@ -283,6 +287,7 @@
 			out.print("</div>");
 
 			out.print("</div>"); //div container
+
 
 		} else {
 			out.print("<header>");
@@ -321,7 +326,8 @@
 				out.print("<img src=\"img/usuari.png\" width=\"100\" height=\"65\" class=\"img-circle\">");
 			} else {
 				if (user.getFoto().matches(".+\\.(jpg|png)")) {
-					out.print("<img src=\"Imagenes/" + user.getFoto() + "\" width=\"95\" height=\"65\" class=\"rounded-circle mr-4\"/>");
+					out.print("<img src=\"Imagenes/" + user.getFoto()
+							+ "\" width=\"95\" height=\"65\" class=\"rounded-circle mr-4\"/>");
 				}
 			}
 			out.print("</div>");
@@ -361,7 +367,7 @@
 			out.print("</header>");
 
 			out.print("<div class=\"container p-5 mt-2 mb-2\">");
-			
+
 			out.print("<div id=\"carousel\" class=\"carousel slide\" data-ride=\"carousel\">");
 			out.print("<ol class=\"carousel-indicators\">");
 			out.print("<li data-target=\"#carousel\" data-slide-to=\"0\" class=\"active\"></li>");
@@ -370,7 +376,8 @@
 			out.print("</ol>");
 			out.print("<div class=\"carousel-inner\">");
 			out.print("<div class=\"carousel-item active\">");
-			out.print("<a href=\"Analisis\"><img class=\"d-block w-100\" src=\"img/foto7.jpg\" width=\"100\" height=\"500\" alt=\"First slide\"></a>");
+			out.print(
+					"<a href=\"Analisis\"><img class=\"d-block w-100\" src=\"img/foto7.jpg\" width=\"100\" height=\"500\" alt=\"First slide\"></a>");
 			out.print("<div class=\"carousel-caption d-none d-md-block\">");
 			out.print("<h5>Análisis</h5>");
 			out.print("<p>¡Explora los videojuegos con nuestros análisis!</p>");
@@ -378,7 +385,8 @@
 			out.print("</div>");
 
 			out.print("<div class=\"carousel-item \">");
-			out.print("<a href=\"Guia\"><img class=\"d-block w-100\" src=\"img/fo3.jpg\" width=\"100\" height=\"500\" alt=\"Second slide\"></a>");
+			out.print(
+					"<a href=\"Guia\"><img class=\"d-block w-100\" src=\"img/fo3.jpg\" width=\"100\" height=\"500\" alt=\"Second slide\"></a>");
 			out.print("<div class=\"carousel-caption d-none d-md-block\">");
 			out.print("<h5 class=\"text-dark font-weight\">Guías</h5>");
 			out.print("<p class=\"text-dark\">¡Ayúdate con nuestras guías!</p>");
@@ -386,7 +394,8 @@
 			out.print("</div>");
 
 			out.print("<div class=\"carousel-item \">");
-			out.print("<a href=\"Top10\"><img class=\"d-block w-100\" src=\"img/foto2.jpg\" width=\"100\" height=\"500\" alt=\"tercero slide\"></a>");
+			out.print(
+					"<a href=\"Top10\"><img class=\"d-block w-100\" src=\"img/foto2.jpg\" width=\"100\" height=\"500\" alt=\"tercero slide\"></a>");
 			out.print("<div class=\"carousel-caption d-none d-md-block\">");
 			out.print("<h5>Top 10</h5>");
 			out.print("<p>¡Entérate que videojuegos están a la última!</p>");
@@ -406,11 +415,9 @@
 			out.print("</div>");
 			out.print("</div>");
 
-
-
 			out.print("<div class=\"row mt-5\">");
 			out.print("<div class=\"col\">");//titulo
-			out.print("<h3>Juegos</h3>");
+			out.print("<h3>Juegos recientemente añadidos</h3>");
 			out.print("</div>");
 			out.print("</div>");
 
@@ -527,8 +534,8 @@
 					}
 					out.print("<td><a class=\"e\" href=\"FichaAnalisis?id=" + a.getId() + "\">" + a.getTitulo()
 							+ "</td>");
-	
-					out.print("<td><p>"+a.getDescripcion().substring(0, 120)+"...</p></td>");
+
+					out.print("<td><p>" + a.getDescripcion().substring(0, 120) + "...</p></td>");
 					out.print("</tr>");
 					out.print("</table>");
 
@@ -544,16 +551,21 @@
 			out.print("</div>"); //div container
 		}
 	%>
+
 	<div class="footer bg-dark">
 		<div class="text-center center-block p-5">
-			<a href="https://es-es.facebook.com/" class="fa fa-facebook"></a> <a href="https://twitter.com/compose/tweet?hashtags=FreaksCorner&hashtags=Videojuegos"
-				class="fa fa-twitter"></a> <a href="https://www.instagram.com/?hl=es" class="fa fa-instagram"></a>
+			<a href="https://es-es.facebook.com/" class="fa fa-facebook"></a> <a
+				href="https://twitter.com/compose/tweet?hashtags=FreaksCorner&hashtags=Videojuegos"
+				class="fa fa-twitter"></a> <a
+				href="https://www.instagram.com/?hl=es" class="fa fa-instagram"></a>
 			<a href="https://www.tumblr.com/dashboard" class="fa fa-tumblr"></a>
 		</div>
 		<div class="footer-copyright text-center py-3 bg-success">
+				<p class="mt-3">Esta web es ficticia para un proyecto de 2º FP
+				Superior DAW</p>
 			© 2020 Copyright: <a class="text-white"
 				href="https://Freak'sCorner.com/">Freak'sCorner.com</a>
-				<p class="mt-3">Esta web es ficticia para un proyecto de 2º FP Superior DAW</p>
+
 		</div>
 	</div>
 </body>

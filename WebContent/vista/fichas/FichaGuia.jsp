@@ -33,6 +33,12 @@
 		<script type="text/javascript" src="js/Fichas.js"></script>
 </head>
 <body onload="editor()">
+<div class="redes">
+	<div class="face"><a href="https://es-es.facebook.com/" class="fa fa-facebook"></a></div>
+	<div class="twitter"><a href="https://twitter.com/compose/tweet?url=http://freakCorner.com&hashtags=FreaksCorner&hashtags=Guías" class="fa fa-twitter"></a></div>
+	<div class="insta"><a href="https://www.instagram.com/?hl=es" class="fa fa-instagram"></a></div>
+	<div class="tumb"><a href="https://www.tumblr.com/dashboard" class="fa fa-tumblr"></a></div>
+	</div>
 	<%
 		Usuario user = (Usuario) request.getAttribute("usuario");
 		Guia guia = (Guia) request.getAttribute("guia");

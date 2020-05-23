@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="modelo.pojo.Usuario"%>
-<%@page import="modelo.pojo.Foto"%>
-<%@page import="modelo.pojo.Analisis"%>
+<%@page import="modelo.pojo.PlataformasJuegos"%>
 <%@page import="java.util.ArrayList"%>
 <%@page session="false"%>
 <!DOCTYPE html>
@@ -12,8 +11,6 @@
 <title>Freak's Corner</title>
 <link href="img/logo4.png" rel="icon" type="image/x-icon" />
 <link rel="stylesheet" type="text/css" href="css/Style.css">
-<script type = "text/javascript" charset ="UTF-8" src ="http://chs03.cookie-script.com/s/23c5591bf6df5a3f209a79ff16ceb577.js"></script>
-<script type="text/javascript" src="js/Style.js"></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 <link
@@ -22,17 +19,16 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
 </head>
 <body>
 	<%
 		Usuario user = (Usuario) request.getAttribute("usuario");
-	ArrayList<Analisis> analisis = (ArrayList<Analisis>) request.getAttribute("analisis");
-	ArrayList<Foto> foto = (ArrayList<Foto>) request.getAttribute("foto");
+	ArrayList<PlataformasJuegos> nintendoList = (ArrayList<PlataformasJuegos>) request.getAttribute("nintendoList");
 
 		if (user == null) {
 			out.print("<header>");
@@ -98,17 +94,15 @@
 			out.print("</ul>");
 
 			out.print("</header>");
-			//-----------------------------------------------------------------------------------------
 			
-			
-			out.print("<div class=\"container mt-5 p-4\">");
+			out.print("<div class=\"container mt-5 p-5\">");
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col\">");
-			out.print("<h3>Todos los Análisis</h3>");
+			out.print("<h3>Juegos de Nintendo Switch</h3>");
 			out.print("</div>");
 			out.print("</div>");
-			out.print("<div class=\"form-row mt-4\">");
 
+			out.print("<div class=\"form-row mt-4\">");
 			//----TABLA------------------------------
 			out.print("<div class=\"col\">");
 			out.print("<table class=\"table shadow-lg\">");
@@ -117,21 +111,21 @@
 			out.print("<th scope=\"col\">(foto)</th>");
 			out.print("<th scope=\"col\">Título</th>");
 			out.print("<th scope=\"col\">Descripción</th>");
+			out.print("<th scope=\"col\">Año</th>");
+			out.print("<th scope=\"col\">Género</th>");
+			out.print("<th scope=\"col\">Plataforma</th>");
 			out.print("</tr>");
 			out.print("</thead>");
 			out.print("<tbody>");
-			if(analisis!=null){
-			for(Analisis n : analisis){
-				for(Foto f : foto){
+			for(PlataformasJuegos n : nintendoList){
 			out.print("<tr>");
-			if(f.getIdJuego() == n.getId()){
-			out.print("<td><img src=\"Imagenes/"+f.getFoto()+"\" width=\"60\" height=\"50\" class=\"rounded mx-auto d-block\"</td>");
-			}
-			out.print("<td><a href=\"FichaAnalisis?id="+n.getId()+"\">"+n.getTitulo()+"</a></td>");
-			out.print("<td>"+n.getDescripcion().substring(0, 100)+"...</td>");
+			out.print("<td><img src=\"Imagenes/"+n.getFoto()+"\" width=\"65\" height=\"50\" class=\"rounded\"></td>");
+			out.print("<td><a href=\"FichaJuego?id="+n.getId()+"\">"+n.getTitulo()+"</a></td>");
+			out.print("<td>"+n.getDescripcion().substring(0, 50)+"...</td>");
+			out.print("<td>"+n.getAnyo()+"</td>");
+			out.print("<td>"+n.getGenero()+"</td>");
+			out.print("<td>"+n.getPlataforma()+"</td>");
 			out.print("</tr>");
-				}
-			}
 			}
 			out.print("</tbody>");
 			out.print("</table>");
@@ -139,6 +133,7 @@
 			out.print("</div>");
 			out.print("</div>");
 			out.print("</div>");
+
 			
 		
 			
@@ -179,8 +174,7 @@
 				out.print("<img src=\"img/usuari.png\" width=\"100\" height=\"65\" class=\"img-circle\">");
 			} else {
 				if (user.getFoto().matches(".+\\.(jpg|png)")) {
-					out.print("<img src=\"Imagenes/" + user.getFoto()
-							+ "\" width=\"95\" height=\"65\" class=\"rounded-circle mr-4\"/>");
+					out.print("<img src=\"Imagenes/" + user.getFoto() + "\" width=\"95\" height=\"65\" class=\"rounded-circle mr-4\"/>");
 				}
 			}
 			out.print("</div>");
@@ -219,14 +213,14 @@
 
 			out.print("</header>");
 			
-			out.print("<div class=\"container mt-5 p-4\">");
+			out.print("<div class=\"container mt-5 p-5\">");
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col\">");
-			out.print("<h3>Todos los Análisis</h3>");
+			out.print("<h3>Juegos de Nintendo Switch</h3>");
 			out.print("</div>");
 			out.print("</div>");
-			out.print("<div class=\"form-row mt-4\">");
 
+			out.print("<div class=\"form-row mt-4\">");
 			//----TABLA------------------------------
 			out.print("<div class=\"col\">");
 			out.print("<table class=\"table shadow-lg\">");
@@ -235,21 +229,21 @@
 			out.print("<th scope=\"col\">(foto)</th>");
 			out.print("<th scope=\"col\">Título</th>");
 			out.print("<th scope=\"col\">Descripción</th>");
+			out.print("<th scope=\"col\">Año</th>");
+			out.print("<th scope=\"col\">Género</th>");
+			out.print("<th scope=\"col\">Plataforma</th>");
 			out.print("</tr>");
 			out.print("</thead>");
 			out.print("<tbody>");
-			if(analisis!=null){
-			for(Analisis n : analisis){
-				for(Foto f : foto){
+			for(PlataformasJuegos n : nintendoList){
 			out.print("<tr>");
-			if(f.getIdJuego() == n.getId()){
-			out.print("<td><img src=\"Imagenes/"+f.getFoto()+"\" width=\"60\" height=\"50\" class=\"rounded mx-auto d-block\"</td>");
-			}
-			out.print("<td><a href=\"FichaAnalisis?id="+n.getId()+"\">"+n.getTitulo()+"</a></td>");
-			out.print("<td>"+n.getDescripcion().substring(0, 100)+"...</td>");
+			out.print("<td><img src=\"Imagenes/"+n.getFoto()+"\" width=\"65\" height=\"50\" class=\"rounded\"></td>");
+			out.print("<td><a href=\"FichaJuego?id="+n.getId()+"\">"+n.getTitulo()+"</a></td>");
+			out.print("<td>"+n.getDescripcion().substring(0, 50)+"...</td>");
+			out.print("<td>"+n.getAnyo()+"</td>");
+			out.print("<td>"+n.getGenero()+"</td>");
+			out.print("<td>"+n.getPlataforma()+"</td>");
 			out.print("</tr>");
-				}
-			}
 			}
 			out.print("</tbody>");
 			out.print("</table>");
@@ -258,15 +252,19 @@
 			out.print("</div>");
 			out.print("</div>");
 			
-			
 		}
 	%>
-		<div class="footer bg-dark">
- <div class="footer-copyright text-center py-3 bg-success">
+			<div class="footer bg-dark">
+		<div class="text-center center-block p-5">
+			<a href="https://es-es.facebook.com/" class="fa fa-facebook"></a> <a href="https://twitter.com/compose/tweet?hashtags=FreaksCorner&hashtags=JuegosParaNintendoSwitch"
+				class="fa fa-twitter"></a> <a href="https://www.instagram.com/?hl=es" class="fa fa-instagram"></a>
+			<a href="https://www.tumblr.com/dashboard" class="fa fa-tumblr"></a>
+		</div>
+		<div class="footer-copyright text-center py-3 bg-success">
 			© 2020 Copyright: <a class="text-white"
 				href="https://Freak'sCorner.com/">Freak'sCorner.com</a>
-		
-	</div>
+				
 		</div>
-	</body>
-	</html>
+	</div>
+</body>
+</html>

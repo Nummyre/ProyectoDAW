@@ -84,7 +84,8 @@ input[type="radio"]:checked ~ label {
 }
 
 .navbar {
-	border-bottom: 2px solid  #81ff9f;
+	border-bottom: 2px solid  #81ff9f; 
+
 }
 
 .dropdown-menu>.dropdown-item:hover {
@@ -179,3 +180,41 @@ margin: auto;
 .table tr th{
 	padding: 35px;
 }
+
+
+
+
+
+
+
+.redes{
+	float: left;
+	position: sticky;
+
+top: 0;
+	z-index: 3;
+}
+
+.face{
+	background: #3B5998;
+	padding: 5px;
+}
+
+.twitter{
+	background: #55ACEE;
+	padding: 5px;
+}
+
+
+
+
+.insta{
+	background: linear-gradient(to bottom left, #ff33cc 18%, #ff6600 98%);
+	padding: 5px;
+}
+
+.tumb{
+background: #2c4762;
+	padding: 5px;
+}
+

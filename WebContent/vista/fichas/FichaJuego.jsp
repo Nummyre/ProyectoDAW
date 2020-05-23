@@ -33,6 +33,12 @@
 </head>
 
 <body onload="editor()">
+<div class="redes">
+	<div class="face"><a href="https://es-es.facebook.com/" class="fa fa-facebook"></a></div>
+	<div class="twitter"><a href="https://twitter.com/compose/tweet?url=http://freakCorner.com&hashtags=FreaksCorner&hashtags=Videojuegos" class="fa fa-twitter"></a></div>
+	<div class="insta"><a href="https://www.instagram.com/?hl=es" class="fa fa-instagram"></a></div>
+	<div class="tumb"><a href="https://www.tumblr.com/dashboard" class="fa fa-tumblr"></a></div>
+	</div>
 	<%
 		Usuario user = (Usuario) request.getAttribute("usuario");
 		Juego juego = (Juego) request.getAttribute("juego");
@@ -157,7 +163,7 @@
 			for (Foto f : foto) {
 				if (juego.getId() == f.getIdJuego()) {
 					out.print("<img src=\"Imagenes/" + f.getFoto()
-							+ "\" width=\"400\" height=\"300\" class=\"rounded mx-auto d-block\">"); //getFoto
+							+ "\" width=\"500\" height=\"400\" class=\"rounded mx-auto d-block\">"); //getFoto
 				}
 			}
 			out.print("</div>");
@@ -339,11 +345,11 @@
 				out.print("</div>");
 				out.print("</div>");
 				out.print("<div class=\"row\">");
-				out.print("<div class=\"col\">");
+				out.print("<div class=\"col mr-5\">");
 				for (Foto f : foto) {
 					if (juego.getId() == f.getIdJuego()) {
 						out.print("<img src=\"Imagenes/" + f.getFoto()
-								+ "\" width=\"400\" height=\"300\" class=\"rounded mx-auto d-block\">"); //getFoto
+								+ "\" width=\"500\" height=\"400\" class=\"rounded mx-auto d-block\">"); //getFoto
 					}
 				}
 				out.print("</div>");
@@ -512,7 +518,7 @@
 				for (Foto f : foto) {
 					if (juego.getId() == f.getIdJuego()) {
 						out.print("<img src=\"Imagenes/" + f.getFoto()
-								+ "\" width=\"400\" height=\"300\" class=\"rounded mx-auto d-block\">"); //getFoto
+								+ "\" width=\"500\" height=\"400\" class=\"rounded mx-auto d-block\">"); //getFoto
 					}
 				}
 				out.print("</div>");

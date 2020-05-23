@@ -17,6 +17,7 @@ import modelo.pojo.Foto;
 import modelo.pojo.Genero;
 import modelo.pojo.Guia;
 import modelo.pojo.Juego;
+import modelo.pojo.PlataformasJuegos;
 import modelo.pojo.Plataforma;
 
 import modelo.pojo.Puntuacion;
@@ -46,7 +47,7 @@ public class JuegosDAO {
 				// Si la conexion no es nula que ejecute la query del select con los datos
 				// obtenidos
 				Statement stmt = connection.createStatement();
-				ResultSet rs = stmt.executeQuery("SELECT * FROM juego");
+				ResultSet rs = stmt.executeQuery("select * from juego where id >31;");
 
 				rs.last();
 				if (rs.getRow() > 0) {
@@ -419,15 +420,17 @@ public class JuegosDAO {
 	 * 
 	 * @return devuelve una lista de juegos
 	 */
-	public ArrayList<Juego> nintendoList() {
-		ArrayList<Juego> juego = null;
+	public ArrayList<PlataformasJuegos> nintendoList() {
+		ArrayList<PlataformasJuegos> juego = null;
 		try {
 			Connection connection = new Conexion().conecta();
 			Statement stmt = null;
 
 			if (connection != null) {
 				stmt = connection.createStatement();
-				ResultSet rs = stmt.executeQuery("select * from juego where idPlataforma = 3;");
+				ResultSet rs = stmt.executeQuery("select juego.id, fotoJuego.foto, juego.titulo, juego.Descripcion, juego.anyo, genero.nombre as genero, plataforma.nombre as plataforma from juego inner join plataforma on juego.idPlataforma = plataforma.id and plataforma.id = 3 " + 
+						"inner join fotoJuego on juego.id = fotoJuego.idJuego " + 
+						"inner join genero on juego.idGenero = genero.id;");
 
 				rs.last();
 				if (rs.getRow() > 0) {
@@ -435,16 +438,15 @@ public class JuegosDAO {
 					// Coge los datos del usuario que a iniciado sesion de la base de datos
 
 					rs.first();
-					juego = new ArrayList<Juego>();
+					juego = new ArrayList<PlataformasJuegos>();
 
-					juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
-							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"), rs.getInt("idUsuario")));
+					juego.add(new PlataformasJuegos(rs.getInt("id"), rs.getString("foto"), rs.getString("titulo"), rs.getString("Descripcion"),
+							rs.getInt("anyo"), rs.getString("genero"), rs.getString("plataforma")));
 
 					while (rs.next()) {
 
-						juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
-								rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
-								rs.getInt("idUsuario")));
+						juego.add(new PlataformasJuegos(rs.getInt("id"), rs.getString("foto"), rs.getString("titulo"), rs.getString("Descripcion"),
+								rs.getInt("anyo"), rs.getString("genero"), rs.getString("plataforma")));
 					}
 				}
 
@@ -466,15 +468,17 @@ public class JuegosDAO {
 	 * 
 	 * @return devuelve una lista de juegos
 	 */
-	public ArrayList<Juego> xboxList() {
-		ArrayList<Juego> juego = null;
+	public ArrayList<PlataformasJuegos> xboxList() {
+		ArrayList<PlataformasJuegos> juego = null;
 		try {
 			Connection connection = new Conexion().conecta();
 			Statement stmt = null;
 
 			if (connection != null) {
 				stmt = connection.createStatement();
-				ResultSet rs = stmt.executeQuery("select * from juego where idPlataforma = 2;");
+				ResultSet rs = stmt.executeQuery("select juego.id, fotoJuego.foto, juego.titulo, juego.Descripcion, juego.anyo, genero.nombre as genero, plataforma.nombre as plataforma from juego inner join plataforma on juego.idPlataforma = plataforma.id and plataforma.id = 2 " + 
+						"inner join fotoJuego on juego.id = fotoJuego.idJuego " + 
+						"inner join genero on juego.idGenero = genero.id;");
 
 				rs.last();
 				if (rs.getRow() > 0) {
@@ -482,16 +486,14 @@ public class JuegosDAO {
 					// Coge los datos del usuario que a iniciado sesion de la base de datos
 
 					rs.first();
-					juego = new ArrayList<Juego>();
+					juego = new ArrayList<PlataformasJuegos>();
 
-					juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
-							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"), rs.getInt("idUsuario")));
+					juego.add(new PlataformasJuegos(rs.getInt("id"), rs.getString("foto"), rs.getString("titulo"), rs.getString("Descripcion"),
+							rs.getInt("anyo"), rs.getString("genero"), rs.getString("plataforma")));
 
 					while (rs.next()) {
-
-						juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
-								rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
-								rs.getInt("idUsuario")));
+						juego.add(new PlataformasJuegos(rs.getInt("id"), rs.getString("foto"), rs.getString("titulo"), rs.getString("Descripcion"),
+								rs.getInt("anyo"), rs.getString("genero"), rs.getString("plataforma")));
 					}
 				}
 
@@ -513,15 +515,17 @@ public class JuegosDAO {
 	 * 
 	 * @return devuelve una lista de juegos
 	 */
-	public ArrayList<Juego> playSList() {
-		ArrayList<Juego> juego = null;
+	public ArrayList<PlataformasJuegos> playSList() {
+		ArrayList<PlataformasJuegos> juego = null;
 		try {
 			Connection connection = new Conexion().conecta();
 			Statement stmt = null;
 
 			if (connection != null) {
 				stmt = connection.createStatement();
-				ResultSet rs = stmt.executeQuery("select * from juego where idPlataforma = 1;");
+				ResultSet rs = stmt.executeQuery("select juego.id, fotoJuego.foto, juego.titulo, juego.Descripcion, juego.anyo, genero.nombre as genero, plataforma.nombre as plataforma from juego inner join plataforma on juego.idPlataforma = plataforma.id and plataforma.id = 1 " + 
+						"inner join fotoJuego on juego.id = fotoJuego.idJuego " + 
+						"inner join genero on juego.idGenero = genero.id;");
 
 				rs.last();
 				if (rs.getRow() > 0) {
@@ -529,16 +533,15 @@ public class JuegosDAO {
 					// Coge los datos del usuario que a iniciado sesion de la base de datos
 
 					rs.first();
-					juego = new ArrayList<Juego>();
+					juego = new ArrayList<PlataformasJuegos>();
 
-					juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
-							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"), rs.getInt("idUsuario")));
+					juego.add(new PlataformasJuegos(rs.getInt("id"), rs.getString("foto"), rs.getString("titulo"), rs.getString("Descripcion"),
+							rs.getInt("anyo"), rs.getString("genero"), rs.getString("plataforma")));
 
 					while (rs.next()) {
 
-						juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
-								rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
-								rs.getInt("idUsuario")));
+						juego.add(new PlataformasJuegos(rs.getInt("id"), rs.getString("foto"), rs.getString("titulo"), rs.getString("Descripcion"),
+								rs.getInt("anyo"), rs.getString("genero"), rs.getString("plataforma")));
 					}
 				}
 
@@ -560,14 +563,16 @@ public class JuegosDAO {
 	 * 
 	 * @return devuelve una lista de juegos
 	 */
-	public ArrayList<Juego> pcList() {
-		ArrayList<Juego> juego = null;
+	public ArrayList<PlataformasJuegos> pcList() {
+		ArrayList<PlataformasJuegos> juego = null;
 		try {
 			Connection connection = new Conexion().conecta();
 
 			if (connection != null) {
 				Statement stmt = connection.createStatement();
-				ResultSet rs = stmt.executeQuery("select * from juego where idPlataforma = 4;");
+				ResultSet rs = stmt.executeQuery("select juego.id, fotoJuego.foto, juego.titulo, juego.Descripcion, juego.anyo, genero.nombre as genero, plataforma.nombre as plataforma from juego inner join plataforma on juego.idPlataforma = plataforma.id and plataforma.id = 4 " + 
+						"inner join fotoJuego on juego.id = fotoJuego.idJuego " + 
+						"inner join genero on juego.idGenero = genero.id;");
 
 				rs.last();
 				if (rs.getRow() > 0) {
@@ -575,16 +580,14 @@ public class JuegosDAO {
 					// Coge los datos del usuario que a iniciado sesion de la base de datos
 
 					rs.first();
-					juego = new ArrayList<Juego>();
+					juego = new ArrayList<PlataformasJuegos>();
 
-					juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
-							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"), rs.getInt("idUsuario")));
+					juego.add(new PlataformasJuegos(rs.getInt("id"), rs.getString("foto"), rs.getString("titulo"), rs.getString("Descripcion"),
+							rs.getInt("anyo"), rs.getString("genero"), rs.getString("plataforma")));
 
 					while (rs.next()) {
-
-						juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
-								rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
-								rs.getInt("idUsuario")));
+						juego.add(new PlataformasJuegos(rs.getInt("id"), rs.getString("foto"), rs.getString("titulo"), rs.getString("Descripcion"),
+								rs.getInt("anyo"), rs.getString("genero"), rs.getString("plataforma")));
 					}
 				}
 
