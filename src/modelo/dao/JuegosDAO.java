@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import org.slf4j.LoggerFactory;
 
 import ch.qos.logback.classic.Logger;
+import controlador.ValoracionJuego;
 import modelo.pojo.Analisis;
 import modelo.pojo.Comentario;
 import modelo.pojo.Comunidad;
@@ -16,10 +17,13 @@ import modelo.pojo.Foto;
 import modelo.pojo.Genero;
 import modelo.pojo.Guia;
 import modelo.pojo.Juego;
+import modelo.pojo.PlataformasJuegos;
 import modelo.pojo.Plataforma;
 
 import modelo.pojo.Puntuacion;
 import modelo.pojo.Top10;
+import modelo.pojo.Usuario;
+import modelo.pojo.ValoracionLista;
 
 public class JuegosDAO {
 
@@ -43,7 +47,7 @@ public class JuegosDAO {
 				// Si la conexion no es nula que ejecute la query del select con los datos
 				// obtenidos
 				Statement stmt = connection.createStatement();
-				ResultSet rs = stmt.executeQuery("SELECT * FROM juego");
+				ResultSet rs = stmt.executeQuery("select * from juego where id >31;");
 
 				rs.last();
 				if (rs.getRow() > 0) {
@@ -330,8 +334,7 @@ public class JuegosDAO {
 		try {
 			Connection connection = new Conexion().conecta();
 
-			String query = "update juego set titulo = '" + titulo + "', Descripcion = '" + desc + "', anyo = " + anyo
-					+ ", idGenero = " + idGen + ", idPlataforma = " + idPla + " where id = " + idJuego;
+			String query = "update juego set titulo = '" + titulo + "', Descripcion = '" + desc + "', anyo = " + anyo+ ", idGenero = " + idGen + ", idPlataforma = " + idPla + " where id = " + idJuego;
 			Statement stmt = connection.createStatement();
 			stmt.executeUpdate(query);
 
@@ -393,7 +396,7 @@ public class JuegosDAO {
 		try {
 			Connection connection = new Conexion().conecta();
 
-			String query = "update fotoJuego set foto = " + foto + " where idJuego = " + idJuego;
+			String query = "update fotoJuego set foto = '" + foto + "' where idJuego = " + idJuego;
 			Statement stmt = connection.createStatement();
 
 			stmt.executeUpdate(query);
@@ -417,15 +420,17 @@ public class JuegosDAO {
 	 * 
 	 * @return devuelve una lista de juegos
 	 */
-	public ArrayList<Juego> nintendoList() {
-		ArrayList<Juego> juego = null;
+	public ArrayList<PlataformasJuegos> nintendoList() {
+		ArrayList<PlataformasJuegos> juego = null;
 		try {
 			Connection connection = new Conexion().conecta();
 			Statement stmt = null;
 
 			if (connection != null) {
 				stmt = connection.createStatement();
-				ResultSet rs = stmt.executeQuery("select * from juego where idPlataforma = 3;");
+				ResultSet rs = stmt.executeQuery("select juego.id, fotoJuego.foto, juego.titulo, juego.Descripcion, juego.anyo, genero.nombre as genero, plataforma.nombre as plataforma from juego inner join plataforma on juego.idPlataforma = plataforma.id and plataforma.id = 3 " + 
+						"inner join fotoJuego on juego.id = fotoJuego.idJuego " + 
+						"inner join genero on juego.idGenero = genero.id;");
 
 				rs.last();
 				if (rs.getRow() > 0) {
@@ -433,16 +438,15 @@ public class JuegosDAO {
 					// Coge los datos del usuario que a iniciado sesion de la base de datos
 
 					rs.first();
-					juego = new ArrayList<Juego>();
+					juego = new ArrayList<PlataformasJuegos>();
 
-					juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
-							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"), rs.getInt("idUsuario")));
+					juego.add(new PlataformasJuegos(rs.getInt("id"), rs.getString("foto"), rs.getString("titulo"), rs.getString("Descripcion"),
+							rs.getInt("anyo"), rs.getString("genero"), rs.getString("plataforma")));
 
 					while (rs.next()) {
 
-						juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
-								rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
-								rs.getInt("idUsuario")));
+						juego.add(new PlataformasJuegos(rs.getInt("id"), rs.getString("foto"), rs.getString("titulo"), rs.getString("Descripcion"),
+								rs.getInt("anyo"), rs.getString("genero"), rs.getString("plataforma")));
 					}
 				}
 
@@ -464,15 +468,17 @@ public class JuegosDAO {
 	 * 
 	 * @return devuelve una lista de juegos
 	 */
-	public ArrayList<Juego> xboxList() {
-		ArrayList<Juego> juego = null;
+	public ArrayList<PlataformasJuegos> xboxList() {
+		ArrayList<PlataformasJuegos> juego = null;
 		try {
 			Connection connection = new Conexion().conecta();
 			Statement stmt = null;
 
 			if (connection != null) {
 				stmt = connection.createStatement();
-				ResultSet rs = stmt.executeQuery("select * from juego where idPlataforma = 2;");
+				ResultSet rs = stmt.executeQuery("select juego.id, fotoJuego.foto, juego.titulo, juego.Descripcion, juego.anyo, genero.nombre as genero, plataforma.nombre as plataforma from juego inner join plataforma on juego.idPlataforma = plataforma.id and plataforma.id = 2 " + 
+						"inner join fotoJuego on juego.id = fotoJuego.idJuego " + 
+						"inner join genero on juego.idGenero = genero.id;");
 
 				rs.last();
 				if (rs.getRow() > 0) {
@@ -480,16 +486,14 @@ public class JuegosDAO {
 					// Coge los datos del usuario que a iniciado sesion de la base de datos
 
 					rs.first();
-					juego = new ArrayList<Juego>();
+					juego = new ArrayList<PlataformasJuegos>();
 
-					juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
-							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"), rs.getInt("idUsuario")));
+					juego.add(new PlataformasJuegos(rs.getInt("id"), rs.getString("foto"), rs.getString("titulo"), rs.getString("Descripcion"),
+							rs.getInt("anyo"), rs.getString("genero"), rs.getString("plataforma")));
 
 					while (rs.next()) {
-
-						juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
-								rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
-								rs.getInt("idUsuario")));
+						juego.add(new PlataformasJuegos(rs.getInt("id"), rs.getString("foto"), rs.getString("titulo"), rs.getString("Descripcion"),
+								rs.getInt("anyo"), rs.getString("genero"), rs.getString("plataforma")));
 					}
 				}
 
@@ -511,15 +515,17 @@ public class JuegosDAO {
 	 * 
 	 * @return devuelve una lista de juegos
 	 */
-	public ArrayList<Juego> playSList() {
-		ArrayList<Juego> juego = null;
+	public ArrayList<PlataformasJuegos> playSList() {
+		ArrayList<PlataformasJuegos> juego = null;
 		try {
 			Connection connection = new Conexion().conecta();
 			Statement stmt = null;
 
 			if (connection != null) {
 				stmt = connection.createStatement();
-				ResultSet rs = stmt.executeQuery("select * from juego where idPlataforma = 1;");
+				ResultSet rs = stmt.executeQuery("select juego.id, fotoJuego.foto, juego.titulo, juego.Descripcion, juego.anyo, genero.nombre as genero, plataforma.nombre as plataforma from juego inner join plataforma on juego.idPlataforma = plataforma.id and plataforma.id = 1 " + 
+						"inner join fotoJuego on juego.id = fotoJuego.idJuego " + 
+						"inner join genero on juego.idGenero = genero.id;");
 
 				rs.last();
 				if (rs.getRow() > 0) {
@@ -527,16 +533,15 @@ public class JuegosDAO {
 					// Coge los datos del usuario que a iniciado sesion de la base de datos
 
 					rs.first();
-					juego = new ArrayList<Juego>();
+					juego = new ArrayList<PlataformasJuegos>();
 
-					juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
-							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"), rs.getInt("idUsuario")));
+					juego.add(new PlataformasJuegos(rs.getInt("id"), rs.getString("foto"), rs.getString("titulo"), rs.getString("Descripcion"),
+							rs.getInt("anyo"), rs.getString("genero"), rs.getString("plataforma")));
 
 					while (rs.next()) {
 
-						juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
-								rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
-								rs.getInt("idUsuario")));
+						juego.add(new PlataformasJuegos(rs.getInt("id"), rs.getString("foto"), rs.getString("titulo"), rs.getString("Descripcion"),
+								rs.getInt("anyo"), rs.getString("genero"), rs.getString("plataforma")));
 					}
 				}
 
@@ -558,14 +563,16 @@ public class JuegosDAO {
 	 * 
 	 * @return devuelve una lista de juegos
 	 */
-	public ArrayList<Juego> pcList() {
-		ArrayList<Juego> juego = null;
+	public ArrayList<PlataformasJuegos> pcList() {
+		ArrayList<PlataformasJuegos> juego = null;
 		try {
 			Connection connection = new Conexion().conecta();
 
 			if (connection != null) {
 				Statement stmt = connection.createStatement();
-				ResultSet rs = stmt.executeQuery("select * from juego where idPlataforma = 4;");
+				ResultSet rs = stmt.executeQuery("select juego.id, fotoJuego.foto, juego.titulo, juego.Descripcion, juego.anyo, genero.nombre as genero, plataforma.nombre as plataforma from juego inner join plataforma on juego.idPlataforma = plataforma.id and plataforma.id = 4 " + 
+						"inner join fotoJuego on juego.id = fotoJuego.idJuego " + 
+						"inner join genero on juego.idGenero = genero.id;");
 
 				rs.last();
 				if (rs.getRow() > 0) {
@@ -573,16 +580,14 @@ public class JuegosDAO {
 					// Coge los datos del usuario que a iniciado sesion de la base de datos
 
 					rs.first();
-					juego = new ArrayList<Juego>();
+					juego = new ArrayList<PlataformasJuegos>();
 
-					juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
-							rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"), rs.getInt("idUsuario")));
+					juego.add(new PlataformasJuegos(rs.getInt("id"), rs.getString("foto"), rs.getString("titulo"), rs.getString("Descripcion"),
+							rs.getInt("anyo"), rs.getString("genero"), rs.getString("plataforma")));
 
 					while (rs.next()) {
-
-						juego.add(new Juego(rs.getInt("id"), rs.getString("titulo"), rs.getString("Descripcion"),
-								rs.getInt("anyo"), rs.getInt("idGenero"), rs.getInt("idPlataforma"),
-								rs.getInt("idUsuario")));
+						juego.add(new PlataformasJuegos(rs.getInt("id"), rs.getString("foto"), rs.getString("titulo"), rs.getString("Descripcion"),
+								rs.getInt("anyo"), rs.getString("genero"), rs.getString("plataforma")));
 					}
 				}
 
@@ -718,8 +723,8 @@ public class JuegosDAO {
 		try {
 			Connection connection = new Conexion().conecta();
 
-			String query = "INSERT INTO comentario (comentario, fecha, meGusta, noMeGusta, idUsuario, idJuego) " + "VALUES ('" + comentario
-					+ "','" + fecha + "','0', '0', '"+idUsuario+"', '"+idJuego+"');";
+			String query = "INSERT INTO comentario (comentario, fecha, idUsuario, idJuego) " + "VALUES ('" + comentario
+					+ "','" + fecha + "', '"+idUsuario+"', '"+idJuego+"');";
 
 			try (Statement stmt = connection.createStatement()) {
 
@@ -753,8 +758,8 @@ public class JuegosDAO {
 		try {
 			Connection connection = new Conexion().conecta();
 
-			String query = "INSERT INTO comentarioComunidad (comentario, fecha, meGusta, noMeGusta, idUsuario, idComunidad) " + "VALUES ('" + comentario
-					+ "','" + fecha + "',0, 0, '"+idUsuario+"', '"+idComunidad+"');";
+			String query = "INSERT INTO comentarioComunidad (comentario, fecha, idUsuario, idComunidad) " + "VALUES ('" + comentario
+					+ "','" + fecha + "', '"+idUsuario+"', '"+idComunidad+"');";
 
 			try (Statement stmt = connection.createStatement()) {
 
@@ -950,8 +955,8 @@ public class JuegosDAO {
 	
 	//-----------------------------------------------------------------------------------------------
 	
-	public Puntuacion listaValoracion(Integer idJuego) {
-		Puntuacion Cjuego = null;
+	public ArrayList<ValoracionLista> listaValoracion() {
+		ArrayList<ValoracionLista> Cjuego = null;
 		try {
 
 			// metodo
@@ -963,16 +968,23 @@ public class JuegosDAO {
 				// Si la conexion no es nula que ejecute la query del select con los datos
 				// obtenidos
 				stmt = connection.createStatement();
-				ResultSet rs = stmt.executeQuery("select avg(puntuacion) as valoracion, id, puntuacion, idJuego, idUsuario from puntuacion where idJuego = "+idJuego+";");
+				ResultSet rs = stmt.executeQuery("select * from puntuacion;");
 
 				rs.last();
 				if (rs.getRow() > 0) {
 
 					// Coge los datos del usuario que a iniciado sesion de la base de datos
 					rs.first();
+					Cjuego = new ArrayList<ValoracionLista>();
 
-					Cjuego = (new Puntuacion(rs.getInt("id"), rs.getInt("puntuacion"), rs.getInt("idJuego"), rs.getInt("idUsuario"), rs.getDouble("valoracion")));
-			
+					Cjuego.add(new ValoracionLista(rs.getInt("id"), rs.getInt("puntuacion"), rs.getInt("idJuego"),
+							rs.getInt("idUsuario")));
+
+					while (rs.next()) {
+
+						Cjuego.add(new ValoracionLista(rs.getInt("id"), rs.getInt("puntuacion"), rs.getInt("idJuego"),
+								rs.getInt("idUsuario")));
+					}
 				}
 
 				rs.close();
@@ -981,6 +993,75 @@ public class JuegosDAO {
 			logger.error(e.getMessage());
 		}
 		return Cjuego;
+	}
+	
+	
+	public Puntuacion valoracionJuegoXIdUsuario(Integer idJuego, Integer idUsuario) {
+
+		Puntuacion puntos = null;
+		try {
+
+				Connection connection = new Conexion().conecta();
+				Statement stmt = null;
+
+				if (connection != null) {
+
+					// Si la conexion no es nula que ejecute la query del select con los datos
+					// obtenidos
+					stmt = connection.createStatement();
+					ResultSet rs = stmt.executeQuery("select  * from puntuacion where idUsuario = "+idUsuario+" AND idJuego = "+idJuego+";");
+
+					rs.last();
+					if (rs.getRow() > 0) {
+
+						// Coge los datos del usuario que a iniciado sesion de la base de datos
+						rs.first();
+						puntos = new Puntuacion(rs.getInt("id"), rs.getInt("puntuacion"), rs.getInt("idJuego"),
+								rs.getInt("idUsuario"), rs.getDouble("valoracion"));
+					}
+
+					rs.close();
+				}
+
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+
+		return puntos;
+	}
+	
+	public Puntuacion valoracionJuego(Integer idJuego) {
+
+		Puntuacion puntos = null;
+		try {
+
+				Connection connection = new Conexion().conecta();
+				Statement stmt = null;
+
+				if (connection != null) {
+
+					// Si la conexion no es nula que ejecute la query del select con los datos
+					// obtenidos
+					stmt = connection.createStatement();
+					ResultSet rs = stmt.executeQuery("select avg(puntuacion) as valoracion, id, puntuacion, idJuego, idUsuario from puntuacion where idJuego = "+idJuego+";");
+
+					rs.last();
+					if (rs.getRow() > 0) {
+
+						// Coge los datos del usuario que a iniciado sesion de la base de datos
+						rs.first();
+						puntos = new Puntuacion(rs.getInt("id"), rs.getInt("puntuacion"), rs.getInt("idJuego"),
+								rs.getInt("idUsuario"), rs.getDouble("valoracion"));
+					}
+
+					rs.close();
+				}
+
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+
+		return puntos;
 	}
 	//-----------------------------------------------------------------------------------------
 	public ArrayList<Top10> listaTop10() {
@@ -999,7 +1080,7 @@ public class JuegosDAO {
 				ResultSet rs = stmt.executeQuery("select DISTINCT avg(puntuacion) as valoracion, juego.id, juego.titulo, genero.nombre as genero, plataforma.nombre as plataforma, juego.anyo, genero.id as idGenero, plataforma.id as idPlataforma from juego inner join puntuacion on  puntuacion.idJuego = juego.id" + 
 						"    inner join plataforma on juego.idPlataforma = plataforma.id" + 
 						"    inner join genero on juego.idGenero = genero.id" + 
-						"    group by puntuacion order by valoracion <10;");
+						"    group by juego.id ORDER BY valoracion DESC LIMIT 10;");
 
 				rs.last();
 				if (rs.getRow() > 0) {
@@ -1043,7 +1124,7 @@ public class JuegosDAO {
 				ResultSet rs = stmt.executeQuery("select DISTINCT avg(puntuacion) as valoracion, juego.id, juego.titulo, genero.nombre as genero, plataforma.nombre as plataforma, juego.anyo, genero.id as idGenero, plataforma.id as idPlataforma from juego inner join puntuacion on  puntuacion.idJuego = juego.id" + 
 						"    inner join plataforma on juego.idPlataforma = plataforma.id AND plataforma.id = "+id+ 
 						"    inner join genero on juego.idGenero = genero.id" + 
-						"    group by puntuacion order by valoracion <10;");
+						"    group by juego.id ORDER BY valoracion DESC LIMIT 10;");
 
 				rs.last();
 				if (rs.getRow() > 0) {

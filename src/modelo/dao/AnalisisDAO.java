@@ -138,7 +138,7 @@ public class AnalisisDAO {
 		try {
 			Connection connection = new Conexion().conecta();
 
-			String query = "INSERT INTO analisi (titulo, descripcion, fecha, analisi, idUsuario) " + "VALUES ('"
+			String query = "INSERT INTO analisi (titulo, descripcion, fecha, analisi, idUsuario) VALUES ('"
 					+ titulo + "', '" + descripcion + "','" + fecha + "','" + texto + "', " + idUsuario + ");";
 
 			try (Statement stmt = connection.createStatement()) {
@@ -169,12 +169,12 @@ public class AnalisisDAO {
 	 * @param id     = clave de indetificación de un usuario
 	 */
 
-	public void updateAnalisi(String titulo, String texto, Integer id) {
+	public void updateAnalisi(String titulo, String descripcion, String texto, Integer id) {
 
 		try {
 			Connection connection = new Conexion().conecta();
 
-			String query = "update analisi set titulo = '" + titulo + "', guia = '" + texto + "' where id = " + id;
+			String query = "update analisi set titulo = '" + titulo + "', descripcion = '"+descripcion+"', analisi = '" + texto + "' where id = " + id;
 			Statement stmt = connection.createStatement();
 			stmt.executeUpdate(query);
 
@@ -220,7 +220,7 @@ public class AnalisisDAO {
 		try {
 			Connection connection = new Conexion().conecta();
 
-			String query = "update fotoAnalisi set foto = " + foto + " where idJuego = " + idAnalisis;
+			String query = "update fotoAnalisi set foto = '" + foto + "' where idAnalisis = " + idAnalisis;
 			Statement stmt = connection.createStatement();
 
 			stmt.executeUpdate(query);
@@ -319,8 +319,8 @@ public class AnalisisDAO {
 		try {
 			Connection connection = new Conexion().conecta();
 
-			String query = "INSERT INTO comentario_analisis (comentario, fecha, meGusta, noMeGusta, idUsuario, idAnalisis) "
-					+ "VALUES ('" + comentario + "','" + fecha + "',0, 0, '" + idUsuario + "', '" + idAnalisis + "');";
+			String query = "INSERT INTO comentario_analisis (comentario, fecha, idUsuario, idAnalisis) "
+					+ "VALUES ('" + comentario + "','" + fecha + "','" + idUsuario + "', '" + idAnalisis + "');";
 
 			try (Statement stmt = connection.createStatement()) {
 

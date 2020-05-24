@@ -35,14 +35,14 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="h nav-link text-white"
+				<li class="nav-item active"><a class="h nav-link text-white p-4"
 					href="Main">Inicio</a></li>
-				<li class="nav-item"><a class=" nav-link text-white"
+				<li class="nav-item"><a class=" nav-link text-white p-4"
 					href="Registro">Registrarse</a></li>
-				<li class="nav-item"><a class=" nav-link text-white"
+				<li class="nav-item"><a class=" nav-link text-white p-4"
 					href="Login">Iniciar Sesión</a></li>
 				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					class="nav-link dropdown-toggle p-4" href="#" id="navbarDropdown"
 					role="button" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="false">Categorías</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -52,7 +52,7 @@
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="Comunidad">Comunidad</a>
 					</div></li>
-				<li class="nav-item"><a class="nav-link text-white"
+				<li class="nav-item"><a class="nav-link text-white p-4"
 					href="Contacto">Contacto</a></li>
 			</ul>
 			<form class="form-inline ml-5">
@@ -81,7 +81,7 @@
 		<form method="post" action="Registro" enctype="multipart/form-data">
 			<div class="form-row mt-3">
 				<div class="col-4 mb-3">
-					<label>*Usuario</label>
+					*Usuario:
 					<div class="input-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text">@</span>
@@ -92,27 +92,22 @@
 					</div>
 				</div>
 				<div class="col-4 mb-3">
-					<label>*Contraseña:</label> <input type="password"
+					*Contraseña:<input type="password"
 						class="form-control " placeholder="Contraseña" name="pass" id="pass"
 						required>
 				</div>
 
-				<div class="col-md-8 mb-3">
-					<label>*Repite la contraseña:</label> <input type="password"
-						class="form-control w-50" placeholder="Contraseña" id="passR"
-						required>
-				</div>
 			</div>
 			<hr>
 			<div class="form-row">
 				<div class="col-md-4 mb-3">
-					<label>*Nombre:</label> <input type="text" class="form-control" id="e"
+					*Nombre: <input type="text" class="form-control" id="e"
 						placeholder="Nombre" name="nom" required>
 				</div>
 
 
 				<div class="col-md-4 mb-3">
-					<label>*Email:</label> <input type="email" class="form-control" id="e"
+					*Email:<input type="email" class="form-control" id="e"
 						placeholder="name@example.com" name="email" >
 						
 				</div>
@@ -121,7 +116,7 @@
 
 			<div class="form-row mb-3 mt-3">
 				<div class="col-md-4">
-					<label>Escoge la foto de perfil</label> <input type="file"
+					Escoge la foto de perfil<input type="file"
 						class="form-control-file" name="foto">
 				</div>
 			</div>

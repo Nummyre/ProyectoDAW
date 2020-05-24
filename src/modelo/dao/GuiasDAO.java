@@ -226,7 +226,7 @@ public class GuiasDAO {
 		try {
 			Connection connection = new Conexion().conecta();
 
-			String query = "update fotoGuia set foto = " + foto + " where idJuego = " + idGuia;
+			String query = "update fotoGuia set foto = '" + foto + "' where idGuia = " + idGuia;
 			Statement stmt = connection.createStatement();
 
 			stmt.executeUpdate(query);
@@ -326,8 +326,8 @@ public class GuiasDAO {
 		try {
 			Connection connection = new Conexion().conecta();
 
-			String query = "INSERT INTO comentario_guia (comentario, fecha, meGusta, noMeGusta, idUsuario, idGuia) "
-					+ "VALUES ('" + comentario + "','" + fecha + "','0', '0', '" + idUsuario + "', '" + idGuia + "');";
+			String query = "INSERT INTO comentario_guia (comentario, fecha, idUsuario, idGuia) "
+					+ "VALUES ('" + comentario + "','" + fecha + "'," + idUsuario + ", " + idGuia + ");";
 
 			try (Statement stmt = connection.createStatement()) {
 

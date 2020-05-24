@@ -18,7 +18,11 @@ public class Usuario {
 		this.nombre = nombre;
 		this.user = user;
 		this.password = password;
-		this.foto = foto;
+		if(foto.contentEquals("null")) {
+			this.foto="desconocido.png";
+		}else {
+			this.foto = foto;
+		}
 		this.email = email;
 		this.fechaAlta = fechaAlta;
 		this.administrador = administrador;
@@ -65,7 +69,11 @@ public class Usuario {
 	}
 
 	public void setFoto(String foto) {
-		this.foto = foto;
+		if(foto.contentEquals("null")) {
+			this.foto="desconocido.png";
+		}else {
+			this.foto = foto;
+		}
 	}
 
 	public String getEmail() {

@@ -66,6 +66,11 @@ public class EditadoGuia extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		HttpSession session = request.getSession(false);
+
+		Usuario usuario = sesionesEJB.usuarioLogeado(session);
+		
 		request.setCharacterEncoding("UTF-8");
 		String titulo = request.getParameter("titulo");
 		String texto = request.getParameter("desc");
@@ -75,41 +80,13 @@ public class EditadoGuia extends HttpServlet {
 		Integer idUser = Integer.parseInt(idU);
 		
 		
-		// Multipart RFC 7578
-
-		// Obtenemos una ruta en el servidor para guardar el archivo
-		String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY;
-
-		// Si la ruta no existe la crearemos
-		File uploadDir = new File(uploadPath);
-		if (!uploadDir.exists()) {
-			uploadDir.mkdir();
-		}
-
-		// Lo utilizaremos para guardar el nombre del archivo
-		String fileName = null;
-
-		// Obtenemos el archivo y lo guardamos a disco
-		for (Part part : request.getParts()) {
-			fileName = getFileName(part);
-			part.write(uploadPath + File.separator + fileName);
-		}
-		
 		guiaEJB.updateGuia(titulo, texto, id);		
 
-		guiaEJB.updateGuiaFoto(fileName, id);
 
 		response.sendRedirect("EditarListaGuia?id="+idUser);
 		
 	}
 	
-	// Obtiene el nombre del archivo, sino lo llamaremos desconocido.txt
-		private String getFileName(Part part) {
-			for (String content : part.getHeader("content-disposition").split(";")) {
-				if (content.trim().startsWith("filename"))
-					return content.substring(content.indexOf("=") + 2, content.length() - 1);
-			}
-			return "desconocido.txt";
-		}
+
 
 }

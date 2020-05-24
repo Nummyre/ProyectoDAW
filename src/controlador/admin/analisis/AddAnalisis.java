@@ -60,32 +60,33 @@ public class AddAnalisis extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String titulo = request.getParameter("titulo");
-		String texto = request.getParameter("desc");
-		String desc = request.getParameter("descr");
+		String texto = request.getParameter("descr");
+		String desc = request.getParameter("desc");
 		String idUser = request.getParameter("id");
 		Integer id = Integer.parseInt(idUser);
 
 		// Multipart RFC 7578
 
-		// Obtenemos una ruta en el servidor para guardar el archivo
-		String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY;
+				// Obtenemos una ruta en el servidor para guardar el archivo
+				String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY;
 
-		// Si la ruta no existe la crearemos
-		File uploadDir = new File(uploadPath);
-		if (!uploadDir.exists()) {
-			uploadDir.mkdir();
-		}
+				// Si la ruta no existe la crearemos
+				File uploadDir = new File(uploadPath);
+				if (!uploadDir.exists()) {
+					uploadDir.mkdir();
+				}
 
-		// Lo utilizaremos para guardar el nombre del archivo
-		String fileName = null;
+				// Lo utilizaremos para guardar el nombre del archivo
+				String fileName = "desconocido.txt";
 
-		for (Part part : request.getParts()) {
-			String nombre = getFileName(part);
-			if (!nombre.equals("desconocido.txt")) {
-				fileName = nombre;
-				part.write(uploadPath + File.separator + fileName);
-			}
-		}
+				// Obtenemos el archivo y lo guardamos a disco
+				for (Part part : request.getParts()) {
+					String nombre = getFileName(part);
+					if(!nombre.equalsIgnoreCase("desconocido.txt")) {
+						fileName = nombre;
+						part.write(uploadPath + File.separator + fileName);
+					}
+				}
 
 		Date date = new Date();
 

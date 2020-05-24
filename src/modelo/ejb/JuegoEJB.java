@@ -13,10 +13,12 @@ import modelo.pojo.Foto;
 import modelo.pojo.Genero;
 import modelo.pojo.Guia;
 import modelo.pojo.Juego;
+import modelo.pojo.PlataformasJuegos;
 import modelo.pojo.Plataforma;
 
 import modelo.pojo.Puntuacion;
 import modelo.pojo.Top10;
+import modelo.pojo.ValoracionLista;
 
 @Stateless
 @LocalBean
@@ -98,7 +100,7 @@ public class JuegoEJB {
 		juegoList.insertJuegoFoto(foto, idJuego);
 	}
 
-	public ArrayList<Juego> nintendoList() {
+	public ArrayList<PlataformasJuegos> nintendoList() {
 
 		JuegosDAO juegoList = new JuegosDAO();
 
@@ -117,13 +119,13 @@ public class JuegoEJB {
 		return juegoList.listaComentarioJuegos();
 	}
 
-	public ArrayList<Juego> xboxList() {
+	public ArrayList<PlataformasJuegos> xboxList() {
 		JuegosDAO juegoList = new JuegosDAO();
 
 		return juegoList.xboxList();
 	}
 
-	public ArrayList<Juego> playSList() {
+	public ArrayList<PlataformasJuegos> playSList() {
 		JuegosDAO juegoList = new JuegosDAO();
 
 		return juegoList.playSList();
@@ -135,7 +137,7 @@ public class JuegoEJB {
 		return juegoList.insertComentario(comentario, fecha, idUsuario, idJuego);
 	}
 
-	public ArrayList<Juego> pcList() {
+	public ArrayList<PlataformasJuegos> pcList() {
 		JuegosDAO juegoList = new JuegosDAO();
 
 		return juegoList.pcList();
@@ -154,10 +156,17 @@ public class JuegoEJB {
 		juegoList.insertValoracion(valoracion, idJuego, idUsuario);
 	}
 
-	public Puntuacion listaValoracion(Integer idJuego) {
+	public ArrayList<ValoracionLista> listaValoracion() {
 		JuegosDAO juegoList = new JuegosDAO();
 
-		return juegoList.listaValoracion(idJuego);
+		return juegoList.listaValoracion();
+	}
+	
+	
+	public Puntuacion valoracionJuegoXIdUsuario(Integer idJuego, Integer idUsuario) {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.valoracionJuegoXIdUsuario(idJuego, idUsuario);
 	}
 
 	public ArrayList<Comunidad> listaHilos() {
@@ -170,6 +179,11 @@ public class JuegoEJB {
 		JuegosDAO juegoList = new JuegosDAO();
 
 		return juegoList.insertHilo(titulo, hilo, fecha, idUsuario, foto);
+	}
+	public Puntuacion valoracionJuego(Integer idJuego) {
+		JuegosDAO juegoList = new JuegosDAO();
+
+		return juegoList.valoracionJuego(idJuego);
 	}
 
 	public Comunidad hilo(Integer id) {

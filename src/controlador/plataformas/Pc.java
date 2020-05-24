@@ -16,6 +16,7 @@ import modelo.ejb.JuegoEJB;
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
 import modelo.pojo.Juego;
+import modelo.pojo.PlataformasJuegos;
 import modelo.pojo.Usuario;
 
 
@@ -36,13 +37,13 @@ public class Pc extends HttpServlet {
 		HttpSession session = request.getSession(false);
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
-		 ArrayList<Juego> pcList = juegoEJB.pcList();
+		 ArrayList<PlataformasJuegos> pcList = juegoEJB.pcList();
 		
 
 		request.setAttribute("usuario", usuario);
 		request.setAttribute("pcList", pcList);
 		
-		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Pc.jsp");
+		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/plataformas/Pc.jsp");
 		rs.forward(request, response);
 	}
 

@@ -7,7 +7,7 @@
 <title>Freak's Corner</title>
 <link href="img/logo4.png" rel="icon" type="image/x-icon" />
 <link rel="stylesheet" type="text/css" href="css/Style.css">
-<script type="text/javascript" src="js/Style.js"></script>
+<script type="text/javascript" src="js/Fichas.js"></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 <link
@@ -36,57 +36,66 @@
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active"><a class="h nav-link text-white p-4"
 						href="Main">Inicio</a></li>
-					<li class="nav-item"><a class=" nav-link text-white p-4"
-						href="Registro">Registrarse</a></li>
-					<li class="nav-item"><a class=" nav-link text-white p-4"
-						href="Login">Iniciar Sesión</a></li>
-					<li class="nav-item dropdown"><a
+						<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle p-4" href="#" id="navbarDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Categorías</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="Top10">TOP 10 | Juegos</a> <a
-								class="dropdown-item" href="Analisis">Análisis</a> <a
+							<a class="dropdown-item" href="Analisis">Análisis</a> <a
 								class="dropdown-item" href="Guia">Guías</a>
 							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="Comunidad">Comunidad</a>
+							<a class="dropdown-item" href="Top10">TOP 10 | Juegos</a>
 						</div></li>
+					<li class="nav-item "><a class="h nav-link text-white p-4"
+						href="Comunidad">Comunidad</a></li>
 					<li class="nav-item"><a class="nav-link text-white p-4"
 						href="Contacto">Contacto</a></li>
 				</ul>
-				<form class="form-inline ml-5">
-
-					<div class="input-group">
-						<div class="input-group-prepend">
-							<img src="img/usuari.png" width="100" height="65"
-								class="img-circle">
-						</div>
-						<input type="text" readonly="readonly" disabled="disabled"
-							class="form-control mt-3 ml-2" placeholder="Invitado"
-							aria-label="Username" aria-describedby="basic-addon1" id="us">
-					</div>
-				</form>
 			</div>
 		</nav>
 	</header>
-	<div class="container p-5 ">
-
-		<div class="row mt-5">
-			<div class="col">
-				<h2>¡Se te ha enviado un correo, mira en tu bandeja de entrada!</h2>
+	<div class="pos-f-t">
+		<div class="collapse" id="navbarToggleExternalContent">
+			<div class="bg-success p-4">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item text-white"><h5>Email: freakscorner2020@gmail.com</h5></li>
+					<li class="nav-item text-white"><h5>Teléfono: 555-555-555</h5></li>
+					<li class="nav-item text-white"><h5>C/ Plaza españa CP: 0780 Mallorca</h5></li>
+				</ul>
 			</div>
 		</div>
-	</div>
-	<div class="row mt-5">
-		<div class="col"></div>
-	</div>
-	<div class="row mt-5">
-		<div class="col"></div>
-	</div>
-		<div class="row">
-		<div class="col"></div>
-	</div>
+		<nav class="navbar navbar-dark bg-success">
+			<h4 class="text-white">Datos de la empresa</h4>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarToggleExternalContent"
+				aria-controls="navbarToggleExternalContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
+		</nav>
+	</div>
+	<div class="container mt-5 p-4">
+
+		<div class="row">
+			<div class="col-4 mt-5">
+				<h3 class="mb-4">Contacto</h3>
+			</div>
+			<div class="col"></div>
+			<div class="col"></div>
+			<div class="col mb-3">
+				<img src="img/usuari.png" width="200" height="130"
+					class="img-circle ml-5">
+			</div>
+
+		</div>
+		<p>Sí tienes un problema o alguna pregunta sobre la web, no dudes
+			en contactarnos. Un administrador se pondrá en contacto con usted.</p>
+		<p>
+			Envíe un mensaje al correo electrónico: <strong> freakscorner2020@gmail.com</strong>
+		</p>
+
+	</div>
 	<div class="footer bg-dark mt-5">
 		<div class="footer-copyright text-center py-3 bg-success">
 			© 2020 Copyright: <a class="text-white"
