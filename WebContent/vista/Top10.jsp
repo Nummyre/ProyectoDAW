@@ -43,17 +43,17 @@
 			out.print("<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">");
 			out.print("<ul class=\"navbar-nav mr-auto\">");
 			out.print("<li class=\"nav-item active\">");
-			out.print("<a class=\"h nav-link text-white\" href=\"Main\">Inicio</a>");
+			out.print("<a class=\"h nav-link text-white p-4\" href=\"Main\">Inicio</a>");
 			out.print("</li>");
 			out.print("<li class=\"nav-item\">");
-			out.print("<a class=\" nav-link text-white\" href=\"Registro\">Registrarse</a>");
+			out.print("<a class=\" nav-link text-white p-4\" href=\"Registro\">Registrarse</a>");
 			out.print("</li>");
 			out.print("<li class=\"nav-item\">");
-			out.print("<a class=\" nav-link text-white\" href=\"Login\">Iniciar Sesión</a>");
+			out.print("<a class=\" nav-link text-white p-4\" href=\"Login\">Iniciar Sesión</a>");
 			out.print("</li>");
 			out.print("<li class=\"nav-item dropdown\">");
 			out.print(
-					"<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Categorías</a>");
+					"<a class=\"nav-link dropdown-toggle p-4\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Categorías</a>");
 			out.print("<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">");
 			out.print("<a class=\"dropdown-item\" href=\"Top10\">TOP 10 | Juegos</a>");
 			out.print("<a class=\"dropdown-item\" href=\"Analisis\">Análisis</a>");
@@ -63,7 +63,7 @@
 			out.print("</div>");
 			out.print("</li>");
 			out.print("<li class=\"nav-item\">");
-			out.print("<a class=\"nav-link text-white\" href=\"Contacto\">Contacto</a>");
+			out.print("<a class=\"nav-link text-white p-4\" href=\"Contacto\">Contacto</a>");
 			out.print("</li>");
 			out.print("</ul>");
 			out.print("<form class=\"form-inline ml-5\">");
@@ -77,7 +77,6 @@
 			out.print("</form>");
 			out.print("</div>");
 			out.print("</nav>");
-			//--------------------------------------------------------
 
 			out.print("</header>");
 			
@@ -176,11 +175,11 @@
 			out.print("<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">");
 			out.print("<ul class=\"navbar-nav mr-auto\">");
 			out.print("<li class=\"nav-item active\">");
-			out.print("<a class=\"h nav-link text-white\" href=\"Main\">Inicio</a>");
+			out.print("<a class=\"h nav-link text-white p-4\" href=\"Main\">Inicio</a>");
 			out.print("</li>");
 			out.print("<li class=\"nav-item dropdown\">");
 			out.print(
-					"<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Categorías</a>");
+					"<a class=\"nav-link dropdown-toggle p-4\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Categorías</a>");
 			out.print("<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">");
 			out.print("<a class=\"dropdown-item\" href=\"Analisis\">Análisis</a>");
 			out.print("<a class=\"dropdown-item\" href=\"Guia\">Guías</a>");
@@ -189,10 +188,10 @@
 			out.print("</div>");
 			out.print("</li>");
 			out.print("<li class=\"nav-item\">");
-			out.print("<a class=\"nav-link text-white\" href=\"Comunidad\">Comunidad</a>");
+			out.print("<a class=\"nav-link text-white p-4\" href=\"Comunidad\">Comunidad</a>");
 			out.print("</li>");
 			out.print("<li class=\"nav-item mr-5\">");
-			out.print("<a class=\"nav-link text-white mr-5\" href=\"Contacto\">Contacto</a>");
+			out.print("<a class=\"nav-link text-white p-4\" href=\"Contacto\">Contacto</a>");
 			out.print("</li>");
 			out.print("</ul>");
 			out.print("<form class=\"form-inline ml-5\">");
@@ -221,6 +220,8 @@
 			out.print("</div>");
 			out.print("</form>");
 			out.print("</nav>");
+
+			//--------------------------------------------------------
 
 			out.print("</header>");
 
@@ -263,20 +264,21 @@
 			out.print("<h3>Top10 | Juegos</h3>");
 			out.print("</div>");
 			out.print("</div>");
-			out.print("<div class=\"form-row mt-4\">");
-
+			
+			out.print("<div class=\"row mt-4\">");
 			//----TABLA------------------------------
-			out.print("<div class=\"col-md-4\">");
+			out.print("<div class=\"col\">");
+			out.print("<div class=\"table-responsive\">");
 			out.print("<table class=\"table shadow-lg\">");
 			out.print("<thead class=\"thead-dark\">");
 			out.print("<tr>");
-			out.print("<th scope=\"col\">Ranking</th>");
-			out.print("<th scope=\"col\">Foto</th>");
-			out.print("<th scope=\"col\">Título</th>");
-			out.print("<th scope=\"col\">Año de lanzamiento</th>");
-			out.print("<th scope=\"col\">Género</th>");
-			out.print("<th scope=\"col\">Plataforma</th>");
-			out.print("<th scope=\"col\">Valoración</th>");
+			out.print("<th>Ranking</th>");
+			out.print("<th>Foto</th>");
+			out.print("<th class=\"text-center\">Título</th>");
+			out.print("<th class=\"text-center\">Año de lanzamiento</th>");
+			out.print("<th class=\"text-center\">Género</th>");
+			out.print("<th class=\"text-center\">Plataforma</th>");
+			out.print("<th class=\"text-center\">Valoración</th>");
 			out.print("</tr>");
 			out.print("</thead>");
 			out.print("<tbody>");
@@ -291,11 +293,11 @@
 					+ "\" width=\"60\" height=\"50\" class=\"rounded mx-auto d-block\"></td>"); //getFoto
 				}
 			}
-			out.print("<td><a href=\"FichaJuego?id="+t.getId()+"\">"+t.getNombre()+"</a></td>");
-			out.print("<td>"+t.getAnyo()+"</td>");
-			out.print("<td>"+t.getGenero()+"</td>");
-			out.print("<td>"+t.getPlataforma()+"</td>");
-			out.print("<td class=\"bg-success text-white\">"+t.getPuntuacion()+"/10</td>");
+			out.print("<td class=\"text-center\"><a href=\"FichaJuego?id="+t.getId()+"\">"+t.getNombre()+"</a></td>");
+			out.print("<td class=\"text-center\">"+t.getAnyo()+"</td>");
+			out.print("<td class=\"text-center\">"+t.getGenero()+"</td>");
+			out.print("<td class=\"text-center\">"+t.getPlataforma()+"</td>");
+			out.print("<td class=\"bg-success text-white text-center\">"+t.getPuntuacion()+"/10</td>");
 			out.print("</tr>");	
 			count++;
 			}
@@ -303,6 +305,7 @@
 			out.print("</tbody>");
 			out.print("</table>");
 			//-----------------------
+			out.print("</div>");
 			out.print("</div>");
 			out.print("</div>");
 			out.print("</div>");

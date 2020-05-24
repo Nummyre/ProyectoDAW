@@ -76,23 +76,6 @@
 			out.print("</form>");
 			out.print("</div>");
 			out.print("</nav>");
-			//--------------------------------------------------------
-			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-success\">");
-			out.print("<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">");
-			out.print("<ul class=\"navbar-nav ml-5\">");
-			out.print("<li class=\"nav-item mr-5\">");
-			out.print("<a class=\"nav-link text-white\" href=\"Pc\">PC</a>");
-			out.print("</li>");
-			out.print("<li class=\"nav-item mr-5\">");
-			out.print("<a class=\"nav-link text-white\" href=\"Xbox\">Xbox One</a>");
-			out.print("</li>");
-			out.print("<li class=\"nav-item mr-5\">");
-			out.print("<a class=\"nav-link text-white\" href=\"PlayS\">Play Station 4</a>");
-			out.print("</li>");
-			out.print("<li class=\"nav-item mr-5\">");
-			out.print("<a class=\"nav-link text-white\" href=\"Nintendo\">Nintendo Switch</a>");
-			out.print("</li>");
-			out.print("</ul>");
 
 			out.print("</header>");
 			out.print("<div class=\"container mt-5 p-5\">"); //Empieza container
@@ -223,7 +206,7 @@
 			out.print("<div class=\"form-row mt-5\">");
 			out.print("<div class=\"col-4\">");
 			out.print("Actualiza la foto para el juego");
-			out.print("<input type=\"file\" class=\"form-control-file\" id=\"exampleFormControlFile1\" name=\"foto\">");
+			out.print("<input type=\"file\" class=\"form-control-file\" id=\"exampleFormControlFile1\" name=\"foto\" required>");
 			out.print("</div>");
 			out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + juego.getId() + "\" name=\"idJuego\">");
 			out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + user.getId() + "\" name=\"id\">");

@@ -73,25 +73,11 @@
 			out.print("</form>");
 			out.print("</div>");
 			out.print("</nav>");
-			//--------------------------------------------------------
-			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-success\">");
-			out.print("<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">");
-			out.print("<ul class=\"navbar-nav ml-5\">");
-			out.print("<li class=\"nav-item mr-5\">");
-			out.print("<a class=\"nav-link text-white\" href=\"Pc\">PC</a>");
-			out.print("</li>");
-			out.print("<li class=\"nav-item mr-5\">");
-			out.print("<a class=\"nav-link text-white\" href=\"Xbox\">Xbox One</a>");
-			out.print("</li>");
-			out.print("<li class=\"nav-item mr-5\">");
-			out.print("<a class=\"nav-link text-white\" href=\"PlayS\">Play Station 4</a>");
-			out.print("</li>");
-			out.print("<li class=\"nav-item mr-5\">");
-			out.print("<a class=\"nav-link text-white\" href=\"Nintendo\">Nintendo Switch</a>");
-			out.print("</li>");
-			out.print("</ul>");
 
 			out.print("</header>");
+			out.print("<div class=\"container mt-5 p-5\">"); //Empieza container
+			out.print("<h3>Se ha perdido la sesión</h3>");
+			out.print("</div>");
 		} else {
 			out.print("<header>");
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">");
@@ -188,7 +174,7 @@
 			out.print("<div class=\"form-row mt-4\">");
 			out.print("<div class=\"col-md-4\">");
 			out.print("Título");
-			out.print("<input class=\"form-control\" type=\"text\" placeholder=\"Título\" name=\"titulo\">");
+			out.print("<input class=\"form-control\" type=\"text\" placeholder=\"Título\" name=\"titulo\" required>");
 			out.print("</div>");
 			out.print("</div>");
 			
@@ -197,7 +183,7 @@
 			out.print("<div class=\"col\">");
 			out.print("<div class=\"form-group\">");
 			out.print("Análisis");
-			out.print("<textarea class=\"form-control\" id=\"editor1\" rows=\"10\" name=\"descr\"></textarea>");
+			out.print("<textarea class=\"form-control\" id=\"editor1\" rows=\"10\" name=\"descr\" required></textarea>");
 			out.print("</div>");
 			out.print("</div>");
 			out.print("</div>");
@@ -207,7 +193,7 @@
 			out.print("<div class=\"col\">");
 			out.print("<div class=\"form-group\">");
 			out.print("Escribe una pequeña descripción");
-			out.print("<textarea class=\"form-control\" id=\"editor1\" rows=\"5\"  maxLength=\"255\"  name=\"desc\" onkeyup=\"contadorChars(this);\"></textarea>");
+			out.print("<textarea class=\"form-control\" id=\"editor1\" rows=\"5\"  maxLength=\"255\"  name=\"desc\" onkeyup=\"contadorChars(this);\" required></textarea>");
 			out.print("<p id=\"charNum\">0 carácteres</p>");
 			out.print("</div>");
 			out.print("</div>");
@@ -219,7 +205,7 @@
 			out.print("<div class=\"col\">");
 			out.print("<label for=\"exampleFormControlFile1\">Sube una foto para el juego</label>");
 			out.print(
-					"<input type=\"file\" class=\"form-control-file\" id=\"exampleFormControlFile1\" name=\"foto\">");
+					"<input type=\"file\" class=\"form-control-file\" id=\"exampleFormControlFile1\" name=\"foto\" required>");
 			out.print("</div>");
 			out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + user.getId() + "\" name=\"id\">");
 			out.print("<div class=\"col-4 mt-5\">");

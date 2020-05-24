@@ -35,14 +35,14 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="h nav-link text-white"
+				<li class="nav-item active"><a class="h nav-link text-white p-4"
 					href="Main">Inicio</a></li>
-				<li class="nav-item"><a class=" nav-link text-white"
+				<li class="nav-item"><a class=" nav-link text-white p-4"
 					href="Registro">Registrarse</a></li>
-				<li class="nav-item"><a class=" nav-link text-white"
+				<li class="nav-item"><a class=" nav-link text-white p-4"
 					href="Login">Iniciar Sesión</a></li>
 				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					class="nav-link dropdown-toggle p-4" href="#" id="navbarDropdown"
 					role="button" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="false">Categorías</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -52,7 +52,7 @@
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="Comunidad">Comunidad</a>
 					</div></li>
-				<li class="nav-item"><a class="nav-link text-white"
+				<li class="nav-item"><a class="nav-link text-white p-4"
 					href="Contacto">Contacto</a></li>
 			</ul>
 			<form class="form-inline ml-5">

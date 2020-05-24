@@ -75,25 +75,11 @@ ArrayList<Juego> listaJuego = (ArrayList<Juego>) request.getAttribute("listaJueg
 			out.print("</form>");
 			out.print("</div>");
 			out.print("</nav>");
-			//--------------------------------------------------------
-			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-success\">");
-			out.print("<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">");
-			out.print("<ul class=\"navbar-nav ml-5\">");
-			out.print("<li class=\"nav-item mr-5\">");
-			out.print("<a class=\"nav-link text-white\" href=\"Pc\">PC</a>");
-			out.print("</li>");
-			out.print("<li class=\"nav-item mr-5\">");
-			out.print("<a class=\"nav-link text-white\" href=\"Xbox\">Xbox One</a>");
-			out.print("</li>");
-			out.print("<li class=\"nav-item mr-5\">");
-			out.print("<a class=\"nav-link text-white\" href=\"PlayS\">Play Station 4</a>");
-			out.print("</li>");
-			out.print("<li class=\"nav-item mr-5\">");
-			out.print("<a class=\"nav-link text-white\" href=\"Nintendo\">Nintendo Switch</a>");
-			out.print("</li>");
-			out.print("</ul>");
 
 			out.print("</header>");
+			out.print("<div class=\"container mt-5 p-5\">"); //Empieza container
+			out.print("<h3>Se ha perdido la sesión</h3>");
+			out.print("</div>");
 		} else {
 			out.print("<header>");
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">");
@@ -188,7 +174,7 @@ ArrayList<Juego> listaJuego = (ArrayList<Juego>) request.getAttribute("listaJueg
 				for (Juego j : listaJuego) {
 					out.print("<tr>");
 					out.print("<td><a href=\"FichaJuego?id=" + j.getId() + "\">" + j.getTitulo()+ "</td>");
-					out.print("<td><a href=\"Borrado?id=" + j.getId()+ "\"><button type=\"button\" class=\"btn btn-success \">Borrar Juego</button></a></td>");
+					out.print("<td><a href=\"Borrado?id=" + j.getId()+ "\"><button type=\"button\" class=\"btn btn-success\" onclick=\"return confirm('¿Seguro que quieres borrar?');\">Borrar Juego</button></a></td>");
 					out.print("</tr>");
 				}
 			} else {

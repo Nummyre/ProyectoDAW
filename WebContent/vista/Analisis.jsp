@@ -45,17 +45,17 @@
 			out.print("<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">");
 			out.print("<ul class=\"navbar-nav mr-auto\">");
 			out.print("<li class=\"nav-item active\">");
-			out.print("<a class=\"h nav-link text-white\" href=\"Main\">Inicio</a>");
+			out.print("<a class=\"h nav-link text-white p-4\" href=\"Main\">Inicio</a>");
 			out.print("</li>");
 			out.print("<li class=\"nav-item\">");
-			out.print("<a class=\" nav-link text-white\" href=\"Registro\">Registrarse</a>");
+			out.print("<a class=\" nav-link text-white p-4\" href=\"Registro\">Registrarse</a>");
 			out.print("</li>");
 			out.print("<li class=\"nav-item\">");
-			out.print("<a class=\" nav-link text-white\" href=\"Login\">Iniciar Sesión</a>");
+			out.print("<a class=\" nav-link text-white p-4\" href=\"Login\">Iniciar Sesión</a>");
 			out.print("</li>");
 			out.print("<li class=\"nav-item dropdown\">");
 			out.print(
-					"<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Categorías</a>");
+					"<a class=\"nav-link dropdown-toggle p-4\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Categorías</a>");
 			out.print("<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">");
 			out.print("<a class=\"dropdown-item\" href=\"Top10\">TOP 10 | Juegos</a>");
 			out.print("<a class=\"dropdown-item\" href=\"Analisis\">Análisis</a>");
@@ -65,7 +65,7 @@
 			out.print("</div>");
 			out.print("</li>");
 			out.print("<li class=\"nav-item\">");
-			out.print("<a class=\"nav-link text-white\" href=\"Contacto\">Contacto</a>");
+			out.print("<a class=\"nav-link text-white p-4\" href=\"Contacto\">Contacto</a>");
 			out.print("</li>");
 			out.print("</ul>");
 			out.print("<form class=\"form-inline ml-5\">");
@@ -96,7 +96,8 @@
 			out.print("<a class=\"nav-link text-white\" href=\"Nintendo\">Nintendo Switch</a>");
 			out.print("</li>");
 			out.print("</ul>");
-
+			out.print("</div>");
+			out.print("</nav>");
 			out.print("</header>");
 			//-----------------------------------------------------------------------------------------
 			
@@ -153,11 +154,11 @@
 			out.print("<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">");
 			out.print("<ul class=\"navbar-nav mr-auto\">");
 			out.print("<li class=\"nav-item active\">");
-			out.print("<a class=\"h nav-link text-white\" href=\"Main\">Inicio</a>");
+			out.print("<a class=\"h nav-link text-white p-4\" href=\"Main\">Inicio</a>");
 			out.print("</li>");
 			out.print("<li class=\"nav-item dropdown\">");
 			out.print(
-					"<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Categorías</a>");
+					"<a class=\"nav-link dropdown-toggle p-4\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Categorías</a>");
 			out.print("<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">");
 			out.print("<a class=\"dropdown-item\" href=\"Analisis\">Análisis</a>");
 			out.print("<a class=\"dropdown-item\" href=\"Guia\">Guías</a>");
@@ -166,10 +167,10 @@
 			out.print("</div>");
 			out.print("</li>");
 			out.print("<li class=\"nav-item\">");
-			out.print("<a class=\"nav-link text-white\" href=\"Comunidad\">Comunidad</a>");
+			out.print("<a class=\"nav-link text-white p-4\" href=\"Comunidad\">Comunidad</a>");
 			out.print("</li>");
 			out.print("<li class=\"nav-item mr-5\">");
-			out.print("<a class=\"nav-link text-white\" href=\"Contacto\">Contacto</a>");
+			out.print("<a class=\"nav-link text-white p-4\" href=\"Contacto\">Contacto</a>");
 			out.print("</li>");
 			out.print("</ul>");
 			out.print("<form class=\"form-inline ml-5\">");
@@ -216,7 +217,8 @@
 			out.print("<a class=\"nav-link text-white\" href=\"Nintendo\">Nintendo Switch</a>");
 			out.print("</li>");
 			out.print("</ul>");
-
+			out.print("</div>");
+			out.print("</nav>");
 			out.print("</header>");
 			
 			out.print("<div class=\"container mt-5 p-4\">");

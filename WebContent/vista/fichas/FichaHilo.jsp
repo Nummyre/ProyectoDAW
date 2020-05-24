@@ -97,7 +97,8 @@
 			out.print("<a class=\"nav-link text-white\" href=\"Nintendo\">Nintendo Switch</a>");
 			out.print("</li>");
 			out.print("</ul>");
-
+			out.print("</div>");
+			out.print("</nav>");
 			out.print("</header>");
 			
 			
@@ -189,7 +190,8 @@
 				out.print("<a class=\"nav-link text-white\" href=\"Nintendo\">Nintendo Switch</a>");
 				out.print("</li>");
 				out.print("</ul>");
-
+				out.print("</div>");
+				out.print("</nav>");
 				out.print("</header>");
 			
 			//------------------------------------------------------------------------------------------------
@@ -268,7 +270,7 @@
 								out.print("<pre class=\"mr-5\">" + co.getComentario() + "</pre>");
 								out.print("<hr>");
 								out.print("<a href=\"BorrarComentarioComunidad?id=" + co.getId() + "&idJ="
-										+ hilo.getId() + "\"><i class=\"fa fa-trash-o\"></i></a>");
+										+ hilo.getId() + "\"><i class=\"fa fa-trash-o\" onclick=\"return confirm('¿Seguro que quieres borrar?');\"></i></a>");
 								out.print("</div>");
 								out.print("</div>");
 								out.print("<input id=\"id\" name=\"idC\" type=\"hidden\" value=\"" + co.getId()

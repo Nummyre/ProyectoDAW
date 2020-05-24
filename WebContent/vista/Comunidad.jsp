@@ -90,7 +90,8 @@
 			out.print("<a class=\"nav-link text-white\" href=\"Nintendo\">Nintendo Switch</a>");
 			out.print("</li>");
 			out.print("</ul>");
-
+			out.print("</div>");
+			out.print("</nav>");
 			out.print("</header>");
 			//-----------------------------------------------------------------------------------------
 			
@@ -206,7 +207,8 @@
 			out.print("<a class=\"nav-link text-white\" href=\"Nintendo\">Nintendo Switch</a>");
 			out.print("</li>");
 			out.print("</ul>");
-
+			out.print("</div>");
+			out.print("</nav>");
 			out.print("</header>");
 			
 			out.print("<div class=\"container mt-5 p-5\">");
