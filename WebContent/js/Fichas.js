@@ -167,10 +167,10 @@ window.onload = function() {
 function contadorChars(obj){
     var maxLength = 255;
     var strLength = obj.value.length;
-    var caracteres = (maxLength - strLength);
     
-    if(charRemain < 0){
+    if(strLength > maxLength){
+        document.getElementById("charNum").innerHTML = '<span style="color: red;">'+strLength+' de '+maxLength+' characters</span>';
     }else{
-        document.getElementById("charNum").innerHTML = caracteres+' carácteres';
+        document.getElementById("charNum").innerHTML = strLength+' de '+maxLength+' characters';
     }
 }

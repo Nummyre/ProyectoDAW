@@ -163,7 +163,7 @@
 			for (Foto f : foto) {
 				if (juego.getId() == f.getIdJuego()) {
 					out.print("<img src=\"Imagenes/" + f.getFoto()
-							+ "\" width=\"500\" height=\"400\" class=\"rounded mx-auto d-block\">"); //getFoto
+							+ "\" width=\"500\" height=\"350\" class=\"rounded mx-auto d-block\">"); //getFoto
 				}
 			}
 			out.print("</div>");
@@ -349,7 +349,7 @@
 				for (Foto f : foto) {
 					if (juego.getId() == f.getIdJuego()) {
 						out.print("<img src=\"Imagenes/" + f.getFoto()
-								+ "\" width=\"500\" height=\"400\" class=\"rounded mx-auto d-block\">"); //getFoto
+								+ "\" width=\"500\" height=\"350\" class=\"rounded mx-auto d-block\">"); //getFoto
 					}
 				}
 				out.print("</div>");
@@ -388,14 +388,14 @@
 									out.print("<div class=\"card mt-3 bg-light text-white mb-5\">");
 									out.print("<div class=\"card-body\"><h2 class=\"text-dark\">" + contador
 											+ "</h2><img src=\"Imagenes/" + us.getFoto()
-											+ "\" width=\"150\" height=\"100\" class=\"rounded-circle mr-5\">");//comentario
+											+ "\" width=\"95\" height=\"80\" class=\"rounded mr-5\">");//comentario
 								} else {
 									out.print("<div class=\"card mt-3 bg-light text-white w-100 mb-5\">");
 									out.print("<div class=\"card-body\"><h2 class=\"text-dark\">" + contador
-											+ "</h2><img src=\"img/usuari.png\" width=\"150\" height=\"100\" class=\"mr-5\">");//comentario
+											+ "</h2><img src=\"img/usuari.png\" width=\"95\" height=\"80\" class=\"mr-5 rounded\">");//comentario
 								}
 								out.print(
-										"<p class=\"text-dark\">" + us.getUser() + " - " + co.getFecha() + "</p>");
+										"<p class=\"text-dark mt-3\">" + us.getUser() + " - " + co.getFecha() + "</p>");
 								out.print("<br>");
 								out.print("<pre class=\"mr-5\">" + co.getComentario() + "</pre>");
 								out.print("<hr>");
@@ -422,15 +422,15 @@
 									out.print("<div class=\"card mt-3 bg-light text-white mt-5 mb-5\">");
 									out.print("<div class=\"card-body\"><h2 class=\"text-dark\">" + contador
 											+ "</h2><img src=\"Imagenes/" + us.getFoto()
-											+ "\" width=\"150\" height=\"100\" class=\"rounded-circle mr-5\">");//comentario
+											+ "\" width=\"95\" height=\"80\" class=\"rounded mr-5\">");//comentario
 								} else {
 									out.print("<div class=\"card mt-3 bg-light text-white w-100 mb-5\">");
 									out.print("<div class=\"card-body\"><h2 class=\"text-dark\">" + contador
-											+ "</h2><img src=\"img/usuari.png\" width=\"150\" height=\"100\" class=\"mr-5\">");//comentario
+											+ "</h2><img src=\"img/usuari.png\" width=\"95\" height=\"80\" class=\"mr-5 rounded\">");//comentario
 
 								}
 								out.print(
-										"<p class=\"text-dark\">" + us.getUser() + " - " + co.getFecha() + "</p>");
+										"<p class=\"text-dark mt-3\">" + us.getUser() + " - " + co.getFecha() + "</p>");
 								out.print("<br>");
 								out.print("<pre class=\"mr-5\">" + co.getComentario() + "</pre>");
 								out.print("</div>");
@@ -518,7 +518,7 @@
 				for (Foto f : foto) {
 					if (juego.getId() == f.getIdJuego()) {
 						out.print("<img src=\"Imagenes/" + f.getFoto()
-								+ "\" width=\"500\" height=\"400\" class=\"rounded mx-auto d-block\">"); //getFoto
+								+ "\" width=\"500\" height=\"350\" class=\"rounded mx-auto d-block\">"); //getFoto
 					}
 				}
 				out.print("</div>");

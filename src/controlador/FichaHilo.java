@@ -66,7 +66,7 @@ public class FichaHilo extends HttpServlet {
 		request.setAttribute("users", users);
 
 		
-		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/FichaHilo.jsp");
+		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/fichas/FichaHilo.jsp");
 		rs.forward(request, response);
 		
 	}
