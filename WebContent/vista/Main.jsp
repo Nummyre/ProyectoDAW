@@ -36,7 +36,7 @@
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
 </head>
-<body class="cuerpo">
+<body>
 	<%
 		Usuario user = (Usuario) request.getAttribute("usuario");
 		ArrayList<Juego> juego = (ArrayList<Juego>) request.getAttribute("juego");
