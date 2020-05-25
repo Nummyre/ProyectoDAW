@@ -208,10 +208,12 @@
 			out.print("<div class=\"row mt-4\">");
 			out.print("<div class=\"col\">");
 
-					out.print("<img src=\"Imagenes/" + hilo.getFoto()+ "\" width=\"300\" height=\"200\" class=\"rounded mx-auto d-block\">"); //getFoto
+					out.print("<img src=\"Imagenes/" + hilo.getFoto()+ "\" width=\"500\" height=\"400\" class=\"rounded mx-auto d-block img-fluid\">"); //getFoto
 
 			out.print("</div>");
-			out.print("<div class=\"col mt-3 mr-5\">");
+			out.print("</div>");
+			out.print("<div class=\"row mt-1\">");
+			out.print("<div class=\"col mr-5\">");
 			out.print("<p>" +hilo.getHilo()+ "</p>"); //getTexto
 			out.print("</div>");
 			out.print("</div>");
@@ -328,9 +330,11 @@
 				out.print("<div class=\"row mt-4\">");
 				out.print("<div class=\"col\">");
 
-						out.print("<img src=\"Imagenes/" + hilo.getFoto()+ "\" width=\"300\" height=\"200\" class=\"rounded mx-auto d-block\">"); //getFoto
+						out.print("<img src=\"Imagenes/" + hilo.getFoto()+ "\" width=\"500\" height=\"400\" class=\"rounded mx-auto d-block img-fluid\">"); //getFoto
 
 				out.print("</div>");
+				out.print("</div>");
+				out.print("<div class=\"row mt-1\">");
 				out.print("<div class=\"col mt-3 mr-5 border\">");
 				out.print("<p>" +hilo.getHilo()+ "</p>"); //getTexto
 				out.print("</div>");

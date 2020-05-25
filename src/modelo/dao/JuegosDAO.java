@@ -47,7 +47,7 @@ public class JuegosDAO {
 				// Si la conexion no es nula que ejecute la query del select con los datos
 				// obtenidos
 				Statement stmt = connection.createStatement();
-				ResultSet rs = stmt.executeQuery("select * from juego where id >31;");
+				ResultSet rs = stmt.executeQuery("select * from juego where id >44;");
 
 				rs.last();
 				if (rs.getRow() > 0) {

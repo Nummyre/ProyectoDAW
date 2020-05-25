@@ -137,10 +137,22 @@
 		
 			out.print("<hr>");
 			out.print("</div>");//fin 1º row
-			out.print("<div class=\"row \">");
-			out.print("<div class=\"col\"></div>");
-			out.print("<div class=\"col\"></div>");
-			out.print("<div class=\"col\">");
+			out.print("<div class=\"row mt-5\">");
+			out.print("<div class=\"col-12\">");
+			for (Foto f : foto) {
+				if (juego.getId() == f.getIdJuego()) {
+					out.print("<img src=\"Imagenes/" + f.getFoto()
+							+ "\" width=\"500\" height=\"350\" class=\"rounded mx-auto d-block img-fluid\">"); //getFoto
+				}
+			}
+			out.print("</div>");
+			out.print("<div class=\"col mt-3\">");
+			out.print("<p>" + juego.getDescripcion() + "</p>"); //getTexto
+			out.print("</div>");
+			out.print("</div>");
+			out.print("<div class=\"row mt-5\">");
+			out.print("<div class=\"col-2\"></div>");
+			out.print("<div class=\"col-4\">");
 			out.print("<div class=\"card text-center bg-info text-white\">");
 			for (Genero g : juegoList) {
 				if (juego.getGenero() == g.getId()) {
@@ -149,7 +161,7 @@
 			}
 			out.print(" </div>");
 			out.print("</div>");
-			out.print("<div class=\"col\">");
+			out.print("<div class=\"col-4\">");
 			out.print("<div class=\"card text-center bg-info text-white\">");
 			for (Plataforma p : juegoListP) {
 				if (juego.getPlataforma() == p.getId()) {
@@ -157,19 +169,6 @@
 				}
 			}
 			out.print(" </div>");
-			out.print("</div>");
-			out.print("</div>");
-			out.print("<div class=\"row\">");
-			out.print("<div class=\"col\">");
-			for (Foto f : foto) {
-				if (juego.getId() == f.getIdJuego()) {
-					out.print("<img src=\"Imagenes/" + f.getFoto()
-							+ "\" width=\"500\" height=\"350\" class=\"rounded mx-auto d-block\">"); //getFoto
-				}
-			}
-			out.print("</div>");
-			out.print("<div class=\"col mt-3 mb-5\">");
-			out.print("<p>" + juego.getDescripcion() + "</p>"); //getTexto
 			out.print("</div>");
 			out.print("</div>");
 			out.print("<hr>");
@@ -324,10 +323,23 @@
 
 	
 				out.print("</div>");//fin 1º row
+				
 				out.print("<div class=\"row mt-5\">");
-				out.print("<div class=\"col\"></div>");
-				out.print("<div class=\"col\"></div>");
-				out.print("<div class=\"col\">");
+				out.print("<div class=\"col-12\">");
+				for (Foto f : foto) {
+					if (juego.getId() == f.getIdJuego()) {
+						out.print("<img src=\"Imagenes/" + f.getFoto()
+								+ "\" width=\"500\" height=\"350\" class=\"rounded mx-auto d-block img-fluid\">"); //getFoto
+					}
+				}
+				out.print("</div>");
+				out.print("<div class=\"col mt-3\">");
+				out.print("<p>" + juego.getDescripcion() + "</p>"); //getTexto
+				out.print("</div>");
+				out.print("</div>");
+				out.print("<div class=\"row mt-5\">");
+				out.print("<div class=\"col-2\"></div>");
+				out.print("<div class=\"col-4\">");
 				out.print("<div class=\"card text-center bg-info text-white\">");
 				for (Genero g : juegoList) {
 					if (juego.getGenero() == g.getId()) {
@@ -336,7 +348,7 @@
 				}
 				out.print(" </div>");
 				out.print("</div>");
-				out.print("<div class=\"col\">");
+				out.print("<div class=\"col-4\">");
 				out.print("<div class=\"card text-center bg-info text-white\">");
 				for (Plataforma p : juegoListP) {
 					if (juego.getPlataforma() == p.getId()) {
@@ -344,19 +356,6 @@
 					}
 				}
 				out.print(" </div>");
-				out.print("</div>");
-				out.print("</div>");
-				out.print("<div class=\"row\">");
-				out.print("<div class=\"col mr-5\">");
-				for (Foto f : foto) {
-					if (juego.getId() == f.getIdJuego()) {
-						out.print("<img src=\"Imagenes/" + f.getFoto()
-								+ "\" width=\"500\" height=\"350\" class=\"rounded mx-auto d-block\">"); //getFoto
-					}
-				}
-				out.print("</div>");
-				out.print("<div class=\"col mt-3\">");
-				out.print("<p>" + juego.getDescripcion() + "</p>"); //getTexto
 				out.print("</div>");
 				out.print("</div>");
 				out.print("<div class=\"row mt-5\">");
@@ -452,7 +451,9 @@
 			} else {
 				out.print("<div class=\"row\">");
 				out.print("<div class=\"col-8\">");
+				if(juego.getTitulo()!= null){
 				out.print("<h2>" + juego.getTitulo() + "</h2>"); //getTitulo
+				}
 				out.print("</div>");
 				out.print("<div class=\"col\"></div>");
 				//---------------------------------MEDIA PUNTUACION
@@ -492,10 +493,22 @@
 				out.print("</form>");
 				out.print("</div>");//fin 1º row
 
-				out.print("<div class=\"row\">");
-				out.print("<div class=\"col\"></div>");
-				out.print("<div class=\"col\"></div>");
-				out.print("<div class=\"col\">");
+				out.print("<div class=\"row mt-5\">");
+				out.print("<div class=\"col-12\">");
+				for (Foto f : foto) {
+					if (juego.getId() == f.getIdJuego()) {
+						out.print("<img src=\"Imagenes/" + f.getFoto()
+								+ "\" width=\"500\" height=\"350\" class=\"rounded mx-auto d-block img-fluid\">"); //getFoto
+					}
+				}
+				out.print("</div>");
+				out.print("<div class=\"col mt-3\">");
+				out.print("<p>" + juego.getDescripcion() + "</p>"); //getTexto
+				out.print("</div>");
+				out.print("</div>");
+				out.print("<div class=\"row mt-5\">");
+				out.print("<div class=\"col-2\"></div>");
+				out.print("<div class=\"col-4\">");
 				out.print("<div class=\"card text-center bg-info text-white\">");
 				for (Genero g : juegoList) {
 					if (juego.getGenero() == g.getId()) {
@@ -504,7 +517,7 @@
 				}
 				out.print(" </div>");
 				out.print("</div>");
-				out.print("<div class=\"col\">");
+				out.print("<div class=\"col-4\">");
 				out.print("<div class=\"card text-center bg-info text-white\">");
 				for (Plataforma p : juegoListP) {
 					if (juego.getPlataforma() == p.getId()) {
@@ -512,20 +525,6 @@
 					}
 				}
 				out.print(" </div>");
-				out.print("</div>");
-				out.print("</div>");
-
-				out.print("<div class=\"row\">");
-				out.print("<div class=\"col\">");
-				for (Foto f : foto) {
-					if (juego.getId() == f.getIdJuego()) {
-						out.print("<img src=\"Imagenes/" + f.getFoto()
-								+ "\" width=\"500\" height=\"350\" class=\"rounded mx-auto d-block\">"); //getFoto
-					}
-				}
-				out.print("</div>");
-				out.print("<div class=\"col mt-3\">");
-				out.print("<p>" + juego.getDescripcion() + "</p>"); //getTexto
 				out.print("</div>");
 				out.print("</div>");
 

@@ -108,17 +108,32 @@
 			//-----------------------------------------------------------------------------------------
 			
 			
-			out.print("<div class=\"container mt-5 p-5\">");
+			out.print("<div class=\"container p-5\">");
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col\">");
 			out.print("<h3>Top10| Juegos Play Station 4</h3>");
 			out.print("</div>");
 			out.print("</div>");
 
+			%>
+
+			<div class="row mt-3">
+			<div class="col-2"></div>
+				<div class="col">
+					<div class="cajita">
+						<img src="img/play4.jpg" class="img-fluid" width="600">
+					</div>
+				</div>
+			</div>
+
+			<%
+			
+			
 			out.print("<div class=\"form-row mt-4\"");
 
 			//----TABLA------------------------------
-			out.print("<div class=\"col-md-4\">");
+			out.print("<div class=\"col\">");
+			out.print("<div class=\"table-responsive\">");
 			out.print("<table class=\"table shadow-lg\">");
 			out.print("<thead class=\"thead-dark\">");
 			out.print("<tr>");
@@ -147,13 +162,14 @@
 			out.print("<td>"+t.getAnyo()+"</td>");
 			out.print("<td>"+t.getGenero()+"</td>");
 			out.print("<td>"+t.getPlataforma()+"</td>");
-			out.print("<td class=\"bg-success text-white\">"+t.getPuntuacion()+"/10</td>");
+			out.print("<td class=\"bg-success text-white text-center\">"+t.getPuntuacion()+"/10</td>");
 			out.print("</tr>");	
 			count++;
 			}
 			}
 			out.print("</tbody>");
 			out.print("</table>");
+			out.print("</div>");
 			//-----------------------
 			out.print("</div>");
 			out.print("</div>");
@@ -251,18 +267,32 @@
 			out.print("</nav>");
 			out.print("</div>");
 			
-			out.print("<div class=\"container mt-5 p-5\">");
+			out.print("<div class=\"container p-5\">");
 				
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col\">");
 			out.print("<h3>Top10| Juegos Play Station 4</h3>");
 			out.print("</div>");
 			out.print("</div>");
+			
+			%>
+
+			<div class="row mt-3">
+			<div class="col-2"></div>
+				<div class="col">
+					<div class="cajita">
+						<img src="img/play4.jpg" class="img-fluid" width="600">
+					</div>
+				</div>
+			</div>
+
+			<%
 
 			out.print("<div class=\"form-row mt-4\">");
 
 			//----TABLA------------------------------
-			out.print("<div class=\"col-md-4\">");
+			out.print("<div class=\"col4\">");
+			out.print("<div class=\"table-responsive\">");
 			out.print("<table class=\"table shadow-lg\">");
 			out.print("<thead class=\"thead-dark\">");
 			out.print("<tr>");
@@ -291,13 +321,14 @@
 				out.print("<td>"+t.getAnyo()+"</td>");
 				out.print("<td>"+t.getGenero()+"</td>");
 				out.print("<td>"+t.getPlataforma()+"</td>");
-				out.print("<td class=\"bg-success text-white\">"+t.getPuntuacion()+"/10</td>");
+				out.print("<td class=\"bg-success text-white text-center\">"+t.getPuntuacion()+"/10</td>");
 				out.print("</tr>");
 					count++;
 				}
 				}
 			out.print("</tbody>");
 			out.print("</table>");
+			out.print("</div>");
 			//-----------------------
 			out.print("</div>");
 			out.print("</div>");
@@ -305,5 +336,12 @@
 			
 		}
 	%>
+					<div class="footer bg-dark">
+		<div class="footer-copyright text-center py-3 bg-success">
+			© 2020 Copyright: <a class="text-white"
+				href="https://Freak'sCorner.com/">Freak'sCorner.com</a>
+		
+		</div>
+	</div>
 </body>
 </html>

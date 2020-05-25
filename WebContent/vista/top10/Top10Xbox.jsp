@@ -110,16 +110,31 @@
 			//-----------------------------------------------------------------------------------------
 			
 			
-			out.print("<div class=\"container mt-5 p-5\">");
+			out.print("<div class=\"container p-5\">");
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col\">");
 			out.print("<h3>Top10| Juegos Xbox One</h3>");
 			out.print("</div>");
 			out.print("</div>");
+			
+			%>
+
+			<div class="row mt-3">
+			<div class="col-2"></div>
+				<div class="col">
+					<div class="cajita">
+						<img src="img/xbox.jpg" class="img-fluid" width="600">
+					</div>
+				</div>
+			</div>
+
+			<%
+			
 			out.print("<div class=\"form-row mt-4\">");
 
 			//----TABLA------------------------------
-			out.print("<div class=\"col-md-4\">");
+			out.print("<div class=\"col\">");
+			out.print("<div class=\"table-responsive\">");
 			out.print("<table class=\"table shadow-lg\">");
 			out.print("<thead class=\"thead-dark\">");
 			out.print("<tr>");
@@ -141,20 +156,21 @@
 			for(Foto f : foto){
 				if(f.getIdJuego() == t.getId()){
 					out.print("<td><img src=\"Imagenes/" + f.getFoto()
-					+ "\" width=\"50\" height=\"50\" class=\"rounded mx-auto d-block\"></td>"); //getFoto
+					+ "\" width=\"60\" height=\"50\" class=\"rounded mx-auto d-block\"></td>"); //getFoto
 				}
 			}
 			out.print("<td><a href=\"FichaJuego?id="+t.getId()+"\">"+t.getNombre()+"</a></td>");
 			out.print("<td>"+t.getAnyo()+"</td>");
 			out.print("<td>"+t.getGenero()+"</td>");
 			out.print("<td>"+t.getPlataforma()+"</td>");
-			out.print("<td class=\"bg-success text-white\">"+t.getPuntuacion()+"/10</td>");
+			out.print("<td class=\"bg-success text-white text-center\">"+t.getPuntuacion()+"/10</td>");
 			out.print("</tr>");	
 			count++;
 			}
 			}
 			out.print("</tbody>");
 			out.print("</table>");
+			out.print("</div>");
 			//-----------------------
 			out.print("</div>");
 			out.print("</div>");
@@ -251,7 +267,7 @@
 			out.print("</nav>");
 			out.print("</div>");
 			
-			out.print("<div class=\"container mt-5 p-5\">");
+			out.print("<div class=\"container p-5\">");
 				
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col\">");
@@ -259,10 +275,25 @@
 			out.print("</div>");
 			out.print("</div>");
 
+			%>
+
+			<div class="row mt-3">
+			<div class="col-2"></div>
+				<div class="col">
+					<div class="cajita">
+						<img src="img/xbox.jpg" class="img-fluid" width="600">
+					</div>
+				</div>
+			</div>
+
+			<%
+			
+			
 			out.print("<div class=\"form-row mt-4\">");
 
 			//----TABLA------------------------------
-			out.print("<div class=\"col-md-4\">");
+			out.print("<div class=\"col\">");
+			out.print("<div class=\"table-responsive\">");
 			out.print("<table class=\"table shadow-lg\">");
 			out.print("<thead class=\"thead-dark\">");
 			out.print("<tr>");
@@ -284,20 +315,21 @@
 				for(Foto f : foto){
 					if(f.getIdJuego() == t.getId()){
 						out.print("<td><img src=\"Imagenes/" + f.getFoto()
-						+ "\" width=\"50\" height=\"50\" class=\"rounded mx-auto d-block\"></td>"); //getFoto
+						+ "\" width=\"60\" height=\"50\" class=\"rounded mx-auto d-block\"></td>"); //getFoto
 					}
 				}
 				out.print("<td><a href=\"FichaJuego?id="+t.getId()+"\">"+t.getNombre()+"</a></td>");
 				out.print("<td>"+t.getAnyo()+"</td>");
 				out.print("<td>"+t.getGenero()+"</td>");
 				out.print("<td>"+t.getPlataforma()+"</td>");
-				out.print("<td class=\"bg-success text-white\">"+t.getPuntuacion()+"/10</td>");
+				out.print("<td class=\"bg-success text-white text-center\">"+t.getPuntuacion()+"/10</td>");
 				out.print("</tr>");
 					count++;
 				}
 				}
 			out.print("</tbody>");
 			out.print("</table>");
+			out.print("</div>");
 			//-----------------------
 			out.print("</div>");
 			out.print("</div>");

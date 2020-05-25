@@ -106,6 +106,7 @@
 			out.print("<div class=\"form-row mt-4\">");
 			//----TABLA------------------------------
 			out.print("<div class=\"col\">");
+			out.print("<div class=\"table-responsive\">");
 			out.print("<table class=\"table shadow-lg\">");
 			out.print("<thead class=\"thead-dark\">");
 			out.print("<tr>");
@@ -130,6 +131,7 @@
 			}
 			out.print("</tbody>");
 			out.print("</table>");
+			out.print("</div>");
 			//-----------------------
 			out.print("</div>");
 			out.print("</div>");
@@ -223,6 +225,7 @@
 			out.print("<div class=\"form-row mt-4\">");
 			//----TABLA------------------------------
 			out.print("<div class=\"col\">");
+			out.print("<div class=\"table-responsive\">");
 			out.print("<table class=\"table shadow-lg\">");
 			out.print("<thead class=\"thead-dark\">");
 			out.print("<tr>");
@@ -247,6 +250,7 @@
 			}
 			out.print("</tbody>");
 			out.print("</table>");
+			out.print("</div>");
 			//-----------------------
 			out.print("</div>");
 			out.print("</div>");

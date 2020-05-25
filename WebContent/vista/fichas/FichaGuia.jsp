@@ -117,21 +117,23 @@
 			
 			out.print("<div class=\"container mt-5 p-5\">");//Principio de container
 	
-			out.print("<div class=\"row mb-5\">");
+			out.print("<div class=\"row\">");
 			out.print("<div class=\"col\">");
 			out.print("<h2>" + guia.getTitulo() + "</h2>"); //getTitulo
 			out.print("</div>");
 			out.print("</div>");//fin 1º row
-			out.print("<div class=\"row mt-5\">");
+			out.print("<div class=\"row mt-1\">");
 			out.print("<div class=\"col\">");
 			for (Foto f : foto) {
 				if (guia.getId() == f.getId()) {
 					out.print("<img src=\"Imagenes/" + f.getFoto()
-							+ "\" width=\"400\" height=\"300\" class=\"mt-5 rounded mx-auto d-block\">"); //getFoto
+							+ "\" width=\"500\" height=\"400\" class=\"mt-5 rounded mx-auto d-block img-fluid\">"); //getFoto
 				}
 			}
 			out.print("</div>");
-			out.print("<div class=\"col mt-3\">");
+			out.print("</div>");
+			out.print("<div class=\"row mt-1\">");
+			out.print("<div class=\"col\">");
 			out.print("<p>" +guia.getTexto()+ "</p>"); //getTexto
 			out.print("</div>");
 			out.print("</div>");
@@ -255,16 +257,18 @@
 			out.print("<h2>" + guia.getTitulo() + "</h2>"); //getTitulo
 			out.print("</div>");
 			out.print("</div>");//fin 1º row
-			out.print("<div class=\"row mt-5\">");
+			out.print("<div class=\"row mt-1\">");
 			out.print("<div class=\"col\">");
 			for (Foto f : foto) {
 				if (guia.getId() == f.getId()) {
 					out.print("<img src=\"Imagenes/" + f.getFoto()
-							+ "\" width=\"400\" height=\"300\" class=\"rounded mx-auto d-block\">"); //getFoto
+							+ "\" width=\"500\" height=\"400\" class=\"rounded mx-auto d-block img-fluid\">"); //getFoto
 				} 
 			}
 			out.print("</div>");
-			out.print("<div class=\"col mr-5\">");
+			out.print("</div>");
+			out.print("<div class=\"row mt-1\">");
+			out.print("<div class=\"col\">");
 			out.print("<p>" +guia.getTexto()+ "</p>"); //getTexto
 			out.print("</div>");
 			out.print("</div>");
@@ -375,16 +379,18 @@
 				out.print("<hr>");
 				out.print("</div>");//fin 1º row
 
-				out.print("<div class=\"row mt-5\">");
+				out.print("<div class=\"row mt-1\">");
 				out.print("<div class=\"col\">");
 				for (Foto f : foto) {
 					if (guia.getId() == f.getId()) {
 						out.print("<img src=\"Imagenes/" + f.getFoto()
-								+ "\" width=\"400\" height=\"300\" class=\"rounded mx-auto d-block\">"); //getFoto
+								+ "\" width=\"500\" height=\"400\" class=\"rounded mx-auto d-block img-fluid\">"); //getFoto
 					} 
 				}
 				out.print("</div>");
-				out.print("<div class=\"col mr-5\">");
+				out.print("</div>");
+				out.print("<div class=\"row mt-1\">");
+				out.print("<div class=\"col \">");
 				out.print("<p>" + guia.getTexto() + "</p>"); //getTexto
 				out.print("</div>");
 				out.print("</div>");

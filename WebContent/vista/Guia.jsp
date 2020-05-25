@@ -113,6 +113,7 @@
 
 			//----TABLA------------------------------
 			out.print("<div class=\"col\">");
+			out.print("<div class=\"table-responsive\">");
 			out.print("<table class=\"table shadow-lg\">");
 			out.print("<thead class=\"thead-dark\">");
 			out.print("<tr>");
@@ -123,20 +124,22 @@
 			out.print("</thead>");
 			out.print("<tbody>");
 			if(guias!=null){
-			for(Guia n : guias){
-					for(Foto f : foto){
-				out.print("<tr>");
-				if(f.getIdJuego() == n.getId()){
-				out.print("<td><img src=\"Imagenes/"+f.getFoto()+"\" width=\"60\" height=\"50\" class=\"rounded mx-auto d-block\"</td>");
+				for(Guia n : guias){
+					out.print("<tr>");
+						for(Foto f : foto){
+					if(f.getIdJuego() == n.getId()){
+					out.print("<td><img src=\"Imagenes/"+f.getFoto()+"\" width=\"60\" height=\"50\" class=\"rounded mx-auto d-block\"</td>");
+					}
+						}
+				out.print("<td><a href=\"FichaGuia?id="+n.getId()+"\">"+n.getTitulo()+"</a></td>");
+				out.print("<td>"+n.getTexto().substring(0, 120)+"...</td>");
+				out.print("</tr>");
+			
 				}
-			out.print("<td><a href=\"FichaGuia?id="+n.getId()+"\">"+n.getTitulo()+"</a></td>");
-			out.print("<td>"+n.getTexto().substring(0, 120)+"...</td>");
-			out.print("</tr>");
-			}
-			}
-			}
+				}
 			out.print("</tbody>");
 			out.print("</table>");
+			out.print("</div>");
 			//-----------------------
 			out.print("</div>");
 			out.print("</div>");
@@ -234,6 +237,7 @@
 
 			//----TABLA------------------------------
 			out.print("<div class=\"col\">");
+			out.print("<div class=\"table-responsive\">");
 			out.print("<table class=\"table shadow-lg\">");
 			out.print("<thead class=\"thead-dark\">");
 			out.print("<tr>");
@@ -245,19 +249,21 @@
 			out.print("<tbody>");
 			if(guias!=null){
 			for(Guia n : guias){
-					for(Foto f : foto){
 				out.print("<tr>");
+					for(Foto f : foto){
 				if(f.getIdJuego() == n.getId()){
 				out.print("<td><img src=\"Imagenes/"+f.getFoto()+"\" width=\"60\" height=\"50\" class=\"rounded mx-auto d-block\"</td>");
 				}
+					}
 			out.print("<td><a href=\"FichaGuia?id="+n.getId()+"\">"+n.getTitulo()+"</a></td>");
 			out.print("<td>"+n.getTexto().substring(0, 120)+"...</td>");
 			out.print("</tr>");
-			}
+		
 			}
 			}
 			out.print("</tbody>");
 			out.print("</table>");
+			out.print("</div>");
 			//-----------------------
 			out.print("</div>");
 			out.print("</div>");

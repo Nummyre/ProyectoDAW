@@ -125,11 +125,13 @@
 				for (Foto f : foto) {
 					if (analisis.getId() == f.getIdJuego()) {
 						out.print("<img src=\"Imagenes/" + f.getFoto()
-								+ "\" width=\"400\" height=\"300\" class=\"rounded mx-auto d-block\">"); //getFoto
+								+ "\" width=\"500\" height=\"400\" class=\"rounded mx-auto d-block img-fluid\">"); //getFoto
 					} 
 				}
 				out.print("</div>");
-				out.print("<div class=\"col mt-3\">");
+				out.print("</div>");
+				out.print("<div class=\"row mt-1\">");
+				out.print("<div class=\"col \">");
 				out.print("<p>" +analisis.getTexto()+ "</p>"); //getTexto
 				out.print("</div>");
 				out.print("</div>");
@@ -275,11 +277,13 @@
 			for (Foto f : foto) {
 				if (analisis.getId() == f.getIdJuego()) {
 					out.print("<img src=\"Imagenes/" + f.getFoto()
-							+ "\" width=\"400\" height=\"300\" class=\"rounded mx-auto d-block\">"); //getFoto
+							+ "\" width=\"500\" height=\"400\" class=\"rounded mx-auto d-block img-fluid\">"); //getFoto
 				} 
 			}
 			out.print("</div>");
-			out.print("<div class=\"col mt-3 mr-5\">");
+			out.print("</div>");
+			out.print("<div class=\"row mt-1\">");
+			out.print("<div class=\"col mr-5\">");
 			out.print("<p>" +analisis.getTexto()+ "</p>"); //getTexto
 			out.print("</div>");
 			out.print("</div>");
@@ -419,11 +423,13 @@
 				for (Foto f : foto) {
 					if (analisis.getId() == f.getIdJuego()) {
 						out.print("<img src=\"Imagenes/" + f.getFoto()
-								+ "\" width=\"400\" height=\"300\" class=\"rounded mx-auto d-block\">"); //getFoto
+								+ "\" width=\"500\" height=\"400\" class=\"rounded mx-auto d-block img-fluid\">"); //getFoto
 					} 
 				}
 				out.print("</div>");
-				out.print("<div class=\"col mt-3 mr-5\">");
+				out.print("</div>");
+				out.print("<div class=\"row mt-1\">");
+				out.print("<div class=\"col mr-5\">");
 				out.print("<p>" + analisis.getTexto() + "</p>"); //getTexto
 				out.print("</div>");
 				out.print("</div>");
