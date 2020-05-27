@@ -12,40 +12,48 @@ import modelo.pojo.Comentario;
 import modelo.pojo.Foto;
 import modelo.pojo.Guia;
 
+/**
+ * Clase para la conexión a la base de datos para la guía
+ * 
+ * @author Cintia
+ *
+ */
 public class GuiasDAO {
-	
-	private static final Logger logger = (Logger) LoggerFactory.getLogger(GuiasDAO.class);	
-	
+
+	private static final Logger logger = (Logger) LoggerFactory.getLogger(GuiasDAO.class);
+
+	/**
+	 * Método que muestra una lista de guías
+	 * 
+	 * @return devuelve una lista
+	 */
 	public ArrayList<Guia> listaGuias() {
-		
+
 		ArrayList<Guia> juego = null;
+
 		try {
 
-			// metodo
 			Connection connection = new Conexion().conecta();
 
 			if (connection != null) {
 
-				// Si la conexion no es nula que ejecute la query del select con los datos
-				// obtenidos
 				Statement stmt = connection.createStatement();
 				ResultSet rs = stmt.executeQuery("SELECT * FROM guia");
 
 				rs.last();
 				if (rs.getRow() > 0) {
 
-					// Coge los datos del usuario que a iniciado sesion de la base de datos
 					rs.first();
 
 					juego = new ArrayList<Guia>();
 
-					juego.add(new Guia(rs.getInt("id"), rs.getString("titulo"), rs.getString("fecha"), rs.getString("guia"),
-							rs.getInt("idUsuario")));
+					juego.add(new Guia(rs.getInt("id"), rs.getString("titulo"), rs.getString("fecha"),
+							rs.getString("guia"), rs.getInt("idUsuario")));
 
 					while (rs.next()) {
 
-						juego.add(new Guia(rs.getInt("id"), rs.getString("titulo"), rs.getString("fecha"), rs.getString("guia"),
-								rs.getInt("idUsuario")));
+						juego.add(new Guia(rs.getInt("id"), rs.getString("titulo"), rs.getString("fecha"),
+								rs.getString("guia"), rs.getInt("idUsuario")));
 					}
 				}
 
@@ -56,8 +64,6 @@ public class GuiasDAO {
 		}
 		return juego;
 	}
-	
-	
 
 	/**
 	 * Método que inserta una foto para una guía
@@ -80,8 +86,6 @@ public class GuiasDAO {
 			logger.error(e.getMessage());
 		}
 	}
-
-	
 
 	/**
 	 * Método que elimina una guía
@@ -113,36 +117,34 @@ public class GuiasDAO {
 	 * @param id = clave de identificación del usuario
 	 * @return devuelve una lista de guías por usuario
 	 */
-
 	public ArrayList<Guia> listaGuiasPorIdUser(Integer id) {
+
 		ArrayList<Guia> guia = null;
+
 		try {
 
-			// metodo
 			Connection connection = new Conexion().conecta();
 			Statement stmt = null;
 
 			if (connection != null) {
 
-				// Si la conexion no es nula que ejecute la query del select con los datos
-				// obtenidos
 				stmt = connection.createStatement();
 				ResultSet rs = stmt.executeQuery("SELECT * FROM guia where idUsuario = " + id);
 
 				rs.last();
 				if (rs.getRow() > 0) {
 
-					// Coge los datos del usuario que a iniciado sesion de la base de datos
 					rs.first();
 
 					guia = new ArrayList<Guia>();
-					guia.add(new Guia(rs.getInt("id"), rs.getString("titulo"), rs.getString("fecha"), rs.getString("guia"),
-							rs.getInt("idUsuario")));;
+					guia.add(new Guia(rs.getInt("id"), rs.getString("titulo"), rs.getString("fecha"),
+							rs.getString("guia"), rs.getInt("idUsuario")));
+					;
 
 					while (rs.next()) {
 
-						guia.add(new Guia(rs.getInt("id"), rs.getString("titulo"), rs.getString("fecha"), rs.getString("guia"),
-								rs.getInt("idUsuario")));
+						guia.add(new Guia(rs.getInt("id"), rs.getString("titulo"), rs.getString("fecha"),
+								rs.getString("guia"), rs.getInt("idUsuario")));
 					}
 				}
 
@@ -167,8 +169,8 @@ public class GuiasDAO {
 		try {
 			Connection connection = new Conexion().conecta();
 
-			String query = "INSERT INTO guia (titulo, fecha, guia, idUsuario) " + "VALUES ('" + titulo + "','" + fecha + "','" + texto + "', "
-					+ idUsuario + ");";
+			String query = "INSERT INTO guia (titulo, fecha, guia, idUsuario) " + "VALUES ('" + titulo + "','" + fecha
+					+ "','" + texto + "', " + idUsuario + ");";
 
 			try (Statement stmt = connection.createStatement()) {
 
@@ -197,7 +199,6 @@ public class GuiasDAO {
 	 * @param texto  = texto en el que se quiera escribir en la guía
 	 * @param id     = clave de identificación del usuario
 	 */
-
 	public void updateGuia(String titulo, String texto, Integer id) {
 
 		try {
@@ -247,28 +248,24 @@ public class GuiasDAO {
 	public Guia guia(Integer id) {
 
 		Guia juego = null;
-		try {
 
-			// Si el usuario y la contraseña no son nulos que abra conexion mediante el
-			// metodo
+		try {
 
 			Connection connection = new Conexion().conecta();
 			Statement stmt = null;
 
 			if (connection != null) {
 
-				// Si la conexion no es nula que ejecute la query del select con los datos
-				// obtenidos
 				stmt = connection.createStatement();
 				ResultSet rs = stmt.executeQuery("select * from guia where id = " + id + ";");
 
 				rs.last();
 				if (rs.getRow() > 0) {
 
-					// Coge los datos del usuario que a iniciado sesion de la base de datos
 					rs.first();
-					juego = (new Guia(rs.getInt("id"), rs.getString("titulo"), rs.getString("fecha"), rs.getString("guia"),
-							rs.getInt("idUsuario")));
+
+					juego = (new Guia(rs.getInt("id"), rs.getString("titulo"), rs.getString("fecha"),
+							rs.getString("guia"), rs.getInt("idUsuario")));
 				}
 
 				rs.close();
@@ -281,25 +278,28 @@ public class GuiasDAO {
 		return juego;
 	}
 
+	/**
+	 * Método que muestra una lista de fotos de las guías
+	 * 
+	 * @return devuelve una lista
+	 */
 	public ArrayList<Foto> listaFotosGuia() {
+
 		ArrayList<Foto> Fjuego = null;
+
 		try {
 
-			// metodo
 			Connection connection = new Conexion().conecta();
 			Statement stmt = null;
 
 			if (connection != null) {
 
-				// Si la conexion no es nula que ejecute la query del select con los datos
-				// obtenidos
 				stmt = connection.createStatement();
 				ResultSet rs = stmt.executeQuery("SELECT * FROM fotoGuia");
 
 				rs.last();
 				if (rs.getRow() > 0) {
 
-					// Coge los datos del usuario que a iniciado sesion de la base de datos
 					rs.first();
 
 					Fjuego = new ArrayList<Foto>();
@@ -320,14 +320,24 @@ public class GuiasDAO {
 		return Fjuego;
 	}
 
-	// ------------------------------------------------------------------------------------------------------
+	/**
+	 * Método que inserta un comentario en la ficha de la guía
+	 * 
+	 * @param comentario = pármetro del comentario
+	 * @param fecha      = párametro para introducir una fecha
+	 * @param idUsuario  = clave que identifica a un usuario
+	 * @param idGuia     = cñave que identifica una guía
+	 * @return devuelve el id del comentario insertado
+	 */
 	public int insertComentarioGuia(String comentario, String fecha, Integer idUsuario, Integer idGuia) {
+
 		int rowID = 0;
+
 		try {
 			Connection connection = new Conexion().conecta();
 
-			String query = "INSERT INTO comentario_guia (comentario, fecha, idUsuario, idGuia) "
-					+ "VALUES ('" + comentario + "','" + fecha + "'," + idUsuario + ", " + idGuia + ");";
+			String query = "INSERT INTO comentario_guia (comentario, fecha, idUsuario, idGuia) " + "VALUES ('"
+					+ comentario + "','" + fecha + "'," + idUsuario + ", " + idGuia + ");";
 
 			try (Statement stmt = connection.createStatement()) {
 
@@ -349,25 +359,29 @@ public class GuiasDAO {
 		return rowID;
 	}
 
+	/**
+	 * Método para mostrar una lista de comentarios de una guía
+	 * 
+	 * @return devuelve una lista
+	 */
 	public ArrayList<Comentario> listaComentarioGuia() {
+
 		ArrayList<Comentario> Cjuego = null;
+
 		try {
 
-			// metodo
 			Connection connection = new Conexion().conecta();
 			Statement stmt = null;
 
 			if (connection != null) {
 
-				// Si la conexion no es nula que ejecute la query del select con los datos
-				// obtenidos
 				stmt = connection.createStatement();
 				ResultSet rs = stmt.executeQuery("SELECT * FROM comentario_guia");
 
 				rs.last();
+
 				if (rs.getRow() > 0) {
 
-					// Coge los datos del usuario que a iniciado sesion de la base de datos
 					rs.first();
 
 					Cjuego = new ArrayList<Comentario>();
@@ -390,10 +404,15 @@ public class GuiasDAO {
 		return Cjuego;
 	}
 
+	/**
+	 * Método para eliminar un comentario en ua ficha de la guía
+	 * 
+	 * @param id = clave que identifica el comentario
+	 */
 	public void deleteComentarioGuia(Integer id) {
+
 		try {
 
-			// metodo
 			Connection connection = new Conexion().conecta();
 
 			if (connection != null) {

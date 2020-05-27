@@ -1,5 +1,11 @@
 package modelo.pojo;
 
+/**
+ * Clase pojo de Top 10
+ * 
+ * @author Cintia
+ *
+ */
 public class Top10 {
 
 	private Integer id;
@@ -10,13 +16,11 @@ public class Top10 {
 	private Integer puntuacion;
 	private Integer idGenero;
 	private Integer idPlataforma;
-	
-	public Top10(){
-		
+
+	public Top10() {
+
 	}
 
-	
-	
 	public Top10(Integer id, String nombre, Integer anyo, String genero, String plataforma, Integer puntuacion,
 			Integer idGenero, Integer idPlataforma) {
 		super();
@@ -29,8 +33,6 @@ public class Top10 {
 		this.idGenero = idGenero;
 		this.idPlataforma = idPlataforma;
 	}
-
-
 
 	public Integer getId() {
 		return id;
@@ -95,6 +97,5 @@ public class Top10 {
 	public void setIdPlataforma(Integer idPlataforma) {
 		this.idPlataforma = idPlataforma;
 	}
-	
 
 }

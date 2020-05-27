@@ -28,7 +28,7 @@
 <body>
 	<%
 		Usuario user = (Usuario) request.getAttribute("usuario");
-	ArrayList<PlataformasJuegos> nintendoList = (ArrayList<PlataformasJuegos>) request.getAttribute("nintendoList");
+		ArrayList<PlataformasJuegos> nintendoList = (ArrayList<PlataformasJuegos>) request.getAttribute("nintendoList");
 
 		if (user == null) {
 			out.print("<header>");
@@ -75,7 +75,8 @@
 			out.print("</form>");
 			out.print("</div>");
 			out.print("</nav>");
-			//--------------------------------------------------------
+
+			//barra de menu plataformas
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-success\">");
 			out.print("<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">");
 			out.print("<ul class=\"navbar-nav ml-5\">");
@@ -95,17 +96,22 @@
 			out.print("</div>");
 			out.print("</nav>");
 			out.print("</header>");
-			
+
+			//container
 			out.print("<div class=\"container mt-5 p-5\">");
+
+			//1 row
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col\">");
 			out.print("<h3>Juegos de Nintendo Switch</h3>");
 			out.print("</div>");
 			out.print("</div>");
 
+			//2 row
 			out.print("<div class=\"form-row mt-4\">");
-			//----TABLA------------------------------
 			out.print("<div class=\"col\">");
+
+			//tabla responsive
 			out.print("<div class=\"table-responsive\">");
 			out.print("<table class=\"table shadow-lg\">");
 			out.print("<thead class=\"thead-dark\">");
@@ -119,27 +125,30 @@
 			out.print("</tr>");
 			out.print("</thead>");
 			out.print("<tbody>");
-			for(PlataformasJuegos n : nintendoList){
-			out.print("<tr>");
-			out.print("<td><img src=\"Imagenes/"+n.getFoto()+"\" width=\"65\" height=\"50\" class=\"rounded\"></td>");
-			out.print("<td><a href=\"FichaJuego?id="+n.getId()+"\">"+n.getTitulo()+"</a></td>");
-			out.print("<td>"+n.getDescripcion().substring(0, 50)+"...</td>");
-			out.print("<td>"+n.getAnyo()+"</td>");
-			out.print("<td>"+n.getGenero()+"</td>");
-			out.print("<td>"+n.getPlataforma()+"</td>");
-			out.print("</tr>");
+
+			//for que muestra una lista de nintendo
+			for (PlataformasJuegos n : nintendoList) {
+				out.print("<tr>");
+				out.print("<td><img src=\"Imagenes/" + n.getFoto()
+						+ "\" width=\"65\" height=\"50\" class=\"rounded\"></td>");
+				out.print("<td><a href=\"FichaJuego?id=" + n.getId() + "\">" + n.getTitulo() + "</a></td>");
+				out.print("<td>" + n.getDescripcion().substring(0, 50) + "...</td>");
+				out.print("<td>" + n.getAnyo() + "</td>");
+				out.print("<td>" + n.getGenero() + "</td>");
+				out.print("<td>" + n.getPlataforma() + "</td>");
+				out.print("</tr>");
 			}
 			out.print("</tbody>");
 			out.print("</table>");
 			out.print("</div>");
-			//-----------------------
-			out.print("</div>");
+
 			out.print("</div>");
 			out.print("</div>");
 
-			
-		
-			
+			//fin container
+			out.print("</div>");
+
+			//sino qu emuestre una vista de usuario logeado
 		} else {
 			out.print("<header>");
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">");
@@ -197,7 +206,7 @@
 			out.print("</form>");
 			out.print("</nav>");
 
-			//--------------------------------------------------------
+			//barra de menu plataformas
 			out.print("<nav class=\"n navbar navbar-expand-lg navbar-dark bg-success\">");
 			out.print("<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">");
 			out.print("<ul class=\"navbar-nav ml-5\">");
@@ -217,7 +226,8 @@
 			out.print("</div>");
 			out.print("</nav>");
 			out.print("</header>");
-			
+
+			//container
 			out.print("<div class=\"container mt-5 p-5\">");
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col\">");
@@ -225,9 +235,11 @@
 			out.print("</div>");
 			out.print("</div>");
 
+			//1 row
 			out.print("<div class=\"form-row mt-4\">");
-			//----TABLA------------------------------
 			out.print("<div class=\"col\">");
+			
+			//tabla responsive
 			out.print("<div class=\"table-responsive\">");
 			out.print("<table class=\"table shadow-lg\">");
 			out.print("<thead class=\"thead-dark\">");
@@ -241,36 +253,41 @@
 			out.print("</tr>");
 			out.print("</thead>");
 			out.print("<tbody>");
-			for(PlataformasJuegos n : nintendoList){
-			out.print("<tr>");
-			out.print("<td><img src=\"Imagenes/"+n.getFoto()+"\" width=\"65\" height=\"50\" class=\"rounded\"></td>");
-			out.print("<td><a href=\"FichaJuego?id="+n.getId()+"\">"+n.getTitulo()+"</a></td>");
-			out.print("<td>"+n.getDescripcion().substring(0, 50)+"...</td>");
-			out.print("<td>"+n.getAnyo()+"</td>");
-			out.print("<td>"+n.getGenero()+"</td>");
-			out.print("<td>"+n.getPlataforma()+"</td>");
-			out.print("</tr>");
+			for (PlataformasJuegos n : nintendoList) {
+				out.print("<tr>");
+				out.print("<td><img src=\"Imagenes/" + n.getFoto()
+						+ "\" width=\"65\" height=\"50\" class=\"rounded\"></td>");
+				out.print("<td><a href=\"FichaJuego?id=" + n.getId() + "\">" + n.getTitulo() + "</a></td>");
+				out.print("<td>" + n.getDescripcion().substring(0, 50) + "...</td>");
+				out.print("<td>" + n.getAnyo() + "</td>");
+				out.print("<td>" + n.getGenero() + "</td>");
+				out.print("<td>" + n.getPlataforma() + "</td>");
+				out.print("</tr>");
 			}
 			out.print("</tbody>");
 			out.print("</table>");
 			out.print("</div>");
-			//-----------------------
-			out.print("</div>");
+	
 			out.print("</div>");
 			out.print("</div>");
 			
+			//fin container
+			out.print("</div>");
+
 		}
 	%>
-			<div class="footer bg-dark">
+	<div class="footer bg-dark">
 		<div class="text-center center-block p-5">
-			<a href="https://es-es.facebook.com/" class="fa fa-facebook"></a> <a href="https://twitter.com/compose/tweet?hashtags=FreaksCorner&hashtags=JuegosParaNintendoSwitch"
-				class="fa fa-twitter"></a> <a href="https://www.instagram.com/?hl=es" class="fa fa-instagram"></a>
+			<a href="https://es-es.facebook.com/" class="fa fa-facebook"></a> <a
+				href="https://twitter.com/compose/tweet?hashtags=FreaksCorner&hashtags=JuegosParaNintendoSwitch"
+				class="fa fa-twitter"></a> <a
+				href="https://www.instagram.com/?hl=es" class="fa fa-instagram"></a>
 			<a href="https://www.tumblr.com/dashboard" class="fa fa-tumblr"></a>
 		</div>
 		<div class="footer-copyright text-center py-3 bg-success">
 			© 2020 Copyright: <a class="text-white"
 				href="https://Freak'sCorner.com/">Freak'sCorner.com</a>
-				
+
 		</div>
 	</div>
 </body>

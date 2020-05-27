@@ -22,8 +22,8 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-		<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
-	<script type="text/javascript" src="js/Fichas.js"></script>
+<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+<script type="text/javascript" src="js/Fichas.js"></script>
 </head>
 <body onload="editor()">
 	<%
@@ -74,7 +74,8 @@
 			out.print("</form>");
 			out.print("</div>");
 			out.print("</nav>");
-			//--------------------------------------------------------
+
+			//menu de plataformas
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-success\">");
 			out.print("<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">");
 			out.print("<ul class=\"navbar-nav ml-5\">");
@@ -95,25 +96,23 @@
 			out.print("</nav>");
 			out.print("</header>");
 			
-			//-----------------------------------------------------------------------------------------
-			
-			
+			//container
 			out.print("<div class=\"container mt-5 p-5 \">");
-			
+
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col\">");
 			out.print("<h3>Crea un hilo</h3>");
 			out.print("</div>");
 			out.print("</div>");
-			//-----------------------
-			
-			
+
 			out.print("<h3>¿Se ha perdido la sesión?</h3>");
-			out.print("<a href=\"Login\"><button type=\"button\" class=\"btn btn-outline-success\">Inicia Sesión</button></a>");
+			out.print(
+					"<a href=\"Login\"><button type=\"button\" class=\"btn btn-outline-success\">Inicia Sesión</button></a>");
+			
+			//fin container
 			out.print("</div>");
-			
-		
-			
+
+			//sino que muestre ua vista de usuario logeado
 		} else {
 			out.print("<header>");
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">");
@@ -171,7 +170,7 @@
 			out.print("</form>");
 			out.print("</nav>");
 
-			//--------------------------------------------------------
+			//menu plaatformas
 			out.print("<nav class=\"n navbar navbar-expand-lg navbar-dark bg-success\">");
 			out.print("<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">");
 			out.print("<ul class=\"navbar-nav ml-5\">");
@@ -192,17 +191,18 @@
 			out.print("</nav>");
 			out.print("</header>");
 
-			
+			//container
 			out.print("<div class=\"container mt-5 p-5\">");
-			
+
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col\">");
 			out.print("<h3>Crea un hilo</h3>");
 			out.print("</div>");
 			out.print("</div>");
-		
+
+			//form para insertar
 			out.print("<form method=\"post\" action=\"InsertHilo\" enctype=\"multipart/form-data\">");
-			
+
 			out.print("<div class=\"row mt-5\">");
 			out.print("<div class=\"col-sm-2\">");
 			out.print("Pregunta del tema");
@@ -211,22 +211,24 @@
 			out.print("<input type=\"text\" class=\"form-control\" id=\"titulo\" name=\"titulo\" required>");
 			out.print("</div>");
 			out.print("</div>");
-			
+
 			out.print("<div class=\"row mt-5\">");
 			out.print("<div class=\"col\">");
-			out.print("<textarea class=\"form-control\" id=\"editor1\" rows=\"3\" name=\"editor1\" required></textarea>");
+			out.print(
+					"<textarea class=\"form-control\" id=\"editor1\" rows=\"3\" name=\"editor1\" required></textarea>");
 			out.print("</div>");
 			out.print("</div>");
-			
+
 			out.print("<div class=\"row mt-5\">");
 			out.print("<div class=\"col-sm-3\">");
 			out.print("¿Quieres poner una foto sobre el tema?");
 			out.print("</div>");
 			out.print("<div class=\"col-sm-4\">");
-			out.print("<input type=\"file\" class=\"form-control-file\" id=\"exampleFormControlFile1\" name=\"foto\" required>");
+			out.print(
+					"<input type=\"file\" class=\"form-control-file\" id=\"exampleFormControlFile1\" name=\"foto\" required>");
 			out.print("</div>");
 			out.print("</div>");
-			
+
 			out.print("<div class=\"row mt-5\">");
 			out.print("<div class=\"col-sm-4\">");
 			out.print("<button type=\"submit\" class=\"btn btn-outline-success\">Publicar</button>");
@@ -235,15 +237,17 @@
 			out.print("<button type=\"reset\" class=\"btn btn-outline-danger\">Cancelar</button>");
 			out.print("</div>");
 			out.print("</div>");
-			
-			out.print("<input type=\"hidden\" id=\"custId\" name=\"idU\" value=\""+user.getId()+"\">");
-			
+
+			out.print("<input type=\"hidden\" id=\"custId\" name=\"idU\" value=\"" + user.getId() + "\">");
+
 			out.print("</form>");
-			out.print("</div>");
 			
+			//fin de container
+			out.print("</div>");
+
 		}
 	%>
-		<div class="footer bg-dark">
+	<div class="footer bg-dark">
 		<div class="footer-copyright text-center py-3 bg-success">
 			© 2020 Copyright: <a class="text-white"
 				href="https://Freak'sCorner.com/">Freak'sCorner.com</a>

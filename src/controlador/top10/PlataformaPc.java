@@ -18,6 +18,12 @@ import modelo.ejb.UsuariosEJB;
 import modelo.pojo.Foto;
 import modelo.pojo.Usuario;
 
+/**
+ * Servlet que muestra el top 10 de PC
+ * 
+ * @author Cintia
+ *
+ */
 @WebServlet("/PlataformaPc")
 public class PlataformaPc extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -31,6 +37,9 @@ public class PlataformaPc extends HttpServlet {
 	@EJB
 	JuegoEJB juegoEJB;
 
+	/**
+	 * doGet para mostrar el top 10 de PC
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -38,11 +47,11 @@ public class PlataformaPc extends HttpServlet {
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
 
+		// id de la plataforma
 		String idP = request.getParameter("id");
 		Integer id = Integer.parseInt(idP);
 
 		ArrayList<modelo.pojo.Top10> top = juegoEJB.listaTop10Plataformas(id);
-
 		ArrayList<Foto> foto = juegoEJB.listaFotosJuegos();
 
 		request.setAttribute("foto", foto);

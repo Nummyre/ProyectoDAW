@@ -15,7 +15,6 @@
 <meta charset="UTF-8">
 <title>Freak's Corner</title>
 <link href="img/logo4.png" rel="icon" type="image/x-icon" />
-
 <link rel="stylesheet" type="text/css" href="css/Style.css">
 <script type="text/javascript" charset="UTF-8"
 	src="http://chs03.cookie-script.com/s/23c5591bf6df5a3f209a79ff16ceb577.js"></script>
@@ -33,8 +32,6 @@
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
 </head>
 <body>
 	<%
@@ -44,7 +41,7 @@
 		ArrayList<Analisis> analisi = (ArrayList<Analisis>) request.getAttribute("analisi");
 		ArrayList<Genero> genero = (ArrayList<Genero>) request.getAttribute("genero");
 		ArrayList<Plataforma> plata = (ArrayList<Plataforma>) request.getAttribute("plataforma");
-
+		
 		ArrayList<Foto> juegoFoto = (ArrayList<Foto>) request.getAttribute("juegoFoto");
 		ArrayList<Foto> guiaFoto = (ArrayList<Foto>) request.getAttribute("guiaFoto");
 		ArrayList<Foto> analisisFoto = (ArrayList<Foto>) request.getAttribute("analisisFoto");
@@ -94,7 +91,8 @@
 			out.print("</form>");
 			out.print("</div>");
 			out.print("</nav>");
-			//--------------------------------------------------------
+
+			//menu de plataformas
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-success\">");
 			out.print("<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">");
 			out.print("<ul class=\"navbar-nav ml-5\">");
@@ -115,8 +113,10 @@
 			out.print("</nav>");
 			out.print("</header>");
 
+			//container
 			out.print("<div class=\"container p-5\">");
 
+			//carrousel de las fotos
 			out.print("<div id=\"carousel\" class=\"carousel slide\" data-ride=\"carousel\">");
 			out.print("<ol class=\"carousel-indicators\">");
 			out.print("<li data-target=\"#carousel\" data-slide-to=\"0\" class=\"active\"></li>");
@@ -162,6 +162,8 @@
 			out.print("</a>");
 
 			out.print("</div>");
+
+			//termina carrousel
 			out.print("</div>");
 
 			out.print("<div class=\"row mt-5\">");
@@ -169,11 +171,11 @@
 			out.print("<h3>Juegos</h3>");
 			out.print("</div>");
 			out.print("</div>");
-			
 
 			out.print("<div class=\"row mt-3\">");//lista
 			out.print("<div class=\"col\">");
 
+			//tabla para que muestre los juegos
 			if (juego != null) {
 				for (Juego j : juego) {
 					out.print("<div class=\"shadow-lg p-3 mb-5 bg-white rounded\">");
@@ -216,8 +218,7 @@
 			out.print("</div>");
 			out.print("</div>");
 
-			//--------------------------------------------------------------
-
+			//guias
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col-4\">");//titulo
 			out.print("<h3>Guías</h3>");
@@ -227,6 +228,7 @@
 			out.print("<div class=\"row  mt-3\">");//lista
 			out.print("<div class=\"col\">");
 
+			//tabla para que muestre las guias
 			if (guia != null) {
 				for (Guia g : guia) {
 					out.print("<div class=\"shadow-lg p-3 mb-5 bg-white rounded\">");
@@ -257,8 +259,7 @@
 			out.print("</div>");
 			out.print("</div>");
 
-			//-----------------------------------------------------------------------
-
+			//analisis
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col-4\">");//titulo
 			out.print("<h3>Análisis</h3>");
@@ -268,6 +269,7 @@
 			out.print("<div class=\"row  mt-3\">");//lista
 			out.print("<div class=\"col\">");
 
+			//tabla para que muestre los analisis
 			if (analisi != null) {
 				for (Analisis a : analisi) {
 					out.print("<div class=\"shadow-lg p-3 mb-5 bg-white rounded \">");
@@ -293,8 +295,10 @@
 			out.print("</div>");
 			out.print("</div>");
 
-			out.print("</div>"); //div container
+			//fin container
+			out.print("</div>");
 
+			//sino que muestre una vista de un usuario logeado
 		} else {
 			out.print("<header>");
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">");
@@ -352,7 +356,7 @@
 			out.print("</form>");
 			out.print("</nav>");
 
-			//--------------------------------------------------------
+			//menu plataformas
 			out.print("<nav class=\"n navbar navbar-expand-lg navbar-dark bg-success\">");
 			out.print("<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">");
 			out.print("<ul class=\"navbar-nav ml-5\">");
@@ -373,8 +377,10 @@
 			out.print("</nav>");
 			out.print("</header>");
 
+			//container
 			out.print("<div class=\"container mt-2 mb-2 p-5\">");
 
+			//carrousel
 			out.print("<div id=\"carousel\" class=\"carousel slide\" data-ride=\"carousel\">");
 			out.print("<ol class=\"carousel-indicators\">");
 			out.print("<li data-target=\"#carousel\" data-slide-to=\"0\" class=\"active\"></li>");
@@ -420,6 +426,7 @@
 			out.print("</a>");
 
 			out.print("</div>");
+			//termina el carrousel
 			out.print("</div>");
 
 			out.print("<div class=\"row mt-5\">");
@@ -427,10 +434,12 @@
 			out.print("<h3>Juegos</h3>");
 			out.print("</div>");
 			out.print("</div>");
-	
-		out.print("<div class=\"row mt-5\">");//lista
+
+			//juegos
+			out.print("<div class=\"row mt-5\">");//lista
 			out.print("<div class=\"col\">");
 
+			//tabla que muestra los juegos
 			if (juego != null) {
 				for (Juego j : juego) {
 					out.print("<div class=\"shadow-lg p-3 mb-5 bg-white rounded \">");
@@ -472,8 +481,7 @@
 			out.print("</div>");
 			out.print("</div>");
 
-			//--------------------------------------------------------------
-
+			//guias
 			out.print("<div class=\"row mt-5\">");
 			out.print("<div class=\"col-4\">");//titulo
 			out.print("<h3>Guías</h3>");
@@ -483,6 +491,7 @@
 			out.print("<div class=\"row mt-5\">");//lista
 			out.print("<div class=\"col\">");
 
+			//tabla que muestra las guias
 			if (guia != null) {
 				for (Guia g : guia) {
 					out.print("<div class=\"shadow-lg p-3 mb-5 bg-white rounded \">");
@@ -514,8 +523,7 @@
 			out.print("</div>");
 			out.print("</div>");
 
-			//-----------------------------------------------------------------------
-
+			//analisis
 			out.print("<div class=\"row mt-5\">");
 			out.print("<div class=\"col-4\">");//titulo
 			out.print("<h3>Análisis</h3>");
@@ -524,6 +532,8 @@
 
 			out.print("<div class=\"row mt-5\">");//lista
 			out.print("<div class=\"col\">");
+
+			//tabla que muestra los analisis
 			if (analisi != null) {
 				for (Analisis a : analisi) {
 					out.print("<div class=\"shadow-lg p-3 mb-5 bg-white rounded \">");
@@ -556,7 +566,8 @@
 			out.print("</div>");
 			out.print("</div>");
 
-			out.print("</div>"); //div container
+			//fin container
+			out.print("</div>");
 		}
 	%>
 	<div class="footer bg-dark">
@@ -572,7 +583,6 @@
 				Superior DAW</p>
 			© 2020 Copyright: <a class="text-white"
 				href="https://Freak'sCorner.com/">Freak'sCorner.com</a>
-
 		</div>
 	</div>
 </body>

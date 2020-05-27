@@ -16,69 +16,85 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import modelo.ejb.AnalisisEJB;
-import modelo.ejb.JuegoEJB;
+
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
 import modelo.pojo.Comentario;
 import modelo.pojo.Foto;
-import modelo.pojo.Guia;
+
 import modelo.pojo.Usuario;
 
-
+/**
+ * Servlet que muestra la ficha del análisis
+ * 
+ * @author Cintia
+ *
+ */
 @WebServlet("/FichaAnalisis")
 public class FichaAnalisis extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
+
 	@EJB
 	UsuariosEJB userEJB;
-	
+
 	@EJB
 	SesionesEJB sesionEJB;
-	
+
 	@EJB
 	AnalisisEJB analisisEJB;
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-HttpSession session = request.getSession(false);
-		
+
+	/**
+	 * doGet que muestra la vista de la ficha de un análisis
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		HttpSession session = request.getSession(false);
+
 		Usuario usuario = sesionEJB.usuarioLogeado(session);
-		
-		String idA = request.getParameter("id");
+
+		String idA = request.getParameter("id"); // id del análisis
 		Integer id = Integer.parseInt(idA);
 
-		modelo.pojo.Analisis  analisis = analisisEJB.analisis(id);
-		
-		ArrayList<Foto> fotoAnalisis = analisisEJB.listaFotosAnalisi();
-		
-	
-		ArrayList<Usuario> users = userEJB.listaUsuarios();
-		
-		ArrayList<Comentario> coment = analisisEJB.listaComentarioAnalisi();
-		
+		modelo.pojo.Analisis analisis = analisisEJB.analisis(id); // muestra un análisis por su id
+
+		ArrayList<Foto> fotoAnalisis = analisisEJB.listaFotosAnalisi();// muetsra una lista de fotos de los analisis
+
+		ArrayList<Usuario> users = userEJB.listaUsuarios();// muestra a los usuarios
+
+		ArrayList<Comentario> coment = analisisEJB.listaComentarioAnalisi();// muestra una lista de comentarios
+
 		request.setAttribute("usuario", usuario);
 		request.setAttribute("analisis", analisis);
 		request.setAttribute("fotoAnalisis", fotoAnalisis);
 		request.setAttribute("users", users);
 		request.setAttribute("coment", coment);
-		
+
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/fichas/FichaAnalisis.jsp");
 		rs.forward(request, response);
 	}
 
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	/**
+	 * doPost para añadir un comentario a la ficha del análisis
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		String comentario = request.getParameter("com");
-		String idA = request.getParameter("idJ");
-		String idU = request.getParameter("idU");
-		
+		String idA = request.getParameter("idJ"); // id del análisis
+		String idU = request.getParameter("idU"); // id del usuario
+
 		Integer idAnalisis = Integer.parseInt(idA);
 		Integer idUsuario = Integer.parseInt(idU);
-		
+
 		Date date = new Date();
-		
+
 		DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-		
+
 		analisisEJB.insertComentarioAnalisis(comentario, hourdateFormat.format(date), idUsuario, idAnalisis);
-		
-		response.sendRedirect("FichaAnalisis?id="+idAnalisis);
+
+		response.sendRedirect("FichaAnalisis?id=" + idAnalisis);
 	}
 
 }

@@ -19,14 +19,15 @@ import modelo.pojo.Usuario;
 
 /**
  * Servlet para Comunidad
+ * 
  * @author Cintia
  *
  */
 @WebServlet("/Comunidad")
 public class Comunidad extends HttpServlet {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * EJB para llamar a los métodos
 	 */
@@ -35,28 +36,29 @@ public class Comunidad extends HttpServlet {
 
 	@EJB
 	SesionesEJB sesionesEJB;
-	
+
 	@EJB
 	JuegoEJB juegoEJB;
 
 	/**
 	 * Doget para mostrar el contenido de comunidad
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		HttpSession session = request.getSession(false);
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
-		
-		 ArrayList<modelo.pojo.Comunidad> comunidad = juegoEJB.listaHilos();
-		 ArrayList<modelo.pojo.Usuario> users = usuariosEJB.listaUsuarios();
-		 
+
+		ArrayList<modelo.pojo.Comunidad> comunidad = juegoEJB.listaHilos(); // Lista para mostrar los hilos
+		ArrayList<modelo.pojo.Usuario> users = usuariosEJB.listaUsuarios();// Lista de usuarios
+
 		request.setAttribute("usuario", usuario);
 		request.setAttribute("comunidad", comunidad);
 		request.setAttribute("users", users);
-		
+
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Comunidad.jsp");
 		rs.forward(request, response);
 	}
-
 
 }

@@ -34,8 +34,8 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="h nav-link text-white p-4"
-						href="Main">Inicio</a></li>
+					<li class="nav-item active"><a
+						class="h nav-link text-white p-4" href="Main">Inicio</a></li>
 					<li class="nav-item"><a class=" nav-link text-white p-4"
 						href="Registro">Registrarse</a></li>
 					<li class="nav-item"><a class=" nav-link text-white p-4"
@@ -69,8 +69,8 @@
 			</div>
 		</nav>
 	</header>
+	
 	<div class="container p-5 ">
-
 		<div class="row mt-5">
 			<div class="col">
 				<h2>¡Se te ha enviado un correo, mira en tu bandeja de entrada!</h2>
@@ -83,7 +83,7 @@
 	<div class="row mt-5">
 		<div class="col"></div>
 	</div>
-		<div class="row">
+	<div class="row">
 		<div class="col"></div>
 	</div>
 

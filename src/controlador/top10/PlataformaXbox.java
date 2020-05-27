@@ -18,6 +18,12 @@ import modelo.ejb.UsuariosEJB;
 import modelo.pojo.Foto;
 import modelo.pojo.Usuario;
 
+/**
+ * Servlet que muestra el top 10 de XboxOne
+ * 
+ * @author Cintia
+ *
+ */
 @WebServlet("/PlataformaXbox")
 public class PlataformaXbox extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -31,17 +37,21 @@ public class PlataformaXbox extends HttpServlet {
 	@EJB
 	JuegoEJB juegoEJB;
 
+	/**
+	 * doGet que muestra el top 10 de la XboxOne
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		HttpSession session = request.getSession(false);
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
 
+		// id de la plataforma
 		String idP = request.getParameter("id");
 		Integer id = Integer.parseInt(idP);
 
 		ArrayList<modelo.pojo.Top10> top = juegoEJB.listaTop10Plataformas(id);
-
 		ArrayList<Foto> foto = juegoEJB.listaFotosJuegos();
 
 		request.setAttribute("foto", foto);

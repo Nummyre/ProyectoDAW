@@ -18,6 +18,12 @@ import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
 import modelo.pojo.Usuario;
 
+/**
+ * Servlet para hacer update de la foto de perfil
+ * 
+ * @author Cintia
+ *
+ */
 @WebServlet("/UpdatePerfil")
 @MultipartConfig(maxFileSize = 1024 * 1024 * 5)
 public class UpdatePerfil extends HttpServlet {
@@ -31,24 +37,23 @@ public class UpdatePerfil extends HttpServlet {
 
 	// Variable para guardar la imagen
 	private static final String UPLOAD_DIRECTORY = "Imagenes";
-	
-	
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	/**
+	 * doPost para hacer el update de la foto de perfil
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		String id = request.getParameter("id");
 
 		Integer idUser = Integer.parseInt(id);
-		
-		
-		
+
 		// Coge la sesion abierta
 		HttpSession session = request.getSession(true);
 
 		// Comprueba que el usuario esta logeado y tiene la sesion
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
-	
-		
+
 		// Multipart RFC 7578
 
 		// Obtenemos una ruta en el servidor para guardar el archivo
@@ -59,7 +64,6 @@ public class UpdatePerfil extends HttpServlet {
 		if (!uploadDir.exists()) {
 			uploadDir.mkdir();
 		}
-	
 
 		// Lo utilizaremos para guardar el nombre del archivo
 		String fileName = null;
@@ -69,20 +73,18 @@ public class UpdatePerfil extends HttpServlet {
 			fileName = getFileName(part);
 			part.write(uploadPath + File.separator + fileName);
 		}
-	
 
 		usuariosEJB.updateUsuario(fileName, idUser);
-		
+
+		// Coge el usuario de la sesión y le inserta la foto nueva
 		Usuario u = (Usuario) session.getAttribute("usuario");
 		u.setFoto(fileName);
+
 		session.setAttribute("usuario", u);
-
-	
-
-
 		request.setAttribute("usuario", usuario);
+
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Main.jsp");
-		rs.forward(request, response);// Poner en javascript un mensaje
+		rs.forward(request, response);
 
 	}
 

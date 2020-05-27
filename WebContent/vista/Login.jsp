@@ -37,8 +37,8 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="h nav-link text-white p-4"
-					href="Main">Inicio</a></li>
+				<li class="nav-item active"><a
+					class="h nav-link text-white p-4" href="Main">Inicio</a></li>
 				<li class="nav-item"><a class=" nav-link text-white p-4"
 					href="Registro">Registrarse</a></li>
 				<li class="nav-item"><a class=" nav-link text-white p-4"
@@ -96,17 +96,19 @@
 					</div>
 				</div>
 				<div class="col-4 mb-3">
-					Contraseña:
-					<input type="password" class="form-control" id="validationTooltip02"placeholder="Contraseña" name="password">
-						<a href="RestablecerPass">¿Has olvidado la contraseña?</a>
+					Contraseña: <input type="password" class="form-control"
+						id="validationTooltip02" placeholder="Contraseña" name="password">
+					<a href="RestablecerPass">¿Has olvidado la contraseña?</a>
 				</div>
-				
-					<div class="col-2 mb-3 mt-4 ml-2">
-				<i class='fas fa-eye-slash' id="ojo" onclick="abrir()"></i>
+
+				<div class="col-2 mb-3 mt-4 ml-2">
+					<i class='fas fa-eye-slash' id="ojo" onclick="abrir()"></i>
 				</div>
 			</div>
 			<%
-				if (error != null) {	
+				//si el error distinto a nulo
+				//que muestre un mensaje de error
+				if (error != null) {
 					out.print("<div class=\"row mt-2 mb-5\">");
 					out.print("<div class=\"col-4\">");
 					out.print("<div class=\"alert alert-danger\">");
@@ -114,7 +116,7 @@
 					out.print("</div>");
 					out.print("</div>");
 					out.print("</div>");
-				} 
+				}
 			%>
 			<div class="row mt-5">
 				<div class="col-4">

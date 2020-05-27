@@ -36,8 +36,8 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="h nav-link text-white p-4"
-					href="Main">Inicio</a></li>
+				<li class="nav-item active"><a
+					class="h nav-link text-white p-4" href="Main">Inicio</a></li>
 				<li class="nav-item"><a class=" nav-link text-white p-4"
 					href="Registro">Registrarse</a></li>
 				<li class="nav-item"><a class=" nav-link text-white p-4"
@@ -80,18 +80,16 @@
 
 		<form class="needs-validation" method="post" action="RestablecerPass">
 			<div class="form-row mt-4">
-	
+
 				<div class="col-md-4 mb-3">
-					<label>*Email:</label> <input type="email" class="form-control" id="e"
-						placeholder="name@example.com" name="email" >
-						
+					<label>*Email:</label> <input type="email" class="form-control"
+						id="e" placeholder="name@example.com" name="email">
 				</div>
-				
-				
+
 			</div>
-			
-				<%
-				if (error != null) {	
+
+			<%
+				if (error != null) {
 					out.print("<div class=\"row mt-2 mb-5\">");
 					out.print("<div class=\"col-4\">");
 					out.print("<div class=\"alert alert-danger\">");
@@ -99,10 +97,9 @@
 					out.print("</div>");
 					out.print("</div>");
 					out.print("</div>");
-				} 
+				}
 			%>
-			
-			
+
 			<div class="row mt-5">
 				<div class="col-4">
 					<button type="submit" class="btn btn-success">Enviar</button>

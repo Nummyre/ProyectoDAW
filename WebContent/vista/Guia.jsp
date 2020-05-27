@@ -31,8 +31,8 @@
 <body>
 	<%
 		Usuario user = (Usuario) request.getAttribute("usuario");
-	ArrayList<Guia> guias = (ArrayList<Guia>) request.getAttribute("guias");
-	ArrayList<Foto> foto = (ArrayList<Foto>) request.getAttribute("foto");
+		ArrayList<Guia> guias = (ArrayList<Guia>) request.getAttribute("guias");
+		ArrayList<Foto> foto = (ArrayList<Foto>) request.getAttribute("foto");
 
 		if (user == null) {
 			out.print("<header>");
@@ -79,7 +79,8 @@
 			out.print("</form>");
 			out.print("</div>");
 			out.print("</nav>");
-			//--------------------------------------------------------
+		
+			//barra de plataformas
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-success\">");
 			out.print("<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">");
 			out.print("<ul class=\"navbar-nav ml-5\">");
@@ -99,9 +100,8 @@
 			out.print("</div>");
 			out.print("</nav>");
 			out.print("</header>");
-			//-----------------------------------------------------------------------------------------
-			
-			
+
+			//container
 			out.print("<div class=\"container mt-5 p-4\">");
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col\">");
@@ -110,8 +110,7 @@
 			out.print("</div>");
 
 			out.print("<div class=\"form-row mt-4\"");
-
-			//----TABLA------------------------------
+			//TABLA
 			out.print("<div class=\"col\">");
 			out.print("<div class=\"table-responsive\">");
 			out.print("<table class=\"table shadow-lg\">");
@@ -123,30 +122,32 @@
 			out.print("</tr>");
 			out.print("</thead>");
 			out.print("<tbody>");
-			if(guias!=null){
-				for(Guia n : guias){
+			if (guias != null) {
+				for (Guia n : guias) {
 					out.print("<tr>");
-						for(Foto f : foto){
-					if(f.getIdJuego() == n.getId()){
-					out.print("<td><img src=\"Imagenes/"+f.getFoto()+"\" width=\"60\" height=\"50\" class=\"rounded mx-auto d-block\"</td>");
-					}
+					for (Foto f : foto) {
+						if (f.getIdJuego() == n.getId()) {
+							out.print("<td><img src=\"Imagenes/" + f.getFoto()
+									+ "\" width=\"60\" height=\"50\" class=\"rounded mx-auto d-block\"</td>");
 						}
-				out.print("<td><a href=\"FichaGuia?id="+n.getId()+"\">"+n.getTitulo()+"</a></td>");
-				out.print("<td>"+n.getTexto().substring(0, 120)+"...</td>");
-				out.print("</tr>");
-			
+					}
+					out.print("<td><a href=\"FichaGuia?id=" + n.getId() + "\">" + n.getTitulo() + "</a></td>");
+					out.print("<td>" + n.getTexto().substring(0, 120) + "...</td>");
+					out.print("</tr>");
+
 				}
-				}
+			}
 			out.print("</tbody>");
 			out.print("</table>");
 			out.print("</div>");
-			//-----------------------
-			out.print("</div>");
+
 			out.print("</div>");
 			out.print("</div>");
 			
-		
-			
+			//fin container
+			out.print("</div>");
+
+			//sino que muestre una vista de usuario logeado
 		} else {
 			out.print("<header>");
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">");
@@ -204,7 +205,7 @@
 			out.print("</form>");
 			out.print("</nav>");
 
-			//--------------------------------------------------------
+			//menu plataformas
 			out.print("<nav class=\"n navbar navbar-expand-lg navbar-dark bg-success\">");
 			out.print("<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">");
 			out.print("<ul class=\"navbar-nav ml-5\">");
@@ -224,7 +225,6 @@
 			out.print("</div>");
 			out.print("</nav>");
 			out.print("</header>");
-			
 
 			out.print("<div class=\"container mt-5 p-4\">");
 			out.print("<div class=\"row\">");
@@ -234,8 +234,7 @@
 			out.print("</div>");
 
 			out.print("<div class=\"form-row mt-4\">");
-
-			//----TABLA------------------------------
+			//TABLA
 			out.print("<div class=\"col\">");
 			out.print("<div class=\"table-responsive\">");
 			out.print("<table class=\"table shadow-lg\">");
@@ -247,37 +246,40 @@
 			out.print("</tr>");
 			out.print("</thead>");
 			out.print("<tbody>");
-			if(guias!=null){
-			for(Guia n : guias){
-				out.print("<tr>");
-					for(Foto f : foto){
-				if(f.getIdJuego() == n.getId()){
-				out.print("<td><img src=\"Imagenes/"+f.getFoto()+"\" width=\"60\" height=\"50\" class=\"rounded mx-auto d-block\"</td>");
-				}
+			
+			//muestra una lista de guias
+			if (guias != null) {
+				for (Guia n : guias) {
+					out.print("<tr>");
+					for (Foto f : foto) {
+						if (f.getIdJuego() == n.getId()) {
+							out.print("<td><img src=\"Imagenes/" + f.getFoto()
+									+ "\" width=\"60\" height=\"50\" class=\"rounded mx-auto d-block\"</td>");
+						}
 					}
-			out.print("<td><a href=\"FichaGuia?id="+n.getId()+"\">"+n.getTitulo()+"</a></td>");
-			out.print("<td>"+n.getTexto().substring(0, 120)+"...</td>");
-			out.print("</tr>");
-		
-			}
+					out.print("<td><a href=\"FichaGuia?id=" + n.getId() + "\">" + n.getTitulo() + "</a></td>");
+					out.print("<td>" + n.getTexto().substring(0, 120) + "...</td>");
+					out.print("</tr>");
+
+				}
 			}
 			out.print("</tbody>");
 			out.print("</table>");
 			out.print("</div>");
-			//-----------------------
-			out.print("</div>");
+
 			out.print("</div>");
 			out.print("</div>");
 			
-			
+			//fin container
+			out.print("</div>");
+
 		}
 	%>
-			<div class="footer bg-dark">
- <div class="footer-copyright text-center py-3 bg-success">
+	<div class="footer bg-dark">
+		<div class="footer-copyright text-center py-3 bg-success">
 			© 2020 Copyright: <a class="text-white"
 				href="https://Freak'sCorner.com/">Freak'sCorner.com</a>
-		
-	</div>
 		</div>
-	</body>
-	</html>
+	</div>
+</body>
+</html>

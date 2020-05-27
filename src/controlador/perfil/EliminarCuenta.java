@@ -14,33 +14,41 @@ import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
 import modelo.pojo.Usuario;
 
+/**
+ * Servlet para eliminar la cuenta de un usuario
+ * 
+ * @author Cintia
+ *
+ */
 @WebServlet("/EliminarCuenta")
 public class EliminarCuenta extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	@EJB
 	UsuariosEJB usuariosEJB;
 
 	@EJB
 	SesionesEJB sesionesEJB;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		//Coge la sesion abierta
+	/**
+	 * doGet para eliminar la cuenta del usuario
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		// Coge la sesion abierta
 		HttpSession session = request.getSession(true);
 
-		//Comprueba que el usuario esta logeado y tiene la sesion
+		// Comprueba que el usuario esta logeado y tiene la sesion
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
 
-		//Coge el id del usuario y utiliza el metodo para borrarlo de la base de datos
-			usuariosEJB.darseDeBaja(usuario.getId());
-			
-			//Cierra la sesion
-			sesionesEJB.logoutUsuario(session);
-			
-			response.sendRedirect("Main"); // Hacer un jsp que de un mensaje del borrado de cuenta*
-	}
+		// Coge el id del usuario y utiliza el metodo para borrarlo de la base de datos
+		usuariosEJB.darseDeBaja(usuario.getId());
 
+		// Cierra la sesion
+		sesionesEJB.logoutUsuario(session);
+
+		response.sendRedirect("Main");
+	}
 
 }

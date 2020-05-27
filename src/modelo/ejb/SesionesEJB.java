@@ -7,10 +7,11 @@ import javax.servlet.http.HttpSession;
 import modelo.pojo.Usuario;
 
 /**
+ * Clase para establecer las sesiones de los usuarios
  * 
  * @author Cintia
  *
- *         Clase para establecer las sesiones de los usuarios
+ * 
  */
 
 @Stateless
@@ -35,6 +36,7 @@ public class SesionesEJB {
 
 	/**
 	 * Metodo para comprobar el id de un usuario logeado
+	 * 
 	 * @param session
 	 * @return
 	 */
@@ -50,6 +52,7 @@ public class SesionesEJB {
 
 	/**
 	 * Metodo para el login de un usuario
+	 * 
 	 * @param session
 	 * @param usuario
 	 */

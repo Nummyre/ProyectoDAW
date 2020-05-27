@@ -19,14 +19,14 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	<link href="img/logo4.png" rel="icon" type="image/x-icon" />
+<link href="img/logo4.png" rel="icon" type="image/x-icon" />
 <link rel="stylesheet" type="text/css" href="css/Style.css">
 </head>
 <body>
 	<%
 		Usuario user = (Usuario) request.getAttribute("usuario");
-	ArrayList<Comunidad> comunidad = (ArrayList<Comunidad>) request.getAttribute("comunidad");
-	ArrayList<Usuario> users = (ArrayList<Usuario>) request.getAttribute("users");
+		ArrayList<Comunidad> comunidad = (ArrayList<Comunidad>) request.getAttribute("comunidad");
+		ArrayList<Usuario> users = (ArrayList<Usuario>) request.getAttribute("users");
 
 		if (user == null) {
 			out.print("<header>");
@@ -73,7 +73,8 @@
 			out.print("</form>");
 			out.print("</div>");
 			out.print("</nav>");
-			//--------------------------------------------------------
+			
+			//menu plataformas
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-success\">");
 			out.print("<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">");
 			out.print("<ul class=\"navbar-nav ml-5\">");
@@ -93,46 +94,48 @@
 			out.print("</div>");
 			out.print("</nav>");
 			out.print("</header>");
-			//-----------------------------------------------------------------------------------------
 			
-			
+			//container
 			out.print("<div class=\"container mt-5 p-5 \">");
+			
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col\">");
 			out.print("<h3>Comunidad</h3>");
 			out.print("</div>");
 			out.print("</div>");
+			
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col-md-4\">");
+			int totalUsuarios = users.size();
+			out.print("<h5>Usuarios registrados: " + totalUsuarios + "</h5>");
+			out.print("</div>");
+			out.print("</div>");
 			
-				int totalUsuarios = users.size();
-				
-			out.print("<h5>Usuarios registrados: "+totalUsuarios+"</h5>");
-			out.print("</div>");
-			out.print("</div>");
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col-md-3\"></div>");
 			out.print("<div class=\"col-md-3\">");
-			out.print("<a href=\"Registro\"><button type=\"button\" class=\"btn btn-primary\">Registrate</button></a>");
+			out.print(
+					"<a href=\"Registro\"><button type=\"button\" class=\"btn btn-primary\">Registrate</button></a>");
 			out.print("</div>");
 			out.print("<div class=\"col-md-3\">");
-			out.print("<a href=\"Login\"><button type=\"button\" class=\"btn btn-success\">Inicia Sesión</button></a>");
+			out.print(
+					"<a href=\"Login\"><button type=\"button\" class=\"btn btn-success\">Inicia Sesión</button></a>");
 			out.print("</div>");
 			out.print("</div>");
-			
+
 			out.print("<div class=\"form-row mt-4\">");
-			//----TABLA------------------------------
+			//TABLA
 			out.print("<div class=\"col\">");
+			out.print(
+					"<p>¿Quieres colaborar en nuestra comunidad? Sí no tienes una cuenta registrate en nuestra web o si ya tienes una cuenta inicia sesión</p>");
 
-			out.print("<p>¿Quieres colaborar en nuestra comunidad? Sí no tienes una cuenta registrate en nuestra web o si ya tienes una cuenta inicia sesión</p>");
-
-			//-----------------------
-			out.print("</div>");
 			out.print("</div>");
 			out.print("</div>");
 			
-		
-			
+			//fin container
+			out.print("</div>");
+
+			//sino que muestre una vista de usuario logeado
 		} else {
 			out.print("<header>");
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">");
@@ -190,7 +193,7 @@
 			out.print("</form>");
 			out.print("</nav>");
 
-			//--------------------------------------------------------
+			//menu de plataformas
 			out.print("<nav class=\"n navbar navbar-expand-lg navbar-dark bg-success\">");
 			out.print("<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">");
 			out.print("<ul class=\"navbar-nav ml-5\">");
@@ -210,17 +213,17 @@
 			out.print("</div>");
 			out.print("</nav>");
 			out.print("</header>");
-			
+
+			//container
 			out.print("<div class=\"container mt-5 p-5\">");
+			
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col\">");
 			out.print("<h3>Comunidad</h3>");
 			out.print("</div>");
 			out.print("</div>");
-		
-				int totalUsuarios = users.size();
-				
-			out.print("<h5>Usuarios registrados: "+totalUsuarios+"</h5>");
+			int totalUsuarios = users.size();
+			out.print("<h5>Usuarios registrados: " + totalUsuarios + "</h5>");
 			
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col\">");
@@ -231,44 +234,52 @@
 			out.print("</div>");
 			out.print("<div class=\"col\">");
 			out.print("</div>");
-			out.print("<a href=\"InsertHilo\"><button type=\"button\" class=\"btn btn-info\">Crea un hilo</button></a>");
+			out.print(
+					"<a href=\"InsertHilo\"><button type=\"button\" class=\"btn btn-info\">Crea un hilo</button></a>");
 			out.print("</div>");
 			out.print("<hr>");
+			
 			out.print("<div class=\"form-row mt-4\">");
-
-			//----TABLA------------------------------
 			out.print("<div class=\"col\">");
 
-			if(comunidad!=null){
-			for(Comunidad c : comunidad){
-				for (Usuario us : users) {
-					if(us.getId() == c.getIdUsuario()){
-					if (!user.getFoto().equals("desconocido.txt")) {
-				out.print("<div class=\"card mt-3 bg-light text-white w-100\">");
-				out.print("<div class=\"card-body\"><h2 class=\"text-dark\"></h2><img src=\"Imagenes/" + us.getFoto()+ "\" width=\"95\" height=\"80\" class=\"mr-5 rounded\">");//comentario
-					}else{
-						out.print("<div class=\"card mt-3 bg-light text-white w-100\">");
-						out.print("<div class=\"card-body\"><h2 class=\"text-dark\"></h2><img src=\"img/usuari.jpg\" width=\"95\" height=\"80\" class=\"mr-5 rounded\">");//comentario
+			//muestre los comentarios que hay en la comunidad
+			if (comunidad != null) {
+				for (Comunidad c : comunidad) {
+					for (Usuario us : users) {
+						if (us.getId() == c.getIdUsuario()) {
+							if (!user.getFoto().equals("desconocido.txt")) {
+								out.print("<div class=\"card mt-3 bg-light text-white w-100\">");
+								out.print(
+										"<div class=\"card-body\"><h2 class=\"text-dark\"></h2><img src=\"Imagenes/"
+												+ us.getFoto()
+												+ "\" width=\"95\" height=\"80\" class=\"mr-5 rounded\">");//comentario
+							} else {
+								out.print("<div class=\"card mt-3 bg-light text-white w-100\">");
+								out.print(
+										"<div class=\"card-body\"><h2 class=\"text-dark\"></h2><img src=\"img/usuari.jpg\" width=\"95\" height=\"80\" class=\"mr-5 rounded\">");//comentario
+							}
+							out.print(
+									"<p class=\"text-dark mt-3\">" + us.getUser() + " - " + c.getFecha() + "</p>");
+							out.print("<br>");
+							out.print("<a href=\"FichaHilo?id=" + c.getId() + "\"><h5 class=\"mr-5\">"
+									+ c.getTitulo() + "</h5></a>");
+							out.print("</div>");
+							out.print("</div>");
+						}
 					}
-					out.print(
-							"<p class=\"text-dark mt-3\">" + us.getUser() + " - " + c.getFecha() + "</p>");
-					out.print("<br>");
-					out.print("<a href=\"FichaHilo?id="+c.getId()+"\"><h5 class=\"mr-5\">" + c.getTitulo() + "</h5></a>");
-					out.print("</div>");
-					out.print("</div>");
-				}
-				}
-				
+
 				}
 			}
-			//-----------------------
-			out.print("</div>");
+
 			out.print("</div>");
 			out.print("</div>");
 			
+			//fin container
+			out.print("</div>");
+
 		}
 	%>
-		<div class="footer bg-dark">
+	<div class="footer bg-dark">
 		<div class="footer-copyright text-center py-3 bg-success">
 			© 2020 Copyright: <a class="text-white"
 				href="https://Freak'sCorner.com/">Freak'sCorner.com</a>

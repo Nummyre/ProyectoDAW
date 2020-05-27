@@ -34,9 +34,9 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="h nav-link text-white p-4"
-						href="Main">Inicio</a></li>
-						<li class="nav-item dropdown"><a
+					<li class="nav-item active"><a
+						class="h nav-link text-white p-4" href="Main">Inicio</a></li>
+					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle p-4" href="#" id="navbarDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Categorías</a>
@@ -58,9 +58,11 @@
 		<div class="collapse" id="navbarToggleExternalContent">
 			<div class="bg-success p-4">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item text-white"><h5>Email: freakscorner2020@gmail.com</h5></li>
+					<li class="nav-item text-white"><h5>Email:
+							freakscorner2020@gmail.com</h5></li>
 					<li class="nav-item text-white"><h5>Teléfono: 555-555-555</h5></li>
-					<li class="nav-item text-white"><h5>C/ Plaza españa CP: 0780 Mallorca</h5></li>
+					<li class="nav-item text-white"><h5>C/ Plaza españa CP:
+							0780 Mallorca</h5></li>
 				</ul>
 			</div>
 		</div>
@@ -92,7 +94,8 @@
 		<p>Sí tienes un problema o alguna pregunta sobre la web, no dudes
 			en contactarnos. Un administrador se pondrá en contacto con usted.</p>
 		<p>
-			Envíe un mensaje al correo electrónico: <strong> freakscorner2020@gmail.com</strong>
+			Envíe un mensaje al correo electrónico: <strong>
+				freakscorner2020@gmail.com</strong>
 		</p>
 
 	</div>

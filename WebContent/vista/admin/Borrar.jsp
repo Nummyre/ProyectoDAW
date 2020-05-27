@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-        <%@page import="modelo.pojo.Usuario"%>
-        <%@page import="modelo.pojo.Juego"%>
-        <%@page import="java.util.ArrayList"%>
+	pageEncoding="UTF-8"%>
+<%@page import="modelo.pojo.Usuario"%>
+<%@page import="modelo.pojo.Juego"%>
+<%@page import="java.util.ArrayList"%>
 <%@page session="false"%>
 <!DOCTYPE html>
 <html>
@@ -26,10 +26,11 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <body>
 
-<%
+	<%
 		Usuario user = (Usuario) request.getAttribute("usuario");
-ArrayList<Juego> listaJuego = (ArrayList<Juego>) request.getAttribute("listaJuego");
-	
+		ArrayList<Juego> listaJuego = (ArrayList<Juego>) request.getAttribute("listaJuego");
+
+		//Usuario es nulo que muestre un header de invitado
 		if (user == null) {
 			out.print("<header>");
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">");
@@ -77,9 +78,13 @@ ArrayList<Juego> listaJuego = (ArrayList<Juego>) request.getAttribute("listaJueg
 			out.print("</nav>");
 
 			out.print("</header>");
-			out.print("<div class=\"container mt-5 p-5\">"); //Empieza container
+
+			//Empieza container
+			out.print("<div class=\"container mt-5 p-5\">");
 			out.print("<h3>Se ha perdido la sesión</h3>");
 			out.print("</div>");
+
+			//sino que muestre una vista con el usuario logeado
 		} else {
 			out.print("<header>");
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">");
@@ -110,27 +115,27 @@ ArrayList<Juego> listaJuego = (ArrayList<Juego>) request.getAttribute("listaJueg
 			out.print("<a class=\"nav-link text-white p-4\" href=\"Contacto\">Contacto</a>");
 			out.print("</li>");
 			out.print("<li class=\"nav-item dropdown\">");
-			if(user.getAdministrador() == 1){
-			out.print(
-					"<a class=\"nav-link dropdown-toggle ml-5 p-4\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Administrador</a>");
-			out.print("<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">");
-			out.print("<a class=\"dropdown-item\" href=\"Add\">Añadir juego</a>");
-			out.print("<a class=\"dropdown-item\" href=\"Editar?id=" + user.getId() + "\">Editar juego</a>");
-			out.print("<a class=\"dropdown-item\" href=\"Borrar?id=" + user.getId() + "\">Borrar juego</a>");
-			out.print("<div class=\"dropdown-divider\"></div>");
-			out.print("<a class=\"dropdown-item\" href=\"AddGuia\">Añadir guía</a>");
-			out.print(
-					"<a class=\"dropdown-item\" href=\"EditarListaGuia?id=" + user.getId() + "\">Editar guía</a>");
-			out.print(
-					"<a class=\"dropdown-item\" href=\"BorrarListaGuia?id=" + user.getId() + "\">Borrar guia</a>");
-			out.print("<div class=\"dropdown-divider\"></div>");
-			out.print("<a class=\"dropdown-item\" href=\"AddAnalisis\">Añadir análisis</a>");
-			out.print("<a class=\"dropdown-item\" href=\"EditarListaAnalisis?id=" + user.getId()
-					+ "\">Editar análisis</a>");
-			out.print("<a class=\"dropdown-item\" href=\"BorrarListaAnalisis?id=" + user.getId()
-					+ "\">Borrar análisis</a>");
-			out.print("</div>");
-			out.print("</li>");
+			if (user.getAdministrador() == 1) {
+				out.print(
+						"<a class=\"nav-link dropdown-toggle ml-5 p-4\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Administrador</a>");
+				out.print("<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">");
+				out.print("<a class=\"dropdown-item\" href=\"Add\">Añadir juego</a>");
+				out.print("<a class=\"dropdown-item\" href=\"Editar?id=" + user.getId() + "\">Editar juego</a>");
+				out.print("<a class=\"dropdown-item\" href=\"Borrar?id=" + user.getId() + "\">Borrar juego</a>");
+				out.print("<div class=\"dropdown-divider\"></div>");
+				out.print("<a class=\"dropdown-item\" href=\"AddGuia\">Añadir guía</a>");
+				out.print("<a class=\"dropdown-item\" href=\"EditarListaGuia?id=" + user.getId()
+						+ "\">Editar guía</a>");
+				out.print("<a class=\"dropdown-item\" href=\"BorrarListaGuia?id=" + user.getId()
+						+ "\">Borrar guia</a>");
+				out.print("<div class=\"dropdown-divider\"></div>");
+				out.print("<a class=\"dropdown-item\" href=\"AddAnalisis\">Añadir análisis</a>");
+				out.print("<a class=\"dropdown-item\" href=\"EditarListaAnalisis?id=" + user.getId()
+						+ "\">Editar análisis</a>");
+				out.print("<a class=\"dropdown-item\" href=\"BorrarListaAnalisis?id=" + user.getId()
+						+ "\">Borrar análisis</a>");
+				out.print("</div>");
+				out.print("</li>");
 			}
 			out.print("</ul>");
 			out.print("<form class=\"form-inline ml-5\">");
@@ -140,7 +145,8 @@ ArrayList<Juego> listaJuego = (ArrayList<Juego>) request.getAttribute("listaJueg
 				out.print("<img src=\"img/usuari.png\" width=\"100\" height=\"65\" class=\"img-circle\">");
 			} else {
 				if (user.getFoto().matches(".+\\.(jpg|png)")) {
-					out.print("<img src=\"Imagenes/" + user.getFoto() + "\" width=\"95\" height=\"65\" class=\"rounded-circle mr-4\"/>");
+					out.print("<img src=\"Imagenes/" + user.getFoto()
+							+ "\" width=\"95\" height=\"65\" class=\"rounded-circle mr-4\"/>");
 				}
 			}
 			out.print("</div>");
@@ -159,41 +165,53 @@ ArrayList<Juego> listaJuego = (ArrayList<Juego>) request.getAttribute("listaJueg
 			out.print("</form>");
 			out.print("</nav>");
 			out.print("</header>");
-			
-			out.print("<div class=\"container mt-5 p-5\">"); //Empieza container
+
+			//Empieza container
+			out.print("<div class=\"container mt-5 p-5\">");
+
+			//1 row
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col mb-5\">");
 			out.print("<h3>Tu lista de juegos añadidos</h3>");
 			out.print("</div>");
 			out.print("</div>");
+
+			//2 row
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col mb-5\">");
 			out.print("<table class=\"ta\">");
-		
+
+			//si juego es nulo
 			if (listaJuego != null) {
+
+				//for para mostrar lista de juegos
 				for (Juego j : listaJuego) {
 					out.print("<tr>");
-					out.print("<td><a href=\"FichaJuego?id=" + j.getId() + "\">" + j.getTitulo()+ "</td>");
-					out.print("<td><a href=\"Borrado?id=" + j.getId()+ "\"><button type=\"button\" class=\"btn btn-success\" onclick=\"return confirm('¿Seguro que quieres borrar?');\">Borrar Juego</button></a></td>");
+					out.print("<td><a href=\"FichaJuego?id=" + j.getId() + "\">" + j.getTitulo() + "</td>");
+					out.print("<td><a href=\"Borrado?id=" + j.getId()
+							+ "\"><button type=\"button\" class=\"btn btn-success\" onclick=\"return confirm('¿Seguro que quieres borrar?');\">Borrar Juego</button></a></td>");
 					out.print("</tr>");
 				}
+
+				//sino que muestre un boton para añadir juegos
 			} else {
 				out.print("<h5>¿No tienes juegos? Añade el primero</h5>");
 				out.print(
 						"<a href=\"Add\"><button type=\"button\" class=\"btn btn-success ml-5\">Añadir juego</button></a>");
 			}
-		
+
 			out.print("</table>");
 			out.print("</div>");
 			out.print("</div>");
+
+			//fin del container
 			out.print("</div>");
 		}
 	%>
-		<div class="footer bg-dark">
+	<div class="footer bg-dark">
 		<div class="footer-copyright text-center py-3 bg-success">
 			© 2020 Copyright: <a class="text-white"
 				href="https://Freak'sCorner.com/">Freak'sCorner.com</a>
-				<p class="mt-3">Esta web es ficticia para un proyecto de 2º FP Superior DAW</p>
 		</div>
 	</div>
 </body>

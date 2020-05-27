@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-        <%@page import="modelo.pojo.Usuario"%>
+	pageEncoding="UTF-8"%>
+<%@page import="modelo.pojo.Usuario"%>
 <%@page session="false"%>
 <%@page import="java.util.ArrayList"%>
-     <%@page import="modelo.pojo.Juego"%>
-        <%@page import="modelo.pojo.Genero"%>
-           <%@page import="modelo.pojo.Plataforma"%>
+<%@page import="modelo.pojo.Juego"%>
+<%@page import="modelo.pojo.Genero"%>
+<%@page import="modelo.pojo.Plataforma"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +13,8 @@
 <title>Freak's Corner</title>
 <link href="img/logo4.png" rel="icon" type="image/x-icon" />
 <link rel="stylesheet" type="text/css" href="css/Style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script
@@ -22,16 +23,16 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-		<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
-	<script type="text/javascript" src="js/Fichas.js"></script>
+<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+<script type="text/javascript" src="js/Fichas.js"></script>
 <body onload="editor()">
 
-<%
+	<%
 		Usuario user = (Usuario) request.getAttribute("usuario");
 		Juego juego = (Juego) request.getAttribute("juego");
 		ArrayList<Genero> juegoList = (ArrayList<Genero>) request.getAttribute("genero");
 		ArrayList<Plataforma> juegoListP = (ArrayList<Plataforma>) request.getAttribute("plataforma");
-	
+
 		if (user == null) {
 			out.print("<header>");
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">");
@@ -79,9 +80,13 @@
 			out.print("</nav>");
 
 			out.print("</header>");
-			out.print("<div class=\"container mt-5 p-5\">"); //Empieza container
+
+			//Empieza container
+			out.print("<div class=\"container mt-5 p-5\">");
 			out.print("<h3>Se ha perdido la sesión</h3>");
 			out.print("</div>");
+
+			//sino que muestre un usuario logeado
 		} else {
 			out.print("<header>");
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">");
@@ -119,7 +124,8 @@
 				out.print("<img src=\"img/usuari.png\" width=\"100\" height=\"65\" class=\"img-circle\">");
 			} else {
 				if (user.getFoto().matches(".+\\.(jpg|png)")) {
-					out.print("<img src=\"Imagenes/" + user.getFoto() + "\" width=\"95\" height=\"65\" class=\"rounded-circle mr-4\"/>");
+					out.print("<img src=\"Imagenes/" + user.getFoto()
+							+ "\" width=\"95\" height=\"65\" class=\"rounded-circle mr-4\"/>");
 				}
 			}
 			out.print("</div>");
@@ -138,7 +144,7 @@
 			out.print("</form>");
 			out.print("</nav>");
 
-			//--------------------------------------------------------
+			//barra de menu para las plataformas
 			out.print("<nav class=\"n navbar navbar-expand-lg navbar-dark bg-success\">");
 			out.print("<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">");
 			out.print("<ul class=\"navbar-nav ml-5\">");
@@ -157,50 +163,55 @@
 			out.print("</ul>");
 
 			out.print("</header>");
-			
-			
-			//container----------------------------------------------
 
+			//container
 			out.print("<div class=\"container mt-5 p-5\">");
 
+			//1 row
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col\">");
 			out.print("<h3>Edita un juego a la lista</h3>");
 			out.print("</div>");
 			out.print("</div>");
 
-			//----" 2 row"------
-			out.print("<form method=\"post\" action=\"Editado\">"); //-----------form----------
+			//2 row + form
+			out.print("<form method=\"post\" action=\"Editado\">");
 			out.print("<div class=\"form-row mt-4\">");
 			out.print("<div class=\"col-md-4\">");
 			out.print("Título");
-			out.print("<input class=\"form-control\" type=\"text\" value=\""+juego.getTitulo()+"\" name=\"titulo\">");
+			out.print("<input class=\"form-control\" type=\"text\" value=\"" + juego.getTitulo()
+					+ "\" name=\"titulo\">");
 			out.print("</div>");
 
 			out.print("<div class=\"col-md-4\">");
 			out.print("Año del juego");
-			out.print("<input class=\"form-control\" type=\"number\" value=\""+juego.getAnyo()+"\" name=\"anyo\">");
+			out.print("<input class=\"form-control\" type=\"number\" value=\"" + juego.getAnyo()
+					+ "\" name=\"anyo\">");
 			out.print("</div>");
 			out.print("</div>");
 
-			//---- 3 row---
+			//3 row
 			out.print("<div class=\"form-row mt-5\">");
 			out.print("<div class=\"col-md-4\">");
 			out.print("<div class=\"form-group\">");
 			out.print("<label for=\"Select1\">Género</label>");
 
 			out.print("<select class=\"form-control\" id=\"Select1\" name=\"gen\">");
+					
+			//for para comparar genero con el genero del juego
 			for (Genero j : juegoList) {
-				if(juego.getGenero() == j.getId()){
 				
-				out.print("<option value=\"" + j.getId() + "\" selected=\"selected\">" + j.getNombre() + "</option>");
-				}else{
+				//Si el id del genero es el mismo que del genero del juego
+				if (juego.getGenero() == j.getId()) {
+
+					out.print("<option value=\"" + j.getId() + "\" selected=\"selected\">" + j.getNombre()
+							+ "</option>");
+				} else {
 					out.print("<option value=\"" + j.getId() + "\">" + j.getNombre() + "</option>");
 				}
 			}
-			
-			out.print("</select>");
 
+			out.print("</select>");
 			out.print("</div>");
 			out.print("</div>");
 
@@ -208,43 +219,52 @@
 			out.print("<div class=\"form-group\">");
 			out.print("<label for=\"Select2\">Plataforma</label>");
 			out.print("<select class=\"form-control\" id=\"Select2\" name=\"pla\">");
+
+			//for para comparar plataforma con la plataforma del juego
 			for (Plataforma j2 : juegoListP) {
-				if(juego.getPlataforma() == j2.getId()){
-			
-				out.print("<option value=\"" + j2.getId() + "\" selected=\"selected\">" + j2.getNombre() + "</option>");
-				}else{
+
+				//Si el id de la plataforma es el mismo que de la plataforma del juego
+				if (juego.getPlataforma() == j2.getId()) {
+
+					out.print("<option value=\"" + j2.getId() + "\" selected=\"selected\">" + j2.getNombre()
+							+ "</option>");
+				} else {
 					out.print("<option value=\"" + j2.getId() + "\">" + j2.getNombre() + "</option>");
 				}
 			}
-			
+
 			out.print("</select>");
 			out.print("</div>");
 
 			out.print("</div>");
 			out.print("</div>");
 
-			//-----------4 row---
+			//4 row
 			out.print("<div class=\"form-row mt-5\">");
 			out.print("<div class=\"col\">");
 			out.print("<div class=\"form-group\">");
 			out.print("<p>Descripción del juego</p>");
-			out.print("<textarea class=\"form-control mt-2\" id=\"editor1\" rows=\"3\" name=\"desc\">"+juego.getDescripcion()+"</textarea>");
+			out.print("<textarea class=\"form-control mt-2\" id=\"editor1\" rows=\"3\" name=\"desc\">"
+					+ juego.getDescripcion() + "</textarea>");
 			out.print("</div>");
 			out.print("</div>");
 			out.print("</div>");
 
-			//------ 5 row ---- 
-			out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + juego.getId() + "\" name=\"idJuego\">");
+			//5 row
+			out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + juego.getId()
+					+ "\" name=\"idJuego\">");
 			out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + user.getId() + "\" name=\"id\">");
-		
+
 			out.print("<div class=\"row mt-3\">");
 			out.print("<div class=\"col-md-4\">");
 			out.print("<button type=\"submit\" class=\"btn btn-success mt-5\">Actualizar ficha</button>");
 			out.print("</div>");
 			out.print("</div>");
 
-			out.print("</form>"); //FIN del formulario para añadir juego
-	
+			//FIN del formulario para editar
+			out.print("</form>");
+
+			//form para el update de la foto de juego
 			out.print("<form method=\"post\" action=\"UpdateFotoJuego\" enctype=\"multipart/form-data\">");
 			out.print("<div class=\"form-row\">");
 			out.print("<div class=\"col-4 mt-5\">");
@@ -255,25 +275,23 @@
 			out.print("<div class=\"col-4\">");
 			out.print("<button type=\"submit\" class=\"btn btn-success mt-5\">Actualizar foto</button>");
 			out.print("</div>");
-			out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + juego.getId() + "\" name=\"idJuego\">");
+			out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + juego.getId()
+					+ "\" name=\"idJuego\">");
 			out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + user.getId() + "\" name=\"id\">");
 			out.print("</div>");
-			
+
 			out.print("</form>");
-		
-			//---------container FIN
+
+			//container FIN
 			out.print("</div>");
 			out.print("</div>");
 
-			//----------------------------------------------------------
 		}
-		
 	%>
-			<div class="footer bg-dark">
+	<div class="footer bg-dark">
 		<div class="footer-copyright text-center py-3 bg-success">
 			© 2020 Copyright: <a class="text-white"
 				href="https://Freak'sCorner.com/">Freak'sCorner.com</a>
-				<p class="mt-3">Esta web es ficticia para un proyecto de 2º FP Superior DAW</p>
 		</div>
 	</div>
 </body>

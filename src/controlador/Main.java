@@ -26,13 +26,14 @@ import modelo.pojo.Usuario;
 
 /**
  * Servlet para la página principal
+ * 
  * @author Cintia
  *
  */
 @WebServlet("/Main")
 public class Main extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
+
 	/**
 	 * EJB para llamar a los métodos
 	 */
@@ -41,52 +42,50 @@ public class Main extends HttpServlet {
 
 	@EJB
 	SesionesEJB sesionesEJB;
-	
+
 	@EJB
 	JuegoEJB juegoEJB;
-	
-	
+
 	@EJB
 	GuiaEJB guiaEJB;
-	
-	
+
 	@EJB
 	AnalisisEJB analisisEJB;
-	
+
 	/**
 	 * Doget para mostrar el contenido de la página prncipal
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		HttpSession session = request.getSession(false);
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
-		
-		ArrayList<Juego> juego = juegoEJB.listaJuego();
-		ArrayList<modelo.pojo.Guia> guia = guiaEJB.listaGuias();
-		ArrayList<modelo.pojo.Analisis> analisi = analisisEJB.listaAnalisis();
-		ArrayList<Genero> genero = juegoEJB.genero();
-		ArrayList<Plataforma> plata = juegoEJB.plataforma();
-		ArrayList<Foto> juegoFoto = juegoEJB.listaFotosJuegos();
-		ArrayList<Foto> GuiaFoto = guiaEJB.listaFotosGuia();
-		ArrayList<Foto> analisisFoto = analisisEJB.listaFotosAnalisi();
-		
-		
+
+		ArrayList<Juego> juego = juegoEJB.listaJuego(); // Muestra una lista de juegos
+		ArrayList<modelo.pojo.Guia> guia = guiaEJB.listaGuias();// Muestra una lista de guías
+		ArrayList<modelo.pojo.Analisis> analisi = analisisEJB.listaAnalisis();// Muestra una lista de análisis
+
+		ArrayList<Genero> genero = juegoEJB.genero();// Muestra una lista de géneros
+		ArrayList<Plataforma> plata = juegoEJB.plataforma();// Muestra una lista de plataformas
+
+		ArrayList<Foto> juegoFoto = juegoEJB.listaFotosJuegos();// Muestra una lista de fotos de juegos
+		ArrayList<Foto> GuiaFoto = guiaEJB.listaFotosGuia();// Muestra una lista de fotos de guías
+		ArrayList<Foto> analisisFoto = analisisEJB.listaFotosAnalisi();// Muestra una lista de fotos de análisis
+
 		request.setAttribute("juegoFoto", juegoFoto);
 		request.setAttribute("guiaFoto", GuiaFoto);
 		request.setAttribute("analisisFoto", analisisFoto);
-		
+
 		request.setAttribute("juego", juego);
 		request.setAttribute("genero", genero);
 		request.setAttribute("plataforma", plata);
 		request.setAttribute("guia", guia);
 		request.setAttribute("analisi", analisi);
-		
-		
+
 		request.setAttribute("usuario", usuario);
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Main.jsp");
 		rs.forward(request, response);
 	}
-	
 
 }

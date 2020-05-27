@@ -18,11 +18,16 @@ import modelo.ejb.UsuariosEJB;
 import modelo.pojo.Juego;
 import modelo.pojo.Usuario;
 
+/**
+ * Servlet para mostrar la lista de juegos para editar
+ * 
+ * @author Cintia
+ *
+ */
 @WebServlet("/Editar")
 public class Editar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
- 
+
 	@EJB
 	UsuariosEJB usuariosEJB;
 
@@ -32,27 +37,27 @@ public class Editar extends HttpServlet {
 	@EJB
 	SesionesEJB sesionesEJB;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		
+	/**
+	 * doGet que muestra la lista de juegos por el id de usuario a editar
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		HttpSession session = request.getSession(false);
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
-		
+
 		String idJ = request.getParameter("id");
-		
+
 		Integer id = Integer.parseInt(idJ);
-		
+
 		ArrayList<Juego> juego = juegoEJB.listaJuegosPorIdUser(id);
-		
+
 		request.setAttribute("juego", juego);
-		request.setAttribute("usuario",usuario);
-		
+		request.setAttribute("usuario", usuario);
 
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/admin/Editar.jsp");
 		rs.forward(request, response);
 	}
-
 
 }

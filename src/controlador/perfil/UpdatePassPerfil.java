@@ -8,12 +8,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
-import modelo.pojo.Usuario;
 
+/**
+ * Servlet para hacer el update de la contraseña en el perfi
+ * 
+ * @author Cintia
+ *
+ */
 @WebServlet("/UpdatePassPerfil")
 public class UpdatePassPerfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -24,6 +28,9 @@ public class UpdatePassPerfil extends HttpServlet {
 	@EJB
 	SesionesEJB sesionesEJB;
 
+	/**
+	 * doGet para hacer el update
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -32,15 +39,9 @@ public class UpdatePassPerfil extends HttpServlet {
 
 		Integer idUser = Integer.parseInt(id);
 
-		// Coge la sesion abierta
-		HttpSession session = request.getSession(true);
-
-		// Comprueba que el usuario esta logeado y tiene la sesion
-		Usuario usuario = sesionesEJB.usuarioLogeado(session);
-		
 		usuariosEJB.updatePassUsuario(pass, idUser);
-		
-		response.sendRedirect("Perfil");  //Poner en javascript un mensaje
+
+		response.sendRedirect("Perfil"); // Poner en javascript un mensaje
 	}
 
 }

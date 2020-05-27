@@ -10,42 +10,39 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
 import javax.servlet.http.Part;
 
 import modelo.ejb.GuiaEJB;
-import modelo.ejb.SesionesEJB;
-import modelo.ejb.UsuariosEJB;
-import modelo.pojo.Usuario;
 
-
+/**
+ * Servlet que hace el update de la foto de una guía que se edita
+ * 
+ * @author Cintia
+ *
+ */
 @WebServlet("/UpdateFotoGuia")
 @MultipartConfig(maxFileSize = 1024 * 1024 * 5)
 public class UpdateFotoGuia extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
+
 	private static final String UPLOAD_DIRECTORY = "Imagenes";
-	@EJB
-	UsuariosEJB usuariosEJB;
 
 	@EJB
 	GuiaEJB guiaEJB;
 
-	@EJB
-	SesionesEJB sesionesEJB;
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Coge la sesion abierta
-		HttpSession session = request.getSession(true);
+	/**
+	 * doPost para hacer el update de la foto de una guía
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-		// Comprueba que el usuario esta logeado y tiene la sesion
-		Usuario usuario = sesionesEJB.usuarioLogeado(session);
-		
-		String idJuego = request.getParameter("idJuego");
+		String idJuego = request.getParameter("idJuego"); // id de la guía
 		Integer id = Integer.parseInt(idJuego);
-		
-		String idU = request.getParameter("id");
+
+		String idU = request.getParameter("id"); // id del usuario
 		Integer idUser = Integer.parseInt(idU);
-		
 
 		// Multipart RFC 7578
 
@@ -64,17 +61,17 @@ public class UpdateFotoGuia extends HttpServlet {
 		// Obtenemos el archivo y lo guardamos a disco
 		for (Part part : request.getParts()) {
 			String nombre = getFileName(part);
-			if(!nombre.equalsIgnoreCase("desconocido.txt")) {
+			if (!nombre.equalsIgnoreCase("desconocido.txt")) {
 				fileName = nombre;
 				part.write(uploadPath + File.separator + fileName);
 			}
 		}
-		
-				guiaEJB.updateGuiaFoto(fileName, id);
-				
-				response.sendRedirect("EditarListaGuia?id="+idUser);
+
+		guiaEJB.updateGuiaFoto(fileName, id);
+
+		response.sendRedirect("EditarListaGuia?id=" + idUser);
 	}
-	
+
 	// Obtiene el nombre del archivo, sino lo llamaremos desconocido.txt
 	private String getFileName(Part part) {
 		for (String content : part.getHeader("content-disposition").split(";")) {

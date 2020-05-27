@@ -15,29 +15,36 @@ import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
 import modelo.pojo.Usuario;
 
-
+/**
+ * Servlet que muestra el perfil del usuario
+ * 
+ * @author Cintia
+ *
+ */
 @WebServlet("/Perfil")
 public class Perfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	@EJB
 	UsuariosEJB usuariosEJB;
 
 	@EJB
 	SesionesEJB sesionesEJB;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+	/**
+	 * doGet para mostrar la vista del perfil de un usuario
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		HttpSession session = request.getSession(false);
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
-		
 
 		request.setAttribute("usuario", usuario);
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Perfil.jsp");
 		rs.forward(request, response);
-		
-	}
 
+	}
 
 }

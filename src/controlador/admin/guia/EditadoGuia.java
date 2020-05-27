@@ -1,35 +1,37 @@
 package controlador.admin.guia;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 
 import modelo.ejb.GuiaEJB;
-import modelo.ejb.JuegoEJB;
+
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
-import modelo.pojo.Genero;
+
 import modelo.pojo.Guia;
-import modelo.pojo.Juego;
-import modelo.pojo.Plataforma;
+
 import modelo.pojo.Usuario;
 
+/**
+ * Servlet para editar una guía
+ * 
+ * @author Cintia
+ *
+ */
 @WebServlet("/EditadoGuia")
-@MultipartConfig(maxFileSize = 1024 * 1024 * 5)
+
 public class EditadoGuia extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String UPLOAD_DIRECTORY = "Imagenes";
+
 	@EJB
 	UsuariosEJB usuariosEJB;
 
@@ -38,55 +40,53 @@ public class EditadoGuia extends HttpServlet {
 
 	@EJB
 	SesionesEJB sesionesEJB;
- 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+	/**
+	 * doGet que muestra la vista de editar una guía
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		HttpSession session = request.getSession(false);
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
-		
-		String idJ = request.getParameter("id");
-		
+
+		String idJ = request.getParameter("id"); // id de la guía
+
 		Integer id = Integer.parseInt(idJ);
-		
-	
-		
+
 		Guia juego = guiaEJB.guia(id);
 
-		
 		request.setAttribute("juego", juego);
 
 		request.setAttribute("usuario", usuario);
-		
+
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/admin/EditadoGuia.jsp");
 		rs.forward(request, response);
 
 	}
 
+	/**
+	 * doPost para hacer el update en la guía
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		HttpSession session = request.getSession(false);
-
-		Usuario usuario = sesionesEJB.usuarioLogeado(session);
-		
 		request.setCharacterEncoding("UTF-8");
+
 		String titulo = request.getParameter("titulo");
 		String texto = request.getParameter("desc");
-		String idJuego = request.getParameter("idJuego");
+
+		String idJuego = request.getParameter("idJuego"); // id de la guía
 		Integer id = Integer.parseInt(idJuego);
-		String idU = request.getParameter("id");
+
+		String idU = request.getParameter("id");// id del usuario
 		Integer idUser = Integer.parseInt(idU);
-		
-		
-		guiaEJB.updateGuia(titulo, texto, id);		
 
+		guiaEJB.updateGuia(titulo, texto, id);
 
-		response.sendRedirect("EditarListaGuia?id="+idUser);
-		
+		response.sendRedirect("EditarListaGuia?id=" + idUser);
+
 	}
-	
-
 
 }

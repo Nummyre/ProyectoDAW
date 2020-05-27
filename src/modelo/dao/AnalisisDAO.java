@@ -12,27 +12,39 @@ import modelo.pojo.Analisis;
 import modelo.pojo.Comentario;
 import modelo.pojo.Foto;
 
+/**
+ * Clase para la conexión a la base de datos para el análisis
+ * 
+ * @author Cintia
+ *
+ */
 public class AnalisisDAO {
-	private static final Logger logger = (Logger) LoggerFactory.getLogger(AnalisisDAO.class);	
 
+	// Logger para captar errores
+	private static final Logger logger = (Logger) LoggerFactory.getLogger(AnalisisDAO.class);
+
+	/**
+	 * Método que muestra una lista de análisis
+	 * 
+	 * @return devuelve una lista
+	 */
 	public ArrayList<Analisis> listaAnalisis() {
+		
 		ArrayList<Analisis> juego = null;
+		
 		try {
 
-			// metodo
+			// método de conexión
 			Connection connection = new Conexion().conecta();
 
 			if (connection != null) {
 
-				// Si la conexion no es nula que ejecute la query del select con los datos
-				// obtenidos
 				Statement stmt = connection.createStatement();
 				ResultSet rs = stmt.executeQuery("SELECT * FROM analisi");
 
 				rs.last();
 				if (rs.getRow() > 0) {
 
-					// Coge los datos del usuario que a iniciado sesion de la base de datos
 					rs.first();
 
 					juego = new ArrayList<Analisis>();
@@ -60,6 +72,7 @@ public class AnalisisDAO {
 	 * @param id = clave de identificación de un análisis
 	 */
 	public void deleteAnalisis(Integer id) {
+		
 		try {
 
 			// metodo
@@ -85,24 +98,23 @@ public class AnalisisDAO {
 	 * @return devuelve una lista de análisis por usuario
 	 */
 	public ArrayList<Analisis> listaAnalisisPorIdUser(Integer id) {
+		
 		ArrayList<Analisis> guia = null;
+		
 		try {
 
-			// metodo
+			// método de conexión
 			Connection connection = new Conexion().conecta();
 			Statement stmt = null;
 
 			if (connection != null) {
 
-				// Si la conexion no es nula que ejecute la query del select con los datos
-				// obtenidos
 				stmt = connection.createStatement();
 				ResultSet rs = stmt.executeQuery("SELECT * FROM Analisi where idUsuario = " + id);
 
 				rs.last();
 				if (rs.getRow() > 0) {
 
-					// Coge los datos del usuario que a iniciado sesion de la base de datos
 					rs.first();
 
 					guia = new ArrayList<Analisis>();
@@ -134,12 +146,14 @@ public class AnalisisDAO {
 	 * @return devuelve el id generado del análisis
 	 */
 	public int insertAnalisi(String titulo, String descripcion, String fecha, String texto, Integer idUsuario) {
+		
 		int rowID = 0;
+	
 		try {
 			Connection connection = new Conexion().conecta();
 
-			String query = "INSERT INTO analisi (titulo, descripcion, fecha, analisi, idUsuario) VALUES ('"
-					+ titulo + "', '" + descripcion + "','" + fecha + "','" + texto + "', " + idUsuario + ");";
+			String query = "INSERT INTO analisi (titulo, descripcion, fecha, analisi, idUsuario) VALUES ('" + titulo
+					+ "', '" + descripcion + "','" + fecha + "','" + texto + "', " + idUsuario + ");";
 
 			try (Statement stmt = connection.createStatement()) {
 
@@ -168,13 +182,13 @@ public class AnalisisDAO {
 	 * @param texto  = texto en el que se quiera escribir en el análisis
 	 * @param id     = clave de indetificación de un usuario
 	 */
-
 	public void updateAnalisi(String titulo, String descripcion, String texto, Integer id) {
 
 		try {
 			Connection connection = new Conexion().conecta();
 
-			String query = "update analisi set titulo = '" + titulo + "', descripcion = '"+descripcion+"', analisi = '" + texto + "' where id = " + id;
+			String query = "update analisi set titulo = '" + titulo + "', descripcion = '" + descripcion
+					+ "', analisi = '" + texto + "' where id = " + id;
 			Statement stmt = connection.createStatement();
 			stmt.executeUpdate(query);
 
@@ -193,6 +207,7 @@ public class AnalisisDAO {
 	 * @param idAnalisis = clave de identificación de un análaisis
 	 */
 	public void insertAnalisiFoto(String foto, Integer idAnalisis) {
+		
 		try {
 			Connection connection = new Conexion().conecta();
 
@@ -241,25 +256,20 @@ public class AnalisisDAO {
 	public Analisis analisis(Integer id) {
 
 		Analisis juego = null;
+		
 		try {
-
-			// Si el usuario y la contraseña no son nulos que abra conexion mediante el
-			// metodo
 
 			Connection connection = new Conexion().conecta();
 			Statement stmt = null;
 
 			if (connection != null) {
 
-				// Si la conexion no es nula que ejecute la query del select con los datos
-				// obtenidos
 				stmt = connection.createStatement();
 				ResultSet rs = stmt.executeQuery("select * from analisi where id = " + id + ";");
 
 				rs.last();
 				if (rs.getRow() > 0) {
 
-					// Coge los datos del usuario que a iniciado sesion de la base de datos
 					rs.first();
 					juego = (new Analisis(rs.getInt("id"), rs.getString("titulo"), rs.getString("descripcion"),
 							rs.getString("fecha"), rs.getString("analisi"), rs.getInt("idUsuario")));
@@ -275,25 +285,28 @@ public class AnalisisDAO {
 		return juego;
 	}
 
+	/**
+	 * Método para mostrar una lista de fotos de los análisis
+	 * 
+	 * @return devuelve una lista de fotos
+	 */
 	public ArrayList<Foto> listaFotosAnalisi() {
+		
 		ArrayList<Foto> Fjuego = null;
+		
 		try {
 
-			// metodo
 			Connection connection = new Conexion().conecta();
 			Statement stmt = null;
 
 			if (connection != null) {
 
-				// Si la conexion no es nula que ejecute la query del select con los datos
-				// obtenidos
 				stmt = connection.createStatement();
 				ResultSet rs = stmt.executeQuery("SELECT * FROM fotoAnalisi");
 
 				rs.last();
 				if (rs.getRow() > 0) {
 
-					// Coge los datos del usuario que a iniciado sesion de la base de datos
 					rs.first();
 
 					Fjuego = new ArrayList<Foto>();
@@ -314,13 +327,24 @@ public class AnalisisDAO {
 		return Fjuego;
 	}
 
+	/**
+	 * Método que inserta un comentario en la ficha del análisis
+	 * 
+	 * @param comentario = es el párametro del comentario
+	 * @param fecha      = párametro para introducir la fecha
+	 * @param idUsuario  = es la clave que identifica al usuario
+	 * @param idAnalisis = es la clave que identidica el análisis
+	 * @return devuelve el id del comentario recien insertado
+	 */
 	public int insertComentarioAnalisis(String comentario, String fecha, Integer idUsuario, Integer idAnalisis) {
+		
 		int rowID = 0;
+		
 		try {
 			Connection connection = new Conexion().conecta();
 
-			String query = "INSERT INTO comentario_analisis (comentario, fecha, idUsuario, idAnalisis) "
-					+ "VALUES ('" + comentario + "','" + fecha + "','" + idUsuario + "', '" + idAnalisis + "');";
+			String query = "INSERT INTO comentario_analisis (comentario, fecha, idUsuario, idAnalisis) " + "VALUES ('"
+					+ comentario + "','" + fecha + "','" + idUsuario + "', '" + idAnalisis + "');";
 
 			try (Statement stmt = connection.createStatement()) {
 
@@ -342,25 +366,26 @@ public class AnalisisDAO {
 		return rowID;
 	}
 
+	/**
+	 * Método que muestra una lista de comentarios de los análisis
+	 * @return devuelve una lista
+	 */
 	public ArrayList<Comentario> listaComentarioAnalisi() {
+		
 		ArrayList<Comentario> Cjuego = null;
+		
 		try {
-
-			// metodo
 			Connection connection = new Conexion().conecta();
 			Statement stmt = null;
 
 			if (connection != null) {
 
-				// Si la conexion no es nula que ejecute la query del select con los datos
-				// obtenidos
 				stmt = connection.createStatement();
 				ResultSet rs = stmt.executeQuery("SELECT * FROM comentario_analisis");
 
 				rs.last();
 				if (rs.getRow() > 0) {
 
-					// Coge los datos del usuario que a iniciado sesion de la base de datos
 					rs.first();
 
 					Cjuego = new ArrayList<Comentario>();
@@ -383,10 +408,14 @@ public class AnalisisDAO {
 		return Cjuego;
 	}
 
+	/**
+	 * Método para eliminar un comentario de la ficha de un análisis
+	 * @param id = clave que identifica el comentario
+	 */
 	public void deleteComentarioAnalisis(Integer id) {
+		
 		try {
 
-			// metodo
 			Connection connection = new Conexion().conecta();
 
 			if (connection != null) {

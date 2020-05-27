@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import modelo.ejb.AnalisisEJB;
 import modelo.ejb.GuiaEJB;
 import modelo.ejb.JuegoEJB;
 import modelo.ejb.SesionesEJB;
@@ -20,44 +18,48 @@ import modelo.ejb.UsuariosEJB;
 import modelo.pojo.Foto;
 import modelo.pojo.Usuario;
 
+/**
+ * Servlet para la página principal de guía
+ * 
+ * @author Cintia
+ *
+ */
 @WebServlet("/Guia")
 public class Guia extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
+	// EJB para llamar los métodos del DAO
 	@EJB
 	UsuariosEJB usuariosEJB;
 
 	@EJB
 	SesionesEJB sesionesEJB;
-	
+
 	@EJB
 	JuegoEJB juegoEJB;
 
-	
 	@EJB
 	GuiaEJB guiaEJB;
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+	/**
+	 * Doget para mostrar la página principal de guías
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		HttpSession session = request.getSession(false);
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
-		
-		 ArrayList<modelo.pojo.Guia> guias = guiaEJB.listaGuias();
-		 ArrayList<Foto> fotoGuia = guiaEJB.listaFotosGuia();
 
-		 request.setAttribute("foto", fotoGuia);
+		ArrayList<modelo.pojo.Guia> guias = guiaEJB.listaGuias(); // Muestra una lista de guías
+		ArrayList<Foto> fotoGuia = guiaEJB.listaFotosGuia(); // Muestra una lista de fotos de las guías
 
-		 
+		request.setAttribute("foto", fotoGuia);
 		request.setAttribute("usuario", usuario);
 		request.setAttribute("guias", guias);
-		
+
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Guia.jsp");
 		rs.forward(request, response);
-	}
-
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 	}
 
 }

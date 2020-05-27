@@ -29,8 +29,8 @@
 <body>
 	<%
 		Usuario user = (Usuario) request.getAttribute("usuario");
-	ArrayList<Top10> top = (ArrayList<Top10>) request.getAttribute("top");
-	ArrayList<Foto> foto = (ArrayList<Foto>) request.getAttribute("foto");
+		ArrayList<Top10> top = (ArrayList<Top10>) request.getAttribute("top");
+		ArrayList<Foto> foto = (ArrayList<Foto>) request.getAttribute("foto");
 
 		if (user == null) {
 			out.print("<header>");
@@ -79,9 +79,8 @@
 			out.print("</nav>");
 
 			out.print("</header>");
-			
-			//-------------------------------------------TOP10 PLATAFORMAS
 
+			//MENU TOP10 PLATAFORMAS
 			out.print("<div class=\"pos-f-t\">");
 			out.print("<div class=\"collapse\" id=\"navbarToggleExternalContent\">");
 			out.print("<div class=\"bg-success p-4\">");
@@ -102,38 +101,36 @@
 			out.print("</div>");
 			out.print("</div>");
 			out.print("<nav class=\"navbar navbar-light bg-success text-white\"><h5>Top 10 | Plataformas</h5>");
-			out.print("<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarToggleExternalContent\" aria-controls=\"navbarToggleExternalContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">");
+			out.print(
+					"<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarToggleExternalContent\" aria-controls=\"navbarToggleExternalContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">");
 			out.print(" <span class=\"navbar-toggler-icon\"></span>");
 			out.print("</button>");
 			out.print("</nav>");
 			out.print("</div>");
 
-			
-			//-----------------------------------------------------------------------------------------
-			
-			
+			//container
 			out.print("<div class=\"container p-5\">");
+			
 			out.print("<div class=\"row mt-4\">");
 			out.print("<div class=\"col\">");
 			out.print("<h3>Top10 | Juegos</h3>");
 			out.print("</div>");
 			out.print("</div>");
-			%>
+	%>
 
-			<div class="row mt-3">
-			<div class="col-2"></div>
-				<div class="col">
-					<div class="cajita">
-						<img src="img/juegos.jpg" class="img-fluid" width="700">
-					</div>
-				</div>
+	<div class="row mt-3">
+		<div class="col-2"></div>
+		<div class="col">
+			<div class="cajita">
+				<img src="img/juegos.jpg" class="img-fluid" width="700">
 			</div>
+		</div>
+	</div>
 
-			<%
-	
-			out.print("<div class=\"form-row mt-4\">");
+	<%
+		out.print("<div class=\"form-row mt-4\">");
 
-			//----TABLA------------------------------
+			//TABLA
 			out.print("<div class=\"col\">");
 			out.print("<div class=\"table-responsive\">");
 			out.print("<table class=\"table shadow-lg\">");
@@ -150,35 +147,36 @@
 			out.print("</thead>");
 			out.print("<tbody>");
 			int count = 1;
-			if(top!=null){
-			for(Top10 t : top){
-			out.print("<tr>");
-			out.print("<th scope=\"row\">"+count+"</th>");
-			for(Foto f : foto){
-				if(f.getIdJuego() == t.getId()){
-					out.print("<td><img src=\"Imagenes/" + f.getFoto()
-					+ "\" width=\"60\" height=\"50\" class=\"rounded mx-auto d-block\"></td>"); //getFoto
+			if (top != null) {
+				for (Top10 t : top) {
+					out.print("<tr>");
+					out.print("<th scope=\"row\">" + count + "</th>");
+					for (Foto f : foto) {
+						if (f.getIdJuego() == t.getId()) {
+							out.print("<td><img src=\"Imagenes/" + f.getFoto()
+									+ "\" width=\"60\" height=\"50\" class=\"rounded mx-auto d-block\"></td>"); //getFoto
+						}
+					}
+					out.print("<td><a href=\"FichaJuego?id=" + t.getId() + "\">" + t.getNombre() + "</a></td>");
+					out.print("<td>" + t.getAnyo() + "</td>");
+					out.print("<td>" + t.getGenero() + "</td>");
+					out.print("<td>" + t.getPlataforma() + "</td>");
+					out.print("<td class=\"bg-success text-white text-center\">" + t.getPuntuacion() + "/10</td>");
+					out.print("</tr>");
+					count++;
 				}
-			}
-			out.print("<td><a href=\"FichaJuego?id="+t.getId()+"\">"+t.getNombre()+"</a></td>");
-			out.print("<td>"+t.getAnyo()+"</td>");
-			out.print("<td>"+t.getGenero()+"</td>");
-			out.print("<td>"+t.getPlataforma()+"</td>");
-			out.print("<td class=\"bg-success text-white text-center\">"+t.getPuntuacion()+"/10</td>");
-			out.print("</tr>");	
-			count++;
-			}
 			}
 			out.print("</tbody>");
 			out.print("</table>");
 			out.print("</div>");
-			//-----------------------
-			out.print("</div>");
+
 			out.print("</div>");
 			out.print("</div>");
 			
-		
-			
+			//fin container
+			out.print("</div>");
+
+			//sino que muestre una vista de usuario logeado
 		} else {
 			out.print("<header>");
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">");
@@ -236,13 +234,9 @@
 			out.print("</form>");
 			out.print("</nav>");
 
-			//--------------------------------------------------------
-
 			out.print("</header>");
 
-		
-			//-------------------------------------------TOP10 PLATAFORMAS
-
+			//MENU TOP10 PLATAFORMAS
 			out.print("<div class=\"pos-f-t\">");
 			out.print("<div class=\"collapse\" id=\"navbarToggleExternalContent\">");
 			out.print("<div class=\"bg-success p-4\">");
@@ -263,39 +257,35 @@
 			out.print("</div>");
 			out.print("</div>");
 			out.print("<nav class=\"navbar navbar-light bg-success text-white\"><h5>Top 10 | Plataformas</h5>");
-			out.print("<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarToggleExternalContent\" aria-controls=\"navbarToggleExternalContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">");
+			out.print(
+					"<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarToggleExternalContent\" aria-controls=\"navbarToggleExternalContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">");
 			out.print(" <span class=\"navbar-toggler-icon\"></span>");
 			out.print("</button>");
 			out.print("</nav>");
 			out.print("</div>");
 
-			
-			//-----------------------------------------------------------------------------------------
-			
-			
+			//container
 			out.print("<div class=\"container p-5\">");
+			
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col\">");
 			out.print("<h3>Top10 | Juegos</h3>");
 			out.print("</div>");
 			out.print("</div>");
-			
-			
-			%>
+	%>
 
-			<div class="row mt-3">
-			<div class="col-2"></div>
-				<div class="col">
-					<div class="cajita">
-						<img src="img/juegos.jpg" class="img-fluid" width="700">
-					</div>
-				</div>
+	<div class="row mt-3">
+		<div class="col-2"></div>
+		<div class="col">
+			<div class="cajita">
+				<img src="img/juegos.jpg" class="img-fluid" width="700">
 			</div>
+		</div>
+	</div>
 
-			<%
-			
-			out.print("<div class=\"row mt-4\">");
-			//----TABLA------------------------------
+	<%
+		out.print("<div class=\"row mt-4\">");
+			//TABLA
 			out.print("<div class=\"col\">");
 			out.print("<div class=\"table-responsive\">");
 			out.print("<table class=\"table shadow-lg\">");
@@ -312,40 +302,42 @@
 			out.print("</thead>");
 			out.print("<tbody>");
 			int count = 1;
-			if(top!=null){
-			for(Top10 t : top){
-			out.print("<tr>");
-			out.print("<th scope=\"row\">"+count+"</th>");
-			for(Foto f : foto){
-				if(f.getIdJuego() == t.getId()){
-					out.print("<td><img src=\"Imagenes/" + f.getFoto()
-					+ "\" width=\"60\" height=\"50\" class=\"rounded mx-auto d-block\"></td>"); //getFoto
+			if (top != null) {
+				for (Top10 t : top) {
+					out.print("<tr>");
+					out.print("<th scope=\"row\">" + count + "</th>");
+					for (Foto f : foto) {
+						if (f.getIdJuego() == t.getId()) {
+							out.print("<td><img src=\"Imagenes/" + f.getFoto()
+									+ "\" width=\"60\" height=\"50\" class=\"rounded mx-auto d-block\"></td>"); //getFoto
+						}
+					}
+					out.print("<td class=\"text-center\"><a href=\"FichaJuego?id=" + t.getId() + "\">"
+							+ t.getNombre() + "</a></td>");
+					out.print("<td class=\"text-center\">" + t.getAnyo() + "</td>");
+					out.print("<td class=\"text-center\">" + t.getGenero() + "</td>");
+					out.print("<td class=\"text-center\">" + t.getPlataforma() + "</td>");
+					out.print("<td class=\"bg-success text-white text-center\">" + t.getPuntuacion() + "/10</td>");
+					out.print("</tr>");
+					count++;
 				}
-			}
-			out.print("<td class=\"text-center\"><a href=\"FichaJuego?id="+t.getId()+"\">"+t.getNombre()+"</a></td>");
-			out.print("<td class=\"text-center\">"+t.getAnyo()+"</td>");
-			out.print("<td class=\"text-center\">"+t.getGenero()+"</td>");
-			out.print("<td class=\"text-center\">"+t.getPlataforma()+"</td>");
-			out.print("<td class=\"bg-success text-white text-center\">"+t.getPuntuacion()+"/10</td>");
-			out.print("</tr>");	
-			count++;
-			}
 			}
 			out.print("</tbody>");
 			out.print("</table>");
-			//-----------------------
-			out.print("</div>");
+
 			out.print("</div>");
 			out.print("</div>");
 			out.print("</div>");
 			
+			//container
+			out.print("</div>");
+
 		}
 	%>
-		<div class="footer bg-dark">
+	<div class="footer bg-dark">
 		<div class="footer-copyright text-center py-3 bg-success">
 			© 2020 Copyright: <a class="text-white"
 				href="https://Freak'sCorner.com/">Freak'sCorner.com</a>
-		
 		</div>
 	</div>
 </body>
