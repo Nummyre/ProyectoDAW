@@ -12,7 +12,8 @@
 <title>Freak's Corner</title>
 <link href="img/logo4.png" rel="icon" type="image/x-icon" />
 <link rel="stylesheet" type="text/css" href="css/Style.css">
-<script type = "text/javascript" charset ="UTF-8" src ="http://chs03.cookie-script.com/s/23c5591bf6df5a3f209a79ff16ceb577.js"></script>
+<script type="text/javascript" charset="UTF-8"
+	src="http://chs03.cookie-script.com/s/23c5591bf6df5a3f209a79ff16ceb577.js"></script>
 <script type="text/javascript" src="js/Style.js"></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -31,8 +32,8 @@
 <body>
 	<%
 		Usuario user = (Usuario) request.getAttribute("usuario");
-	ArrayList<Analisis> analisis = (ArrayList<Analisis>) request.getAttribute("analisis");
-	ArrayList<Foto> foto = (ArrayList<Foto>) request.getAttribute("foto");
+		ArrayList<Analisis> analisis = (ArrayList<Analisis>) request.getAttribute("analisis");
+		ArrayList<Foto> foto = (ArrayList<Foto>) request.getAttribute("foto");
 
 		if (user == null) {
 			out.print("<header>");
@@ -79,7 +80,8 @@
 			out.print("</form>");
 			out.print("</div>");
 			out.print("</nav>");
-			//--------------------------------------------------------
+
+			//menu de plataformas
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-success\">");
 			out.print("<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">");
 			out.print("<ul class=\"navbar-nav ml-5\">");
@@ -99,19 +101,19 @@
 			out.print("</div>");
 			out.print("</nav>");
 			out.print("</header>");
-			//-----------------------------------------------------------------------------------------
-			
-			
+
+			//container
 			out.print("<div class=\"container mt-5 p-4\">");
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col\">");
 			out.print("<h3>Todos los Análisis</h3>");
 			out.print("</div>");
 			out.print("</div>");
-			out.print("<div class=\"form-row mt-4\">");
 
-			//----TABLA------------------------------
+			out.print("<div class=\"form-row mt-4\">");
+			//TABLA
 			out.print("<div class=\"col\">");
+			out.print("<div class=\"table-responsive\">");
 			out.print("<table class=\"table shadow-lg\">");
 			out.print("<thead class=\"thead-dark\">");
 			out.print("<tr>");
@@ -121,28 +123,32 @@
 			out.print("</tr>");
 			out.print("</thead>");
 			out.print("<tbody>");
-			if(analisis!=null){
-			for(Analisis n : analisis){
-				for(Foto f : foto){
-			out.print("<tr>");
-			if(f.getIdJuego() == n.getId()){
-			out.print("<td><img src=\"Imagenes/"+f.getFoto()+"\" width=\"60\" height=\"50\" class=\"rounded mx-auto d-block\"</td>");
-			}
-			out.print("<td><a href=\"FichaAnalisis?id="+n.getId()+"\">"+n.getTitulo()+"</a></td>");
-			out.print("<td>"+n.getDescripcion().substring(0, 100)+"...</td>");
-			out.print("</tr>");
+			if (analisis != null) {
+				for (Analisis n : analisis) {
+					out.print("<tr>");
+					for (Foto f : foto) {
+						if (f.getIdJuego() == n.getId()) {
+							out.print("<td><img src=\"Imagenes/" + f.getFoto()
+									+ "\" width=\"60\" height=\"50\" class=\"rounded mx-auto d-block\"</td>");
+						}
+					}
+					out.print("<td><a href=\"FichaAnalisis?id=" + n.getId() + "\">" + n.getTitulo() + "</a></td>");
+					out.print("<td>" + n.getDescripcion().substring(0, 100) + "...</td>");
+					out.print("</tr>");
+
 				}
-			}
 			}
 			out.print("</tbody>");
 			out.print("</table>");
-			//-----------------------
 			out.print("</div>");
+	
 			out.print("</div>");
 			out.print("</div>");
 			
-		
-			
+			//fin container
+			out.print("</div>");
+
+			//sino que muestre una vista de usuario logeado
 		} else {
 			out.print("<header>");
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">");
@@ -200,7 +206,7 @@
 			out.print("</form>");
 			out.print("</nav>");
 
-			//--------------------------------------------------------
+			//menu plataformas
 			out.print("<nav class=\"n navbar navbar-expand-lg navbar-dark bg-success\">");
 			out.print("<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">");
 			out.print("<ul class=\"navbar-nav ml-5\">");
@@ -220,17 +226,19 @@
 			out.print("</div>");
 			out.print("</nav>");
 			out.print("</header>");
-			
+
+			//container
 			out.print("<div class=\"container mt-5 p-4\">");
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col\">");
 			out.print("<h3>Todos los Análisis</h3>");
 			out.print("</div>");
 			out.print("</div>");
-			out.print("<div class=\"form-row mt-4\">");
+			out.print("<div class=\"row mt-4\">");
 
-			//----TABLA------------------------------
+			//TABLA
 			out.print("<div class=\"col\">");
+			out.print("<div class=\"table-responsive\">");
 			out.print("<table class=\"table shadow-lg\">");
 			out.print("<thead class=\"thead-dark\">");
 			out.print("<tr>");
@@ -240,35 +248,38 @@
 			out.print("</tr>");
 			out.print("</thead>");
 			out.print("<tbody>");
-			if(analisis!=null){
-			for(Analisis n : analisis){
-				for(Foto f : foto){
-			out.print("<tr>");
-			if(f.getIdJuego() == n.getId()){
-			out.print("<td><img src=\"Imagenes/"+f.getFoto()+"\" width=\"60\" height=\"50\" class=\"rounded mx-auto d-block\"</td>");
-			}
-			out.print("<td><a href=\"FichaAnalisis?id="+n.getId()+"\">"+n.getTitulo()+"</a></td>");
-			out.print("<td>"+n.getDescripcion().substring(0, 100)+"...</td>");
-			out.print("</tr>");
+			if (analisis != null) {
+				for (Analisis n : analisis) {
+					out.print("<tr>");
+					for (Foto f : foto) {
+						if (f.getIdJuego() == n.getId()) {
+							out.print("<td><img src=\"Imagenes/" + f.getFoto()
+									+ "\" width=\"60\" height=\"50\" class=\"rounded mx-auto d-block\"</td>");
+						}
+					}
+					out.print("<td><a href=\"FichaAnalisis?id=" + n.getId() + "\">" + n.getTitulo() + "</a></td>");
+					out.print("<td>" + n.getDescripcion().substring(0, 100) + "...</td>");
+					out.print("</tr>");
+
 				}
-			}
 			}
 			out.print("</tbody>");
 			out.print("</table>");
-			//-----------------------
 			out.print("</div>");
+		
 			out.print("</div>");
 			out.print("</div>");
 			
-			
+			//fin container
+			out.print("</div>");
+
 		}
 	%>
-		<div class="footer bg-dark">
- <div class="footer-copyright text-center py-3 bg-success">
+	<div class="footer bg-dark">
+		<div class="footer-copyright text-center py-3 bg-success">
 			© 2020 Copyright: <a class="text-white"
 				href="https://Freak'sCorner.com/">Freak'sCorner.com</a>
-		
-	</div>
 		</div>
-	</body>
-	</html>
+	</div>
+</body>
+</html>

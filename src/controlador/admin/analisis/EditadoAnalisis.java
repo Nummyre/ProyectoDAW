@@ -1,6 +1,5 @@
 package controlador.admin.analisis;
 
-import java.io.File;
 import java.io.IOException;
 
 import javax.ejb.EJB;
@@ -11,20 +10,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 
 import modelo.ejb.AnalisisEJB;
-import modelo.ejb.JuegoEJB;
+
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
 import modelo.pojo.Analisis;
-import modelo.pojo.Guia;
+
 import modelo.pojo.Usuario;
 
+/**
+ * Servlet que edita un análisis
+ * 
+ * @author Cintia
+ *
+ */
 @WebServlet("/EditadoAnalisis")
 public class EditadoAnalisis extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 
+	private static final long serialVersionUID = 1L;
 
 	@EJB
 	UsuariosEJB usuariosEJB;
@@ -35,8 +39,12 @@ public class EditadoAnalisis extends HttpServlet {
 	@EJB
 	SesionesEJB sesionesEJB;
 
+	/**
+	 * doGet para mostrar la vista de editar un análisis
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		HttpSession session = request.getSession(false);
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
@@ -55,22 +63,32 @@ public class EditadoAnalisis extends HttpServlet {
 		rs.forward(request, response);
 	}
 
+	/**
+	 * doPost que hace el update de un análisis
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		request.setCharacterEncoding("UTF-8");
-		
+
 		String titulo = request.getParameter("titulo");
-		String texto = request.getParameter("descr");
-		String desc = request.getParameter("desc");
 		
-		String idJ = request.getParameter("idJuego");
+		// Párametro del texto del análisis
+		String texto = request.getParameter("descr");
+		
+		// Párametro de la descripción
+		String desc = request.getParameter("desc"); 
+
+		// id del análisis
+		String idJ = request.getParameter("idJuego"); 
+		
+		// id del usuario
 		String idUser = request.getParameter("id");
+
 		Integer id = Integer.parseInt(idUser);
 		Integer idJuego = Integer.parseInt(idJ);
 
 		analisisEJB.updateAnalisi(titulo, desc, texto, idJuego);
-
 
 		response.sendRedirect("EditarListaAnalisis?id=" + id);
 	}

@@ -1,5 +1,11 @@
 package modelo.pojo;
 
+/**
+ * Clase pojo de Usuario
+ * 
+ * @author Cintia
+ *
+ */
 public class Usuario {
 
 	private Integer id;
@@ -10,7 +16,7 @@ public class Usuario {
 	private String email;
 	private String fechaAlta;
 	private Integer administrador;
-	
+
 	public Usuario(Integer id, String nombre, String user, String password, String foto, String email, String fechaAlta,
 			Integer administrador) {
 		super();
@@ -18,18 +24,18 @@ public class Usuario {
 		this.nombre = nombre;
 		this.user = user;
 		this.password = password;
-		if(foto.contentEquals("null")) {
-			this.foto="desconocido.png";
-		}else {
+		if (foto.contentEquals("null")) {
+			this.foto = "desconocido.png";
+		} else {
 			this.foto = foto;
 		}
 		this.email = email;
 		this.fechaAlta = fechaAlta;
 		this.administrador = administrador;
 	}
-	
+
 	public Usuario() {
-		
+
 	}
 
 	public Integer getId() {
@@ -69,9 +75,9 @@ public class Usuario {
 	}
 
 	public void setFoto(String foto) {
-		if(foto.contentEquals("null")) {
-			this.foto="desconocido.png";
-		}else {
+		if (foto.contentEquals("null")) {
+			this.foto = "desconocido.png";
+		} else {
 			this.foto = foto;
 		}
 	}
@@ -99,9 +105,5 @@ public class Usuario {
 	public void setAdministrador(Integer administrador) {
 		this.administrador = administrador;
 	}
-	
-	
-	
-	
-	
+
 }

@@ -22,34 +22,52 @@ import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.Logger;
 import modelo.ejb.UsuariosEJB;
 import modelo.pojo.Email;
-import modelo.pojo.Usuario;
 
-
+/**
+ * Servlet para restablecer la contraseña
+ * 
+ * @author Cintia
+ *
+ */
 @WebServlet("/RestablecerPass")
 public class RestablecerPass extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
+
+	// EJB para llamar los métodos del DAO
 	@EJB
 	UsuariosEJB usuariosEJB;
-	
+
+	// Logger para captar los errores
 	private static final Logger logger = (Logger) LoggerFactory.getLogger(RestablecerPass.class);
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	/**
+	 * doGet que muestra la vista para introducir el email del usuario
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		String error = request.getParameter("error");
 		request.setAttribute("error", error);
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/RestablecerPass.jsp");
 		rs.forward(request, response);
 	}
 
+	/**
+	 * doPost que envia un correo al email del usuario que se ha olvidado de la
+	 * contraseña
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Se coge el email del usuario
+		String email = request.getParameter("email"); 
 
-		String email = request.getParameter("email");
-		
-		ArrayList<Email> emUser = usuariosEJB.listaEmail();
-		
+		// Muestra una lista de emails
+		ArrayList<Email> emUser = usuariosEJB.listaEmail(); 
+
 		try {
-			// Propiedades de la conexi�n
+			// Propiedades de la conexión
 			Properties props = new Properties();
 			props.setProperty("mail.smtp.host", "smtp.gmail.com");
 			props.setProperty("mail.smtp.starttls.enable", "true");
@@ -62,42 +80,48 @@ public class RestablecerPass extends HttpServlet {
 
 			// Construimos el mensaje
 			MimeMessage message = new MimeMessage(session);
-			
-			for(Email u : emUser) {
-				
-				if(u.getNombre() != email) {
-					
-			// la persona k tiene k verificar
-			message.setFrom(new InternetAddress("freakscorner2020@gmail.com"));
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
-			message.addHeader("Disposition-Notification-To", "freakscorner2020@gmail.com");
-			message.setSubject("Correo de verificacion, porfavor no responder");
-			message.setText("<h3>¡Hola!</h3>\n" + "<p>Dale click al enlace para restablecer la contraseña<br>"
-					+ " <a href='http://localhost:8080/MiWeb/UpdatePassLogin?id="+u.getIdUsuario() + "'>Restablecer contraseña</p>",
-					"UTF-8", "html");
 
-			// Lo enviamos.
-			Transport t = session.getTransport("smtp");
-			t.connect("freakscorner2020@gmail.com", "123467hBp");
-			t.sendMessage(message, message.getAllRecipients());
-			// Cierre.
-			t.close();
-			
-			RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/ConfirmacionEmailUpdate.jsp");
-			rs.forward(request, response);
-			
-				}else {
+			// For para comparar el email introducido por uno de la tabla en la base de
+			// datos
+			for (Email u : emUser) {
+
+				// Si el email es el mismo
+				if (u.getNombre() != email) {
+
+					// la persona que tiene que verificar
+					message.setFrom(new InternetAddress("freakscorner2020@gmail.com"));
+					message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+					message.addHeader("Disposition-Notification-To", "freakscorner2020@gmail.com");
+					message.setSubject("Correo de restablecer contraseña, porfavor no responder");
+
+					// Se envia un correo con el id del usuario en el link para poder hacer el
+					// update de la contraseña
+					message.setText("<h3>¡Hola!</h3>\n" + "<p>Dale click al enlace para restablecer la contraseña<br>"
+							+ " <a href='http://localhost:8080/MiWeb/UpdatePassLogin?id=" + u.getIdUsuario()
+							+ "'>Restablecer contraseña</p>", "UTF-8", "html");
+
+					// Lo enviamos.
+					Transport t = session.getTransport("smtp");
+					t.connect("freakscorner2020@gmail.com", "123467hBp");
+					t.sendMessage(message, message.getAllRecipients());
+
+					// Cierre.
+					t.close();
+
+					RequestDispatcher rs = getServletContext()
+							.getRequestDispatcher("/vista/ConfirmacionEmailUpdate.jsp");
+					rs.forward(request, response);
+
+				} else {
 					response.sendRedirect("RestablecerPass?error=hay");
 				}
 			}
 
-	
 		} catch (Exception e) {
 			logger.debug(e.getMessage());
 			logger.error(e.getMessage());
 		}
-		
-		
+
 	}
 
 }

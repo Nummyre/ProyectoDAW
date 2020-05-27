@@ -28,21 +28,34 @@ import ch.qos.logback.classic.Logger;
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
 
+/**
+ * Servlet para el registro
+ * 
+ * @author Cintia
+ *
+ */
 @WebServlet("/Registro")
 @MultipartConfig(maxFileSize = 1024 * 1024 * 5)
 public class Registro extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
-	
+
+	// Logger para captar errores
 	private static final Logger logger = (Logger) LoggerFactory.getLogger(Registro.class);
 
 	// Variable para guardar la imagen
 	private static final String UPLOAD_DIRECTORY = "Imagenes";
+
+	// EJB para llamar los métodos del DAO
 	@EJB
 	UsuariosEJB usuariosEJB;
 
 	@EJB
 	SesionesEJB sesionesEJB;
 
+	/**
+	 * doGet para mostrar la vista del registro
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -51,19 +64,20 @@ public class Registro extends HttpServlet {
 
 	}
 
+	/**
+	 * doPost para hacer el insert del usuario a la base de datos
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 
 		String user = request.getParameter("user");
 		String pass = request.getParameter("pass");
 		String nombre1 = request.getParameter("nom");
 		String email = request.getParameter("email");
 
-		Date date = new Date();
+		Date date = new Date();//crea una fecha
 
-		DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-
+		DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");//le da un formato
 
 		// Obtenemos una ruta en el servidor para guardar el archivo
 		String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY;
@@ -79,17 +93,16 @@ public class Registro extends HttpServlet {
 
 		for (Part part : request.getParts()) {
 			String nombre = getFileName(part);
-			
-			if(!nombre.equals("desconocido.txt") && !nombre.equals("")) {
+
+			if (!nombre.equals("desconocido.txt") && !nombre.equals("")) {
 				fileName = nombre;
 				part.write(uploadPath + File.separator + fileName);
 			}
-			
+
 		}
-				
 
 		try {
-			// Propiedades de la conexi�n
+			// Propiedades de la conexión
 			Properties props = new Properties();
 			props.setProperty("mail.smtp.host", "smtp.gmail.com");
 			props.setProperty("mail.smtp.starttls.enable", "true");
@@ -102,7 +115,8 @@ public class Registro extends HttpServlet {
 
 			// Construimos el mensaje
 			MimeMessage message = new MimeMessage(session);
-			// la persona k tiene k verificar
+
+			// la persona que tiene que verificar
 			message.setFrom(new InternetAddress("freakscorner2020@gmail.com"));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
 			message.addHeader("Disposition-Notification-To", "freakscorner2020@gmail.com");
@@ -124,6 +138,7 @@ public class Registro extends HttpServlet {
 
 			// Cierre.
 			t.close();
+
 		} catch (Exception e) {
 			logger.debug(e.getMessage());
 			logger.error(e.getMessage());
@@ -131,7 +146,8 @@ public class Registro extends HttpServlet {
 
 		// Metodo para registrar al usuario
 		int idUser = usuariosEJB.insertUsuario(nombre1, user, pass, fileName, email, hourdateFormat.format(date));
-		
+
+		// inserta el email del usuario en una tabla de email
 		usuariosEJB.insertEmail(email, idUser);
 
 		response.sendRedirect("Login");

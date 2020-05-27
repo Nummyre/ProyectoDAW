@@ -15,29 +15,38 @@ import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
 import modelo.pojo.Usuario;
 
-
+/**
+ * Servlet para el contacto de la web
+ * 
+ * @author Cintia
+ *
+ */
 @WebServlet("/Contacto")
 public class Contacto extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
+
+	// EJB para llamar los métodos del DAO
 	@EJB
 	UsuariosEJB usuariosEJB;
 
 	@EJB
 	SesionesEJB sesionesEJB;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	/**
+	 * Doget para mostrar la vista de contacto
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		HttpSession session = request.getSession(false);
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
-		
+
 		request.setAttribute("usuario", usuario);
+
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Contacto.jsp");
 		rs.forward(request, response);
-	}
-
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
 	}
 
 }

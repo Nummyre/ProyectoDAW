@@ -25,7 +25,7 @@
 <body>
 	<%
 		String id = (String) request.getAttribute("id");
-	String bien = (String) request.getAttribute("bien");
+		String bien = (String) request.getAttribute("bien");
 	%>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<img src="img/logo4.png" width="200" height="200">
@@ -37,8 +37,8 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="h nav-link text-white p-4"
-					href="Main">Inicio</a></li>
+				<li class="nav-item active"><a
+					class="h nav-link text-white p-4" href="Main">Inicio</a></li>
 				<li class="nav-item"><a class=" nav-link text-white p-4"
 					href="Registro">Registrarse</a></li>
 				<li class="nav-item"><a class=" nav-link text-white p-4"
@@ -81,27 +81,28 @@
 
 		<form class="needs-validation" method="post" action="UpdatePassLogin">
 			<div class="form-row mt-4">
-	
+
 				<div class="col-4 mb-3">
 					<label for="validationTooltip02">Contraseña Nueva:</label> <input
 						type="password" class="form-control" id="validationTooltip02"
 						placeholder="Contraseña" name="password" required>
-						
+
 				</div>
 			</div>
-			
-				<%
-				if (bien != null) {	
+
+			<%
+				if (bien != null) {
 					out.print("<div class=\"row mt-2 mb-5\">");
 					out.print("<div class=\"col-4\">");
 					out.print("<div class=\"alert alert-success\">");
-					out.print("<strong>¡Bien!</strong>La contraseña ha sido cambiada vuelve a <a href=\"Login\">Iniciar Sesión</a>.");
+					out.print(
+							"<strong>¡Bien!</strong>La contraseña ha sido cambiada vuelve a <a href=\"Login\">Iniciar Sesión</a>.");
 					out.print("</div>");
 					out.print("</div>");
 					out.print("</div>");
-				} 
+				}
 			%>
-			
+
 			<div class="row mt-5">
 				<div class="col-4">
 					<button type="submit" class="btn btn-success">Cambiar</button>
@@ -110,9 +111,9 @@
 					<button type="reset" class="btn btn-danger">Cancelar</button>
 				</div>
 			</div>
-				<% 
-				out.print("<input type=\"hidden\" value=\""+id+"\" name=\"id\">");
-				%>
+			<%
+				out.print("<input type=\"hidden\" value=\"" + id + "\" name=\"id\">");
+			%>
 		</form>
 	</div>
 	<div class="footer bg-dark">

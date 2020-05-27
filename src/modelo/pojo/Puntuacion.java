@@ -1,18 +1,22 @@
 package modelo.pojo;
 
+/**
+ * Clase pojo de Puntuación
+ * 
+ * @author Cintia
+ *
+ */
 public class Puntuacion {
-	
+
 	private Integer id;
 	private Integer puntuacion;
 	private Integer idJuego;
 	private Integer idUsuario;
 	private double valoracion;
-	
+
 	public Puntuacion() {
-		
+
 	}
-	
-	
 
 	public Puntuacion(Integer id, Integer puntuacion, Integer idJuego, Integer idUsuario, double valoracion) {
 		super();
@@ -22,8 +26,6 @@ public class Puntuacion {
 		this.idUsuario = idUsuario;
 		this.valoracion = valoracion;
 	}
-
-
 
 	public Integer getId() {
 		return id;

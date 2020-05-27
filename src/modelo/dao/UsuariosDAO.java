@@ -10,30 +10,41 @@ import modelo.pojo.Email;
 import modelo.pojo.Usuario;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Clase para la conexión a la base de datos para los usuarios
+ * 
+ * @author Cintia
+ *
+ */
 public class UsuariosDAO {
-	private static final Logger logger = (Logger) LoggerFactory.getLogger(UsuariosDAO.class);	
+
+	private static final Logger logger = (Logger) LoggerFactory.getLogger(UsuariosDAO.class);
+
+	/**
+	 * Método que muestra ua lista de usuarios
+	 * 
+	 * @return devuelve una lista
+	 */
 	public ArrayList<Usuario> listaUsuarios() {
+
 		ArrayList<Usuario> user = null;
+
 		try {
 
-			// metodo
 			Connection connection = new Conexion().conecta();
 
 			if (connection != null) {
 
-				// Si la conexion no es nula que ejecute la query del select con los datos
-				// obtenidos
 				Statement stmt = connection.createStatement();
 				ResultSet rs = stmt.executeQuery("SELECT * FROM usuario");
 
 				rs.last();
 				if (rs.getRow() > 0) {
 
-					// Coge los datos del usuario que a iniciado sesion de la base de datos
 					rs.first();
 
 					user = new ArrayList<Usuario>();
@@ -59,25 +70,27 @@ public class UsuariosDAO {
 		return user;
 	}
 
-
+	/**
+	 * Método que muestra una lista de los emails
+	 * 
+	 * @return devuelve una lista
+	 */
 	public ArrayList<Email> listaEmail() {
+
 		ArrayList<Email> email = null;
+
 		try {
 
-			// metodo
 			Connection connection = new Conexion().conecta();
 
 			if (connection != null) {
 
-				// Si la conexion no es nula que ejecute la query del select con los datos
-				// obtenidos
 				Statement stmt = connection.createStatement();
 				ResultSet rs = stmt.executeQuery("SELECT * FROM email");
 
 				rs.last();
 				if (rs.getRow() > 0) {
 
-					// Coge los datos del usuario que a iniciado sesion de la base de datos
 					rs.first();
 
 					email = new ArrayList<Email>();
@@ -98,10 +111,22 @@ public class UsuariosDAO {
 		}
 		return email;
 	}
-	
-	public int insertUsuario(String nombre, String user, String password, String foto, String email,
-			String fechaAlta) {
+
+	/**
+	 * Método que inserta un usuario
+	 * 
+	 * @param nombre    = párametro del nombre de un usuario
+	 * @param user      = párametro de nickName
+	 * @param password  = párametro de la contraseña
+	 * @param foto      = párametro para la foto de perfil
+	 * @param email     = email del usuario
+	 * @param fechaAlta = fecha de cuando se ha creado la cuenta
+	 * @return devuelve el id del usuario que se acaba de crear
+	 */
+	public int insertUsuario(String nombre, String user, String password, String foto, String email, String fechaAlta) {
+
 		int rowID = 0;
+
 		try {
 			Connection connection = new Conexion().conecta();
 
@@ -127,15 +152,19 @@ public class UsuariosDAO {
 		}
 		return rowID;
 	}
-	
-	
+
+	/**
+	 * Método para insertar un email
+	 * 
+	 * @param nombre    = nombre del email
+	 * @param idUsuario = clave que identifica a un usuario
+	 */
 	public void insertEmail(String nombre, Integer idUsuario) {
 
 		try {
 			Connection connection = new Conexion().conecta();
 
-			String query = "INSERT INTO email (nombre, idUsuario) " + "VALUES ('"
-					+ nombre + "','" + idUsuario + "');";
+			String query = "INSERT INTO email (nombre, idUsuario) " + "VALUES ('" + nombre + "','" + idUsuario + "');";
 			Statement stmt = connection.createStatement();
 
 			stmt.executeUpdate(query);
@@ -147,21 +176,25 @@ public class UsuariosDAO {
 		}
 	}
 
+	/**
+	 * Método para verificar la existencia de un usuario
+	 * 
+	 * @param user = nickName del user
+	 * @param pass = contraseña
+	 * @return devuelve un usuario
+	 */
 	public Usuario existeUsuario(String user, String pass) {
 
 		Usuario usuario = null;
+
 		try {
 
-			// Si el usuario y la contraseña no son nulos que abra conexion mediante el
-			// metodo
 			if ((user != null) && (pass != null)) {
 				Connection connection = new Conexion().conecta();
 				Statement stmt = null;
 
 				if (connection != null) {
 
-					// Si la conexion no es nula que ejecute la query del select con los datos
-					// obtenidos
 					stmt = connection.createStatement();
 					ResultSet rs = stmt.executeQuery(
 							"SELECT * FROM usuario WHERE user='" + user + "' AND password='" + pass + "'");
@@ -169,7 +202,6 @@ public class UsuariosDAO {
 					rs.last();
 					if (rs.getRow() > 0) {
 
-						// Coge los datos del usuario que a iniciado sesion de la base de datos
 						rs.first();
 						usuario = new Usuario(rs.getInt("id"), rs.getString("nombre"), rs.getString("user"),
 								rs.getString("password"), rs.getString("foto"), rs.getString("email"),
@@ -187,6 +219,11 @@ public class UsuariosDAO {
 		return usuario;
 	}
 
+	/**
+	 * Método para darse de baja (eliminar una cuenta)
+	 * 
+	 * @param id = clave que identifica un usuario
+	 */
 	public void darseDeBaja(Integer id) {
 
 		// Se crea una conexion
@@ -208,12 +245,18 @@ public class UsuariosDAO {
 
 	}
 
+	/**
+	 * Método para actualizar la foto de perfil
+	 * 
+	 * @param foto = párametro de la foto
+	 * @param id   = clave que identifica la foto
+	 */
 	public void updateUsuario(String foto, Integer id) {
+
 		// Se crea una conexion
 		Connection connection = new Conexion().conecta();
 		try {
 
-			// Se hace el delete sobre el id
 			String query = "update usuario set foto = '" + foto + "' where id =" + id;
 
 			Statement stmt = connection.createStatement();
@@ -227,13 +270,18 @@ public class UsuariosDAO {
 		}
 	}
 
+	/**
+	 * Método para actualizar la contraseña de un usuario
+	 * 
+	 * @param pass = contraseña
+	 * @param id   = clave que identifica a un usuario
+	 */
 	public void updatePassUsuario(String pass, Integer id) {
 
 		// Se crea una conexion
 		Connection connection = new Conexion().conecta();
 		try {
 
-			// Se hace el delete sobre el id
 			String query = "update usuario set password = '" + pass + "' where id =" + id;
 
 			Statement stmt = connection.createStatement();

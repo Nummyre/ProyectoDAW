@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-        <%@page import="modelo.pojo.Usuario"%>
-        <%@page import="modelo.pojo.Guia"%>
-        <%@page import="java.util.ArrayList"%>
+	pageEncoding="UTF-8"%>
+<%@page import="modelo.pojo.Usuario"%>
+<%@page import="modelo.pojo.Guia"%>
+<%@page import="java.util.ArrayList"%>
 <%@page session="false"%>
 <!DOCTYPE html>
 <html>
@@ -27,10 +27,10 @@
 </head>
 <body>
 
-<%
+	<%
 		Usuario user = (Usuario) request.getAttribute("usuario");
-ArrayList<Guia> listaJuego = (ArrayList<Guia>) request.getAttribute("listaJuego");
-	
+		ArrayList<Guia> listaJuego = (ArrayList<Guia>) request.getAttribute("listaJuego");
+
 		if (user == null) {
 			out.print("<header>");
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">");
@@ -111,27 +111,27 @@ ArrayList<Guia> listaJuego = (ArrayList<Guia>) request.getAttribute("listaJuego"
 			out.print("<a class=\"nav-link text-white p-4\" href=\"Contacto\">Contacto</a>");
 			out.print("</li>");
 			out.print("<li class=\"nav-item dropdown\">");
-			if(user.getAdministrador() == 1){
-			out.print(
-					"<a class=\"nav-link dropdown-toggle ml-5 p-4\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Administrador</a>");
-			out.print("<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">");
-			out.print("<a class=\"dropdown-item\" href=\"Add\">Añadir juego</a>");
-			out.print("<a class=\"dropdown-item\" href=\"Editar?id=" + user.getId() + "\">Editar juego</a>");
-			out.print("<a class=\"dropdown-item\" href=\"Borrar?id=" + user.getId() + "\">Borrar juego</a>");
-			out.print("<div class=\"dropdown-divider\"></div>");
-			out.print("<a class=\"dropdown-item\" href=\"AddGuia\">Añadir guía</a>");
-			out.print(
-					"<a class=\"dropdown-item\" href=\"EditarListaGuia?id=" + user.getId() + "\">Editar guía</a>");
-			out.print(
-					"<a class=\"dropdown-item\" href=\"BorrarListaGuia?id=" + user.getId() + "\">Borrar guia</a>");
-			out.print("<div class=\"dropdown-divider\"></div>");
-			out.print("<a class=\"dropdown-item\" href=\"AddAnalisis\">Añadir análisis</a>");
-			out.print("<a class=\"dropdown-item\" href=\"EditarListaAnalisis?id=" + user.getId()
-					+ "\">Editar análisis</a>");
-			out.print("<a class=\"dropdown-item\" href=\"BorrarListaAnalisis?id=" + user.getId()
-					+ "\">Borrar análisis</a>");
-			out.print("</div>");
-			out.print("</li>");
+			if (user.getAdministrador() == 1) {
+				out.print(
+						"<a class=\"nav-link dropdown-toggle ml-5 p-4\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Administrador</a>");
+				out.print("<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">");
+				out.print("<a class=\"dropdown-item\" href=\"Add\">Añadir juego</a>");
+				out.print("<a class=\"dropdown-item\" href=\"Editar?id=" + user.getId() + "\">Editar juego</a>");
+				out.print("<a class=\"dropdown-item\" href=\"Borrar?id=" + user.getId() + "\">Borrar juego</a>");
+				out.print("<div class=\"dropdown-divider\"></div>");
+				out.print("<a class=\"dropdown-item\" href=\"AddGuia\">Añadir guía</a>");
+				out.print("<a class=\"dropdown-item\" href=\"EditarListaGuia?id=" + user.getId()
+						+ "\">Editar guía</a>");
+				out.print("<a class=\"dropdown-item\" href=\"BorrarListaGuia?id=" + user.getId()
+						+ "\">Borrar guia</a>");
+				out.print("<div class=\"dropdown-divider\"></div>");
+				out.print("<a class=\"dropdown-item\" href=\"AddAnalisis\">Añadir análisis</a>");
+				out.print("<a class=\"dropdown-item\" href=\"EditarListaAnalisis?id=" + user.getId()
+						+ "\">Editar análisis</a>");
+				out.print("<a class=\"dropdown-item\" href=\"BorrarListaAnalisis?id=" + user.getId()
+						+ "\">Borrar análisis</a>");
+				out.print("</div>");
+				out.print("</li>");
 			}
 			out.print("</ul>");
 			out.print("<form class=\"form-inline ml-5\">");
@@ -141,7 +141,8 @@ ArrayList<Guia> listaJuego = (ArrayList<Guia>) request.getAttribute("listaJuego"
 				out.print("<img src=\"img/usuari.png\" width=\"100\" height=\"65\" class=\"img-circle\">");
 			} else {
 				if (user.getFoto().matches(".+\\.(jpg|png)")) {
-					out.print("<img src=\"Imagenes/" + user.getFoto() + "\" width=\"95\" height=\"65\" class=\"rounded-circle mr-4\"/>");
+					out.print("<img src=\"Imagenes/" + user.getFoto()
+							+ "\" width=\"95\" height=\"65\" class=\"rounded-circle mr-4\"/>");
 				}
 			}
 			out.print("</div>");
@@ -160,22 +161,29 @@ ArrayList<Guia> listaJuego = (ArrayList<Guia>) request.getAttribute("listaJuego"
 			out.print("</form>");
 			out.print("</nav>");
 			out.print("</header>");
-			
-			out.print("<div class=\"container mt-5 p-5\">"); //Empieza container
+
+			//Empieza container
+			out.print("<div class=\"container mt-5 p-5\">");
+
+			//1 row
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col mb-5\">");
 			out.print("<h3>Tu lista de guías añadidas</h3>");
 			out.print("</div>");
 			out.print("</div>");
+
+			//2 row
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col mb-5\">");
 			out.print("<table class=\"ta\">");
-		
 			if (listaJuego != null) {
+
+				//for que muestra una lista de guias
 				for (Guia j : listaJuego) {
 					out.print("<tr>");
-					out.print("<td><a href=\"FichaGuia?id=" + j.getId() + "\">" + j.getTitulo()+ "</td>");
-					out.print("<td><a href=\"BorradoGuia?id=" + j.getId()+ "\"><button type=\"button\" class=\"btn btn-success \" onclick=\"return confirm('¿Seguro que quieres borrar?');\">Borrar Guía</button></a></td>");
+					out.print("<td><a href=\"FichaGuia?id=" + j.getId() + "\">" + j.getTitulo() + "</td>");
+					out.print("<td><a href=\"BorradoGuia?id=" + j.getId()
+							+ "\"><button type=\"button\" class=\"btn btn-success \" onclick=\"return confirm('¿Seguro que quieres borrar?');\">Borrar Guía</button></a></td>");
 					out.print("</tr>");
 				}
 			} else {
@@ -183,18 +191,19 @@ ArrayList<Guia> listaJuego = (ArrayList<Guia>) request.getAttribute("listaJuego"
 				out.print(
 						"<a href=\"AddGuia\"><button type=\"button\" class=\"btn btn-success ml-5\">Añadir guía</button></a>");
 			}
-		
+
 			out.print("</table>");
 			out.print("</div>");
 			out.print("</div>");
+
+			//fin de container
 			out.print("</div>");
 		}
 	%>
-					<div class="footer bg-dark">
+	<div class="footer bg-dark">
 		<div class="footer-copyright text-center py-3 bg-success">
 			© 2020 Copyright: <a class="text-white"
 				href="https://Freak'sCorner.com/">Freak'sCorner.com</a>
-				<p class="mt-3">Esta web es ficticia para un proyecto de 2º FP Superior DAW</p>
 		</div>
 	</div>
 </body>

@@ -1,5 +1,11 @@
 package modelo.pojo;
 
+/**
+ * Clase pojo de Comentario
+ * 
+ * @author Cintia
+ *
+ */
 public class Comentario {
 
 	private Integer id;
@@ -7,12 +13,10 @@ public class Comentario {
 	private Integer idJuego;
 	private String comentario;
 	private String fecha;
-	
-	
-	public Comentario () {
-		
+
+	public Comentario() {
+
 	}
-	
 
 	public Comentario(Integer id, Integer idUsuario, Integer idJuego, String comentario, String fecha) {
 		super();
@@ -23,7 +27,6 @@ public class Comentario {
 		this.fecha = fecha;
 
 	}
-
 
 	public Integer getId() {
 		return id;
@@ -65,10 +68,4 @@ public class Comentario {
 		this.fecha = fecha;
 	}
 
-
-	
-	
-
-	
-	
 }

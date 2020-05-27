@@ -22,11 +22,19 @@ import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
 import modelo.pojo.Usuario;
 
+/**
+ * Servlet para hacer el insert del hilo
+ * 
+ * @author Cintia
+ *
+ */
 @WebServlet("/InsertHilo")
 @MultipartConfig(maxFileSize = 1024 * 1024 * 5)
 public class InsertHilo extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
 
+	// EJB para llamar los métodos del DAO
 	@EJB
 	UsuariosEJB usuariosEJB;
 
@@ -36,8 +44,12 @@ public class InsertHilo extends HttpServlet {
 	@EJB
 	JuegoEJB juegoEJB;
 
+	// Variable para subir los archivos a Imagenes
 	private static final String UPLOAD_DIRECTORY = "Imagenes";
 
+	/**
+	 * doGet para mostrar la página para insertar el hilo
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -51,37 +63,47 @@ public class InsertHilo extends HttpServlet {
 		rs.forward(request, response);
 	}
 
+	/**
+	 * doPost para hacer el insert del hilo
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		request.setCharacterEncoding("UTF-8");
-		String idU = request.getParameter("idU");
-		String titulo = request.getParameter("titulo");
-		String hilo = request.getParameter("editor1");
+		// Hace que el texto sea formato utf-8
+		request.setCharacterEncoding("UTF-8"); 
+
+		// id del usuario
+		String idU = request.getParameter("idU"); 
+		
+		// título
+		String titulo = request.getParameter("titulo"); 
+		
+		// textarea
+		String hilo = request.getParameter("editor1"); 
 
 		Integer idUsuario = Integer.parseInt(idU);
 
 		// Obtenemos una ruta en el servidor para guardar el archivo
-				String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY;
+		String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY;
 
-				// Si la ruta no existe la crearemos
-				File uploadDir = new File(uploadPath);
-				if (!uploadDir.exists()) {
-					uploadDir.mkdir();
-				}
+		// Si la ruta no existe la crearemos
+		File uploadDir = new File(uploadPath);
+		if (!uploadDir.exists()) {
+			uploadDir.mkdir();
+		}
 
-				// Lo utilizaremos para guardar el nombre del archivo
-				String fileName = null;
+		// Lo utilizaremos para guardar el nombre del archivo
+		String fileName = null;
 
-				for (Part part : request.getParts()) {
-					String nombre = getFileName(part);
-					
-					if(!nombre.equals("desconocido.txt") && !nombre.equals("")) {
-						fileName = nombre;
-						part.write(uploadPath + File.separator + fileName);
-					}
-					
-				}
+		for (Part part : request.getParts()) {
+			String nombre = getFileName(part);
+
+			if (!nombre.equals("desconocido.txt") && !nombre.equals("")) {
+				fileName = nombre;
+				part.write(uploadPath + File.separator + fileName);
+			}
+
+		}
 
 		Date date = new Date();
 

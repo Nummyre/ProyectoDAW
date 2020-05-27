@@ -13,14 +13,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import modelo.ejb.AnalisisEJB;
-import modelo.ejb.JuegoEJB;
+
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
 import modelo.pojo.Analisis;
-import modelo.pojo.Guia;
+
 import modelo.pojo.Usuario;
 
-
+/**
+ * Servlet que muestra la vista de la lista de los análisis
+ * 
+ * @author Cintia
+ *
+ */
 @WebServlet("/EditarListaAnalisis")
 public class EditarListaAnalisis extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -33,26 +38,31 @@ public class EditarListaAnalisis extends HttpServlet {
 
 	@EJB
 	SesionesEJB sesionesEJB;
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		
+	/**
+	 * doGet que muestra la vista para la lista de los análisis por el id del
+	 * usuario a editar
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		HttpSession session = request.getSession(false);
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
-		
+
+		 // id del usuario
 		String idJ = request.getParameter("id");
-		
+
 		Integer id = Integer.parseInt(idJ);
-		
+
+		 // listado de análisis
 		ArrayList<Analisis> juego = analisisEJB.listaAnalisisPorIdUser(id);
-		
+
 		request.setAttribute("juego", juego);
-		request.setAttribute("usuario",usuario);
-		
+		request.setAttribute("usuario", usuario);
 
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/admin/EditarListaAnalisis.jsp");
 		rs.forward(request, response);
 	}
-
 
 }

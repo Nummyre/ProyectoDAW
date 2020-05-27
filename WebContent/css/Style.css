@@ -1,5 +1,11 @@
+/**
+*
+*CSS para el estilo de la web en general
+*
+*/
 @charset "UTF-8";
 
+/*******Para las estrellas de puntuar en la ficha juego***********/
 #form {
 	width: 250px;
 	margin: 0 auto;
@@ -35,6 +41,7 @@ input[type="radio"]:checked ~ label {
 	color: orange;
 }
 
+/*******Iconos de compartir en redes***********/
 .fa {
 	padding: 20px;
 	font-size: 30px;
@@ -71,8 +78,7 @@ input[type="radio"]:checked ~ label {
 	color: white;
 }
 
-
-<!---------------------MAIN------------------------------->
+/*******MAIN y demas***********/
 .h:hover {
 	opacity: 0.4;
 	background: black;
@@ -84,8 +90,7 @@ input[type="radio"]:checked ~ label {
 }
 
 .navbar {
-	border-bottom: 2px solid  #81ff9f; 
-
+	border-bottom: 2px solid #81ff9f;
 }
 
 .dropdown-menu>.dropdown-item:hover {
@@ -127,15 +132,9 @@ input[type="radio"]:checked ~ label {
 	padding: 20px;
 }
 
-/* .cuerpo{ */
-/* background-color:#81ff9f; */
-/* } */
-
 td {
 	padding: 20px;
 }
-
-
 
 table tr td a {
 	text-decoration: none;
@@ -145,72 +144,58 @@ table tr td a {
 h3 {
 	border-radius: 2px;
 	padding: 10px;
-border-bottom: 3px solid #29C45A;
-width: 100%;
+	border-bottom: 3px solid #29C45A;
+	width: 100%;
 }
 
-
-
-<!--------------------------------REGISTRO---------------------------------------------------------------->
-
-.modal-body pre{
-	font-family: Arial;
-}
-
-.modal-body pre .titu{
-	font-family: Arial;
-	font-weight: bold;
-}
-
-.card .card-body a{
+.card .card-body a {
 	text-decoration: none;
 	color: black;
-margin: auto;
+	margin: auto;
 }
-
 
 .ta tr {
 	border: 1px solid #29C45A;
 }
 
-.table tr th{
+.table tr th {
 	padding: 35px;
 }
 
+/*******Modal que hay en registro***********/
+.modal-body pre {
+	font-family: Arial;
+}
 
+.modal-body pre .titu {
+	font-family: Arial;
+	font-weight: bold;
+}
 
-
-
-
-
-.redes{
+/*******caja de compartir en redes en las fichas***********/
+.redes {
 	float: left;
 	position: sticky;
-
-top: 0;
+	top: 0;
 	z-index: 3;
 }
 
-.face{
+.face {
 	background: #3B5998;
 	padding: 5px;
 }
 
-.twitter{
+.twitter {
 	background: #55ACEE;
 	padding: 5px;
 }
 
-
-
-
-.insta{
+.insta {
 	background: linear-gradient(to bottom left, #ff33cc 18%, #ff6600 98%);
 	padding: 5px;
 }
 
-.tumb{
-background: #2c4762;
+.tumb {
+	background: #2c4762;
 	padding: 5px;
 }
-

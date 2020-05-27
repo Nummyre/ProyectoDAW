@@ -16,7 +16,8 @@
 <title>Freak's Corner</title>
 <link href="img/logo4.png" rel="icon" type="image/x-icon" />
 <link rel="stylesheet" type="text/css" href="css/Style.css">
-<script type = "text/javascript" charset ="UTF-8" src ="http://chs03.cookie-script.com/s/23c5591bf6df5a3f209a79ff16ceb577.js"></script>
+<script type="text/javascript" charset="UTF-8"
+	src="http://chs03.cookie-script.com/s/23c5591bf6df5a3f209a79ff16ceb577.js"></script>
 <script type="text/javascript" src="js/Style.js"></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -31,10 +32,8 @@
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
 </head>
-<body class="cuerpo">
+<body>
 	<%
 		Usuario user = (Usuario) request.getAttribute("usuario");
 		ArrayList<Juego> juego = (ArrayList<Juego>) request.getAttribute("juego");
@@ -42,7 +41,7 @@
 		ArrayList<Analisis> analisi = (ArrayList<Analisis>) request.getAttribute("analisi");
 		ArrayList<Genero> genero = (ArrayList<Genero>) request.getAttribute("genero");
 		ArrayList<Plataforma> plata = (ArrayList<Plataforma>) request.getAttribute("plataforma");
-
+		
 		ArrayList<Foto> juegoFoto = (ArrayList<Foto>) request.getAttribute("juegoFoto");
 		ArrayList<Foto> guiaFoto = (ArrayList<Foto>) request.getAttribute("guiaFoto");
 		ArrayList<Foto> analisisFoto = (ArrayList<Foto>) request.getAttribute("analisisFoto");
@@ -92,7 +91,8 @@
 			out.print("</form>");
 			out.print("</div>");
 			out.print("</nav>");
-			//--------------------------------------------------------
+
+			//menu de plataformas
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-success\">");
 			out.print("<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">");
 			out.print("<ul class=\"navbar-nav ml-5\">");
@@ -113,8 +113,10 @@
 			out.print("</nav>");
 			out.print("</header>");
 
+			//container
 			out.print("<div class=\"container p-5\">");
 
+			//carrousel de las fotos
 			out.print("<div id=\"carousel\" class=\"carousel slide\" data-ride=\"carousel\">");
 			out.print("<ol class=\"carousel-indicators\">");
 			out.print("<li data-target=\"#carousel\" data-slide-to=\"0\" class=\"active\"></li>");
@@ -160,6 +162,8 @@
 			out.print("</a>");
 
 			out.print("</div>");
+
+			//termina carrousel
 			out.print("</div>");
 
 			out.print("<div class=\"row mt-5\">");
@@ -170,10 +174,11 @@
 
 			out.print("<div class=\"row mt-3\">");//lista
 			out.print("<div class=\"col\">");
-			
+
+			//tabla para que muestre los juegos
 			if (juego != null) {
 				for (Juego j : juego) {
-					out.print("<div class=\"shadow-lg p-3 mb-5 bg-white rounded w-75\">");
+					out.print("<div class=\"shadow-lg p-3 mb-5 bg-white rounded\">");
 					out.print("<div class=\"table-responsive\">");
 					out.print("<table class=\"table-borderless\">");
 					out.print("<tr>");
@@ -189,8 +194,8 @@
 									+ "\" width=\"100\" height=\"65\" class=\"img-circle\"></td>");
 						}
 					}
-					out.print("<td><a class=\"text-center\" href=\"FichaJuego?id=" + j.getId() + "\">" + j.getTitulo()
-							+ "</a></td>");
+					out.print("<td><a class=\"text-center\" href=\"FichaJuego?id=" + j.getId() + "\">"
+							+ j.getTitulo() + "</a></td>");
 					for (Genero g : genero) {
 						if (j.getGenero() == g.getId()) {
 							out.print("<td>" + g.getNombre() + "</td>");
@@ -201,20 +206,19 @@
 							out.print("<td>" + p.getNombre() + "</td>");
 						}
 					}
-			
+
 					out.print("</tr>");
 					out.print("</table>");
 					out.print("</div>");
 					out.print("</div>");
 				}
 
-			} 
-		
+			}
+
 			out.print("</div>");
 			out.print("</div>");
 
-			//--------------------------------------------------------------
-
+			//guias
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col-4\">");//titulo
 			out.print("<h3>Guías</h3>");
@@ -223,15 +227,17 @@
 
 			out.print("<div class=\"row  mt-3\">");//lista
 			out.print("<div class=\"col\">");
-		
+
+			//tabla para que muestre las guias
 			if (guia != null) {
 				for (Guia g : guia) {
-					out.print("<div class=\"shadow-lg p-3 mb-5 bg-white rounded w-75\">");
+					out.print("<div class=\"shadow-lg p-3 mb-5 bg-white rounded\">");
 					out.print("<div class=\"table-responsive\">");
 					out.print("<table class=\"table-borderless\">");
 					out.print("<tr>");
 					out.print("<th></th>");
 					out.print("<th class=\"text-center\">Título</th>");
+					out.print("<th class=\"text-center\">Desripción</th>");
 					out.print("</tr>");
 					out.print("<tr>");
 					for (Foto fg : guiaFoto) {
@@ -240,20 +246,20 @@
 									+ "\" width=\"100\" height=\"65\" class=\"img-circle\"></td>");
 						}
 					}
-					out.print("<td><a class=\"text-center\" href=\"FichaGuia?id=" + g.getId() + "\">" + g.getTitulo()
-							+ "</td>");
+					out.print("<td><a class=\"text-center\" href=\"FichaGuia?id=" + g.getId() + "\">"
+							+ g.getTitulo() + "</td>");
+					out.print("<td>" + g.getTexto().substring(0, 120) + "...</td>");
 					out.print("</tr>");
 					out.print("</table>");
 					out.print("</div>");
 					out.print("</div>");
 				}
 			}
-		
+
 			out.print("</div>");
 			out.print("</div>");
 
-			//-----------------------------------------------------------------------
-
+			//analisis
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col-4\">");//titulo
 			out.print("<h3>Análisis</h3>");
@@ -262,10 +268,11 @@
 
 			out.print("<div class=\"row  mt-3\">");//lista
 			out.print("<div class=\"col\">");
-		
+
+			//tabla para que muestre los analisis
 			if (analisi != null) {
 				for (Analisis a : analisi) {
-					out.print("<div class=\"shadow-lg p-3 mb-5 bg-white rounded w-75\">");
+					out.print("<div class=\"shadow-lg p-3 mb-5 bg-white rounded \">");
 					out.print("<div class=\"table-responsive\">");
 					out.print("<table class=\"table-borderless\">");
 					out.print("<tr>");
@@ -283,14 +290,15 @@
 					out.print("</div>");
 					out.print("</div>");
 				}
-			} 
-		
+			}
+
 			out.print("</div>");
 			out.print("</div>");
 
-			out.print("</div>"); //div container
+			//fin container
+			out.print("</div>");
 
-
+			//sino que muestre una vista de un usuario logeado
 		} else {
 			out.print("<header>");
 			out.print("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">");
@@ -348,7 +356,7 @@
 			out.print("</form>");
 			out.print("</nav>");
 
-			//--------------------------------------------------------
+			//menu plataformas
 			out.print("<nav class=\"n navbar navbar-expand-lg navbar-dark bg-success\">");
 			out.print("<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">");
 			out.print("<ul class=\"navbar-nav ml-5\">");
@@ -369,8 +377,10 @@
 			out.print("</nav>");
 			out.print("</header>");
 
-			out.print("<div class=\"container mt-2 mb-2\">");
+			//container
+			out.print("<div class=\"container mt-2 mb-2 p-5\">");
 
+			//carrousel
 			out.print("<div id=\"carousel\" class=\"carousel slide\" data-ride=\"carousel\">");
 			out.print("<ol class=\"carousel-indicators\">");
 			out.print("<li data-target=\"#carousel\" data-slide-to=\"0\" class=\"active\"></li>");
@@ -416,6 +426,7 @@
 			out.print("</a>");
 
 			out.print("</div>");
+			//termina el carrousel
 			out.print("</div>");
 
 			out.print("<div class=\"row mt-5\">");
@@ -424,12 +435,14 @@
 			out.print("</div>");
 			out.print("</div>");
 
+			//juegos
 			out.print("<div class=\"row mt-5\">");//lista
 			out.print("<div class=\"col\">");
-			
+
+			//tabla que muestra los juegos
 			if (juego != null) {
 				for (Juego j : juego) {
-					out.print("<div class=\"shadow-lg p-3 mb-5 bg-white rounded w-75\">");
+					out.print("<div class=\"shadow-lg p-3 mb-5 bg-white rounded \">");
 					out.print("<div class=\"table-responsive\">");
 					out.print("<table class=\"table-borderless\">");
 					out.print("<tr>");
@@ -463,13 +476,12 @@
 					out.print("</div>");
 				}
 
-			} 
-		
+			}
+
 			out.print("</div>");
 			out.print("</div>");
 
-			//--------------------------------------------------------------
-
+			//guias
 			out.print("<div class=\"row mt-5\">");
 			out.print("<div class=\"col-4\">");//titulo
 			out.print("<h3>Guías</h3>");
@@ -478,15 +490,17 @@
 
 			out.print("<div class=\"row mt-5\">");//lista
 			out.print("<div class=\"col\">");
-	
+
+			//tabla que muestra las guias
 			if (guia != null) {
 				for (Guia g : guia) {
-					out.print("<div class=\"shadow-lg p-3 mb-5 bg-white rounded w-75\">");
+					out.print("<div class=\"shadow-lg p-3 mb-5 bg-white rounded \">");
 					out.print("<div class=\"table-responsive\">");
 					out.print("<table class=\"table-borderless\">");
 					out.print("<tr>");
 					out.print("<th></th>");
 					out.print("<th class=\"text-center\">Título</th>");
+					out.print("<th class=\"text-center\">Desripción</th>");
 					out.print("</tr>");
 					out.print("<tr>");
 					for (Foto fg : guiaFoto) {
@@ -497,19 +511,19 @@
 					}
 					out.print("<td><a class=\"e\" href=\"FichaGuia?id=" + g.getId() + "\">" + g.getTitulo()
 							+ "</td>");
+					out.print("<td>" + g.getTexto().substring(0, 120) + "...</td>");
 					out.print("</tr>");
 					out.print("</table>");
 					out.print("</div>");
 
 					out.print("</div>");
 				}
-			} 
-		
+			}
+
 			out.print("</div>");
 			out.print("</div>");
 
-			//-----------------------------------------------------------------------
-
+			//analisis
 			out.print("<div class=\"row mt-5\">");
 			out.print("<div class=\"col-4\">");//titulo
 			out.print("<h3>Análisis</h3>");
@@ -518,6 +532,8 @@
 
 			out.print("<div class=\"row mt-5\">");//lista
 			out.print("<div class=\"col\">");
+
+			//tabla que muestra los analisis
 			if (analisi != null) {
 				for (Analisis a : analisi) {
 					out.print("<div class=\"shadow-lg p-3 mb-5 bg-white rounded \">");
@@ -545,15 +561,15 @@
 
 					out.print("</div>");
 				}
-			} 
+			}
 
 			out.print("</div>");
 			out.print("</div>");
 
-			out.print("</div>"); //div container
+			//fin container
+			out.print("</div>");
 		}
 	%>
-
 	<div class="footer bg-dark">
 		<div class="text-center center-block p-5">
 			<a href="https://es-es.facebook.com/" class="fa fa-facebook"></a> <a
@@ -563,11 +579,10 @@
 			<a href="https://www.tumblr.com/dashboard" class="fa fa-tumblr"></a>
 		</div>
 		<div class="footer-copyright text-center py-3 bg-success">
-				<p class="mt-3">Esta web es ficticia para un proyecto de 2º FP
+			<p class="mt-3">Esta web es ficticia para un proyecto de 2º FP
 				Superior DAW</p>
 			© 2020 Copyright: <a class="text-white"
 				href="https://Freak'sCorner.com/">Freak'sCorner.com</a>
-
 		</div>
 	</div>
 </body>

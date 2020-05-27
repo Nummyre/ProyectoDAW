@@ -21,14 +21,15 @@ import modelo.pojo.Usuario;
 
 /**
  * Servlet para el análisis
+ * 
  * @author Cintia
  *
  */
 @WebServlet("/Analisis")
 public class Analisis extends HttpServlet {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * EJB para llamar a los métodos
 	 */
@@ -37,32 +38,38 @@ public class Analisis extends HttpServlet {
 
 	@EJB
 	SesionesEJB sesionesEJB;
-	
+
 	@EJB
 	JuegoEJB juegoEJB;
-	
+
 	@EJB
 	AnalisisEJB analisisEJB;
-	
+
 	/**
 	 * Doget para mostrar el contenido de análisis
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		HttpSession session = request.getSession(false);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-		Usuario usuario = sesionesEJB.usuarioLogeado(session);
+		HttpSession session = request.getSession(false); // Se coge la sesión
+
+		// Se coge el usuario que ha sido logeado en la sesión
+		Usuario usuario = sesionesEJB.usuarioLogeado(session); 
+
+		// Lista para mostrar los análisis
+		ArrayList<modelo.pojo.Analisis> analisis = analisisEJB.listaAnalisis(); 
 		
-		 ArrayList<modelo.pojo.Analisis> analisis = analisisEJB.listaAnalisis();
-		 ArrayList<Foto> fotoAnali = analisisEJB.listaFotosAnalisi();
+		// Lista para mostrar las fotos de los análisis
+		ArrayList<Foto> fotoAnali = analisisEJB.listaFotosAnalisi(); 
 
-		 request.setAttribute("foto", fotoAnali);
+		// Se coge el parametro de la lista de fotos de análisis
+		request.setAttribute("foto", fotoAnali);
 		request.setAttribute("usuario", usuario);
 		request.setAttribute("analisis", analisis);
-		
+
+		// Se pasa los atributos de los parametros a la vista
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Analisis.jsp");
 		rs.forward(request, response);
 	}
-
 
 }

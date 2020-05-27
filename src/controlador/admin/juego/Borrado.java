@@ -3,7 +3,6 @@ package controlador.admin.juego;
 import java.io.IOException;
 
 import javax.ejb.EJB;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +15,12 @@ import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
 import modelo.pojo.Usuario;
 
+/**
+ * Servlet que borra un juego
+ * 
+ * @author Cintia
+ *
+ */
 @WebServlet("/Borrado")
 public class Borrado extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -29,6 +34,9 @@ public class Borrado extends HttpServlet {
 	@EJB
 	SesionesEJB sesionesEJB;
 
+	/**
+	 * doGet que borra un juego seleccionado
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -36,14 +44,14 @@ public class Borrado extends HttpServlet {
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
 
-		String id = request.getParameter("id");
+		// id del juego
+		String id = request.getParameter("id"); 
 
 		Integer idJ = Integer.parseInt(id);
 
 		juegoEJB.deleteJuego(idJ);
-		
 
-		response.sendRedirect("Borrar?id="+usuario.getId());
+		response.sendRedirect("Borrar?id=" + usuario.getId());
 	}
 
 }

@@ -11,16 +11,22 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import modelo.ejb.AnalisisEJB;
-import modelo.ejb.JuegoEJB;
+
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
 import modelo.pojo.Usuario;
 
-
+/**
+ * Servlet para borrar un análisis
+ * 
+ * @author Cintia
+ *
+ */
 @WebServlet("/BorradoAnalisis")
 public class BorradoAnalisis extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
-       
+
 	@EJB
 	AnalisisEJB analisisEJB;
 
@@ -29,22 +35,25 @@ public class BorradoAnalisis extends HttpServlet {
 
 	@EJB
 	SesionesEJB sesionesEJB;
- 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	/**
+	 * doGet para borrar el análisis
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		HttpSession session = request.getSession(false);
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
 
-		String id = request.getParameter("id");
+		// id del análisis
+		String id = request.getParameter("id"); 
 
 		Integer idJ = Integer.parseInt(id);
 
 		analisisEJB.deleteAnalisis(idJ);
-		
 
-		response.sendRedirect("BorrarListaAnalisis?id="+usuario.getId());
+		response.sendRedirect("BorrarListaAnalisis?id=" + usuario.getId());
 	}
-
-
 
 }

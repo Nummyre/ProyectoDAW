@@ -18,6 +18,12 @@ import modelo.ejb.UsuariosEJB;
 import modelo.pojo.Foto;
 import modelo.pojo.Usuario;
 
+/**
+ * Servlet que muestra el top 10 (página default de top 10)
+ * 
+ * @author Cintia
+ *
+ */
 @WebServlet("/Top10")
 public class Top10 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -31,6 +37,9 @@ public class Top10 extends HttpServlet {
 	@EJB
 	JuegoEJB juegoEJB;
 
+	/**
+	 * doGet que muestra los top 10
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -39,7 +48,6 @@ public class Top10 extends HttpServlet {
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
 
 		ArrayList<modelo.pojo.Top10> top = juegoEJB.listaTop10();
-
 		ArrayList<Foto> foto = juegoEJB.listaFotosJuegos();
 
 		request.setAttribute("foto", foto);

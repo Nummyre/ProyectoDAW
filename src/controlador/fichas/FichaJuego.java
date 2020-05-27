@@ -1,6 +1,7 @@
 package controlador.fichas;
 
 import java.io.IOException;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -27,40 +28,60 @@ import modelo.pojo.Puntuacion;
 import modelo.pojo.Usuario;
 import modelo.pojo.ValoracionLista;
 
+/**
+ * Servlet para la ficha del juego
+ * 
+ * @author Cintia
+ *
+ */
 @WebServlet("/FichaJuego")
 public class FichaJuego extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	@EJB
 	UsuariosEJB userEJB;
-	
+
 	@EJB
 	SesionesEJB sesionEJB;
-	
+
 	@EJB
 	JuegoEJB juegoEJB;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+	/**
+	 * doGet que muestra la vista de la ficha del juego
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		HttpSession session = request.getSession(false);
 		Usuario usuario = sesionEJB.usuarioLogeado(session);
-		
+
 		String idJ = request.getParameter("id");
 		Integer id = Integer.parseInt(idJ);
 
-		
-		Juego juego = juegoEJB.juego(id);
-		ArrayList<Foto> fotoJuego = juegoEJB.listaFotosJuegos();
-		ArrayList<Genero> juegoG = juegoEJB.genero();
-		ArrayList<Plataforma> juegoP = juegoEJB.plataforma();
-		ArrayList<Usuario> users = userEJB.listaUsuarios();
-		
-	ArrayList<ValoracionLista> valoracion = juegoEJB.listaValoracion();
-	Puntuacion puntos = juegoEJB.valoracionJuego(id);
+		// muestra el juego
+		Juego juego = juegoEJB.juego(id); 
 
-		
+		 // muestra una lista de fotos del juego
+		ArrayList<Foto> fotoJuego = juegoEJB.listaFotosJuegos();
+
+		 // muestra los géneros
+		ArrayList<Genero> juegoG = juegoEJB.genero();
+
+		// muestra una lista de plataformas
+		ArrayList<Plataforma> juegoP = juegoEJB.plataforma(); 
+
+		// muestra a los usuarios
+		ArrayList<Usuario> users = userEJB.listaUsuarios();
+
+		// muestra una list de valoraciones
+		ArrayList<ValoracionLista> valoracion = juegoEJB.listaValoracion();
+
+		// muestra la puntuación del juego
+		Puntuacion puntos = juegoEJB.valoracionJuego(id);
+
 		ArrayList<Comentario> coment = juegoEJB.listaComentarioJuegos();
-		
+
 		request.setAttribute("valoracion", valoracion);
 		request.setAttribute("puntos", puntos);
 		request.setAttribute("users", users);
@@ -70,30 +91,37 @@ public class FichaJuego extends HttpServlet {
 		request.setAttribute("usuario", usuario);
 		request.setAttribute("fotoJuego", fotoJuego);
 		request.setAttribute("coment", coment);
-		
+
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/fichas/FichaJuego.jsp");
 		rs.forward(request, response);
 
 	}
 
+	/**
+	 * doPost que hace el insert de un comentario en la ficha del juego
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
 		String comentario = request.getParameter("com");
-		String idJ = request.getParameter("idJ");
-		String idU = request.getParameter("idU");
 		
+		// id de la ficha del juego
+		String idJ = request.getParameter("idJ"); 
+		
+		// id del usuario
+		String idU = request.getParameter("idU"); 
+
 		Integer idJuego = Integer.parseInt(idJ);
 		Integer idUsuario = Integer.parseInt(idU);
-		
+
 		Date date = new Date();
-		
+
 		DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-		
+
 		juegoEJB.insertComentario(comentario, hourdateFormat.format(date), idUsuario, idJuego);
-		
-		response.sendRedirect("FichaJuego?id="+idJuego);
-		
+
+		response.sendRedirect("FichaJuego?id=" + idJuego);
+
 	}
 
 }

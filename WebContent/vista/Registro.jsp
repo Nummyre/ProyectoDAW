@@ -35,8 +35,8 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="h nav-link text-white p-4"
-					href="Main">Inicio</a></li>
+				<li class="nav-item active"><a
+					class="h nav-link text-white p-4" href="Main">Inicio</a></li>
 				<li class="nav-item"><a class=" nav-link text-white p-4"
 					href="Registro">Registrarse</a></li>
 				<li class="nav-item"><a class=" nav-link text-white p-4"
@@ -70,7 +70,6 @@
 		</div>
 	</nav>
 
-
 	<div class='container p-5 mt-5 mb-5'>
 
 		<div class="row">
@@ -87,14 +86,13 @@
 							<span class="input-group-text">@</span>
 						</div>
 						<input type="text" class="form-control" placeholder="Usuario"
-							aria-describedby="validationTooltipUsernamePrepend" name="user" id="e"
-							required>
+							aria-describedby="validationTooltipUsernamePrepend" name="user"
+							id="e" required>
 					</div>
 				</div>
 				<div class="col-4 mb-3">
-					*Contraseña:<input type="password"
-						class="form-control " placeholder="Contraseña" name="pass" id="pass"
-						required>
+					*Contraseña:<input type="password" class="form-control "
+						placeholder="Contraseña" name="pass" id="pass" required>
 				</div>
 
 			</div>
@@ -108,8 +106,8 @@
 
 				<div class="col-md-4 mb-3">
 					*Email:<input type="email" class="form-control" id="e"
-						placeholder="name@example.com" name="email" >
-						
+						placeholder="name@example.com" name="email">
+
 				</div>
 
 			</div>
@@ -122,8 +120,11 @@
 			</div>
 
 			<input type="checkbox" id="box2" class="mr-3 mt-5">
+
 			<!-- Button trigger modal -->
-			<button type="button"  class="btn btn-primary " data-toggle="modal" id="condiciones" data-target="#exampleModalCenter">Acepto las condiciones</button>
+			<button type="button" class="btn btn-primary " data-toggle="modal"
+				id="condiciones" data-target="#exampleModalCenter">Acepto
+				las condiciones</button>
 
 			<!-- Modal -->
 			<div class="modal fade" id="exampleModalCenter" tabindex="-1"
@@ -156,30 +157,30 @@ Ciertos servicios prestados en el portal pueden contener condiciones particulare
 previsiones en materia de protección de Datos Personales. 
 De ellos puedes informarte en los correspondientes apartados.
 
-<p class="titu">TITULARIDAD DEL TRATAMIENTO</p>
+<strong>TITULARIDAD DEL TRATAMIENTO</strong>
 En dichos supuestos, los datos recabados por Freak's Corner serán incorporados a ficheros titularidad de Freak's Corner, 
 debidamente inscritos en el Registro General de Protección de Datos.
 
-<p class="titu">USOS Y FINALIDADES</p>
+<strong>USOS Y FINALIDADES</strong>
 La finalidad de la recogida y tratamiento de los datos personales es la gestión, 
 prestación y personalización de los servicios y contenidos del mismo que el USUARIO utilice y de la cual se informará en cada apartado.
 
-<p class="titu">COMUNICACIÓN DE LOS DATOS</p>
+<strong>COMUNICACIÓN DE LOS DATOS</strong>
 Los datos recabados a través de la web sólo serán cedidos en aquellos casos en que expresamente se informe de ello al USUARIO.
 
-<p class="titu">ACTUALIZACIÓN DE LOS DATOS</p>
+<strong>ACTUALIZACIÓN DE LOS DATOS</strong>
 Con el fin de que los datos obrantes en nuestras bases de datos siempre correspondan a tu situación real deberás mantenerlos actualizados,
  bien actualizándolos tú directamente en los caso en que ello sea posible bien comunicándolo al departamento correspondiente.
 
-<p class="titu">UTILIZACIÓN DE COOKIES</p>
+<strong>UTILIZACIÓN DE COOKIES</strong>
 Con el objeto de proteger la intimidad de los usuarios de su página web Freak's Corner no emplea cookies cuando los mismos navegan por la misma.
 
-<p class="titu">SEGURIDAD DE LOS DATOS</p>
+<strong>SEGURIDAD DE LOS DATOS</strong>
 Freak's Corner ha adoptado en su sistema de información las medidas técnicas y organizativas legalmente requeridas, 
 a fin de garantizar la seguridad y confidencialidad de los datos almacenados, evitando así, en la medida de lo posible, 
 su alteración, pérdida, tratamiento o acceso no autorizado.
 
-<p class="titu">DERECHOS DE LOS USUARIOS</p>
+<strong>DERECHOS DE LOS USUARIOS</strong>
 En todo caso podrás acceder a tus datos, rectificarlos, cancelarlos y en su caso, oponerte a su tratamiento:
 a) bien mediante solicitud acompañada de una fotocopia de tu D.N.I., remitida a la siguiente dirección postal: 
 Freak's Corner . c/Plaza españa, C.P. 07180 - Palma de mallorca
@@ -187,19 +188,20 @@ b) bien mandando un e-mail a la siguiente dirección de correo electrónico: fre
 
 Mas información en la Agencia Española de Protección de Datos:
 
-<a href="http://www.agpd.es/portalwebAGPD/index-ides-idphp.php">Portal web de la ley de protección de datos</a></pre>
+<a href="http://www.agpd.es/portalwebAGPD/index-ides-idphp.php">Portal web de la ley de protección de datos</a>
+							</pre>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-primary"
 								data-dismiss="modal" id="condiciones" onclick="pres()">Acepto</button>
-							
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="row mt-5">
 				<div class="col-4">
-					<button type="submit" class="btn btn-success" id="registro" onclick="validar()">Registrarse</button>
+					<button type="submit" class="btn btn-success" id="registro"
+						onclick="validar()">Registrarse</button>
 				</div>
 				<div class="col-8">
 					<button type="reset" class="btn btn-danger">Cancelar</button>

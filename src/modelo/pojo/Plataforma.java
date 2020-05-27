@@ -1,17 +1,23 @@
 package modelo.pojo;
 
+/**
+ * Clase pojo de Plataforma (para el arrayList de plataformas junto con género)
+ * 
+ * @author Cintia
+ *
+ */
 public class Plataforma {
 
 	private Integer id;
 	private String nombre;
-	
+
 	public Plataforma(Integer id, String nombre) {
 		this.id = id;
 		this.nombre = nombre;
 	}
-	
+
 	public Plataforma() {
-		
+
 	}
 
 	public Integer getId() {
@@ -29,7 +35,5 @@ public class Plataforma {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
-	
-	
+
 }

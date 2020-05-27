@@ -22,12 +22,18 @@ import modelo.pojo.Genero;
 import modelo.pojo.Plataforma;
 import modelo.pojo.Usuario;
 
-
+/**
+ * Servlet que añade un juego
+ * 
+ * @author Cintia
+ *
+ */
 @WebServlet("/Add")
 @MultipartConfig(maxFileSize = 1024 * 1024 * 5)
 public class Add extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
-       
+
 	@EJB
 	UsuariosEJB usuariosEJB;
 
@@ -36,15 +42,19 @@ public class Add extends HttpServlet {
 
 	@EJB
 	SesionesEJB sesionesEJB;
-	
+
 	private static final String UPLOAD_DIRECTORY = "Imagenes";
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+	/**
+	 * doGet que muestra la vista de añadir el juego
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		HttpSession session = request.getSession(false);
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
+
 		ArrayList<Genero> juego = juegoEJB.genero();
 		ArrayList<Plataforma> juegoP = juegoEJB.plataforma();
 
@@ -54,20 +64,31 @@ public class Add extends HttpServlet {
 
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/admin/Add.jsp");
 		rs.forward(request, response);
-		
-		
+
 	}
 
+	/**
+	 * doPost que inserta el juego
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+
 		String titulo = request.getParameter("titulo");
 		String any = request.getParameter("anyo");
+		
+		// género
 		String gen = request.getParameter("gen");
+		
+		// plataforma
 		String pla = request.getParameter("pla");
+		
+		// descripción
 		String desc = request.getParameter("desc");
+		
+		// id usuario
 		String idUser = request.getParameter("id");
-
 
 		Integer anyo = Integer.parseInt(any);
 		Integer genero = Integer.parseInt(gen);
@@ -91,7 +112,7 @@ public class Add extends HttpServlet {
 		// Obtenemos el archivo y lo guardamos a disco
 		for (Part part : request.getParts()) {
 			String nombre = getFileName(part);
-			if(!nombre.equalsIgnoreCase("desconocido.txt")) {
+			if (!nombre.equalsIgnoreCase("desconocido.txt")) {
 				fileName = nombre;
 				part.write(uploadPath + File.separator + fileName);
 			}

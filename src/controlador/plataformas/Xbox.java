@@ -15,36 +15,46 @@ import javax.servlet.http.HttpSession;
 import modelo.ejb.JuegoEJB;
 import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
-import modelo.pojo.Juego;
+
 import modelo.pojo.PlataformasJuegos;
 import modelo.pojo.Usuario;
 
-
+/**
+ * Servlet para mostrar página pincipal de xboxOne
+ * 
+ * @author Cintia
+ *
+ */
 @WebServlet("/Xbox")
 public class Xbox extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
-       
+
 	@EJB
 	UsuariosEJB usuariosEJB;
 
 	@EJB
 	SesionesEJB sesionesEJB;
-	
+
 	@EJB
 	JuegoEJB juegoEJB;
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	/**
+	 * doGet para mostrar la página principal de xboxOne
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		HttpSession session = request.getSession(false);
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
-		 ArrayList<PlataformasJuegos> xboxList = juegoEJB.xboxList();
-		
+		ArrayList<PlataformasJuegos> xboxList = juegoEJB.xboxList();
 
 		request.setAttribute("usuario", usuario);
 		request.setAttribute("xboxList", xboxList);
-		
+
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/plataformas/Xbox.jsp");
 		rs.forward(request, response);
 	}
-
 
 }

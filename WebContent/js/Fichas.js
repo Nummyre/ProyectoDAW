@@ -1,4 +1,17 @@
+/**
+ * JS para las fichas
+ */
+
+/**
+ * Metodo para el textarea creado como editor de texto con las librerias
+ * ckeditor
+ * 
+ * @returns un editor
+ */
 function editor() {
+
+	// configura manualmente que iconos quiero que aparezcan en el menu del
+	// editor
 	CKEDITOR.replace('editor1',
 			{
 				toolbar : [
@@ -66,25 +79,40 @@ function editor() {
 
 				]
 			});
+
+	// Configura el tamaño del editor
 	CKEDITOR.config.width = "100%";
 
 };
 
+/**
+ * Metodo para el funcionamiento de puntuar en las estrellas
+ * 
+ * @returns la puntuacion de una estrella
+ */
 $(document).ready(function() {
-	$("#ra1").on( "click", function() {
+
+	// Si el boton estrella 1 le hacen click
+	$("#ra1").on("click", function() {
+
+		// coge los valores
 		var idJ = $("#idJ").val();
 		var idU = $("#idU").val();
 		var estrellas = $("#ra1").val();
+
+		// Se envia al post dichos valores
 		$.post("ValoracionJuego", {
 			idJ : idJ,
 			idU : idU,
 			estrellas : estrellas
-			
+
 		})
-	$(".clasificacion").hide();
+
+		// las estrellas desaparezcan de la vista
+		$(".clasificacion").hide();
 	});
 
-	$("#ra2").on( "click", function() {
+	$("#ra2").on("click", function() {
 		var idJ = $("#idJ").val();
 		var idU = $("#idU").val();
 		var estrellas = $("#ra2").val();
@@ -96,7 +124,7 @@ $(document).ready(function() {
 		$(".clasificacion").hide();
 	});
 
-	$("#ra3").on( "click", function() {
+	$("#ra3").on("click", function() {
 		var idJ = $("#idJ").val();
 		var idU = $("#idU").val();
 		var estrellas = $("#ra3").val();
@@ -108,7 +136,7 @@ $(document).ready(function() {
 		$(".clasificacion").hide();
 	});
 
-	$("#ra4").on( "click", function() {
+	$("#ra4").on("click", function() {
 		var idJ = $("#idJ").val();
 		var idU = $("#idU").val();
 		var estrellas = $("#ra4").val();
@@ -120,7 +148,7 @@ $(document).ready(function() {
 		$(".clasificacion").hide();
 	});
 
-	$("#ra5").on( "click", function() {
+	$("#ra5").on("click", function() {
 		var idJ = $("#idJ").val();
 		var idU = $("#idU").val();
 		var estrellas = $("#ra5").val();
@@ -134,6 +162,9 @@ $(document).ready(function() {
 
 });
 
+/**
+ * metodo para deshabilitar las estrellas al hacer click
+ */
 window.onload = function() {
 
 	if (document.getElementById("ra1").onclik) {
@@ -163,14 +194,22 @@ window.onload = function() {
 	}
 }
 
+/**
+ * Metodo para contar los caracteres en un textarea normal
+ * 
+ * @param obj
+ *            parametro del objeto
+ * @returns devuelve un contador de caracteres
+ */
+function contadorChars(obj) {
+	var maxLength = 255;
+	var strLength = obj.value.length;
 
-function contadorChars(obj){
-    var maxLength = 255;
-    var strLength = obj.value.length;
-    
-    if(strLength > maxLength){
-        document.getElementById("charNum").innerHTML = '<span style="color: red;">'+strLength+' de '+maxLength+' characters</span>';
-    }else{
-        document.getElementById("charNum").innerHTML = strLength+' de '+maxLength+' characters';
-    }
+	if (strLength > maxLength) {
+		document.getElementById("charNum").innerHTML = '<span style="color: red;">'
+				+ strLength + ' de ' + maxLength + ' carácteres</span>';
+	} else {
+		document.getElementById("charNum").innerHTML = strLength + ' de '
+				+ maxLength + ' carácteres';
+	}
 }

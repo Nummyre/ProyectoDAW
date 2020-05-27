@@ -1,5 +1,11 @@
 package modelo.pojo;
 
+/**
+ * Clase pojo de Comunidad
+ * 
+ * @author Cintia
+ *
+ */
 public class Comunidad {
 
 	private Integer id;
@@ -8,12 +14,10 @@ public class Comunidad {
 	private String fecha;
 	private Integer idUsuario;
 	private String foto;
-	
+
 	public Comunidad() {
-		
+
 	}
-	
-	
 
 	public Comunidad(Integer id, String titulo, String hilo, String fecha, Integer idUsuario, String foto) {
 		super();
@@ -24,8 +28,6 @@ public class Comunidad {
 		this.idUsuario = idUsuario;
 		this.foto = foto;
 	}
-
-
 
 	public Integer getId() {
 		return id;
@@ -74,8 +76,5 @@ public class Comunidad {
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
-	
 
-	
-	
 }

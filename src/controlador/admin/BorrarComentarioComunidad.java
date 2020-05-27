@@ -8,31 +8,34 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
 
 import modelo.ejb.JuegoEJB;
-import modelo.ejb.SesionesEJB;
-import modelo.ejb.UsuariosEJB;
-import modelo.pojo.Usuario;
 
 
+/**
+ * Servlet para borrar un comentario del hilo
+ * @author Cintia
+ *
+ */
 @WebServlet("/BorrarComentarioComunidad")
 public class BorrarComentarioComunidad extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	@EJB
-	UsuariosEJB usuariosEJB;
 
-	@EJB
-	SesionesEJB sesionesEJB;
 	
 	@EJB
 	JuegoEJB juegoEJB;
+	
+	/**
+	 * doGet que borra el comentario de la comunidad
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
-		Usuario usuario = sesionesEJB.usuarioLogeado(session);
 
-		String idJ = request.getParameter("idJ");
-		String id = request.getParameter("id");
+		//id del hilo
+		String idJ = request.getParameter("idJ"); 
+		
+		//id del comentario
+		String id = request.getParameter("id"); 
 		
 		Integer idC = Integer.parseInt(id);
 		Integer idCo = Integer.parseInt(idJ);

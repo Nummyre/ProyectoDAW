@@ -1,13 +1,19 @@
 package modelo.pojo;
 
+/**
+ * Clase pojo de Email
+ * 
+ * @author Cintia
+ *
+ */
 public class Email {
 
 	private Integer id;
 	private String nombre;
 	private String idUsuario;
-	
+
 	public Email() {
-		
+
 	}
 
 	public Email(Integer id, String nombre, String idUsuario) {
@@ -40,9 +46,5 @@ public class Email {
 	public void setIdUsuario(String idUsuario) {
 		this.idUsuario = idUsuario;
 	}
-	
 
-	
-	
-	
 }

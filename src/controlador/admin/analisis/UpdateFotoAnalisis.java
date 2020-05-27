@@ -10,79 +10,79 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
 import javax.servlet.http.Part;
 
 import modelo.ejb.AnalisisEJB;
-import modelo.ejb.GuiaEJB;
-import modelo.ejb.SesionesEJB;
-import modelo.ejb.UsuariosEJB;
-import modelo.pojo.Usuario;
 
-
+/**
+ * Servlet que hace el update de la foto de editar
+ * 
+ * @author Cintia
+ *
+ */
 @WebServlet("/UpdateFotoAnalisis")
 @MultipartConfig(maxFileSize = 1024 * 1024 * 5)
 public class UpdateFotoAnalisis extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
+
 	private static final String UPLOAD_DIRECTORY = "Imagenes";
-	@EJB
-	UsuariosEJB usuariosEJB;
 
 	@EJB
 	AnalisisEJB analisisEJB;
 
-	@EJB
-	SesionesEJB sesionesEJB;
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Coge la sesion abierta
-				HttpSession session = request.getSession(true);
+	/**
+	 * doPost que hace el update de la foto para editar un análisis
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-				// Comprueba que el usuario esta logeado y tiene la sesion
-				Usuario usuario = sesionesEJB.usuarioLogeado(session);
-				
-				String idJuego = request.getParameter("idJuego");
-				Integer id = Integer.parseInt(idJuego);
-				
-				String idU = request.getParameter("id");
-				Integer idUser = Integer.parseInt(idU);
-				
+		 // id del análisis
+		String idJuego = request.getParameter("idJuego");
+		Integer id = Integer.parseInt(idJuego);
 
-				// Multipart RFC 7578
+		// id del usuario
+		String idU = request.getParameter("id");
+		Integer idUser = Integer.parseInt(idU);
 
-				// Obtenemos una ruta en el servidor para guardar el archivo
-				String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY;
+		// Multipart RFC 7578
 
-				// Si la ruta no existe la crearemos
-				File uploadDir = new File(uploadPath);
-				if (!uploadDir.exists()) {
-					uploadDir.mkdir();
-				}
+		// Obtenemos una ruta en el servidor para guardar el archivo
+		String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY;
 
-				// Lo utilizaremos para guardar el nombre del archivo
-				String fileName = "desconocido.txt";
-
-				// Obtenemos el archivo y lo guardamos a disco
-				for (Part part : request.getParts()) {
-					String nombre = getFileName(part);
-					if(!nombre.equalsIgnoreCase("desconocido.txt")) {
-						fileName = nombre;
-						part.write(uploadPath + File.separator + fileName);
-					}
-				}
-				
-				analisisEJB.updateAnalisisFoto(fileName, id);
-				
-				response.sendRedirect("EditarListaAnalisis?id=" + idUser);
-		
-	}
-	
-	// Obtiene el nombre del archivo, sino lo llamaremos desconocido.txt
-		private String getFileName(Part part) {
-			for (String content : part.getHeader("content-disposition").split(";")) {
-				if (content.trim().startsWith("filename"))
-					return content.substring(content.indexOf("=") + 2, content.length() - 1);
-			}
-			return "desconocido.txt";
+		// Si la ruta no existe la crearemos
+		File uploadDir = new File(uploadPath);
+		if (!uploadDir.exists()) {
+			uploadDir.mkdir();
 		}
+
+		// Lo utilizaremos para guardar el nombre del archivo
+		String fileName = "desconocido.txt";
+
+		// Obtenemos el archivo y lo guardamos a disco
+		for (Part part : request.getParts()) {
+			String nombre = getFileName(part);
+			if (!nombre.equalsIgnoreCase("desconocido.txt")) {
+				fileName = nombre;
+				part.write(uploadPath + File.separator + fileName);
+			}
+		}
+
+		// Hace el update en la foto de un análisis
+		analisisEJB.updateAnalisisFoto(fileName, id);
+
+		response.sendRedirect("EditarListaAnalisis?id=" + idUser);
+
+	}
+
+	// Obtiene el nombre del archivo, sino lo llamaremos desconocido.txt
+	private String getFileName(Part part) {
+		for (String content : part.getHeader("content-disposition").split(";")) {
+			if (content.trim().startsWith("filename"))
+				return content.substring(content.indexOf("=") + 2, content.length() - 1);
+		}
+		return "desconocido.txt";
+	}
 
 }
