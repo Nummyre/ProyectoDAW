@@ -31,10 +31,12 @@ public class BorrarComentarioAnalisis extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		 //id del comentario
+		String id = request.getParameter("id");
+		
+		//id del análisis
 
-		String id = request.getParameter("id"); //id del comentario
-		String idJ = request.getParameter("idJ"); //id del análisis
-
+		String idJ = request.getParameter("idJ"); 
 		Integer idC = Integer.parseInt(id);
 		Integer idAnalisi = Integer.parseInt(idJ);
 

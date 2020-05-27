@@ -46,7 +46,8 @@ public class BorradoAnalisis extends HttpServlet {
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
 
-		String id = request.getParameter("id"); // id del análisis
+		// id del análisis
+		String id = request.getParameter("id"); 
 
 		Integer idJ = Integer.parseInt(id);
 

@@ -69,11 +69,17 @@ public class InsertHilo extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		request.setCharacterEncoding("UTF-8"); // Hace que el texto sea formato utf-8
+		// Hace que el texto sea formato utf-8
+		request.setCharacterEncoding("UTF-8"); 
 
-		String idU = request.getParameter("idU"); // id del usuario
-		String titulo = request.getParameter("titulo"); // título
-		String hilo = request.getParameter("editor1"); // textarea
+		// id del usuario
+		String idU = request.getParameter("idU"); 
+		
+		// título
+		String titulo = request.getParameter("titulo"); 
+		
+		// textarea
+		String hilo = request.getParameter("editor1"); 
 
 		Integer idUsuario = Integer.parseInt(idU);
 

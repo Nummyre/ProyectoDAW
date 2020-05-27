@@ -30,8 +30,11 @@ public class BorrarComentarioGuia extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String id = request.getParameter("id");// id del comentario
-		String idJ = request.getParameter("idJ"); // id de la guía
+		// id del comentario
+		String id = request.getParameter("id");
+		
+		// id de la guía
+		String idJ = request.getParameter("idJ"); 
 
 		Integer idC = Integer.parseInt(id);
 		Integer idGuia = Integer.parseInt(idJ);

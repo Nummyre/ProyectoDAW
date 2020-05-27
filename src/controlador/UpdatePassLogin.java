@@ -32,9 +32,12 @@ public class UpdatePassLogin extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String id = request.getParameter("id");// Coge el id del usuario que ha sido enviado por la url
-		String error = request.getParameter("bien");// Párametro que indica que ha sido cambiado correctamente
-
+		// Coge el id del usuario que ha sido enviado por la url
+		String id = request.getParameter("id");
+		
+		// Párametro que indica que ha sido cambiado correctamente
+		String error = request.getParameter("bien");
+		
 		request.setAttribute("bien", error);
 		request.setAttribute("id", id);
 
@@ -49,7 +52,9 @@ public class UpdatePassLogin extends HttpServlet {
 			throws ServletException, IOException {
 
 		String pass = request.getParameter("password");
-		String id = request.getParameter("id"); // id del usuario
+		
+		 // id del usuario
+		String id = request.getParameter("id");
 
 		Integer idU = Integer.parseInt(id);
 

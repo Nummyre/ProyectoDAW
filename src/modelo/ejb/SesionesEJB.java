@@ -13,7 +13,6 @@ import modelo.pojo.Usuario;
  *
  * 
  */
-
 @Stateless
 @LocalBean
 public class SesionesEJB {

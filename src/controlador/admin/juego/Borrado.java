@@ -44,7 +44,8 @@ public class Borrado extends HttpServlet {
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
 
-		String id = request.getParameter("id"); // id del juego
+		// id del juego
+		String id = request.getParameter("id"); 
 
 		Integer idJ = Integer.parseInt(id);
 

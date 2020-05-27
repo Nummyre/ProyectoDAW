@@ -53,12 +53,17 @@ public class Analisis extends HttpServlet {
 
 		HttpSession session = request.getSession(false); // Se coge la sesión
 
-		Usuario usuario = sesionesEJB.usuarioLogeado(session); // Se coge el usuario que ha sido logeado en la sesión
+		// Se coge el usuario que ha sido logeado en la sesión
+		Usuario usuario = sesionesEJB.usuarioLogeado(session); 
 
-		ArrayList<modelo.pojo.Analisis> analisis = analisisEJB.listaAnalisis(); // Lista para mostrar los análisis
-		ArrayList<Foto> fotoAnali = analisisEJB.listaFotosAnalisi(); // Lista para mostrar las fotos de los análisis
+		// Lista para mostrar los análisis
+		ArrayList<modelo.pojo.Analisis> analisis = analisisEJB.listaAnalisis(); 
+		
+		// Lista para mostrar las fotos de los análisis
+		ArrayList<Foto> fotoAnali = analisisEJB.listaFotosAnalisi(); 
 
-		request.setAttribute("foto", fotoAnali);// Se coge el parametro de la lista de fotos de análisis
+		// Se coge el parametro de la lista de fotos de análisis
+		request.setAttribute("foto", fotoAnali);
 		request.setAttribute("usuario", usuario);
 		request.setAttribute("analisis", analisis);
 

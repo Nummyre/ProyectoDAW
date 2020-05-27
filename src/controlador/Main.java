@@ -62,16 +62,29 @@ public class Main extends HttpServlet {
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
 
-		ArrayList<Juego> juego = juegoEJB.listaJuego(); // Muestra una lista de juegos
-		ArrayList<modelo.pojo.Guia> guia = guiaEJB.listaGuias();// Muestra una lista de guías
-		ArrayList<modelo.pojo.Analisis> analisi = analisisEJB.listaAnalisis();// Muestra una lista de análisis
+		// Muestra una lista de juegos
+		ArrayList<Juego> juego = juegoEJB.listaJuego(); 
+		
+		// Muestra una lista de guías
+		ArrayList<modelo.pojo.Guia> guia = guiaEJB.listaGuias();
+		
+		// Muestra una lista de análisis
+		ArrayList<modelo.pojo.Analisis> analisi = analisisEJB.listaAnalisis();
 
-		ArrayList<Genero> genero = juegoEJB.genero();// Muestra una lista de géneros
-		ArrayList<Plataforma> plata = juegoEJB.plataforma();// Muestra una lista de plataformas
+		// Muestra una lista de géneros
+		ArrayList<Genero> genero = juegoEJB.genero();
+		
+		// Muestra una lista de plataformas
+		ArrayList<Plataforma> plata = juegoEJB.plataforma();
 
-		ArrayList<Foto> juegoFoto = juegoEJB.listaFotosJuegos();// Muestra una lista de fotos de juegos
-		ArrayList<Foto> GuiaFoto = guiaEJB.listaFotosGuia();// Muestra una lista de fotos de guías
-		ArrayList<Foto> analisisFoto = analisisEJB.listaFotosAnalisi();// Muestra una lista de fotos de análisis
+		// Muestra una lista de fotos de juegos
+		ArrayList<Foto> juegoFoto = juegoEJB.listaFotosJuegos();
+		
+		// Muestra una lista de fotos de guías
+		ArrayList<Foto> GuiaFoto = guiaEJB.listaFotosGuia();
+		
+		// Muestra una lista de fotos de análisis
+		ArrayList<Foto> analisisFoto = analisisEJB.listaFotosAnalisi();
 
 		request.setAttribute("juegoFoto", juegoFoto);
 		request.setAttribute("guiaFoto", GuiaFoto);

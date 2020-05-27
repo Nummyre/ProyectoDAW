@@ -13,7 +13,7 @@ import modelo.ejb.SesionesEJB;
 import modelo.ejb.UsuariosEJB;
 
 /**
- * Servlet para hacer el update de la contraseña en el perfi
+ * Servlet para hacer el update de la contraseña en el perfil
  * 
  * @author Cintia
  *
@@ -41,7 +41,7 @@ public class UpdatePassPerfil extends HttpServlet {
 
 		usuariosEJB.updatePassUsuario(pass, idUser);
 
-		response.sendRedirect("Perfil"); // Poner en javascript un mensaje
+		response.sendRedirect("Perfil");
 	}
 
 }

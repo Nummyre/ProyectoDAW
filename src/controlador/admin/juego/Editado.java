@@ -51,7 +51,8 @@ public class Editado extends HttpServlet {
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
 
-		String idJ = request.getParameter("id"); // id del juego
+		// id del juego
+		String idJ = request.getParameter("id"); 
 
 		Integer id = Integer.parseInt(idJ);
 
@@ -79,11 +80,21 @@ public class Editado extends HttpServlet {
 
 		String titulo = request.getParameter("titulo");
 		String any = request.getParameter("anyo");
-		String gen = request.getParameter("gen");// genero
-		String pla = request.getParameter("pla");// plataforma
-		String desc = request.getParameter("desc");// descripción
-		String idJuego = request.getParameter("idJuego"); // id del juego
-		String idU = request.getParameter("id");// id del usuario
+		
+		// genero
+		String gen = request.getParameter("gen");
+		
+		// plataforma
+		String pla = request.getParameter("pla");
+		
+		// descripción
+		String desc = request.getParameter("desc");
+		
+		// id del juego
+		String idJuego = request.getParameter("idJuego"); 
+		
+		// id del usuario
+		String idU = request.getParameter("id");
 
 		Integer idUsuario = Integer.parseInt(idU);
 		Integer anyo = Integer.parseInt(any);

@@ -60,9 +60,11 @@ public class RestablecerPass extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String email = request.getParameter("email"); // Se coge el email del usuario
+		// Se coge el email del usuario
+		String email = request.getParameter("email"); 
 
-		ArrayList<Email> emUser = usuariosEJB.listaEmail(); // Muestra una lista de emails
+		// Muestra una lista de emails
+		ArrayList<Email> emUser = usuariosEJB.listaEmail(); 
 
 		try {
 			// Propiedades de la conexión

@@ -72,11 +72,18 @@ public class EditadoAnalisis extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		String titulo = request.getParameter("titulo");
-		String texto = request.getParameter("descr");// Párametro del texto del análisis
-		String desc = request.getParameter("desc"); // Párametro de la descripción
+		
+		// Párametro del texto del análisis
+		String texto = request.getParameter("descr");
+		
+		// Párametro de la descripción
+		String desc = request.getParameter("desc"); 
 
-		String idJ = request.getParameter("idJuego"); // id del análisis
-		String idUser = request.getParameter("id");// id del usuario
+		// id del análisis
+		String idJ = request.getParameter("idJuego"); 
+		
+		// id del usuario
+		String idUser = request.getParameter("id");
 
 		Integer id = Integer.parseInt(idUser);
 		Integer idJuego = Integer.parseInt(idJ);

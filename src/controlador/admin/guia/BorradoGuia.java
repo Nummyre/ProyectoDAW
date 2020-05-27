@@ -44,7 +44,8 @@ public class BorradoGuia extends HttpServlet {
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
 
-		String id = request.getParameter("id"); // id de la guía
+		// id de la guía
+		String id = request.getParameter("id"); 
 
 		Integer idJ = Integer.parseInt(id);
 

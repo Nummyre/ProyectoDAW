@@ -51,8 +51,11 @@ public class Guia extends HttpServlet {
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
 
-		ArrayList<modelo.pojo.Guia> guias = guiaEJB.listaGuias(); // Muestra una lista de guías
-		ArrayList<Foto> fotoGuia = guiaEJB.listaFotosGuia(); // Muestra una lista de fotos de las guías
+		// Muestra una lista de guías
+		ArrayList<modelo.pojo.Guia> guias = guiaEJB.listaGuias(); 
+		
+		// Muestra una lista de fotos de las guías
+		ArrayList<Foto> fotoGuia = guiaEJB.listaFotosGuia(); 
 
 		request.setAttribute("foto", fotoGuia);
 		request.setAttribute("usuario", usuario);

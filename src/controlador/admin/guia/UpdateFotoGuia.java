@@ -38,10 +38,12 @@ public class UpdateFotoGuia extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String idJuego = request.getParameter("idJuego"); // id de la guía
+		// id de la guía
+		String idJuego = request.getParameter("idJuego"); 
 		Integer id = Integer.parseInt(idJuego);
 
-		String idU = request.getParameter("id"); // id del usuario
+		// id del usuario
+		String idU = request.getParameter("id"); 
 		Integer idUser = Integer.parseInt(idU);
 
 		// Multipart RFC 7578

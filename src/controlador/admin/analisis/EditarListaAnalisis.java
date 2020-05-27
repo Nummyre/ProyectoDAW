@@ -50,11 +50,13 @@ public class EditarListaAnalisis extends HttpServlet {
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
 
-		String idJ = request.getParameter("id"); // id del usuario
+		 // id del usuario
+		String idJ = request.getParameter("id");
 
 		Integer id = Integer.parseInt(idJ);
 
-		ArrayList<Analisis> juego = analisisEJB.listaAnalisisPorIdUser(id); // listado de análisis
+		 // listado de análisis
+		ArrayList<Analisis> juego = analisisEJB.listaAnalisisPorIdUser(id);
 
 		request.setAttribute("juego", juego);
 		request.setAttribute("usuario", usuario);

@@ -31,9 +31,11 @@ public class BorrarComentarioComunidad extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
-		String idJ = request.getParameter("idJ"); //id del hilo
-		String id = request.getParameter("id"); //id del comentario
+		//id del hilo
+		String idJ = request.getParameter("idJ"); 
+		
+		//id del comentario
+		String id = request.getParameter("id"); 
 		
 		Integer idC = Integer.parseInt(id);
 		Integer idCo = Integer.parseInt(idJ);

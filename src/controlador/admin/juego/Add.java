@@ -77,10 +77,18 @@ public class Add extends HttpServlet {
 
 		String titulo = request.getParameter("titulo");
 		String any = request.getParameter("anyo");
-		String gen = request.getParameter("gen");// género
-		String pla = request.getParameter("pla");// plataforma
-		String desc = request.getParameter("desc");// descripción
-		String idUser = request.getParameter("id");// id usuario
+		
+		// género
+		String gen = request.getParameter("gen");
+		
+		// plataforma
+		String pla = request.getParameter("pla");
+		
+		// descripción
+		String desc = request.getParameter("desc");
+		
+		// id usuario
+		String idUser = request.getParameter("id");
 
 		Integer anyo = Integer.parseInt(any);
 		Integer genero = Integer.parseInt(gen);

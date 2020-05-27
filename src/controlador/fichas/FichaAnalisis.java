@@ -54,17 +54,23 @@ public class FichaAnalisis extends HttpServlet {
 
 		Usuario usuario = sesionEJB.usuarioLogeado(session);
 
-		String idA = request.getParameter("id"); // id del análisis
+		// id del análisis
+		String idA = request.getParameter("id"); 
 		Integer id = Integer.parseInt(idA);
 
-		modelo.pojo.Analisis analisis = analisisEJB.analisis(id); // muestra un análisis por su id
+		 // muestra un análisis por su id
+		modelo.pojo.Analisis analisis = analisisEJB.analisis(id);
 
-		ArrayList<Foto> fotoAnalisis = analisisEJB.listaFotosAnalisi();// muetsra una lista de fotos de los analisis
+		// muetsra una lista de fotos de los analisis
+		ArrayList<Foto> fotoAnalisis = analisisEJB.listaFotosAnalisi();
 
-		ArrayList<Usuario> users = userEJB.listaUsuarios();// muestra a los usuarios
+		// muestra a los usuarios
+		ArrayList<Usuario> users = userEJB.listaUsuarios();
 
-		ArrayList<Comentario> coment = analisisEJB.listaComentarioAnalisi();// muestra una lista de comentarios
-
+		// muestra una lista de comentarios
+		ArrayList<Comentario> coment = analisisEJB.listaComentarioAnalisi();
+		
+		
 		request.setAttribute("usuario", usuario);
 		request.setAttribute("analisis", analisis);
 		request.setAttribute("fotoAnalisis", fotoAnalisis);
@@ -82,8 +88,12 @@ public class FichaAnalisis extends HttpServlet {
 			throws ServletException, IOException {
 
 		String comentario = request.getParameter("com");
-		String idA = request.getParameter("idJ"); // id del análisis
-		String idU = request.getParameter("idU"); // id del usuario
+		
+		// id del análisis
+		String idA = request.getParameter("idJ"); 
+		
+		 // id del usuario
+		String idU = request.getParameter("idU");
 
 		Integer idAnalisis = Integer.parseInt(idA);
 		Integer idUsuario = Integer.parseInt(idU);

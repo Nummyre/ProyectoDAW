@@ -27,7 +27,7 @@ import modelo.pojo.ValoracionLista;
 /**
  * Clase para la conexión a la base de datos para juego, comunidad y valoración
  * 
- * @author cintia
+ * @author Cintia
  *
  */
 public class JuegosDAO {

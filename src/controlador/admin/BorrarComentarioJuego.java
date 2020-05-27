@@ -33,8 +33,11 @@ public class BorrarComentarioJuego extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String id = request.getParameter("id");//id del comentario
-		String idJ = request.getParameter("idJ");//id del juego
+		//id del comentario
+		String id = request.getParameter("id");
+		
+		//id del juego
+		String idJ = request.getParameter("idJ");
 
 		Integer idC = Integer.parseInt(id);
 		Integer idJuego = Integer.parseInt(idJ);

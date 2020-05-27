@@ -73,8 +73,12 @@ public class AddGuia extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		String titulo = request.getParameter("titulo");
-		String texto = request.getParameter("desc"); // párametro del texto
-		String idUser = request.getParameter("id"); // id de usuario
+		
+		// párametro del texto
+		String texto = request.getParameter("desc"); 
+		
+		// id de usuario
+		String idUser = request.getParameter("id"); 
 
 		Integer id = Integer.parseInt(idUser);
 

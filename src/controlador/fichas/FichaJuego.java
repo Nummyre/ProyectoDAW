@@ -59,19 +59,26 @@ public class FichaJuego extends HttpServlet {
 		String idJ = request.getParameter("id");
 		Integer id = Integer.parseInt(idJ);
 
-		Juego juego = juegoEJB.juego(id); // muestra el juego
+		// muestra el juego
+		Juego juego = juegoEJB.juego(id); 
 
-		ArrayList<Foto> fotoJuego = juegoEJB.listaFotosJuegos(); // muestra una lista de fotos del juego
+		 // muestra una lista de fotos del juego
+		ArrayList<Foto> fotoJuego = juegoEJB.listaFotosJuegos();
 
-		ArrayList<Genero> juegoG = juegoEJB.genero(); // muestra los géneros
+		 // muestra los géneros
+		ArrayList<Genero> juegoG = juegoEJB.genero();
 
-		ArrayList<Plataforma> juegoP = juegoEJB.plataforma(); // muestra una lista de plataformas
+		// muestra una lista de plataformas
+		ArrayList<Plataforma> juegoP = juegoEJB.plataforma(); 
 
-		ArrayList<Usuario> users = userEJB.listaUsuarios();// muestra a los usuarios
+		// muestra a los usuarios
+		ArrayList<Usuario> users = userEJB.listaUsuarios();
 
-		ArrayList<ValoracionLista> valoracion = juegoEJB.listaValoracion();// muestra una list de valoraciones
+		// muestra una list de valoraciones
+		ArrayList<ValoracionLista> valoracion = juegoEJB.listaValoracion();
 
-		Puntuacion puntos = juegoEJB.valoracionJuego(id);// muestra la puntuación del juego
+		// muestra la puntuación del juego
+		Puntuacion puntos = juegoEJB.valoracionJuego(id);
 
 		ArrayList<Comentario> coment = juegoEJB.listaComentarioJuegos();
 
@@ -97,8 +104,12 @@ public class FichaJuego extends HttpServlet {
 			throws ServletException, IOException {
 
 		String comentario = request.getParameter("com");
-		String idJ = request.getParameter("idJ"); // id de la ficha del juego
-		String idU = request.getParameter("idU"); // id del usuario
+		
+		// id de la ficha del juego
+		String idJ = request.getParameter("idJ"); 
+		
+		// id del usuario
+		String idU = request.getParameter("idU"); 
 
 		Integer idJuego = Integer.parseInt(idJ);
 		Integer idUsuario = Integer.parseInt(idU);

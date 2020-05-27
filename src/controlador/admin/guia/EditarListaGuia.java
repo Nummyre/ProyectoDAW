@@ -51,7 +51,8 @@ public class EditarListaGuia extends HttpServlet {
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
 
-		String idJ = request.getParameter("id"); // id del usuario
+		 // id del usuario
+		String idJ = request.getParameter("id");
 
 		Integer id = Integer.parseInt(idJ);
 

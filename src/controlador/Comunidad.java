@@ -50,8 +50,11 @@ public class Comunidad extends HttpServlet {
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
 
-		ArrayList<modelo.pojo.Comunidad> comunidad = juegoEJB.listaHilos(); // Lista para mostrar los hilos
-		ArrayList<modelo.pojo.Usuario> users = usuariosEJB.listaUsuarios();// Lista de usuarios
+		// Lista para mostrar los hilos
+		ArrayList<modelo.pojo.Comunidad> comunidad = juegoEJB.listaHilos(); 
+		
+		// Lista de usuarios
+		ArrayList<modelo.pojo.Usuario> users = usuariosEJB.listaUsuarios();
 
 		request.setAttribute("usuario", usuario);
 		request.setAttribute("comunidad", comunidad);

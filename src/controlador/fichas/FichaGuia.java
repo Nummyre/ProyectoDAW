@@ -56,7 +56,8 @@ public class FichaGuia extends HttpServlet {
 
 		Usuario usuario = sesionEJB.usuarioLogeado(session);
 
-		String idG = request.getParameter("id"); // id de la guía
+		// id de la guía
+		String idG = request.getParameter("id"); 
 		Integer id = Integer.parseInt(idG);
 
 		Guia guia = guiaEJB.guia(id);
@@ -84,8 +85,12 @@ public class FichaGuia extends HttpServlet {
 			throws ServletException, IOException {
 
 		String comentario = request.getParameter("com");
-		String idG = request.getParameter("idJ"); // id de la guía
-		String idU = request.getParameter("idU"); // id del usuario
+		
+		// id de la guía
+		String idG = request.getParameter("idJ"); 
+		
+		 // id del usuario
+		String idU = request.getParameter("idU");
 
 		Integer idGuia = Integer.parseInt(idG);
 		Integer idUsuario = Integer.parseInt(idU);

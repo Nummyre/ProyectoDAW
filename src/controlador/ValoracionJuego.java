@@ -32,8 +32,12 @@ public class ValoracionJuego extends HttpServlet {
 			throws ServletException, IOException {
 
 		String es = request.getParameter("estrellas");
-		String idJ = request.getParameter("idJ"); // id del juego
-		String idU = request.getParameter("idU"); // id del usuario
+		
+		// id del juego
+		String idJ = request.getParameter("idJ"); 
+		
+		// id del usuario
+		String idU = request.getParameter("idU"); 
 
 		Integer id = Integer.parseInt(idJ);
 		Integer idUsu = Integer.parseInt(idU);
