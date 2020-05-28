@@ -122,7 +122,7 @@ input[type="radio"]:checked ~ label {
 }
 
 .ad li {
-	margin-right: 25px;
+	margin-right: 20px;
 	display: inline;
 }
 

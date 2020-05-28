@@ -83,7 +83,7 @@ public class UpdatePerfil extends HttpServlet {
 		session.setAttribute("usuario", u);
 		request.setAttribute("usuario", usuario);
 
-		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Main.jsp");
+		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Perfil.jsp");
 		rs.forward(request, response);
 
 	}
