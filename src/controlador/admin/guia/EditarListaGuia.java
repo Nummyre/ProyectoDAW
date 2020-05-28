@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import modelo.ejb.GuiaEJB;
 
 import modelo.ejb.SesionesEJB;
@@ -50,7 +49,7 @@ public class EditarListaGuia extends HttpServlet {
 		HttpSession session = request.getSession(false);
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
-
+		
 		 // id del usuario
 		String idJ = request.getParameter("id");
 
@@ -65,5 +64,4 @@ public class EditarListaGuia extends HttpServlet {
 		rs.forward(request, response);
 
 	}
-
 }

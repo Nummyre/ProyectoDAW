@@ -1,0 +1,12 @@
+controlador
+controlador.admin
+controlador.admin.analisis
+controlador.admin.guia
+controlador.admin.juego
+controlador.fichas
+controlador.perfil
+controlador.plataformas
+controlador.top10
+modelo.dao
+modelo.ejb
+modelo.pojo

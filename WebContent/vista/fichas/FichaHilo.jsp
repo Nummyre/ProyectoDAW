@@ -244,10 +244,7 @@
 				//5 row
 				out.print("<div class=\"row mt-5\">");
 				out.print("<div class=\"col ml-5\">");
-
-				int totalComentarios = coment.size(); //total de comentarios que hay
-
-				out.print("<h4>Comentarios " + totalComentarios + "</h4>"); //Comentarios
+				out.print("<h4>Comentarios</h4>"); //Comentarios
 				out.print("</div>");
 				out.print("</div>");
 
@@ -269,7 +266,7 @@
 					int contador = 1;
 					for (Comentario co : coment) {
 						for (Usuario us : users) {
-							if (us.getId() == co.getIdUsuario()) {
+							if ((us.getId() == co.getIdUsuario()) && (co.getIdJuego() == hilo.getId())) {
 								if (!user.getFoto().equals("desconocido.txt")) {
 									out.print("<div class=\"card mt-3 bg-light text-white w-100\">");
 									out.print("<div class=\"card-body\"><h2 class=\"text-dark\">" + contador
@@ -304,7 +301,7 @@
 
 					for (Comentario co : coment) {
 						for (Usuario us : users) {
-							if (us.getId() == co.getIdUsuario()) {
+							if ((us.getId() == co.getIdUsuario()) && (co.getIdJuego() == hilo.getId())) {
 								if (!user.getFoto().equals("desconocido.txt")) {
 									out.print("<div class=\"card mt-3 bg-light text-white w-100\">");
 									out.print("<div class=\"card-body\"><h2 class=\"text-dark\">" + contador
