@@ -46,7 +46,7 @@
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="Top10">TOP 10 | Juegos</a>
 						</div></li>
-					<li class="nav-item "><a class="h nav-link text-white p-4"
+					<li class="nav-item "><a class="nav-link text-white p-4"
 						href="Comunidad">Comunidad</a></li>
 					<li class="nav-item"><a class="nav-link text-white p-4"
 						href="Contacto">Contacto</a></li>
