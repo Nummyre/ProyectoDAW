@@ -150,10 +150,10 @@
 					out.print("<div class=\"col-sm-3 text-right\"><h3>" + Math.round(puntos.getValoracion())
 							+ "/10</h3></div>");
 
-					//sino que muestre 0
-				} else {
-					out.print("<div class=\"col-sm-3 text-right\"><h3>0/10</h3></div>");
 				}
+			} else {
+				//sino que muestre 0
+				out.print("<div class=\"col-sm-3 text-right\"><h3>0/10</h3></div>");
 			}
 
 			out.print("<hr>");
@@ -330,10 +330,11 @@
 						out.print("<div class=\"col-sm-3 text-right\"><h3>" + Math.round(puntos.getValoracion())
 								+ "/10</h3></div>");
 
-						//sino que muestre 0
-					} else {
-						out.print("<div class=\"col-sm-3 text-right\"><h3>0/10</h3></div>");
 					}
+				} else {
+
+					//sino que muestre 0
+					out.print("<div class=\"col-sm-3 text-right\"><h3>0/10</h3></div>");
 				}
 				out.print("<div class=\"col-sm-3 mr-5\">");
 
@@ -362,7 +363,19 @@
 
 					}
 
-					//sino nada, en blanco
+				} else {
+					out.print("<p class=\"clasificacion\">");
+					out.print("<input id=\"ra5\" type=\"radio\" name=\"estrellas\" value=\"5\">");
+					out.print("<label for=\"ra5\">★</label>");
+					out.print("<input id=\"ra4\" type=\"radio\" name=\"estrellas\" value=\"4\">");
+					out.print("<label for=\"ra4\">★</label>");
+					out.print("<input id=\"ra3\" type=\"radio\" name=\"estrellas\" value=\"3\">");
+					out.print("<label for=\"ra3\">★</label>");
+					out.print("<input id=\"ra2\" type=\"radio\" name=\"estrellas\" value=\"2\">");
+					out.print("<label for=\"ra2\">★</label>");
+					out.print(" <input id=\"ra1\" type=\"radio\" name=\"estrellas\" value=\"1\">");
+					out.print("<label for=\"ra1\">★</label>");
+					out.print("</p>");
 				}
 
 				out.print("<input id=\"idU\" name=\"idU\" type=\"hidden\" value=\"" + user.getId() + "\">");
@@ -536,16 +549,17 @@
 							if (p.getIdJuego() == juego.getId()) {
 								out.print("<div class=\"col-sm-3 text-right\"><h3>"
 										+ Math.round(puntos.getValoracion()) + "/10</h3></div>");
-							} else {
-								out.print("<div class=\"col-sm-3 text-right\"><h3>0/10</h3></div>");
 							}
 						}
 					}
+				} else {
+					out.print("<div class=\"col-sm-3 text-right\"><h3>0/10</h3></div>");
 				}
 				out.print("<div class=\"col-sm-3 mr-5\">");
 
 				//form para puntuar las estrellas
 				out.print("<form method=\"post\" action=\"ValoracionJuego\" id=\"formularioP\">");
+				//si puntos es distinto de nulo
 				if (puntos != null) {
 					if (puntos.getIdUsuario() != user.getId()) {
 						out.print("<p class=\"clasificacion\">");
@@ -561,7 +575,21 @@
 						out.print("<label for=\"ra1\">★</label>");
 						out.print("</p>");
 					}
+				} else {
+					out.print("<p class=\"clasificacion\">");
+					out.print("<input id=\"ra5\" type=\"radio\" name=\"estrellas\" value=\"5\">");
+					out.print("<label for=\"ra5\">★</label>");
+					out.print("<input id=\"ra4\" type=\"radio\" name=\"estrellas\" value=\"4\">");
+					out.print("<label for=\"ra4\">★</label>");
+					out.print("<input id=\"ra3\" type=\"radio\" name=\"estrellas\" value=\"3\">");
+					out.print("<label for=\"ra3\">★</label>");
+					out.print("<input id=\"ra2\" type=\"radio\" name=\"estrellas\" value=\"2\">");
+					out.print("<label for=\"ra2\">★</label>");
+					out.print(" <input id=\"ra1\" type=\"radio\" name=\"estrellas\" value=\"1\">");
+					out.print("<label for=\"ra1\">★</label>");
+					out.print("</p>");
 				}
+
 				out.print("<input id=\"idU\" name=\"idU\" type=\"hidden\" value=\"" + user.getId() + "\">");
 				out.print("<input id=\"idJ\" name=\"idJ\" type=\"hidden\" value=\"" + juego.getId() + "\">");
 				out.print("</div>");
