@@ -941,9 +941,7 @@ public class JuegosDAO {
 			if (connection != null) {
 
 				stmt = connection.createStatement();
-				ResultSet rs = stmt.executeQuery(
-						"select avg(puntuacion) as valoracion, id, puntuacion, idJuego, idUsuario from puntuacion where idJuego = "
-								+ idJuego + ";");
+				ResultSet rs = stmt.executeQuery("select  avg(puntuacion) as valoracion, id, puntuacion, idJuego, idUsuario from puntuacion where idJuego="+idJuego+" group by id;");
 
 				rs.last();
 

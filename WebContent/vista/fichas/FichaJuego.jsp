@@ -149,7 +149,6 @@
 					//muestre la media
 					out.print("<div class=\"col-sm-3 text-right\"><h3>" + Math.round(puntos.getValoracion())
 							+ "/10</h3></div>");
-
 				}
 			} else {
 				//sino que muestre 0
