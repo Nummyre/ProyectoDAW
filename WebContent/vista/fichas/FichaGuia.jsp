@@ -41,7 +41,7 @@
 		</div>
 		<div class="twitter">
 			<a
-				href="https://twitter.com/compose/tweet?url=http://freakCorner.com&hashtags=FreaksCorner&hashtags=Guías"
+				href="https://twitter.com/compose/tweet?url=http://51.210.102.30:8080/MiWeb/Guia&hashtags=FreaksCorner&hashtags=Guías"
 				class="fa fa-twitter"></a>
 		</div>
 		<div class="insta">

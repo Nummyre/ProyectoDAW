@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `db_myweb` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE  IF NOT EXISTS `db_myweb` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `db_myweb`;
 -- MySQL dump 10.13  Distrib 8.0.18, for Win64 (x86_64)
 --
@@ -65,7 +65,7 @@ CREATE TABLE `comentario` (
   KEY `idJuego` (`idJuego`),
   CONSTRAINT `comentario_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`id`),
   CONSTRAINT `comentario_ibfk_2` FOREIGN KEY (`idJuego`) REFERENCES `juego` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,7 +74,7 @@ CREATE TABLE `comentario` (
 
 LOCK TABLES `comentario` WRITE;
 /*!40000 ALTER TABLE `comentario` DISABLE KEYS */;
-INSERT INTO `comentario` VALUES (3,'<p>s</p>\r\n','24/05/2020 19:47:23',1,18);
+INSERT INTO `comentario` VALUES (3,'<p>s</p>\r\n','24/05/2020 19:47:23',1,18),(6,'<p>Lo lanzaron gratis en epic games no?</p>\r\n','29/05/2020 01:25:52',1,46);
 /*!40000 ALTER TABLE `comentario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -156,7 +156,7 @@ CREATE TABLE `comentariocomunidad` (
   KEY `idComunidad` (`idComunidad`),
   CONSTRAINT `comentariocomunidad_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`id`),
   CONSTRAINT `comentariocomunidad_ibfk_2` FOREIGN KEY (`idComunidad`) REFERENCES `comunidad` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -165,6 +165,7 @@ CREATE TABLE `comentariocomunidad` (
 
 LOCK TABLES `comentariocomunidad` WRITE;
 /*!40000 ALTER TABLE `comentariocomunidad` DISABLE KEYS */;
+INSERT INTO `comentariocomunidad` VALUES (6,'<p>A&uacute;n no han dicho novedades creo ..</p>\r\n','01/06/2020 22:46:26',2,1),(7,'<p>guay, ojal&aacute; saquen uno nuevo :S</p>\r\n','01/06/2020 22:55:35',2,4);
 /*!40000 ALTER TABLE `comentariocomunidad` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -178,14 +179,14 @@ DROP TABLE IF EXISTS `comunidad`;
 CREATE TABLE `comunidad` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `titulo` varchar(225) NOT NULL,
-  `hilo` varchar(225) NOT NULL,
+  `hilo` varchar(500) DEFAULT NULL,
   `fecha` varchar(255) NOT NULL,
   `foto` varchar(255) DEFAULT NULL,
   `idUsuario` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idUsuario` (`idUsuario`),
   CONSTRAINT `comunidad_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -194,7 +195,7 @@ CREATE TABLE `comunidad` (
 
 LOCK TABLES `comunidad` WRITE;
 /*!40000 ALTER TABLE `comunidad` DISABLE KEYS */;
-INSERT INTO `comunidad` VALUES (1,'¿Cúando sale L.A Noire 2 para Pc?','<p>Buenas a todos! Me gustar&iacute;a saber cuando sale el juego o si est&aacute; en desarrollo. &iquest;Alguien tiene alguna idea? plis contestadme T_T</p>\r\n','24/05/2020 18:48:31','noire.jpg',1);
+INSERT INTO `comunidad` VALUES (1,'¿Cúando sale L.A Noire 2 para Pc?','<p>Buenas a todos! Me gustar&iacute;a saber cuando sale el juego o si est&aacute; en desarrollo. &iquest;Alguien tiene alguna idea? plis contestadme T_T</p>\r\n','24/05/2020 18:48:31','noire.jpg',1),(3,'Lanzamiento de cyberpunk 2077?','<p>No s&eacute; si sigue en pie el lanzamiento del cyberpunk, pero hay novedades o sigue todo igual?</p>\r\n','01/06/2020 22:45:51','cyber.jpg',2),(4,'Ape Escape celebra su 20 aniversario','<p>Hola a todos! Para los fans de Ape Scape, sony a abierto una cuenta en twitter para su 20&ordm; aniversario :O, tal vez saquen un juego nuevo ^^.</p>\r\n\r\n<p>os dejo el enlace del video que han sacado para celebrarlo <a href=\"https://www.youtube.com/watch?v=yxxyfPfX44U#action=share\">aqu&iacute;!</a></p>\r\n','01/06/2020 22:52:37','ape.jpg',5);
 /*!40000 ALTER TABLE `comunidad` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -212,7 +213,7 @@ CREATE TABLE `email` (
   PRIMARY KEY (`id`),
   KEY `idUsuario` (`idUsuario`),
   CONSTRAINT `email_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -221,7 +222,7 @@ CREATE TABLE `email` (
 
 LOCK TABLES `email` WRITE;
 /*!40000 ALTER TABLE `email` DISABLE KEYS */;
-INSERT INTO `email` VALUES (1,'cinthyaortiz.9328@gmail.com',2);
+INSERT INTO `email` VALUES (1,'cinthyaortiz.9328@gmail.com',2),(3,'cintiaoc93@gmail.com',5),(5,'cintiia.349@gmail.com',1);
 /*!40000 ALTER TABLE `email` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -341,7 +342,7 @@ CREATE TABLE `guia` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `titulo` varchar(255) NOT NULL,
   `fecha` varchar(255) NOT NULL,
-  `guia` varchar(5000) NOT NULL,
+  `guia` varchar(10000) DEFAULT NULL,
   `idUsuario` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idUsuario` (`idUsuario`),
@@ -435,7 +436,7 @@ CREATE TABLE `puntuacion` (
   KEY `idJuego` (`idJuego`),
   CONSTRAINT `puntuacion_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`id`),
   CONSTRAINT `puntuacion_ibfk_2` FOREIGN KEY (`idJuego`) REFERENCES `juego` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -444,7 +445,7 @@ CREATE TABLE `puntuacion` (
 
 LOCK TABLES `puntuacion` WRITE;
 /*!40000 ALTER TABLE `puntuacion` DISABLE KEYS */;
-INSERT INTO `puntuacion` VALUES (1,4,3,1),(3,5,5,1),(5,4,6,1),(6,3,7,1),(7,2,8,1),(8,4,9,1),(10,5,11,1),(11,3,12,1),(12,2,13,1),(13,1,14,1),(14,3,3,2),(16,3,5,2),(17,5,11,2),(18,5,15,1),(19,2,18,1),(20,1,19,1),(21,1,20,1),(22,2,22,1),(23,3,24,1),(24,3,4,1),(25,2,21,1),(26,3,16,1),(27,4,17,1),(28,3,23,1),(30,4,25,1),(31,2,26,1),(32,3,27,1),(33,5,29,1),(34,5,30,1),(35,4,28,1),(36,4,31,1),(37,5,33,1),(38,1,32,1),(39,5,37,1),(40,5,39,1),(41,3,42,1),(42,3,43,1),(43,5,36,1),(44,3,38,1),(45,2,41,1),(46,4,45,1),(47,5,2,1),(48,3,44,1),(49,4,40,1),(50,5,5,3),(51,5,6,3),(52,2,9,3),(53,5,11,3),(54,3,13,3),(55,2,46,3),(56,3,8,3),(57,4,12,3),(58,3,14,3),(59,4,3,3),(60,1,7,3),(61,5,15,3),(62,1,18,3),(63,3,19,3),(64,1,20,3),(65,3,22,3),(66,4,24,3),(67,3,4,3),(68,3,21,3),(69,4,16,3),(70,2,23,3),(71,5,37,3),(72,5,39,3),(73,3,42,3),(74,2,43,3),(75,5,36,3),(76,3,41,3),(77,5,40,3);
+INSERT INTO `puntuacion` VALUES (1,4,3,1),(3,5,5,1),(5,4,6,1),(6,3,7,1),(7,2,8,1),(8,4,9,1),(10,5,11,1),(11,3,12,1),(12,2,13,1),(13,1,14,1),(14,3,3,2),(16,3,5,2),(17,5,11,2),(18,5,15,1),(19,2,18,1),(20,1,19,1),(21,1,20,1),(22,2,22,1),(23,3,24,1),(24,3,4,1),(25,2,21,1),(26,3,16,1),(27,4,17,1),(28,3,23,1),(30,4,25,1),(31,2,26,1),(32,3,27,1),(33,5,29,1),(34,5,30,1),(35,4,28,1),(36,4,31,1),(37,5,33,1),(38,1,32,1),(39,5,37,1),(40,5,39,1),(41,3,42,1),(42,3,43,1),(43,5,36,1),(44,3,38,1),(45,2,41,1),(46,4,45,1),(47,5,2,1),(48,3,44,1),(49,4,40,1),(50,5,5,3),(51,5,6,3),(52,2,9,3),(53,5,11,3),(54,3,13,3),(55,2,46,3),(56,3,8,3),(57,4,12,3),(58,3,14,3),(59,4,3,3),(60,1,7,3),(61,5,15,3),(62,1,18,3),(63,3,19,3),(64,1,20,3),(65,3,22,3),(66,4,24,3),(67,3,4,3),(68,3,21,3),(69,4,16,3),(70,2,23,3),(71,5,37,3),(72,5,39,3),(73,3,42,3),(74,2,43,3),(75,5,36,3),(76,3,41,3),(77,5,40,3),(78,3,42,2),(79,4,34,2),(80,2,46,2);
 /*!40000 ALTER TABLE `puntuacion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -465,7 +466,7 @@ CREATE TABLE `usuario` (
   `fechaAlta` varchar(255) NOT NULL,
   `administrador` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -474,7 +475,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'cinti','Admin','123','images.jpg','cintia.349@gmail.com','25-05-2020 00:15:02',1),(2,'Cintia','Cintia93','123','a5fccbac3b974a8078db4b34daf9b418.png','cinthyaortiz.9328@gmail.com','22/05/2020 01:33:45',NULL),(3,'Federico','AdminFede','123','desconocido.txt','h3c.lol@gmail.com','28-06-2020 00:15:02',1);
+INSERT INTO `usuario` VALUES (1,'cinti','Admin','123','images.jpg','cintiia.349@gmail.com','25-05-2020 00:15:02',1),(2,'Cintia','Cintia93','123','a5fccbac3b974a8078db4b34daf9b418.png','cinthyaortiz.9328@gmail.com','22/05/2020 01:33:45',NULL),(3,'Federico','AdminFede','123','a5fccbac3b974a8078db4b34daf9b418.png','h3c.lol@gmail.com','28-06-2020 00:15:02',1),(5,'as','JimmyTriste','123','chica.jpg','cintiaoc93@gmail.com','29/05/2020 20:44:13',NULL);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -487,4 +488,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-27  2:22:00
+-- Dump completed on 2020-06-01 22:57:03
