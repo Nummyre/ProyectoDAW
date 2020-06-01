@@ -128,7 +128,7 @@ public class Registro extends HttpServlet {
 					+ "4.Respete siempre a otro usuario.<br>"
 					+ "Si no se sigue las normas, se baneara la cuenta dependiendo de la gravedad.\n"
 					+ "Bienvenido a Freak's Corner y diviertete en nuestra comunidad.<br>"
-					+ " <a href='http://localhost:8080/MiWeb/Login" + "'>Inicia Sesión en Freak's Corner</a> </p>",
+					+ " <a href='http://51.210.102.30:8080/MiWeb/Login" + "'>Inicia Sesión en Freak's Corner</a> </p>",
 					"UTF-8", "html");
 
 			// Lo enviamos.

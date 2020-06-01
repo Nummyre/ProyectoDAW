@@ -83,7 +83,7 @@
 			<div class="form-row mt-4">
 
 				<div class="col-4 mb-3">
-					<label for="validationTooltip02">Contraseña Nueva:</label> <input
+					Contraseña Nueva:<input
 						type="password" class="form-control" id="validationTooltip02"
 						placeholder="Contraseña" name="password" required>
 

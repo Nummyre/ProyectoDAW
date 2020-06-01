@@ -41,7 +41,7 @@
 		</div>
 		<div class="twitter">
 			<a
-				href="https://twitter.com/compose/tweet?url=http://freakCorner.com&hashtags=FreaksCorner&hashtags=Videojuegos"
+				href="https://twitter.com/compose/tweet?url=http://51.210.102.30:8080/MiWeb/Pc&hashtags=FreaksCorner&hashtags=Videojuegos"
 				class="fa fa-twitter"></a>
 		</div>
 		<div class="insta">

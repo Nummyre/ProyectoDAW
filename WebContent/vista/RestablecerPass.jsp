@@ -23,9 +23,6 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<%
-		String error = (String) request.getAttribute("error");
-	%>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<img src="img/logo4.png" width="200" height="200">
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -80,25 +77,11 @@
 
 		<form class="needs-validation" method="post" action="RestablecerPass">
 			<div class="form-row mt-4">
-
 				<div class="col-md-4 mb-3">
-					<label>*Email:</label> <input type="email" class="form-control"
-						id="e" placeholder="name@example.com" name="email">
+					*Email: <input type="email" class="form-control" id="e"
+						placeholder="name@example.com" name="email" required>
 				</div>
-
 			</div>
-
-			<%
-				if (error != null) {
-					out.print("<div class=\"row mt-2 mb-5\">");
-					out.print("<div class=\"col-4\">");
-					out.print("<div class=\"alert alert-danger\">");
-					out.print("<strong>¡Error!</strong> El email es incorrecto, intentelo de nuevo.");
-					out.print("</div>");
-					out.print("</div>");
-					out.print("</div>");
-				}
-			%>
 
 			<div class="row mt-5">
 				<div class="col-4">

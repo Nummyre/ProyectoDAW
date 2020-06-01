@@ -23,6 +23,7 @@ import ch.qos.logback.classic.Logger;
 import modelo.ejb.UsuariosEJB;
 import modelo.pojo.Email;
 
+
 /**
  * Servlet para restablecer la contraseña
  * 
@@ -47,8 +48,6 @@ public class RestablecerPass extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String error = request.getParameter("error");
-		request.setAttribute("error", error);
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/RestablecerPass.jsp");
 		rs.forward(request, response);
 	}
@@ -61,32 +60,32 @@ public class RestablecerPass extends HttpServlet {
 			throws ServletException, IOException {
 
 		// Se coge el email del usuario
-		String email = request.getParameter("email"); 
+		String email = request.getParameter("email");
 
 		// Muestra una lista de emails
-		ArrayList<Email> emUser = usuariosEJB.listaEmail(); 
+		ArrayList<Email> em = usuariosEJB.listaEmail();
 
 		try {
-			// Propiedades de la conexión
-			Properties props = new Properties();
-			props.setProperty("mail.smtp.host", "smtp.gmail.com");
-			props.setProperty("mail.smtp.starttls.enable", "true");
-			props.setProperty("mail.smtp.port", "587");
-			props.setProperty("mail.smtp.user", "freakscorner2020@gmail.com");
-			props.setProperty("mail.smtp.auth", "true");
-
-			// Preparamos la sesion
-			Session session = Session.getDefaultInstance(props);
-
-			// Construimos el mensaje
-			MimeMessage message = new MimeMessage(session);
-
 			// For para comparar el email introducido por uno de la tabla en la base de
 			// datos
-			for (Email u : emUser) {
-
+				for(Email u : em) {
+	
 				// Si el email es el mismo
-				if (u.getNombre() != email) {
+				if (email.equals(u.getNombre())){
+
+					// Propiedades de la conexión
+					Properties props = new Properties();
+					props.setProperty("mail.smtp.host", "smtp.gmail.com");
+					props.setProperty("mail.smtp.starttls.enable", "true");
+					props.setProperty("mail.smtp.port", "587");
+					props.setProperty("mail.smtp.user", "freakscorner2020@gmail.com");
+					props.setProperty("mail.smtp.auth", "true");
+
+					// Preparamos la sesion
+					Session session = Session.getDefaultInstance(props);
+
+					// Construimos el mensaje
+					MimeMessage message = new MimeMessage(session);
 
 					// la persona que tiene que verificar
 					message.setFrom(new InternetAddress("freakscorner2020@gmail.com"));
@@ -97,7 +96,7 @@ public class RestablecerPass extends HttpServlet {
 					// Se envia un correo con el id del usuario en el link para poder hacer el
 					// update de la contraseña
 					message.setText("<h3>¡Hola!</h3>\n" + "<p>Dale click al enlace para restablecer la contraseña<br>"
-							+ " <a href='http://localhost:8080/MiWeb/UpdatePassLogin?id=" + u.getIdUsuario()
+							+ " <a href='http://51.210.102.30:8080/MiWeb/UpdatePassLogin?id=" + u.getIdUsuario()
 							+ "'>Restablecer contraseña</p>", "UTF-8", "html");
 
 					// Lo enviamos.
@@ -107,15 +106,13 @@ public class RestablecerPass extends HttpServlet {
 
 					// Cierre.
 					t.close();
-
-					RequestDispatcher rs = getServletContext()
-							.getRequestDispatcher("/vista/ConfirmacionEmailUpdate.jsp");
-					rs.forward(request, response);
-
-				} else {
-					response.sendRedirect("RestablecerPass?error=hay");
-				}
+					break;
+				} 
 			}
+				
+			
+			RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/ConfirmacionEmailUpdate.jsp");
+			rs.forward(request, response);
 
 		} catch (Exception e) {
 			logger.debug(e.getMessage());
