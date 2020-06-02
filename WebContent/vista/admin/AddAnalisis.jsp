@@ -204,9 +204,9 @@
 			out.print("<div class=\"form-row\">");
 			out.print("<div class=\"col\">");
 			out.print("<div class=\"form-group\">");
-			out.print("Escribe una pequeña descripción");
+			out.print("Escribe una descripción, mínimo 120 carácteres");
 			out.print(
-					"<textarea class=\"form-control\" id=\"editor1\" rows=\"5\"  maxLength=\"255\"  name=\"desc\" onkeyup=\"contadorChars(this);\" required></textarea>");
+					"<textarea class=\"form-control\" id=\"editor1\" rows=\"5\"  maxLength=\"255\" minlength=\"120\" name=\"desc\" onkeyup=\"contadorChars(this);\" required></textarea>");
 			out.print("<p id=\"charNum\">0 carácteres</p>");
 			out.print("</div>");
 			out.print("</div>");
