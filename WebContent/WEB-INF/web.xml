@@ -16,6 +16,15 @@
 		<res-auth>Container</res-auth>
 	  </resource-ref>
 	  
+	  <servlet>
+	  <servlet-name>Main</servlet-name>
+	  <servlet-class>controlador.Main</servlet-class>
+	  </servlet>
+	  <servlet-mapping>
+	  <servlet-name>Main</servlet-name>
+	  <url-pattern></url-pattern>
+	  </servlet-mapping>
+	  
 <jsp-config>
   <jsp-property-group>
       <url-pattern>*.jsp</url-pattern>
