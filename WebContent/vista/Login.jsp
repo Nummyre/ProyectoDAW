@@ -24,9 +24,6 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<%
-		String error = (String) request.getAttribute("error");
-	%>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<img src="img/logo4.png" width="200" height="200">
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -105,19 +102,6 @@
 					<i class='fas fa-eye-slash' id="ojo" onclick="abrir()"></i>
 				</div>
 			</div>
-			<%
-				//si el error distinto a nulo
-				//que muestre un mensaje de error
-				if (error != null) {
-					out.print("<div class=\"row mt-2 mb-5\">");
-					out.print("<div class=\"col-4\">");
-					out.print("<div class=\"alert alert-danger\">");
-					out.print("<strong>¡Error!</strong> La contraseña o el usuario son incorrectos, intentelo de nuevo.");
-					out.print("</div>");
-					out.print("</div>");
-					out.print("</div>");
-				}
-			%>
 			<div class="row mt-5">
 				<div class="col-4">
 					<button type="submit" class="btn btn-success">Iniciar

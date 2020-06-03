@@ -47,8 +47,6 @@ public class Login extends HttpServlet {
 
 		HttpSession session = request.getSession(false);
 
-		String error = request.getParameter("error"); // Parámetro error
-
 		// Intentamos obtener el usuario de la sesión
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
 
@@ -56,7 +54,7 @@ public class Login extends HttpServlet {
 			// Ya está logeado, lo redirigimos a la principal
 			response.sendRedirect("Main");
 		} else {
-			request.setAttribute("error", error);
+			
 			RequestDispatcher rs = getServletContext().getRequestDispatcher("/vista/Login.jsp");
 			rs.forward(request, response);
 		}
@@ -106,10 +104,6 @@ public class Login extends HttpServlet {
 					}
 
 					response.sendRedirect("Main");
-
-				} else {
-
-					response.sendRedirect("Login?error=hay");
 
 				}
 
