@@ -169,78 +169,88 @@
 			//container
 			out.print("<div class=\"container mt-5 p-5\">");
 
-			//1 row
-			out.print("<div class=\"row\">");
-			out.print("<div class=\"col\">");
-			out.print("<h3>Editando " + juego.getTitulo() + "</h3>");
-			out.print("</div>");
-			out.print("</div>");
+			if (juego != null) {
+				//si el id del usuario es el mismo que el del juego idUsuario
+				//muestre el ocntenido
+				if (user.getId() == juego.getIdUsuario()) {
+					//1 row
+					out.print("<div class=\"row\">");
+					out.print("<div class=\"col\">");
+					out.print("<h3>Editando " + juego.getTitulo() + "</h3>");
+					out.print("</div>");
+					out.print("</div>");
 
-			//2 row + form
-			out.print("<form method=\"post\" action=\"EditadoAnalisis\">");
-			out.print("<div class=\"form-row mt-4\">");
-			out.print("<div class=\"col-md-4\">");
-			out.print("Título");
-			out.print("<input class=\"form-control\" type=\"text\" value=\"" + juego.getTitulo()
-					+ "\" name=\"titulo\">");
-			out.print("</div>");
-			out.print("</div>");
+					//2 row + form
+					out.print("<form method=\"post\" action=\"EditadoAnalisis\">");
+					out.print("<div class=\"form-row mt-4\">");
+					out.print("<div class=\"col-md-4\">");
+					out.print("Título");
+					out.print("<input class=\"form-control\" type=\"text\" value=\"" + juego.getTitulo()
+							+ "\" name=\"titulo\">");
+					out.print("</div>");
+					out.print("</div>");
 
-			//3 row
-			out.print("<div class=\"form-row mt-3\">");
-			out.print("<div class=\"col\">");
-			out.print("<div class=\"form-group\">");
-			out.print("Análisis");
-			out.print("<textarea class=\"form-control\" id=\"editor1\" rows=\"10\" name=\"descr\">"
-					+ juego.getTexto() + "</textarea>");
-			out.print("</div>");
-			out.print("</div>");
-			out.print("</div>");
+					//3 row
+					out.print("<div class=\"form-row mt-3\">");
+					out.print("<div class=\"col\">");
+					out.print("<div class=\"form-group\">");
+					out.print("Análisis");
+					out.print("<textarea class=\"form-control\" id=\"editor1\" rows=\"10\" name=\"descr\">"
+							+ juego.getTexto() + "</textarea>");
+					out.print("</div>");
+					out.print("</div>");
+					out.print("</div>");
 
-			//4 row
-			out.print("<div class=\"form-row\">");
-			out.print("<div class=\"col\">");
-			out.print("<div class=\"form-group\">");
-			out.print("Escribe una descripción, mínimo 120 carácteres");
-			out.print(
-					"<textarea class=\"form-control\" id=\"editor1\" rows=\"5\"  maxLength=\"255\" minlength=\"120\" name=\"desc\" onkeyup=\"contadorChars(this);\">"
-							+ juego.getDescripcion() + "</textarea>");
-			out.print("<p id=\"charNum\">0 carácteres</p>");
-			out.print("</div>");
-			out.print("</div>");
-			out.print("</div>");
+					//4 row
+					out.print("<div class=\"form-row\">");
+					out.print("<div class=\"col\">");
+					out.print("<div class=\"form-group\">");
+					out.print("Escribe una descripción, mínimo 120 carácteres");
+					out.print(
+							"<textarea class=\"form-control\" id=\"editor1\" rows=\"5\"  maxLength=\"255\" minlength=\"120\" name=\"desc\" onkeyup=\"contadorChars(this);\">"
+									+ juego.getDescripcion() + "</textarea>");
+					out.print("<p id=\"charNum\">0 carácteres</p>");
+					out.print("</div>");
+					out.print("</div>");
+					out.print("</div>");
 
-			//5 row
-			out.print("<div class=\"form-row\">");
-			out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + juego.getId()
-					+ "\" name=\"idJuego\">");
-			out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + user.getId() + "\" name=\"id\">");
-			out.print("<div class=\"col-4 mt-5\">");
-			out.print("<button type=\"submit\" class=\"btn btn-success\">Actualizar ficha</button>");
-			out.print("</div>");
-			out.print("</div>");
+					//5 row
+					out.print("<div class=\"form-row\">");
+					out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + juego.getId()
+							+ "\" name=\"idJuego\">");
+					out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + user.getId()
+							+ "\" name=\"id\">");
+					out.print("<div class=\"col-4 mt-5\">");
+					out.print("<button type=\"submit\" class=\"btn btn-success\">Actualizar ficha</button>");
+					out.print("</div>");
+					out.print("</div>");
 
-			//FIN del formulario para editar de un analisis
-			out.print("</form>");
+					//FIN del formulario para editar de un analisis
+					out.print("</form>");
 
-			//form para el update de la foto de un analisis
-			out.print("<form method=\"post\" action=\"UpdateFotoAnalisis\" enctype=\"multipart/form-data\">");
-			out.print("<div class=\"form-row mt-5\">");
-			out.print("<div class=\"col-4\">");
-			out.print("Actualiza la foto para el juego");
-			out.print(
-					"<input type=\"file\" class=\"form-control-file\" id=\"exampleFormControlFile1\" name=\"foto\" required>");
-			out.print("</div>");
-			out.print("<div class=\"col-4\">");
-			out.print("<button type=\"submit\" class=\"btn btn-success\">Actualizar foto</button>");
-			out.print("</div>");
-			out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + juego.getId()
-					+ "\" name=\"idJuego\">");
-			out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + user.getId() + "\" name=\"id\">");
-			out.print("</div>");
-			out.print("</div>");
-			out.print("</form>");
-
+					//form para el update de la foto de un analisis
+					out.print(
+							"<form method=\"post\" action=\"UpdateFotoAnalisis\" enctype=\"multipart/form-data\">");
+					out.print("<div class=\"form-row mt-5\">");
+					out.print("<div class=\"col-4\">");
+					out.print("Actualiza la foto para el juego");
+					out.print(
+							"<input type=\"file\" class=\"form-control-file\" id=\"exampleFormControlFile1\" name=\"foto\" required>");
+					out.print("</div>");
+					out.print("<div class=\"col-4\">");
+					out.print("<button type=\"submit\" class=\"btn btn-success\">Actualizar foto</button>");
+					out.print("</div>");
+					out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + juego.getId()
+							+ "\" name=\"idJuego\">");
+					out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + user.getId()
+							+ "\" name=\"id\">");
+					out.print("</div>");
+					out.print("</div>");
+					out.print("</form>");
+				} else {
+					out.print("<h5>Vuelve a tu cuenta piratilla</h5>");
+				}
+			}
 			//container FIN
 			out.print("</div>");
 		}

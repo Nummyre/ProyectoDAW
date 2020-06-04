@@ -180,11 +180,16 @@
 
 				//for que muestra una lista de guias
 				for (Guia j : listaJuego) {
-					out.print("<tr>");
-					out.print("<td><a href=\"FichaGuia?id=" + j.getId() + "\">" + j.getTitulo() + "</td>");
-					out.print("<td><a href=\"BorradoGuia?id=" + j.getId()
-							+ "\"><button type=\"button\" class=\"btn btn-success \" onclick=\"return confirm('¿Seguro que quieres borrar?');\">Borrar Guía</button></a></td>");
-					out.print("</tr>");
+					if (user.getId() == j.getIdUsuario()) {
+						out.print("<tr>");
+						out.print("<td><a href=\"FichaGuia?id=" + j.getId() + "\">" + j.getTitulo() + "</td>");
+						out.print("<td><a href=\"BorradoGuia?id=" + j.getId()
+								+ "\"><button type=\"button\" class=\"btn btn-success \" onclick=\"return confirm('¿Seguro que quieres borrar?');\">Borrar Guía</button></a></td>");
+						out.print("</tr>");
+					} else {
+						out.print("<h5>Vuelve a tu cuenta piratilla</h5>");
+						break;
+					}
 				}
 			} else {
 				out.print("<h5>¿No tienes guías? Añade el primero</h5>");

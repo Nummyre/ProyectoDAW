@@ -182,11 +182,16 @@
 
 			if (listaJuego != null) {
 				for (Guia j : listaJuego) {
-					out.print("<tr>");
-					out.print("<td><a href=\"FichaGuia?id=" + j.getId() + "\">" + j.getTitulo() + "</td>");
-					out.print("<td><a href=\"EditadoGuia?id=" + j.getId()
-							+ "\"><button type=\"button\" class=\"btn btn-success \">Editar guía</button></a></td>");
-					out.print("</tr>");
+					if (user.getId() == j.getIdUsuario()) {
+						out.print("<tr>");
+						out.print("<td><a href=\"FichaGuia?id=" + j.getId() + "\">" + j.getTitulo() + "</td>");
+						out.print("<td><a href=\"EditadoGuia?id=" + j.getId()
+								+ "\"><button type=\"button\" class=\"btn btn-success \">Editar guía</button></a></td>");
+						out.print("</tr>");
+					} else {
+						out.print("<h5>Vuelve a tu cuenta piratilla</h5>");
+						break;
+					}
 				}
 			} else {
 				out.print("<h5>¿No tienes guías? Añade el primero</h5>");

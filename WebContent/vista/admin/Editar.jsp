@@ -179,17 +179,26 @@
 			out.print("<div class=\"row\">");
 			out.print("<div class=\"col mb-5\">");
 			out.print("<table class=\"ta\">");
-
+			
 			//si lista es nula
 			if (listaJuego != null) {
 
 				//for que muestra una lista de juegos
 				for (Juego j : listaJuego) {
+					
+					//si el id del usuario es el mismo que el del juego idUsuario
+					//muestre la lista
+					if(user.getId() == j.getIdUsuario()){
 					out.print("<tr>");
 					out.print("<td><a href=\"FichaJuego?id=" + j.getId() + "\">" + j.getTitulo() + "</td>");
 					out.print("<td><a href=\"Editado?id=" + j.getId()
 							+ "\"><button type=\"button\" class=\"btn btn-success \">Editar ficha Juego</button></a></td>");
 					out.print("</tr>");
+					//sino que muestre un mensaje
+					}else{
+						out.print("<h5>Vuelve a tu cuenta piratilla</h5>");
+						break;
+					}
 				}
 
 				//sino que muestre un boton de añadir un juego
@@ -198,6 +207,7 @@
 				out.print(
 						"<a href=\"Add\"><button type=\"button\" class=\"btn btn-success ml-5\">Añadir juego</button></a>");
 			}
+				
 
 			out.print("</table>");
 			out.print("</div>");

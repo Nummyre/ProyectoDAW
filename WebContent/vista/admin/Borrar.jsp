@@ -186,11 +186,16 @@
 
 				//for para mostrar lista de juegos
 				for (Juego j : listaJuego) {
-					out.print("<tr>");
-					out.print("<td><a href=\"FichaJuego?id=" + j.getId() + "\">" + j.getTitulo() + "</td>");
-					out.print("<td><a href=\"Borrado?id=" + j.getId()
-							+ "\"><button type=\"button\" class=\"btn btn-success\" onclick=\"return confirm('¿Seguro que quieres borrar?');\">Borrar Juego</button></a></td>");
-					out.print("</tr>");
+					if (user.getId() == j.getIdUsuario()) {
+						out.print("<tr>");
+						out.print("<td><a href=\"FichaJuego?id=" + j.getId() + "\">" + j.getTitulo() + "</td>");
+						out.print("<td><a href=\"Borrado?id=" + j.getId()
+								+ "\"><button type=\"button\" class=\"btn btn-success\" onclick=\"return confirm('¿Seguro que quieres borrar?');\">Borrar Juego</button></a></td>");
+						out.print("</tr>");
+					} else {
+						out.print("<h5>Vuelve a tu cuenta piratilla</h5>");
+						break;
+					}
 				}
 
 				//sino que muestre un boton para añadir juegos

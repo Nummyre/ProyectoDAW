@@ -47,6 +47,7 @@ public class Editar extends HttpServlet {
 
 		Usuario usuario = sesionesEJB.usuarioLogeado(session);
 
+		//id usuario
 		String idJ = request.getParameter("id");
 
 		Integer id = Integer.parseInt(idJ);
