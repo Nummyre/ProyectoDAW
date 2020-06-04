@@ -187,11 +187,16 @@
 
 				//for para mostrar una lista de analisis
 				for (Analisis j : listaJuego) {
-					out.print("<tr>");
-					out.print("<td><a href=\"FichaAnalisis?id=" + j.getId() + "\">" + j.getTitulo() + "</td>");
-					out.print("<td><a href=\"BorradoAnalisis?id=" + j.getId()
-							+ "\"><button type=\"button\" class=\"btn btn-success \" onclick=\"return confirm('¿Seguro que quieres borrar?');\">Borrar Análisis</button></a></td>");
-					out.print("</tr>");
+					if (user.getId() == j.getIdUsuario()) {
+						out.print("<tr>");
+						out.print("<td><a href=\"FichaAnalisis?id=" + j.getId() + "\">" + j.getTitulo() + "</td>");
+						out.print("<td><a href=\"BorradoAnalisis?id=" + j.getId()
+								+ "\"><button type=\"button\" class=\"btn btn-success \" onclick=\"return confirm('¿Seguro que quieres borrar?');\">Borrar Análisis</button></a></td>");
+						out.print("</tr>");
+					} else {
+						out.print("<h5>Vuelve a tu cuenta piratilla</h5>");
+						break;
+					}
 				}
 
 				//que muestre un boton para añadir un analisis

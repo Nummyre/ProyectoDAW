@@ -166,122 +166,131 @@
 
 			//container
 			out.print("<div class=\"container mt-5 p-5\">");
+			if (juego != null) {
+				//si el id del usuario es el mismo que el del juego idUsuario
+				//muestre el ocntenido
+				if (user.getId() == juego.getIdUsuario()) {
 
-			//1 row
-			out.print("<div class=\"row\">");
-			out.print("<div class=\"col\">");
-			out.print("<h3>Edita un juego a la lista</h3>");
-			out.print("</div>");
-			out.print("</div>");
+					//1 row
+					out.print("<div class=\"row\">");
+					out.print("<div class=\"col\">");
+					out.print("<h3>Edita un juego a la lista</h3>");
+					out.print("</div>");
+					out.print("</div>");
 
-			//2 row + form
-			out.print("<form method=\"post\" action=\"Editado\">");
-			out.print("<div class=\"form-row mt-4\">");
-			out.print("<div class=\"col-md-4\">");
-			out.print("Título");
-			out.print("<input class=\"form-control\" type=\"text\" value=\"" + juego.getTitulo()
-					+ "\" name=\"titulo\">");
-			out.print("</div>");
+					//2 row + form
+					out.print("<form method=\"post\" action=\"Editado\">");
+					out.print("<div class=\"form-row mt-4\">");
+					out.print("<div class=\"col-md-4\">");
+					out.print("Título");
+					out.print("<input class=\"form-control\" type=\"text\" value=\"" + juego.getTitulo()
+							+ "\" name=\"titulo\">");
+					out.print("</div>");
 
-			out.print("<div class=\"col-md-4\">");
-			out.print("Año del juego");
-			out.print("<input class=\"form-control\" type=\"number\" value=\"" + juego.getAnyo()
-					+ "\" name=\"anyo\">");
-			out.print("</div>");
-			out.print("</div>");
+					out.print("<div class=\"col-md-4\">");
+					out.print("Año del juego");
+					out.print("<input class=\"form-control\" type=\"number\" value=\"" + juego.getAnyo()
+							+ "\" name=\"anyo\">");
+					out.print("</div>");
+					out.print("</div>");
 
-			//3 row
-			out.print("<div class=\"form-row mt-5\">");
-			out.print("<div class=\"col-md-4\">");
-			out.print("<div class=\"form-group\">");
-			out.print("<label for=\"Select1\">Género</label>");
+					//3 row
+					out.print("<div class=\"form-row mt-5\">");
+					out.print("<div class=\"col-md-4\">");
+					out.print("<div class=\"form-group\">");
+					out.print("<label for=\"Select1\">Género</label>");
 
-			out.print("<select class=\"form-control\" id=\"Select1\" name=\"gen\">");
-					
-			//for para comparar genero con el genero del juego
-			for (Genero j : juegoList) {
-				
-				//Si el id del genero es el mismo que del genero del juego
-				if (juego.getGenero() == j.getId()) {
+					out.print("<select class=\"form-control\" id=\"Select1\" name=\"gen\">");
 
-					out.print("<option value=\"" + j.getId() + "\" selected=\"selected\">" + j.getNombre()
-							+ "</option>");
+					//for para comparar genero con el genero del juego
+					for (Genero j : juegoList) {
+
+						//Si el id del genero es el mismo que del genero del juego
+						if (juego.getGenero() == j.getId()) {
+
+							out.print("<option value=\"" + j.getId() + "\" selected=\"selected\">" + j.getNombre()
+									+ "</option>");
+						} else {
+							out.print("<option value=\"" + j.getId() + "\">" + j.getNombre() + "</option>");
+						}
+					}
+
+					out.print("</select>");
+					out.print("</div>");
+					out.print("</div>");
+
+					out.print("<div class=\"col-md-4\">");
+					out.print("<div class=\"form-group\">");
+					out.print("<label for=\"Select2\">Plataforma</label>");
+					out.print("<select class=\"form-control\" id=\"Select2\" name=\"pla\">");
+
+					//for para comparar plataforma con la plataforma del juego
+					for (Plataforma j2 : juegoListP) {
+
+						//Si el id de la plataforma es el mismo que de la plataforma del juego
+						if (juego.getPlataforma() == j2.getId()) {
+
+							out.print("<option value=\"" + j2.getId() + "\" selected=\"selected\">" + j2.getNombre()
+									+ "</option>");
+						} else {
+							out.print("<option value=\"" + j2.getId() + "\">" + j2.getNombre() + "</option>");
+						}
+					}
+
+					out.print("</select>");
+					out.print("</div>");
+
+					out.print("</div>");
+					out.print("</div>");
+
+					//4 row
+					out.print("<div class=\"form-row mt-5\">");
+					out.print("<div class=\"col\">");
+					out.print("<div class=\"form-group\">");
+					out.print("<p>Descripción del juego</p>");
+					out.print("<textarea class=\"form-control mt-2\" id=\"editor1\" rows=\"3\" name=\"desc\">"
+							+ juego.getDescripcion() + "</textarea>");
+					out.print("</div>");
+					out.print("</div>");
+					out.print("</div>");
+
+					//5 row
+					out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + juego.getId()
+							+ "\" name=\"idJuego\">");
+					out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + user.getId()
+							+ "\" name=\"id\">");
+
+					out.print("<div class=\"row mt-3\">");
+					out.print("<div class=\"col-md-4\">");
+					out.print("<button type=\"submit\" class=\"btn btn-success mt-5\">Actualizar ficha</button>");
+					out.print("</div>");
+					out.print("</div>");
+
+					//FIN del formulario para editar
+					out.print("</form>");
+
+					//form para el update de la foto de juego
+					out.print("<form method=\"post\" action=\"UpdateFotoJuego\" enctype=\"multipart/form-data\">");
+					out.print("<div class=\"form-row\">");
+					out.print("<div class=\"col-4 mt-5\">");
+					out.print("Actualiza la foto para el juego");
+					out.print(
+							"<input type=\"file\" class=\"form-control-file\" id=\"exampleFormControlFile1\" name=\"foto\" required>");
+					out.print("</div>");
+					out.print("<div class=\"col-4\">");
+					out.print("<button type=\"submit\" class=\"btn btn-success mt-5\">Actualizar foto</button>");
+					out.print("</div>");
+					out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + juego.getId()
+							+ "\" name=\"idJuego\">");
+					out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + user.getId()
+							+ "\" name=\"id\">");
+					out.print("</div>");
+
+					out.print("</form>");
 				} else {
-					out.print("<option value=\"" + j.getId() + "\">" + j.getNombre() + "</option>");
+					out.print("<h5>Vuelve a tu cuenta piratilla</h5>");
 				}
 			}
-
-			out.print("</select>");
-			out.print("</div>");
-			out.print("</div>");
-
-			out.print("<div class=\"col-md-4\">");
-			out.print("<div class=\"form-group\">");
-			out.print("<label for=\"Select2\">Plataforma</label>");
-			out.print("<select class=\"form-control\" id=\"Select2\" name=\"pla\">");
-
-			//for para comparar plataforma con la plataforma del juego
-			for (Plataforma j2 : juegoListP) {
-
-				//Si el id de la plataforma es el mismo que de la plataforma del juego
-				if (juego.getPlataforma() == j2.getId()) {
-
-					out.print("<option value=\"" + j2.getId() + "\" selected=\"selected\">" + j2.getNombre()
-							+ "</option>");
-				} else {
-					out.print("<option value=\"" + j2.getId() + "\">" + j2.getNombre() + "</option>");
-				}
-			}
-
-			out.print("</select>");
-			out.print("</div>");
-
-			out.print("</div>");
-			out.print("</div>");
-
-			//4 row
-			out.print("<div class=\"form-row mt-5\">");
-			out.print("<div class=\"col\">");
-			out.print("<div class=\"form-group\">");
-			out.print("<p>Descripción del juego</p>");
-			out.print("<textarea class=\"form-control mt-2\" id=\"editor1\" rows=\"3\" name=\"desc\">"
-					+ juego.getDescripcion() + "</textarea>");
-			out.print("</div>");
-			out.print("</div>");
-			out.print("</div>");
-
-			//5 row
-			out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + juego.getId()
-					+ "\" name=\"idJuego\">");
-			out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + user.getId() + "\" name=\"id\">");
-
-			out.print("<div class=\"row mt-3\">");
-			out.print("<div class=\"col-md-4\">");
-			out.print("<button type=\"submit\" class=\"btn btn-success mt-5\">Actualizar ficha</button>");
-			out.print("</div>");
-			out.print("</div>");
-
-			//FIN del formulario para editar
-			out.print("</form>");
-
-			//form para el update de la foto de juego
-			out.print("<form method=\"post\" action=\"UpdateFotoJuego\" enctype=\"multipart/form-data\">");
-			out.print("<div class=\"form-row\">");
-			out.print("<div class=\"col-4 mt-5\">");
-			out.print("Actualiza la foto para el juego");
-			out.print(
-					"<input type=\"file\" class=\"form-control-file\" id=\"exampleFormControlFile1\" name=\"foto\" required>");
-			out.print("</div>");
-			out.print("<div class=\"col-4\">");
-			out.print("<button type=\"submit\" class=\"btn btn-success mt-5\">Actualizar foto</button>");
-			out.print("</div>");
-			out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + juego.getId()
-					+ "\" name=\"idJuego\">");
-			out.print("<input class=\"form-control\" type=\"hidden\" value=\"" + user.getId() + "\" name=\"id\">");
-			out.print("</div>");
-
-			out.print("</form>");
-
 			//container FIN
 			out.print("</div>");
 			out.print("</div>");
